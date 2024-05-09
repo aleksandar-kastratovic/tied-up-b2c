@@ -12,10 +12,10 @@ const Footer = () => {
                 </div>
                 <div className="flex max-xl:flex-col max-xl:gap-[2rem] max-xl:mt-10 items-center gap-[5.625rem]">
                     <div className="flex flex-col font-bold items-center text-center justify-center gap-1">
-                        <h1 className="text-white text-[0.813rem]">
+                        <h1 className="text-white text-[18px]">
                             Besplatna dostava za
                         </h1>
-                        <h1 className="text-white text-[0.813rem]">
+                        <h1 className="text-white text-[18px]">
                             Iznos preko <span className="text-[#e10000]">6.000 RSD</span>
                         </h1>
                     </div>{" "}

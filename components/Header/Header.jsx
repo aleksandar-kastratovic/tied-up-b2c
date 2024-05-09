@@ -120,7 +120,7 @@ const Header = ({ categories }) => {
                         pathname.includes(category?.slug)
                         ? "activeCategory"
                         : "font-normal"
-                      } text-[13px] uppercase block relative w-fit text-black activeCategoryHover`}
+                      } text-[13px] uppercase block relative w-fit text-black activeCategoryHover uppercase`}
                     onMouseEnter={() => {
                       setActiveCategory({
                         id:
@@ -192,9 +192,9 @@ const Header = ({ categories }) => {
                     key={index}
                     className={`${category?.id === activeCategory?.id ||
                         pathname.includes(category?.slug)
-                        ? "activeCategory"
-                        : "font-normal"
-                      } text-[13px] block relative w-fit text-black activeCategoryHover`}
+                        ? "activeCategory uppercase"
+                        : "font-light uppercase"
+                      } text-[13px] block relative w-fit text-black activeCategoryHover uppercase`}
                     onMouseEnter={() => {
                       setActiveCategory({
                         id:
@@ -220,7 +220,7 @@ const Header = ({ categories }) => {
                 ) : (
                   <Link href={`/kategorije/${category?.slug_path}`} key={index}>
                     <span
-                      className={`text-[13px] block text-black w-fit relative activeCategoryHover ${pathname?.includes(category?.slug) && category?.id !== 0
+                      className={`text-[13px] block uppercase text-black w-fit relative activeCategoryHover ${pathname?.includes(category?.slug) && category?.id !== 0
                           ? "activeCategory"
                           : ""
                         }`}
@@ -236,7 +236,7 @@ const Header = ({ categories }) => {
                   onClick={resetActiveCategory}
                 >
                   <span
-                    className={`text-[13px] block text-black w-fit relative activeCategoryHover ${pathname?.includes(category?.slug) && category?.id !== 0
+                    className={`text-[13px] block text-black uppercase w-fit relative activeCategoryHover ${pathname?.includes(category?.slug) && category?.id !== 0
                         ? "activeCategory"
                         : pathname === category?.slug &&
                           category?.id === 0

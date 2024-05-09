@@ -73,8 +73,8 @@ const NewsLetterInstagramSection = () => {
           <h2 className="font-bold text-[30px] md:text-[40px] text-black">
             Ostvari 10% popusta
           </h2>
-          <div className="md:w-[80%] mx-auto">
-            <p className="text-[18px] font-thin text-black my-8">
+          <div className="md:w-[70%] mx-auto">
+            <p className="text-[20px] font-light text-black my-8">
               Prijavi se na naš bilten i dobićeš 10% popusta na sledeću kupovinu,
               pristup ekskluzivnim promocijama i još mnogo toga!
             </p>
@@ -100,12 +100,12 @@ const NewsLetterInstagramSection = () => {
             </form>
           </div>
    
-          <Link
+          {/* <Link
             href="/"
             className="text-base text-black mt-6 font-bold underline block"
           >
             Želim da otkažem pretplatu na bilten.
-          </Link>
+          </Link> */}
         </div>
         {/* <div>
           <InstragramSection instagramImages={instagramImages} />

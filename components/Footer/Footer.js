@@ -41,12 +41,12 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-col font-thin">
-              <h1 className="text-white text-[14px]">
+              <p className="text-white text-[18px]">
                 Besplatna dostava za
-              </h1>
-              <h1 className="text-white text-[14px] -mt-1">
+              </p>
+              <p className="text-white text-[18px] -mt-2">
                 Iznos preko <span className="text-[#de6a26]">6.000 RSD</span>
-              </h1>
+              </p>
             </div>{" "}
           </div>
           <div className="flex items-center gap-5">
@@ -60,12 +60,12 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-col font-thin">
-              <h1 className="text-white text-[14px]">
-                Rok isporuke do
+              <h1 className="text-white text-[18px]">
+                Povrat robe
               </h1>
-              <h1 className="text-white text-[14px] -mt-1">
-                <span className="text-[#de6a26]">2</span> radna dana
-              </h1>
+              <p className="text-white text-[18px] -mt-2">
+              U roku od <span className="text-[#de6a26]">14</span> dana
+              </p>
             </div>{" "}
           </div>
           <div className="flex items-center gap-5">
@@ -79,18 +79,20 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-col font-thin">
-              <h1 className="text-white text-[14px]">
-                Povrat robe
-              </h1>
-              <h1 className="text-white text-[14px] -mt-1">
-                U roku od <span className="text-[#de6a26]">14</span> dana
-              </h1>
+              <p className="text-white text-[18px]">
+              Rok isporuke do 
+              </p>
+              <p className="text-white text-[18px] -mt-2">
+              <span className="text-[#de6a26]">2</span> radna dana
+                
+              </p>
             </div>
           </div>
         </div>
         <div className="flex max-xl:mt-10 items-center gap-[1.938rem] text-white text-end">
-          <div className="ml-auto md:w-[60%]">
-            <p className="font-thin text-[0.9rem]">Podelite svoje jedinstveno online iskustvo sa našim timom i pomozite nam da postanemo bolji. <Link href="" className="underline font-bold">Ostavite Vaše mišljenje</Link>.</p>
+          <div className="ml-auto">
+            <p className="font-thin text-[18px]">Podelite svoje jedinstveno online iskustvo sa našim timom</p>
+            <p className="font-thin text-[18px] -mt-1">i pomozite nam da postanemo bolji. <Link href="/anketa" className="underline text-[18px] font-semibold">Ostavite Vaše mišljenje</Link>.</p>
           </div>
         </div>
       </div>
@@ -108,11 +110,11 @@ const Footer = () => {
         <div className="col-span-2 text-white flex flex-col md:items-center">
           <div>
           <h3 className="text-[1rem] font-semibold">O nama</h3>
-          <div className="flex flex-col items-start gap-[0.1rem] text-[0.9rem] font-thin mt-3">
+          <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
             <p>
             <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              href={`/onama`}
+              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/onama" && "text-[#e10000]"
                 }`}
             >
               Više o kompaniji
@@ -120,7 +122,7 @@ const Footer = () => {
             {", "}
             <Link
               href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/joinlife" && "text-[#e10000]"
                 }`}
             >
               Join Life
@@ -129,23 +131,23 @@ const Footer = () => {
             <p>
             <Link
               href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/posao" && "text-[#e10000]"
                 }`}
             >
               Ponude za posao
             </Link>
             {", "}
             <Link
-              href={`/`}
-              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/maloprodaje" && "text-[#e10000]"
+              href={`/stranica-u-izradi`}
+              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/stampa" && "text-[#e10000]"
                 }`}
             >
              Štampa
             </Link>
             </p>
             <Link
-              href={`/`}
-              className={`cursor-pointer hover:text-[#e10000] ${pathname === "/maloprodaje" && "text-[#e10000]"
+              href={`/gdekupiti`}
+              className={`cursor-pointer hover:text-[#e10000] ${pathname === "/gdekupiti" && "text-[#e10000]"
                 }`}
             >
             Prodajna mesta
@@ -187,7 +189,7 @@ const Footer = () => {
               />
             </a>
           </div>
-          <div className="flex mt-5 flex-col max-md:mt-10  gap-[1.25rem] max-xl:w-full xl:max-w-[490px] 2xl:max-w-[500px] 3xl:max-w-[640px]">
+          <div className="flex mt-5 flex-col max-md:mt-10  gap-[1.25rem] items-center max-xl:w-full xl:max-w-[490px] 2xl:max-w-[500px] 3xl:max-w-[680px]">
             <div className="flex items-center gap-1 ">
               <div>
                 <Image
@@ -262,7 +264,7 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <p className="text-[0.6rem] font-thin text-center text-white ">
+            <p className="text-[12px] font-thin text-center text-white ">
               Cene na sajtu su iskazane u dinarima sa uračunatim porezom, a
               plaćanje se vrši isključivo u dinarima. Isporuka se vrši SAMO na
               teritoriji Republike Srbije.
@@ -277,27 +279,27 @@ const Footer = () => {
         <div className="col-span-2 text-white flex flex-col">
           <div>
           <h3 className="text-[1rem] font-semibold">Korisnička podrška</h3>
-          <div className="flex flex-col items-start gap-[0.1rem] text-[0.9rem] font-thin mt-3">
+          <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
             <p>
             <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              href={`/kako-kupiti`}
+              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/kako-kupiti" && "text-[#e10000]"
                 }`}
             >
               Kako kupiti
             </Link>
             {", "}
             <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              href={`/reklamacije`}
+              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/reklamacije" && "text-[#e10000]"
                 }`}
             >
               Reklamacije
             </Link>
             {", "}
             <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              href={`/povrat-sredstava`}
+              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/povrat-sredstava" && "text-[#e10000]"
                 }`}
             >
               Povrat sredstava
@@ -305,24 +307,24 @@ const Footer = () => {
             </p>
             <p>
             <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+              href={`/zamena-za-isti-artikal`}
+              className={`cursor-pointer hover:text-[#e10000] mr-1 ${pathname === "/zamena-za-isti-artikal" && "text-[#e10000]"
                 }`}
             >
               Zamena za isti artikal
             </Link>
             {", "}
             <Link
-              href={`/`}
-              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/maloprodaje" && "text-[#e10000]"
+              href={`/zamena-za-drugi-artikal`}
+              className={`cursor-pointer hover:text-[#e10000] ml-1 ${pathname === "/zamena-za-drugi-artikal" && "text-[#e10000]"
                 }`}
             >
              Zamena za drugi artikal
             </Link>
             </p>
             <Link
-              href={`/`}
-              className={`cursor-pointer hover:text-[#e10000] ${pathname === "/maloprodaje" && "text-[#e10000]"
+              href={`/pravo-na-odustajanje`}
+              className={`cursor-pointer hover:text-[#e10000] ${pathname === "/pravo-na-odustajanje" && "text-[#e10000]"
                 }`}
             >
             Pravo na odustajanje
@@ -460,11 +462,11 @@ const Footer = () => {
 
 
       </div>
-      <div className="mx-[5rem] max-md:flex-col max-md:gap-10 max-md:w-[95%] max-md:mx-auto py-[1.25rem] flex items-center justify-between text-white">
+      <div className="mx-[5rem] max-md:flex-col max-md:gap-10 max-md:w-[95%] max-md:mx-auto py-[1rem] flex items-center justify-between text-white">
         <div className="flex max-md:flex-wrap items-center gap-6">
           <Link
             href="/uslovi-koriscenja"
-            className={`text-[0.9rem]  font-normal hover:text-[#e10000] cursor-pointer ${pathname === "/uslovi-koriscenja" && "text-[#e10000]"
+            className={`text-[17px]  font-extralight hover:text-[#e10000] cursor-pointer ${pathname === "/uslovi-koriscenja" && "text-[#e10000]"
               }`}
           >
             Uslovi korišćenja 
@@ -472,7 +474,7 @@ const Footer = () => {
           <span>•</span>
           <Link
             href="/zastita-privatnosti"
-            className={`text-[0.9rem]  font-normal hover:text-[#e10000] cursor-pointer ${pathname === "/zastita-privatnosti" && "text-[#e10000]"
+            className={`text-[17px]  font-extralight hover:text-[#e10000] cursor-pointer ${pathname === "/zastita-privatnosti" && "text-[#e10000]"
               }`}
           >
             Zaštita privatnosti
@@ -480,7 +482,7 @@ const Footer = () => {
           <span>•</span>
           <Link
             href="/isporuka"
-            className={`text-[0.9rem]  font-normal hover:text-[#e10000] cursor-pointer ${pathname === "/isporuka" && "text-[#e10000]"
+            className={`text-[17px]  font-extralight hover:text-[#e10000] cursor-pointer ${pathname === "/isporuka" && "text-[#e10000]"
               }`}
           >
             Isporuka
@@ -488,7 +490,7 @@ const Footer = () => {
           <span>•</span>
           <Link
             href="/najcesca-pitanja"
-            className={`text-[0.9rem] font-normal hover:text-[#e10000] cursor-pointer ${pathname === "/najcesca-pitanja" && "text-[#e10000]"
+            className={`text-[17px]  font-extralight hover:text-[#e10000] cursor-pointer ${pathname === "/najcesca-pitanja" && "text-[#e10000]"
               }`}
           >
             Najčešća pitanja
@@ -496,13 +498,13 @@ const Footer = () => {
           <span>•</span>
           <Link
             href="/kolacici"
-            className={`text-[0.9rem] font-normal hover:text-[#e10000] cursor-pointer ${pathname === "/kolacici" && "text-[#e10000]"
+            className={`text-[17px]  font-extralight hover:text-[#e10000] cursor-pointer ${pathname === "/kolacici" && "text-[#e10000]"
               }`}
           >
             Politika o 'Kolačićima'
           </Link>
         </div>
-        <p className="text-[0.9rem]  font-normal ">
+        <p className="text-[17px]  font-extralight ">
           &copy; {new Date().getFullYear()} Tied Up | Sva prava zadržana.
           Powered by{" "}
           <a

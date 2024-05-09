@@ -72,7 +72,7 @@ const langChange = (value) => {
       ></div>{" "}
       <div className="notranslate flex items-center gap-3 custom-select-container">
         <select
-          className="custom-select rounded-lg border-none text-xs font-thin text-white focus:ring-0 cursor-pointer bg-transparent"
+          className="custom-select rounded-lg border-none text-xs font-light text-white focus:ring-0 cursor-pointer bg-transparent"
           onChange={(e) => langChange(e.target.value)}
           value={selected}
         >

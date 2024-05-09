@@ -7,17 +7,17 @@ function HeaderTop() {
 	return (
 		<div className='bg-[#171612] h-8 w-full flex items-center justify-between px-[5rem] text-white'>
 			<div>
-				<Link href='https://www.facebook.com/Croonus/' className='text-sm font-normal' target='_blank'>Facebook</Link>
+				<Link href='https://www.facebook.com/Croonus/' className='text-sm font-light' target='_blank'>Facebook</Link>
 				<span className='mx-2'>-</span>
-				<Link href='https://www.instagram.com/lifeatcroonus/' className='text-sm font-normal' target='_blank'>Instagram</Link>
+				<Link href='https://www.instagram.com/lifeatcroonus/' className='text-sm font-light' target='_blank'>Instagram</Link>
 				<span className='mx-2'>-</span>
-				<Link href='https://www.youtube.com/channel/UCTCxl3sqxPqafMhOsKVVEMQ/videos?view_as=subscriber' className='text-sm font-normal' target='_blank'>Youtube</Link>
+				<Link href='https://www.youtube.com/channel/UCTCxl3sqxPqafMhOsKVVEMQ/videos?view_as=subscriber' className='text-sm font-light' target='_blank'>Youtube</Link>
 			</div>
 			<SliderHeader />
 			<div className='flex items-center'>
 				<Translate/>
-				<span className='text-sm font-normal' >Call Centar: </span>
-				<Link href={`tel:${process.env.TELEPHONE}`} className='text-sm font-normal'>
+				<span className='text-sm font-light' >Call Centar: </span>
+				<Link href={`tel:${process.env.TELEPHONE}`} className='text-sm font-light'>
 					{process.env.TELEPHONE}
 				</Link>
 			</div>

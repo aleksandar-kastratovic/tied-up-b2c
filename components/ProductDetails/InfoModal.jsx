@@ -17,7 +17,7 @@ const InfoModal = ({ infoModal, setInfoModal}) => {
       bg-white rounded-lg max-md:overflow-y-scroll  p-[40px] flex flex-col md:w-[890px] md:h-[490px]`}
     >
       <div className="flex items-center justify-between">
-        <h1 className="text-[20px] font-bold">Information</h1>
+        <h1 className="text-[20px] font-bold">Informacije</h1>
         <Image
           src={Cancel}
           alt="cancel"

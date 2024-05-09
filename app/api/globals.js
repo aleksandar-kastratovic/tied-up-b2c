@@ -7,10 +7,10 @@ import { deleteMethod, post } from "./api";
  */
 export const useGlobalAddToCart = (type = false) => {
   const [, mutateCart] = useCartContext();
-  return (productId, quantity, fromCart = false) => {
+  return ( productId, quantity, fromCart = false) => {
     post("/cart", {
       id_product: productId,
-      quantity,
+      quantity: quantity,
       id_product_parent: null,
       description: null,
       status: null,

@@ -266,137 +266,8 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
                 })}
               </div>
             )}
-            {product?.variant_options?.length > 0 ? (
-              <div className="absolute z-[100] py-2 left-0 bottom-0 w-full mx-auto bg-white chevrons opacity-90">
-                <div className="flex flex-col items-center justify-center w-[80%] mx-auto">
-                  {/* <h1 className="text-[0.938rem] font-semibold text-center">
-                    Izaberi veličinu
-                  </h1> */}
-                  <div className="flex flex-row items-center justify-center gap-3  mt-2 w-full">
-                    <Swiper
-                      slidesPerView={3}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 1.5,
-                        },
-                        1024: {
-                          slidesPerView: 2,
-                        },
-                        1300: {
-                          slidesPerView: 3,
-                        },
-                        1680: {
-                          slidesPerView: 4,
-                        },
-                      }}
-                      className="variantsSwiper"
-                      loop={true}
-                      rewind={true}
-                      dir={"ltr"}
-                      modules={[Navigation]}
-                      navigation={
-                        variantOptionSize?.values?.length >
-                        swiper?.params?.slidesPerView
-                      }
-                      style={{ width: "100%", display: "block" }}
-                      onSwiper={(swiper) => {
-                        setSwiper(swiper);
-                      }}
-                    >
-                      {variantOptionSize?.values?.map((item3) => {
-                        const variantAttributeKey =
-                          variantOptionSize?.attribute?.key;
-                        const isSelected = selected?.find(
-                          (selection) =>
-                            selection?.attribute_key === variantAttributeKey &&
-                            selection?.value_key === item3?.key
-                        );
-                        return (
-                          <SwiperSlide key={Math.random()}>
-                            <div
-                              className={`max-sm:scale-[0.8] rounded-full mx-auto cursor-pointer flex items-center justify-center text-center text-xs w-[35px] h-[35px] border-[#7d7d7d] hover:border-[#242424] transition-all duration-500 border ${
-                                isSelected &&
-                                variantAttributeKey === variantAttributeKey
-                                  ? `border-[#242424] bg-[#242424] text-white`
-                                  : ``
-                              }`}
-                              onClick={() => {
-                                if (product?.variant_options?.length > 1) {
-                                  setSelected((prevSelected) => {
-                                    const filteredSelections =
-                                      prevSelected?.filter(
-                                        (selection) =>
-                                          selection?.attribute_key !==
-                                          variantAttributeKey
-                                      );
-
-                                    return [
-                                      ...filteredSelections,
-                                      {
-                                        attribute_key: variantAttributeKey,
-                                        value_key: item3?.key,
-                                      },
-                                    ];
-                                  });
-                                  setIdProduct(product?.basic_data?.id_product);
-                                } else {
-                                  const productVariantGet = async () => {
-                                    const res = await get(
-                                      `/product-details/basic-data/${product?.basic_data?.id_product}`
-                                    );
-                                    const data = res?.payload?.data;
-                                    if (data?.variant_items) {
-                                      const clickedVariant =
-                                        data?.variant_items?.find(
-                                          (variantItem) => {
-                                            return variantItem?.variant_key_array?.some(
-                                              (variantKey) => {
-                                                return (
-                                                  variantKey?.value_key ===
-                                                  item3.key
-                                                );
-                                              }
-                                            );
-                                          }
-                                        );
-                                      setProductVariant(
-                                        clickedVariant?.basic_data?.id_product
-                                      );
-                                      addToCart(
-                                        clickedVariant?.basic_data?.id_product,
-                                        1,
-                                        false
-                                      );
-                                      toast.success(
-                                        `Proizvod ${clickedVariant.basic_data.name} je dodat u korpu!`,
-                                        {
-                                          position: "top-center",
-                                          autoClose: 3000,
-                                          hideProgressBar: false,
-                                          closeOnClick: true,
-                                          pauseOnHover: true,
-                                          draggable: true,
-                                          progress: undefined,
-                                        }
-                                      );
-                                    }
-                                  };
-                                  productVariantGet();
-                                }
-                              }}
-                            >
-                              {item3?.name}
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Swiper>
-
-                    <p onClick={() => onSwiperRightClick()}>&nbsp;</p>
-                  </div>
-                </div>
-              </div>
-            ) : null}
+            
+          
           </div>
           <div className="mt-[0.813rem] max-md:text-left  flex max-md:items-start items-center justify-between relative z-[50]">
             <Link
@@ -404,7 +275,7 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
               scroll={true}
               className="relative z-[5]"
             >
-              <h1 className="max-md:text-[0.85] text-[0.9rem]  max-md:leading-4">
+              <h1 className="max-md:text-[0.85] text-[16px] font-light  max-md:leading-4">
                 {product?.basic_data?.name}
               </h1>
             </Link>
@@ -422,15 +293,15 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
                   <Image
                       src={Wishlist}
                       alt="wishlist"
-                      width={15}
-                      height={15}
+                      width={16}
+                      height={16}
                       className={`favorite`}
                   />
                   <Image
                       src={WishlistActive}
                       alt="wishlist"
-                      width={15}
-                      height={15}
+                      width={16}
+                      height={16}
                       className={`activeWishlist !hidden`}
                   />
                 </>
@@ -453,7 +324,7 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
               />
             </div>
             {product?.price?.discount?.active && (
-              <span className={`line-through mt-3`}>
+              <span className={`line-through ml-2 text-[#8c8c8c]`}>
                 {currencyFormat(product?.price?.price?.original)}
               </span>
             )}
@@ -706,137 +577,7 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
                 })}
               </div>
             )}
-            {product?.variant_options?.length > 0 ? (
-              <div className="absolute z-[100] py-2 left-0 bottom-0 w-full mx-auto bg-white chevrons opacity-90">
-                <div className="flex flex-col items-center justify-center w-[80%] mx-auto">
-                  {/* <h1 className="text-[0.938rem] font-semibold text-center">
-                    Izaberi veličinu
-                  </h1> */}
-                  <div className="flex flex-row items-center justify-center gap-3  mt-2 w-full">
-                    <Swiper
-                      slidesPerView={3}
-                      breakpoints={{
-                        640: {
-                          slidesPerView: 3,
-                        },
-                        1024: {
-                          slidesPerView: 3,
-                        },
-                        1300: {
-                          slidesPerView: 4,
-                        },
-                        1680: {
-                          slidesPerView: 5,
-                        },
-                      }}
-                      className="variantsSwiper"
-                      loop={true}
-                      rewind={true}
-                      dir={"ltr"}
-                      modules={[Navigation]}
-                      navigation={
-                        variantOptionSize?.values?.length >
-                        swiper?.params?.slidesPerView
-                      }
-                      style={{ width: "100%", display: "block" }}
-                      onSwiper={(swiper) => {
-                        setSwiper(swiper);
-                      }}
-                    >
-                      {variantOptionSize?.values?.map((item3) => {
-                        const variantAttributeKey =
-                          variantOptionSize?.attribute?.key;
-                        const isSelected = selected?.find(
-                          (selection) =>
-                            selection?.attribute_key === variantAttributeKey &&
-                            selection?.value_key === item3?.key
-                        );
-                        return (
-                          <SwiperSlide key={Math.random()}>
-                            <div
-                              className={`max-sm:scale-[0.8] rounded-full mx-auto cursor-pointer flex items-center justify-center text-center text-xs w-[35px] h-[35px] border-[#7d7d7d] hover:border-[#242424] transition-all duration-500 border ${
-                                isSelected &&
-                                variantAttributeKey === variantAttributeKey
-                                  ? `border-[#242424] bg-[#242424] text-white`
-                                  : ``
-                              }`}
-                              onClick={() => {
-                                if (product?.variant_options?.length > 1) {
-                                  setSelected((prevSelected) => {
-                                    const filteredSelections =
-                                      prevSelected?.filter(
-                                        (selection) =>
-                                          selection?.attribute_key !==
-                                          variantAttributeKey
-                                      );
-
-                                    return [
-                                      ...filteredSelections,
-                                      {
-                                        attribute_key: variantAttributeKey,
-                                        value_key: item3?.key,
-                                      },
-                                    ];
-                                  });
-                                  setIdProduct(product?.basic_data?.id_product);
-                                } else {
-                                  const productVariantGet = async () => {
-                                    const res = await get(
-                                      `/product-details/basic-data/${product?.basic_data?.id_product}`
-                                    );
-                                    const data = res?.payload?.data;
-                                    if (data?.variant_items) {
-                                      const clickedVariant =
-                                        data?.variant_items?.find(
-                                          (variantItem) => {
-                                            return variantItem?.variant_key_array?.some(
-                                              (variantKey) => {
-                                                return (
-                                                  variantKey?.value_key ===
-                                                  item3.key
-                                                );
-                                              }
-                                            );
-                                          }
-                                        );
-                                      setProductVariant(
-                                        clickedVariant?.basic_data?.id_product
-                                      );
-                                      addToCart(
-                                        clickedVariant?.basic_data?.id_product,
-                                        1,
-                                        false
-                                      );
-                                      toast.success(
-                                        `Proizvod ${clickedVariant.basic_data.name} je dodat u korpu!`,
-                                        {
-                                          position: "top-center",
-                                          autoClose: 3000,
-                                          hideProgressBar: false,
-                                          closeOnClick: true,
-                                          pauseOnHover: true,
-                                          draggable: true,
-                                          progress: undefined,
-                                        }
-                                      );
-                                    }
-                                  };
-                                  productVariantGet();
-                                }
-                              }}
-                            >
-                              {item3?.name}
-                            </div>
-                          </SwiperSlide>
-                        );
-                      })}
-                    </Swiper>
-
-                    <p onClick={() => onSwiperRightClick()}>&nbsp;</p>
-                  </div>
-                </div>
-              </div>
-            ) : null}
+           
           </div>
           {/*<div className="absolute bottom-2 left-4">*/}
           {/*  <span className="text-[0.75rem] max-md:text-[0.65rem] text-black bg-white px-3.5 font-bold py-1 rounded-md">*/}

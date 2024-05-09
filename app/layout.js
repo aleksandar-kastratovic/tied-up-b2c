@@ -32,10 +32,9 @@ export default async function RootLayout({ children }) {
                 rel="stylesheet"
                 href="https://unpkg.com/aos@next/dist/aos.css"
               />
-              <link
-                href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
-                rel="stylesheet"
-              ></link>
+              <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet"/>
               {/*<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>*/}
               {/*<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/FBXLoader.js"></script>*/}
               {/*<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/MTLLoader.js"></script>*/}

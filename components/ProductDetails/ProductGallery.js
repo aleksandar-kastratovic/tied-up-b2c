@@ -146,7 +146,7 @@ const ProductGallery = ({
     }
   }, [productGallery]);
   return (
-    <div className="col-span-2 max-lg:col-span-4 max-md:h-[500px] md:flex md:flex-row-reverse gap-5 md:h-[650px] lg:h-[700px] xl:h-[780px] 2xl:h-[790px] 3xl:h-[878px]">
+    <div className="col-span-2 max-lg:col-span-4 max-md:h-[500px] md:flex md:flex-row-reverse gap-5 md:h-[450px] lg:h-[500px] xl:h-[660px] 2xl:h-[700px] 3xl:h-[730px]">
       <Swiper
         spaceBetween={10}
         thumbs={{

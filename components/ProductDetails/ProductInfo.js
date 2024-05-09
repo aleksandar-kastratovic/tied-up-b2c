@@ -21,6 +21,7 @@ import InfoModal from "./InfoModal";
 import ReturnModal from "./ReturnModal";
 import { get, post } from "@/app/api/api";
 import { useCartContext } from "@/app/api/cartContext";
+import PlusMinusInputTwo from "../PlusMinusInputTwo";
 
 const ProductInfo = ({
   product,
@@ -68,7 +69,7 @@ const ProductInfo = ({
     }
   }, [selectedColor]);
   const [, , , mutateWishList] = useCartContext();
-
+  const [count, setCount] = useState(1);
   const [productAmount, setProductAmount] = useState(1);
   const globalAddToCart = useGlobalAddToCart();
   const globalAddToWishList = useGlobalAddToWishList();
@@ -127,7 +128,7 @@ const ProductInfo = ({
       case product?.product_type === "single":
         switch (true) {
           case product?.data?.item?.inventory?.inventory_defined:
-            globalAddToCart(product?.data?.item?.basic_data?.id_product, 1);
+            globalAddToCart(product?.data?.item?.basic_data?.id_product, count);
             toast.success(`Proizvod dodat u korpu!`, {
               position: toast.POSITION.TOP_CENTER,
             });
@@ -160,6 +161,8 @@ const ProductInfo = ({
         }
         break;
       default:
+        setCount(1);
+        
         break;
     }
   };
@@ -179,7 +182,7 @@ const ProductInfo = ({
   }, [deliveryModal, infoModal, returnModal]);
 
   const [text, setText] = useState("Dodaj u korpu");
-  const [text2, setText2] = useState("Kupi odmah");
+
 
   const handleTextChangeAddToCart = () => {
     switch (true) {
@@ -195,22 +198,11 @@ const ProductInfo = ({
         setText("Dodaj u korpu");
     }
   };
-  const handleTextChangeBuyNow = () => {
-    switch (true) {
-      case product?.product_type === "variant" && !productVariant?.id && !color:
-        setText2("Izaberite boju");
-        break;
-      case product?.product_type === "variant" && !productVariant?.id && color:
-        setText2("Izaberite veličinu");
-        break;
-      case product?.product_type === "variant" && productVariant?.id:
-        setText2("Dodaj u korpu");
-    }
-  };
+  
   useEffect(() => {
     if (product?.product_type === "variant" && productVariant?.id) {
       setText("Dodaj u korpu");
-      setText2("Kupi odmah");
+ 
     }
   }, [productVariant]);
 
@@ -219,9 +211,8 @@ const ProductInfo = ({
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-    if ((text2 === "Izaberite boju" || text === "Izaberite boju") && color) {
+    if (( text === "Izaberite boju") && color) {
       setText("Izaberite veličinu");
-      setText2("Izaberite veličinu");
     }
   }, [color]);
 
@@ -260,7 +251,7 @@ const ProductInfo = ({
                 {breadcrumbs?.end?.name}
               </h1>
             </div>
-            <div className="flex flex-col ">
+            <div className="flex flex-col md:pr-[3rem]">
               <h1 className="text-[1.563rem] max-md:text-[1.1rem] font-bold group">
                 {product?.data?.item?.basic_data?.name}
               </h1>
@@ -345,14 +336,14 @@ const ProductInfo = ({
                   
                   <>
                     <div className=" mb-[1.2rem]">
-                  <span className="text-[#de6a26] text-sm font-semibold">Ušteda :  {currencyFormat(
+                  <span className="text-[#de6a26] text-[16px] font-semibold">Ušteda :  {currencyFormat(
                     product?.data?.item?.price?.discount?.amount
                   )}</span>
                   </div>
 
                   <div className="border-b-2 border-[#c0c0c0] w-[90%] 2xl:w-full flex justify-between text-sm">
                     <div>
-                      <p className="font-thin text-sm">Akcijska cena važi od {formattedStartDate} do {formattedEndDate}</p>
+                      <p className="font-thin text-[16px]">Akcijska cena važi od {formattedStartDate} do {formattedEndDate}</p>
                     </div>
                     
                   </div>
@@ -361,7 +352,7 @@ const ProductInfo = ({
                  
                
                   <p
-                        className={`text-sm mt-[1.6rem]`}
+                        className={`text-[16px] mt-[1.6rem] font-light`}
                         dangerouslySetInnerHTML={{ __html: product?.data?.item?.basic_data?.short_description }}
                       ></p>
              
@@ -409,6 +400,7 @@ const ProductInfo = ({
               </span>
             </button>
             <div className="mt-[3rem] max-md:mt-[2rem] flex items-center gap-3">
+            <PlusMinusInputTwo setCount={setCount} amount={count} />
               <button
                 disabled={
                   productVariant?.id
@@ -421,14 +413,14 @@ const ProductInfo = ({
                         text === "Izaberite veličinu" ||
                         text === "Izaberite boju"
                           ? `bg-red-500`
-                          : `bg-[#2bc48a]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold  relative`
+                          : `bg-[#de6a26]`
+                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative`
                     : `max-sm:w-[8.5rem] ${
                         text === "Izaberite veličinu" ||
                         text === "Izaberite boju"
                           ? `bg-red-500`
-                          : `bg-[#2bc48a]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold`
+                          : `bg-[#de6a26]`
+                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px] flex justify-center items-center uppercase text-white text-lg font-semibold pt-1`
                 }
                 onClick={() => {
                   if (
@@ -445,40 +437,7 @@ const ProductInfo = ({
               >
                 {text}
               </button>
-              <button
-                disabled={
-                  productVariant?.id
-                    ? !productVariant?.inventory?.inventory_defined
-                    : !product?.data?.item?.inventory?.inventory_defined
-                }
-                className={
-                  productVariant === null || productVariant.length === 0
-                    ? `max-sm:w-[8.5rem] ${
-                        text2 === "Izaberite veličinu" ||
-                        text2 === "Izaberite boju"
-                          ? `bg-red-500`
-                          : `bg-[#191919]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold  relative`
-                    : `max-sm:w-[8.5rem] ${
-                        text2 === "Izaberite veličinu" ||
-                        text2 === "Izaberite boju"
-                          ? `bg-red-500`
-                          : `bg-[#191919]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold`
-                }
-                onClick={() => {
-                  if (
-                    product?.product_type === "variant" &&
-                    productVariant?.id
-                  ) {
-                    addToCart();
-                    router.push("/korpa");
-                  }
-                  handleTextChangeBuyNow();
-                }}
-              >
-                {text2}
-              </button>
+             
               <div
                 className="w-[39px] h-[35px] cursor-pointer"
                 onClick={addToWishlist}
@@ -492,7 +451,7 @@ const ProductInfo = ({
                 />
               </div>
             </div>
-            <div className="md:hidden mt-5 flex items-center gap-[10px] justify-between py-5 ">
+            {/* <div className="md:hidden mt-5 flex items-center gap-[10px] justify-between py-5 ">
               <div className="flex flex-col items-center text-center justify-center">
                 <Image
                   src={FreeDelivery}
@@ -520,30 +479,25 @@ const ProductInfo = ({
                 />
                 <p className="text-sm regular">Povrat do 14 dana</p>
               </div>
-            </div>
+            </div> */}
             <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-center max-md:w-full">
-              {/*<ul className="flex flex-row gap-[47px] text-[13px] relative separate">*/}
-              {/*  <div*/}
-              {/*    className="relative cursor-pointer"*/}
-              {/*    onClick={() => setDeliveryModal(true)}*/}
-              {/*  >*/}
-              {/*    Dostava*/}
-              {/*  </div>*/}
-              {/*  <div*/}
-              {/*    className="relative cursor-pointer"*/}
-              {/*    onClick={() => setInfoModal(true)}*/}
-              {/*  >*/}
-              {/*    Informacije*/}
-              {/*  </div>*/}
-              {/*  <div*/}
-              {/*    className="relative cursor-pointer"*/}
-              {/*    onClick={() => setReturnModal(true)}*/}
-              {/*  >*/}
-              {/*    Povraćaj*/}
-              {/*  </div>*/}
-              {/*</ul>*/}
+              <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
+              <div
+                 className="relative cursor-pointer"
+                onClick={() => setDeliveryModal(true)}
+               >
+                  Opis
+              </div>
+              <div
+                 className="relative cursor-pointer"
+                onClick={() => setInfoModal(true)}
+                >
+                  Informacije
+                </div>
+               
+            </ul>
 
-              <div className={`flex flex-col divide-y md:max-w-[80%] h-[310px] overflow-y-auto`}>
+              {/* <div className={`flex flex-col divide-y md:max-w-[80%] h-[310px] overflow-y-auto`}>
                 {specification?.length > 0 &&
                   specification?.map((item) => {
                     return (
@@ -685,9 +639,9 @@ const ProductInfo = ({
                     </div>
                   )}
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div className="max-md:hidden fixed z-[95] max-w-[114px] right-0 2xl:top-[28%] top-[20%] flex flex-col gap-[30px] px-5 2xl:py-[37px] py-5 bg-white drop-shadow-2xl rounded-l-lg">
+            {/* <div className="max-md:hidden fixed z-[95] max-w-[114px] right-0 2xl:top-[28%] top-[20%] flex flex-col gap-[30px] px-5 2xl:py-[37px] py-5 bg-white drop-shadow-2xl rounded-l-lg">
               <div className="flex flex-col items-center text-center justify-center">
                 <Image
                   src={FreeDelivery}
@@ -715,17 +669,19 @@ const ProductInfo = ({
                 />
                 <p className="text-sm regular">Povrat do 14 dana</p>
               </div>
-            </div>
+            </div> */}
           </div>
-          {/*<DeliveryModal*/}
-          {/*  deliveryModal={deliveryModal}*/}
-          {/*  setDeliveryModal={setDeliveryModal}*/}
-          {/*/>*/}
-          {/*<InfoModal infoModal={infoModal} setInfoModal={setInfoModal} />*/}
-          {/*<ReturnModal*/}
-          {/*  returnModal={returnModal}*/}
-          {/*  setReturnModal={setReturnModal}*/}
-          {/*/>*/}
+
+          <DeliveryModal
+           deliveryModal={deliveryModal}
+           setDeliveryModal={setDeliveryModal}
+           description={desc?.description}
+          />
+          <InfoModal infoModal={infoModal} setInfoModal={setInfoModal}/>
+          <ReturnModal
+           returnModal={returnModal}
+           setReturnModal={setReturnModal}
+          />
 
           {(deliveryModal || infoModal || returnModal || openModal) && (
             <div
