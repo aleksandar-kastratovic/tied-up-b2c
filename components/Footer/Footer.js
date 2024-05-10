@@ -27,10 +27,10 @@ const Footer = () => {
 
   return (
     <div className="max-md:mt-[3rem] mt-[7.75rem] bg-black">
-      <div className="mx-[5rem] max-xl:flex-col py-[1.4rem] flex items-center justify-between border-l-0 border-t-0 border-r-0 border-b-4 border-b-white">
+      <div className="md:mx-[5rem] max-xl:flex-col py-[1.4rem] flex items-center justify-between border-l-0 border-t-0 border-r-0 border-b-4 border-b-white">
 
-        <div className="flex max-xl:flex-col max-xl:gap-[2rem] max-xl:mt-10 items-center gap-[3rem]">
-          <div className="flex items-center gap-5">
+        <div className="flex max-md:flex-row max-xl:flex-col max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center gap-[3rem] max-md:w-full max-md:justify-between">
+          <div className="flex items-center gap-5 max-md:flex-col">
             <div>
             <Image
               src={delivery}
@@ -41,15 +41,15 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-col font-thin">
-              <p className="text-white text-[18px]">
+              <p className="text-white max-md:text-[14px] text-[18px]">
                 Besplatna dostava za
               </p>
-              <p className="text-white text-[18px] -mt-2">
-                Iznos preko <span className="text-[#de6a26]">6.000 RSD</span>
+              <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
+                Iznos preko <span className="text-[#de6a26]  max-md:text-[14px] ">6.000 RSD</span>
               </p>
             </div>{" "}
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 max-md:flex-col">
             <div>
             <Image
               src={box}
@@ -60,15 +60,15 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-col font-thin">
-              <h1 className="text-white text-[18px]">
+              <h1 className="text-white  max-md:text-[14px]  text-[18px]">
                 Povrat robe
               </h1>
-              <p className="text-white text-[18px] -mt-2">
+              <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
               U roku od <span className="text-[#de6a26]">14</span> dana
               </p>
             </div>{" "}
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 max-md:flex-col">
             <div>
             <Image
               src={date}
@@ -79,24 +79,24 @@ const Footer = () => {
             />
             </div>
             <div className="flex flex-col font-thin">
-              <p className="text-white text-[18px]">
+              <p className="text-white  max-md:text-[14px]  text-[18px]">
               Rok isporuke do 
               </p>
-              <p className="text-white text-[18px] -mt-2">
+              <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
               <span className="text-[#de6a26]">2</span> radna dana
                 
               </p>
             </div>
           </div>
         </div>
-        <div className="flex max-xl:mt-10 items-center gap-[1.938rem] text-white text-end">
+        <div className="flex max-xl:mt-10 items-center gap-[1.938rem] text-white text-end max-md:text-center">
           <div className="ml-auto">
-            <p className="font-thin text-[18px]">Podelite svoje jedinstveno online iskustvo sa našim timom</p>
-            <p className="font-thin text-[18px] -mt-1">i pomozite nam da postanemo bolji. <Link href="/anketa" className="underline text-[18px] font-semibold">Ostavite Vaše mišljenje</Link>.</p>
+            <p className="font-thin max-md:text-[16px] text-[18px]">Podelite svoje jedinstveno online iskustvo sa našim timom</p>
+            <p className="font-thin max-md:text-[16px] text-[18px] -mt-1">i pomozite nam da postanemo bolji. <Link href="/anketa" className="underline max-md:text-[16px] text-[18px] font-semibold max-md:block">Ostavite Vaše mišljenje</Link>.</p>
           </div>
         </div>
       </div>
-      <div className="flex justify-center md:-mt-[2.3rem]">
+      <div className="flex justify-center -mt-[2.3rem]">
         <Link href={`/`}>
           <Image
             src={"/logo-footer.png"}
@@ -107,7 +107,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className="grid grid-cols-8 md:mx-[5rem] border-b-2 border-b-[#de6a26] pb-[1.4rem]">
-        <div className="col-span-2 text-white flex flex-col md:items-center">
+        <div className="max-md:hidden col-span-2 text-white flex flex-col md:items-center">
           <div>
           <h3 className="text-[1rem] font-semibold">O nama</h3>
           <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
@@ -155,8 +155,8 @@ const Footer = () => {
           </div>
           </div>
         </div>
-        <div className="col-span-4 flex flex-col justify-center items-center pt-[1.6rem]">
-          <div className="flex max-xl:mt-10 items-center gap-[1.938rem]">
+        <div className="max-md:col-span-8 col-span-4 flex flex-col justify-center items-center md:pt-[1.6rem]">
+          <div className="flex max-md:mt-4 max-xl:mt-10 items-center gap-[1.938rem]">
             <a href="https://www.instagram.com/lifeatcroonus/" target={"_blank"}>
               <Image
                 src={Instagram}
@@ -276,7 +276,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        <div className="col-span-2 text-white flex flex-col">
+        <div className="max-md:hidden col-span-2 text-white flex flex-col">
           <div>
           <h3 className="text-[1rem] font-semibold">Korisnička podrška</h3>
           <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
@@ -333,16 +333,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="md:hidden mx-[5rem] max-md:w-[95%] max-md:mx-auto py-[2.75rem] mt-[1.75rem] max-xl:flex-col flex items-center justify-between text-[#191919]">
+      <div className="md:hidden mx-[5rem] max-md:w-[95%] max-md:mx-auto py-5  mt-[1.75rem] max-xl:flex-col flex items-center justify-between text-[#191919]">
     
         <div className="flex md:hidden items-center max-md:flex-col max-md:items-center max-md:justify-center max-md:gap-5 max-md:w-full md:gap-[100px] 2xl:gap-[150px] 3xl:gap-[220px]">
           <div
             onClick={() => setOpen({ id: open?.id === 1 ? null : 1 })}
             className="flex flex-col self-start gap-[40px] max-md:self-center"
           >
-            <h1 className="text-[1.063rem] font-bold">Korisnička podrška</h1>
+            <p className="text-[1.063rem] font-bold text-white">Korisnička podrška</p>
             {open?.id === 1 && (
-              <div className="flex flex-col items-center justify-center gap-[0.4rem] text-[0.813rem] font-normal">
+              <div className="flex flex-col items-center justify-center gap-[0.4rem] font-thin text-[#c9c9c9]">
                 <Link
                   className={`cursor-pointer hover:text-[#e10000] ${pathname === "/kako-kupiti" && "text-[#e10000]"
                     }`}
@@ -358,11 +358,11 @@ const Footer = () => {
                   Reklamacije
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/povracaj-sredstava" && "text-[#e10000]"
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/povrat-sredstava" && "text-[#e10000]"
                     }`}
-                  href="/povracaj-sredstava"
+                  href="/povrat-sredstava"
                 >
-                  Povraćaj sredstava
+                  Povrat sredstava
                 </Link>
                 <Link
                   className={`cursor-pointer hover:text-[#e10000] ${pathname === "/zamena-za-isti-artikal" && "text-[#e10000]"
@@ -385,6 +385,41 @@ const Footer = () => {
                 >
                   Pravo na odustajanje
                 </Link>
+                <Link
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/uslovi-koriscenja" && "text-[#e10000]"
+                    }`}
+                  href="/uslovi-koriscenja"
+                >
+                  Uslovi korišćenja
+                </Link>
+                <Link
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/zastita-privatnosti" && "text-[#e10000]"
+                    }`}
+                  href="/zastita-privatnosti"
+                >
+                  Zaštita privatnosti
+                </Link>
+                <Link
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/isporuka" && "text-[#e10000]"
+                    }`}
+                  href="/isporuka"
+                >
+                Isporuka
+                </Link>
+                <Link
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/najcesca-pitanja" && "text-[#e10000]"
+                    }`}
+                  href="/najcesca-pitanja"
+                >
+                  Najčešća pitanja
+                </Link>
+                <Link
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/kolacici" && "text-[#e10000]"
+                    }`}
+                  href="/kolacici"
+                >
+                  Politika o Kolačićima
+                </Link>
               </div>
             )}
           </div>
@@ -392,78 +427,56 @@ const Footer = () => {
             onClick={() => setOpen({ id: open?.id === 2 ? null : 2 })}
             className="flex flex-col self-start gap-[40px] max-md:self-center text-center"
           >
-            <h1 className="text-[1.063rem] font-bold">O nama</h1>
+            <p className="text-[1.063rem] font-bold text-white">O nama</p>
             {open?.id === 2 && (
-              <div className="flex flex-col items-center justify-center gap-[0.4rem] text-[0.813rem] font-normal">
+              <div className="flex flex-col items-center justify-center gap-[0.4rem]  font-thin text-[#c9c9c9]">
                 <Link
-                  href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+                  href={`/onama`}
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/onama" && "text-[#e10000]"
                     }`}
                 >
-                  Više o kompaniji Croonus
+                  Više o kompaniji
                 </Link>
 
                 <Link
                   href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/stranica-u-izradi" && "text-[#e10000]"
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/join-life" && "text-[#e10000]"
+                    }`}
+                >
+                  Join life
+                </Link>
+
+                <Link
+                  href={`/stranica-u-izradi`}
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/posao" && "text-[#e10000]"
                     }`}
                 >
                   Ponude za posao
                 </Link>
-
                 <Link
-                  href={`/maloprodaje`}
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/maloprodaje" && "text-[#e10000]"
+                  href={`/stranica-u-izradi`}
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/stampa" && "text-[#e10000]"
                     }`}
                 >
-                  Naše prodavnice
+                  Štampa
+                </Link>
+                <Link
+                  href={`/gdekupiti`}
+                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/gdekupiti" && "text-[#e10000]"
+                    }`}
+                >
+                  Prodajna mesta
                 </Link>
               </div>
             )}
           </div>
-          <div
-            onClick={() => setOpen({ id: open?.id === 3 ? null : 3 })}
-            className="flex flex-col self-start gap-[40px] max-md:self-center"
-          >
-            <h1 className="text-[1.063rem] font-bold">Možda te interesuje</h1>
-            {open?.id === 3 && (
-              <div className="flex flex-col items-center justify-center gap-[0.4rem] text-[0.813rem] font-normal">
-                <Link
-                  href={`/kategorije/zene/odeca/topovi`}
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/kategorije/zene/odeca/topovi" &&
-                    "text-[#e10000]"
-                    }`}
-                >
-                  Topovi
-                </Link>
-                <Link
-                  href={`/kategorije/zene/odeca/haljine`}
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/kategorije/zene/odeca/haljine" &&
-                    "text-[#e10000]"
-                    }`}
-                >
-                  Haljine
-                </Link>
-                <Link
-                  href={`/kategorije/zene/obuca`}
-                  className={`cursor-pointer hover:text-[#e10000] ${pathname === "/kategorije/zene/obuca" && "text-[#e10000]"
-                    }`}
-                >
-                  Obuća
-                </Link>
-
-                {/*<span className={`cursor-pointer hover:text-[#e10000]`}>*/}
-                {/*  Outlet*/}
-                {/*</span>*/}
-              </div>
-            )}
-          </div>
+         
         </div>
 
 
       </div>
       <div className="mx-[5rem] max-md:flex-col max-md:gap-10 max-md:w-[95%] max-md:mx-auto py-[1rem] flex items-center justify-between text-white">
-        <div className="flex max-md:flex-wrap items-center gap-6">
+        <div className=" max-md:hidden flex max-md:flex-wrap items-center gap-3 4xl:gap-6">
           <Link
             href="/uslovi-koriscenja"
             className={`text-[17px]  font-extralight hover:text-[#e10000] cursor-pointer ${pathname === "/uslovi-koriscenja" && "text-[#e10000]"
@@ -504,7 +517,7 @@ const Footer = () => {
             Politika o 'Kolačićima'
           </Link>
         </div>
-        <p className="text-[17px]  font-extralight ">
+        <p className="text-[17px]  font-extralight max-md:text-center">
           &copy; {new Date().getFullYear()} Tied Up | Sva prava zadržana.
           Powered by{" "}
           <a

@@ -163,7 +163,7 @@ const HeaderIcons = () => {
                 <input
                   type="text"
                   placeholder="Pretraži proizvode"
-                  className="w-[700px] h-10 border-l-0 placeholder:text-sm border-t-0 border-r-0 border-b-gray-300 focus:outline-none focus:border-croonus-2 focus:ring-0 placeholder:uppercase"
+                  className="w-[700px] h-[3rem] border-l-0 placeholder:text-sm border-t-0 border-r-0 border-b-gray-300 focus:outline-none focus:border-croonus-2 focus:ring-0 "
                
                   onInput={(event) => {
                     setSearchTerm(event.target.value);

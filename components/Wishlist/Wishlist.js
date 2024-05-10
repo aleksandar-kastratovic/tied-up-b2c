@@ -38,7 +38,7 @@ const WishlistPage = () => {
             <h1 className="text-lg font-medium">Vaša lista želja je prazna!</h1>{" "}
             <p>Kada dodate artikle u listu želja, oni će se pojaviti ovde.</p>
             <Link href="/">
-              <button className="bg-[#2bc48a] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
+              <button className="bg-[#df6a25] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
                 Vrati se na početnu stranu
               </button>
             </Link>

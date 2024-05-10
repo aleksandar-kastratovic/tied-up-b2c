@@ -98,7 +98,7 @@ const SearchProducts = () => {
                           <h1 className="text-[0.9rem] font-normal">
                             {item?.basic_data?.name}
                           </h1>
-                          <h1 className="text-[0.9rem] w-fit bg-[#f8ce5d] px-2 font-bold text-center">
+                          <h1 className="text-[0.9rem] w-fit px-2 font-bold text-center">
                             {currencyFormat(
                               item?.price?.price?.discount ??
                                 item?.price?.price?.original

@@ -92,11 +92,11 @@ const IndexSlider = ({ banners, mobileBanners }) => {
   return (
     <div
       data-aos="zoom-out"
-      className="absolute w-screen block max-sm:h-[400px] md:h-[510px] lg:h-[690px] xl:h-[700px] 2xl:h-[750px] 3xl:h-[800px]"
+      className="absolute w-screen block max-sm:h-[300px] md:h-[510px] lg:h-[450px] xl:h-[500px] 2xl:h-[620px] 3xl:h-[800px]"
       ref={sliderRef}
     >
       <div className="relative h-full overflow-hidden">
-        <div className=" items-center max-sm:h-[400px] justify-between h-full w-full">
+        <div className=" items-center max-sm:h-[300px] justify-between h-full w-full">
           {banners.map((banner, index) => {
             const isActive = currentSlide?.index === index;
 

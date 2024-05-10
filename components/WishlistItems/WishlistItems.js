@@ -262,7 +262,7 @@ const WishlistItems = ({ items, product, border }) => {
           </div>
         </div>
         <div className=" flex items-center gap-1 flex-wrap max-md:text-[0.75rem] text-[0.813rem]  min-w-[5.938rem] max-w-max">
-          <div className={`bg-[#f8ce5d] px-2 font-bold text-center`}>
+          <div className={` px-2 font-bold text-center`}>
             <ProductPrice
               price={product?.price}
               inventory={product?.inventory}

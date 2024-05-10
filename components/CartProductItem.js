@@ -29,8 +29,8 @@ const CartProductItem = ({ item }) => {
   const [sureCheck, setSureCheck] = useState(false);
   return (
     <>
-      <div className="col-span-2 grid grid-cols-4 gap-x-10 mt-1 relative">
-        <div className="relative col-span-1 w-full flex items-center">
+      <div className="col-span-2 grid grid-cols-4 gap-x-4 md:gap-x-10 mt-1 relative">
+        <div className="relative max-md:col-span-2 col-span-1 w-full flex items-center">
           <div className="xl:h-[186px] xl:w-[186px] relative ">
             <Link href={`/proizvod/${item?.product?.slug}`}>
               <Image
@@ -55,7 +55,7 @@ const CartProductItem = ({ item }) => {
             )}
           </div>
         </div>
-        <div className="col-span-2 flex  flex-col relative">
+        <div className=" col-span-2 flex  flex-col relative">
         <span
           className="absolute -top-4 -right-6 cursor-pointer text-lg"
           onClick={() => setSureCheck(true)}

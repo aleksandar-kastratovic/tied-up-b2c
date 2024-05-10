@@ -1,7 +1,4 @@
 {
-  "/najcesca-pitanja/page": "app/najcesca-pitanja/page.js",
-  "/kolacici/page": "app/kolacici/page.js",
-  "/reklamacije/page": "app/reklamacije/page.js",
-  "/zamena-za-drugi-artikal/page": "app/zamena-za-drugi-artikal/page.js",
+  "/korpa/page": "app/korpa/page.js",
   "/page": "app/page.js"
 }

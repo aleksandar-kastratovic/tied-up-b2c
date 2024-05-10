@@ -310,63 +310,8 @@ const CheckoutPage = ({
         {cartItems.length > 0 && !cartLoading ? (
           <>
             <div className="grid grid-cols-6 gap-y-3 gap-x-3 max-xl:mx-auto max-xl:w-[95%] xl:mx-[5rem] ">
-              <div className="col-span-6 bg-white p-1 xl:col-span-3">
-                <div className={`xl:hidden py-5`}>
-                  <div className={`max-xl:w-full xl:w-[400px] mt-2`}>
-                    {/*bar for measuring*/}
-                    <div className="w-full h-1 bg-[#f5f5f7] mt-3">
-                      <div
-                        className="h-full relative transition-all duration-500 bg-[#2bc48a]"
-                        style={{
-                          width: `${
-                            (checkoutSummary?.summary?.totals?.items_discount /
-                              6000) *
-                              100 >
-                            100
-                              ? 100
-                              : (checkoutSummary?.summary?.totals
-                                  ?.items_discount /
-                                  6000) *
-                                100
-                          }%`,
-                        }}
-                      >
-                        <div className="absolute top-0 right-0 h-full w-full flex items-center justify-end">
-                          <span className="text-black font-bold text-[0.5rem] px-[0.275rem] py-1 bg-white rounded-full border-2 border-[#2bc48a] ">
-                            {checkoutSummary?.summary?.totals?.items_discount >
-                            6000
-                              ? 100
-                              : Math.round(
-                                  (checkoutSummary?.summary?.totals
-                                    ?.items_discount /
-                                    6000) *
-                                    100
-                                )}
-                            %
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p
-                      className={`text-base text-[#e10000] mt-3 font-bold ${
-                        checkoutSummary?.summary?.totals?.items_discount > 6000
-                          ? "hidden"
-                          : ""
-                      }`}
-                    >
-                      Do besplatne dostave nedostaje ti još{" "}
-                      {currencyFormat(
-                        6000 - checkoutSummary?.summary?.totals?.items_discount
-                      )}
-                    </p>
-                  </div>
-                  {cartCost > 6000 && (
-                    <p className="text-base text-[#2bc48a] mt-3 font-bold">
-                      Besplatna dostava
-                    </p>
-                  )}
-                </div>
+              <div className="col-span-6 bg-white p-1 xl:col-span-3 max-md:mt-4">
+              
 
                 <h5 className="text-xl   font-bold ">Informacije za dostavu</h5>
                 {formData.type === "personal" && (
@@ -469,7 +414,7 @@ const CheckoutPage = ({
                       </div>
                       <div className="flex flex-col gap-5 max-xl:col-span-3 xl:col-span-1 xl:col-start-2 xl:col-end-3">
                       
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-2 max-md:mt-4">
                           <label htmlFor="surname" className="hidden">
                             Prezime:{" "}
                             <span className="snap-mandatory text-red-500">
@@ -512,7 +457,7 @@ const CheckoutPage = ({
                               placeholder="Adresa*"
                             />
                           </div>
-                          <div className="flex flex-col gap-2 max-xl:mt-2">
+                          <div className="flex flex-col gap-2 max-md:mt-4 max-xl:mt-2">
                             <label htmlFor="object_number" className="hidden">
                               Broj{" "}
                               <span className="snap-mandatory text-red-500">
@@ -556,7 +501,7 @@ const CheckoutPage = ({
                               placeholder="Poštanski broj*"
                             />
                           </div>
-                          <div className="flex flex-col gap-2 max-xl:mt-2">
+                          <div className="flex flex-col gap-2 max-md:mt-5 max-xl:mt-2">
                             <label htmlFor="town" className="hidden">
                               Grad{" "}
                               <span className="snap-mandatory text-red-500">
@@ -945,7 +890,7 @@ const CheckoutPage = ({
                 )}
                  {cartItems.length > 0 && (
                 <>
-                  <div className="grid grid-cols-1 max-md:mt-0 col-span-3  gap-y-3 mt-[2rem]">
+                  <div className="grid grid-cols-1 max-md:mt-0 col-span-3  gap-y-3 mt-[2rem] max-md:mt-[2rem]">
                     <span className="text-xl  font-bold ">Način dostave </span>
                     <div className="bg-[#f5f5f7] pt-7 pt-[40px] p-[30px]">
                       <div className="flex flex-col gap-2 relative">
@@ -970,16 +915,16 @@ const CheckoutPage = ({
                                 onChange={formChangeHandler}
                                 className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none focus:bg-[#de6a26] text-[#191919]"
                               />
-                              <label htmlFor={"delivery" + option.id} className="text-lg font-thin ml-2">
+                              <label htmlFor={"delivery" + option.id} className="max-md:text-sm text-lg font-thin ml-2 max-md:font-light">
                                 {option.name}
                               </label>
                             </div>
                           ))}
                         </div>
                       </div>
-                      <p className="font-thin mt-[3rem] mb-[1rem]">Poštovani kupci, trenutna organizacija poslovanja našim kupcima nudi dostavu na željenu adresu u najkraćem vremenskom periodu. Zamenu robe možete izvršiti u bilo kojoj maloprodaji.</p>
+                      <p className="font-thin mt-[3rem] mb-[1rem] max-md:font-light">Poštovani kupci, trenutna organizacija poslovanja našim kupcima nudi dostavu na željenu adresu u najkraćem vremenskom periodu. Zamenu robe možete izvršiti u bilo kojoj maloprodaji.</p>
                     </div>
-                    <span className="text-xl max-md:mt-0   font-bold mt-5">
+                    <span className="text-xl max-md:mt-0   font-bold mt-5 max-md:mt-[2rem]">
                       Način plaćanja:
                     </span>
                     <div className="bg-[#f5f5f7] pt-7 p-[30px]">
@@ -1003,9 +948,9 @@ const CheckoutPage = ({
                                 value={option.id}
                                 id={"payment" + option.id}
                                 onChange={formChangeHandler}
-                                className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none text-[#191919]"
+                                className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none text-[#191919] max-md:font-light"
                               />
-                              <label htmlFor={"payment" + option.id} className="text-lg font-thin ml-2">
+                              <label htmlFor={"payment" + option.id} className="max-md:text-sm text-lg max-md:font-light font-thin ml-2">
                                 {option.name}
                               </label>
                             </div>
@@ -1020,7 +965,7 @@ const CheckoutPage = ({
               )}
               </div>
               <div
-                className={`col-span-6 lg:col-span-3 flex flex-col`}
+                className={`col-span-6 lg:col-span-3 flex flex-col max-md:mt-[2rem]`}
               >
                 <p className="font-bold text-xl">Proizvodi u korpi</p>
                 <div className="overflow-y-auto max-h-[411px] customScroll">
@@ -1028,14 +973,14 @@ const CheckoutPage = ({
                 </div>
                 <div className="mt-[4rem] ml-3">
                   <h5 className="font-bold text-xl mb-5">Kupon:</h5>
-                  <div className="bg-[#f5f5f7] p-[30px] ml-3">
+                  <div className="bg-[#f5f5f7] p-[30px] md:ml-3">
                   <input
                     id="coupon"
                     type="text"
                     placeholder="Ovde unesite kupon"
                     className="h-[58px] w-full border-none bg-white px-5 text-lg placeholder:text-lg"
                   />
-                  <p className="ml-4 mt-3 text-md font-thin">*Uputstvo za upotrebu kupona</p>
+                  <p className="ml-4 mt-3 text-md font-thin max-md:font-light">*Uputstvo za upotrebu kupona</p>
                   <button className="h-[48px] w-fit ml-auto px-[4rem] md:px-[8rem] bg-[#333e48] font-medium text-white uppercase mt-[1rem] flex justify-end items-center">
                     Aktiviraj kupon
                   </button>
@@ -1047,22 +992,22 @@ const CheckoutPage = ({
 
                 <h5 className="font-bold text-xl mb-1 ">Vrednost Vaše korpe:</h5>
            
-                <div className="flex flex-col gap-0 bg-[#f5f5f7] p-[30px] ml-3 pl-[40px]">
+                <div className="flex flex-col gap-0 bg-[#f5f5f7] p-[30px] md:ml-3 pl-[20px] md:pl-[40px]">
                   <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 max-xl:text-base text-lg">
-                    <span className="font-thin max-xl:text-sm">
+                    <span className="font-thin max-md:font-light max-xl:text-sm">
                       Ukupna vrednost korpe bez popusta:{" "}
                     </span>
-                    <span className="sm:mr-3 font-thin max-sm:ml-auto  max-xl:text-sm">
+                    <span className="sm:mr-3 font-thin max-md:font-light max-sm:ml-auto  max-xl:text-sm">
                       {currencyFormat(
                         checkoutSummary?.summary?.totals?.with_vat
                       )}
                     </span>
                   </div>
                   <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed]  py-1 max-xl:text-base">
-                    <span className="font-thin max-xl:text-sm text-lg ">
+                    <span className="font-thin max-md:font-light max-xl:text-sm text-lg ">
                       Iznos popusta u korpi:{" "}
                     </span>
-                    <span className="sm:mr-3 font-thin text-lg max-xl:text-sm">
+                    <span className="sm:mr-3 max-md:font-light font-thin text-lg max-xl:text-sm">
                       {currencyFormat(
                         checkoutSummary?.summary?.totals
                           ?.items_discount_amount +
@@ -1071,20 +1016,20 @@ const CheckoutPage = ({
                     </span>
                   </div>
                   <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed]  py-1 text-lg ">
-                    <span className="font-thin max-xl:text-sm ">
+                    <span className="font-thin max-md:font-light max-xl:text-sm ">
                       Ukupna vrednost korpe sa popustom:
                     </span>
-                    <span className="sm:mr-3 font-thin max-sm:ml-auto max-xl:text-sm">
+                    <span className="sm:mr-3 max-md:font-light font-thin max-sm:ml-auto max-xl:text-sm">
                       {currencyFormat(
                         checkoutSummary?.summary?.totals?.cart_discount
                       )}
                     </span>
                   </div>
                   <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed]  py-1 text-lg ">
-                    <span className="font-thin max-xl:text-sm">
+                    <span className="font-thin max-md:font-light max-xl:text-sm">
                       Iznos koštanja transporta:{" "}
                     </span>
-                    <span className="sm:mr-3 font-thin text max-xl:text-sm">
+                    <span className="sm:mr-3 font-thin max-md:font-light text max-xl:text-sm">
                       {currencyFormat(
                         checkoutSummary?.summary?.totals?.delivery_amount
                       )}
@@ -1099,7 +1044,7 @@ const CheckoutPage = ({
                     </span>
                   </div>{" "}
                 </div>
-                <div className="mt-2 flex gap-3 py-3 relative items-center ml-[3rem]">
+                <div className="mt-2 flex gap-3 py-3 relative items-center md:ml-[3rem]">
                 <input
                   type="radio"
                   id="agreed"
@@ -1108,7 +1053,7 @@ const CheckoutPage = ({
                   value={formData.agreed === "1" ? "" : "1"}
                   className="focus:ring-0 focus:border-none focus:outline-none text-[#191919]"
                 />
-                <label htmlFor="agreed" className="max-md:text-xs text-lg ml-2 font-thin">
+                <label htmlFor="agreed" className="max-md:text-[15px] text-lg md:ml-2 font-thin max-md:font-light">
                   Saglasan sam sa{" "}
                   <a
                     className={` underline`}
@@ -1144,7 +1089,7 @@ const CheckoutPage = ({
               >
                 Potvrdi porudžbenicu{" "}
               </button>
-              <div className={`float-right mt-2 max-xl:hidden`}>
+              <div className={`float-right mt-2 `}>
                 <div className={`max-xl:w-full xl:w-[400px]`}>
                   {/*bar for measuring*/}
                   {/* <div className="w-full h-1 bg-[#f5f5f7] mt-3">
@@ -1220,7 +1165,7 @@ const CheckoutPage = ({
                   </div>
                   <div className="mt-5 text-center">
                     <Link href="/">
-                      <button className="bg-[#2bc48a] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
+                      <button className="bg-[#df6a25] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
                         Vrati se na početnu stranu
                       </button>
                     </Link>

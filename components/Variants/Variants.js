@@ -309,10 +309,10 @@ export default function Variants({
     <div className="flex flex-col  gap-3 max-lg:w-full  2xl:w-1/2">
       {variantOptions.map((item) => {
         return (
-          <div className="flex max-sm:bg-[#f0f0f0] max-sm:text-right max-sm:flex-row max-sm:rounded max-sm:justify-between max-sm:items-center flex-col gap-0.5">
+          <div className="flex  max-sm:rounded  flex-col gap-0.5">
             <label
               htmlFor={item.id}
-              className="max-lg:text-left max-sm:text-sm max-sm:w-[10rem] max-sm:uppercase  max-sm:pl-2 max-sm:rounded mb-2"
+              className="max-lg:text-left max-sm:text-sm max-sm:w-[10rem] max-sm:uppercase  max-sm:pl-2 max-sm:rounded mb-2 "
             >
               Izaberi opciju :
             </label>
@@ -320,7 +320,7 @@ export default function Variants({
               key={item.id}
               id={item.id}
               name={item.attribute.key}
-              className=" max-sm:text-right max-sm:float-right focus:ring-0 focus:border-black max-sm:p-2 py-1  max-sm:flex max-sm:justify-end border-2 border-black md:w-[60%]"
+              className=" max-sm:text-right max-sm:float-right focus:ring-0 focus:border-black max-sm:p-2 py-1  max-sm:flex max-sm:justify-end border-2 border-black md:w-[60%] max-md:w-[80%]"
               onChange={(e) => {
                 onChangeHandler(item.attribute.key, e.target.value);
                 handleVariantOptionChange();

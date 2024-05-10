@@ -18,6 +18,7 @@ import Link from "next/link";
 import CampaignsDetails from "../ProductDetails/CampaignsDetails";
 import { get } from "@/app/api/api";
 import WishlistActive from "@/assets/Icons/heart-active.png";
+import PlusMinusInputTwo from "../PlusMinusInputTwo";
 
 const ProductInfo = ({
   product,
@@ -33,6 +34,8 @@ const ProductInfo = ({
   declaration,
 }) => {
   const [productVariant, setProductVariant] = useState(null);
+  const [count, setCount] = useState(1);
+ 
   const campaignsDate =
     product?.data?.item?.price?.discount?.campaigns[0]?.duration;
 
@@ -84,7 +87,7 @@ const ProductInfo = ({
       case product?.product_type === "single":
         switch (true) {
           case product?.data?.item?.inventory?.inventory_defined:
-            globalAddToCart(product?.data?.item?.basic_data?.id_product, 1);
+            globalAddToCart(product?.data?.item?.basic_data?.id_product, count);
             toast.success(`Proizvod dodat u korpu!`, {
               position: toast.POSITION.TOP_CENTER,
             });
@@ -117,6 +120,8 @@ const ProductInfo = ({
         }
         break;
       default:
+        setCount(1);
+        
         break;
     }
   };
@@ -137,22 +142,18 @@ const ProductInfo = ({
   }, [deliveryModal, infoModal, returnModal]);
 
   const [text, setText] = useState("Dodaj u korpu");
-  const [text2, setText2] = useState("Kupi odmah");
+
 
   const handleTextChangeAddToCart = () => {
     if (product?.product_type === "variant" && !productVariant?.id) {
       setText("Izaberite veličinu");
     }
   };
-  const handleTextChangeBuyNow = () => {
-    if (product?.product_type === "variant" && !productVariant?.id) {
-      setText2("Izaberite veličinu");
-    }
-  };
+
   useEffect(() => {
     if (product?.product_type === "variant" && productVariant?.id) {
       setText("Dodaj u korpu");
-      setText2("Kupi odmah");
+
     }
   }, [productVariant]);
   const [activeTab, setActiveTab] = useState(1);
@@ -325,7 +326,8 @@ const ProductInfo = ({
               </span>
             </button>
             <div className="mt-[4.188rem] max-md:mt-[2rem] flex items-center gap-3">
-              <button
+            <PlusMinusInputTwo setCount={setCount} amount={count} />
+            <button
                 disabled={
                   productVariant?.id
                     ? !productVariant?.inventory?.inventory_defined
@@ -334,21 +336,26 @@ const ProductInfo = ({
                 className={
                   productVariant === null || productVariant.length === 0
                     ? `max-sm:w-[8.5rem] ${
-                        text === "Izaberite veličinu"
+                        text === "Izaberite veličinu" ||
+                        text === "Izaberite boju"
                           ? `bg-red-500`
-                          : `bg-[#2bc48a]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold  relative`
+                          : `bg-[#de6a26]`
+                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative`
                     : `max-sm:w-[8.5rem] ${
-                        text === "Izaberite veličinu"
+                        text === "Izaberite veličinu" ||
+                        text === "Izaberite boju"
                           ? `bg-red-500`
-                          : `bg-[#2bc48a]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold`
+                          : `bg-[#de6a26]`
+                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px] flex justify-center items-center uppercase text-white text-lg font-semibold pt-1`
                 }
                 onClick={() => {
                   if (
                     product?.product_type === "variant" &&
                     productVariant?.id
                   ) {
+                    addToCart();
+                  }
+                  if (product?.product_type === "single") {
                     addToCart();
                   }
                   handleTextChangeAddToCart();
@@ -356,38 +363,7 @@ const ProductInfo = ({
               >
                 {text}
               </button>
-              <button
-                disabled={
-                  productVariant?.id
-                    ? !productVariant?.inventory?.inventory_defined
-                    : !product?.data?.item?.inventory?.inventory_defined
-                }
-                className={
-                  productVariant === null || productVariant.length === 0
-                    ? `max-sm:w-[8.5rem] ${
-                        text2 === "Izaberite veličinu"
-                          ? `bg-red-500`
-                          : `bg-[#191919]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold  relative`
-                    : `max-sm:w-[8.5rem] ${
-                        text2 === "Izaberite veličinu"
-                          ? `bg-red-500`
-                          : `bg-[#191919]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[3.25rem]  flex justify-center items-center uppercase text-white text-sm font-bold`
-                }
-                onClick={() => {
-                  if (
-                    product?.product_type === "variant" &&
-                    productVariant?.id
-                  ) {
-                    addToCart();
-                    router.push("/korpa");
-                  }
-                  handleTextChangeBuyNow();
-                }}
-              >
-                {text2}
-              </button>
+            
               <div
                 className="w-[39px] h-[35px] cursor-pointer"
                 onClick={addToWishlist}
@@ -401,162 +377,26 @@ const ProductInfo = ({
                 />
               </div>
             </div>
-            <div className="md:hidden mt-5 flex items-center gap-[10px] justify-between py-5 ">
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={FreeDelivery}
-                  alt="free delivery"
-                  width={30}
-                  height={30}
-                />
-                <p className="text-sm regular">Besplatna dostava</p>
+           
+            <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex ml-2 max-md:w-full">
+              <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
+              <div
+                 className="relative cursor-pointer"
+                onClick={() => setDeliveryModal(true)}
+               >
+                  Opis
               </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={Calendar}
-                  alt="free delivery"
-                  width={30}
-                  height={30}
-                />
-                <p className="text-sm regular">2 dana isporuka</p>
-              </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={DeliveryStatus}
-                  alt="free delivery"
-                  width={30}
-                  height={30}
-                />
-                <p className="text-sm regular">Povrat do 14 dana</p>
-              </div>
-            </div>
-            <div className="mt-[5.125rem] max-md:mt-[2rem] max-md:w-full">
-              <div className={`flex flex-col divide-y h-[310px] overflow-y-auto`}>
-                {specification?.length > 0 &&
-                  specification?.map((item) => {
-                    return (
-                      <div key={item?.set?.id}>
-                        <div
-                          onClick={() =>
-                            setActiveTab(
-                              activeTab === item?.set?.id ? null : item?.set?.id
-                            )
-                          }
-                          className={`pl-3 hover:bg-[#f8f8f8] ${
-                            activeTab === item?.set?.id && "bg-[#f8f8f8]"
-                          } py-3 cursor-pointer flex items-center justify-between`}
-                        >
-                          <span className={`uppercase`}>{item?.set?.name}</span>
-                          <i
-                            className={`fa fa-solid pr-2 transition-all duration-500 fa-chevron-${
-                              activeTab === item?.set?.id ? "up" : "down"
-                            }`}
-                          />
-                        </div>
-                        {activeTab === item?.set?.id && (
-                          <div
-                            className={`py-4 pl-6 pr-3 max-h-[150px] overflow-y-auto customScroll`}
-                          >
-                            <p className={`text-sm`}>
-                              {item?.groups[0]?.attributes[0]?.values?.map(
-                                (val) => (
-                                  <p className={`font-medium`} key={val?.id}>
-                                    - {val?.name}
-                                  </p>
-                                )
-                              )}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-
-                <div>
-                  <div
-                    onClick={() =>
-                      setActiveTab(
-                        activeTab === "declaration" ? null : "declaration"
-                      )
-                    }
-                    className={`pl-3 hover:bg-[#f8f8f8] ${
-                      activeTab === 3 && "bg-[#f8f8f8]"
-                    } py-3 cursor-pointer flex items-center justify-between`}
-                  >
-                    DEKLARACIJA{" "}
-                    <i
-                      className={`fa fa-solid pr-2 transition-all duration-500 fa-chevron-${
-                        activeTab === "declaration" ? "up" : "down"
-                      }`}
-                    />
-                  </div>
-                  {activeTab === "declaration" && (
-                    <div
-                      className={`py-4 pl-6 pr-3 max-h-[150px] overflow-y-auto customScroll`}
-                    >
-                      <p className={`text-sm`}>
-                        {declaration?.manufacture_name && (
-                          <span>
-                            Proizvođač: {declaration?.manufacture_name}
-                          </span>
-                        )}
-                      </p>
-                      <p className={`text-sm`}>
-                        {declaration?.country_name && (
-                          <span>
-                            Zemlja porekla: {declaration?.country_name}
-                          </span>
-                        )}
-                      </p>
-                      <p className={`text-sm`}>
-                        {declaration?.name && (
-                          <span>Naziv: {declaration?.name}</span>
-                        )}
-                      </p>
-                      <p className={`text-sm`}>
-                        {declaration?.year && (
-                          <span>Godina proizvodnje: {declaration?.year}</span>
-                        )}
-                      </p>
-                      <p className={`text-sm`}>
-                        {declaration?.importer_name && (
-                          <span>Uvoznik: {declaration?.importer_name}</span>
-                        )}
-                      </p>
-                    </div>
-                  )}
+              <div
+                 className="relative cursor-pointer"
+                onClick={() => setInfoModal(true)}
+                >
+                  Informacije
                 </div>
-              </div>
+               
+            </ul>
+
             </div>
-            <div className="max-md:hidden fixed z-[100] max-w-[114px] right-0 top-[30%] flex flex-col gap-[30px] px-5 py-[37px] bg-white drop-shadow-2xl rounded-l-lg">
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={FreeDelivery}
-                  alt="free delivery"
-                  width={50}
-                  height={50}
-                />
-                <p className="text-sm regular">Besplatna dostava</p>
-              </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={Calendar}
-                  alt="free delivery"
-                  width={47}
-                  height={42}
-                />
-                <p className="text-sm regular">2 dana isporuka</p>
-              </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={DeliveryStatus}
-                  alt="free delivery"
-                  width={46}
-                  height={46}
-                />
-                <p className="text-sm regular">Povrat do 14 dana</p>
-              </div>
-            </div>
+            
           </div>
           <div
             className={

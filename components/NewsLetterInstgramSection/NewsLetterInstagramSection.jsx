@@ -68,7 +68,7 @@ const NewsLetterInstagramSection = () => {
 
   return (
     <div>
-      <div className="mt-[12rem] gap-14 2xl:gap-28 max-md:w-[95%] mx-auto md:w-full md:px-[3rem] justify-center flex text-center">
+      <div className="max-md:mt-[6rem] mt-[12rem] gap-14 2xl:gap-28 max-md:w-[95%] mx-auto md:w-full md:px-[3rem] justify-center flex text-center">
         <div className="self-center">
           <h2 className="font-bold text-[30px] md:text-[40px] text-black">
             Ostvari 10% popusta

@@ -23,7 +23,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
       <div className="max-lg:col-span-1 lg:col-span-4 2xl:col-span-4 4xl:col-span-5">
         <div className="relative flex flex-col justify-between max-lg:gap-3 lg:flex-row lg:items-center">
           <div>
-          <h1 className={`text-[44px] font-bold text-[#de6a26]`}>{action4}</h1>
+          <p className={`max-md:text-[30px] text-[44px] font-bold text-[#de6a26] leading-normal`}>{action4}</p>
           {!pathname.includes("korpa") ? ( <div className="flex items-center gap-3">
                 <Link
                   className="max-md:text-[0.9rem] text-2xl underline text-[#171717] block font-light"
