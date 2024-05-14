@@ -18,7 +18,7 @@ const nextConfig = {
       "api.staging.croonus.com",
       "scontent.cdninstagram.com",
       "api.fashiondemo.croonus.com",
-      "api.tideup.croonus.com",
+      "api.tiedup.croonus.com",
       "video.cdninstagram.com",
 
     ],
