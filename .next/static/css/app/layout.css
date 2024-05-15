@@ -3335,8 +3335,8 @@ select {
 .pl-\[1rem\] {
   padding-left: 1rem;
 }
-.pl-\[40px\] {
-  padding-left: 40px;
+.pl-\[20px\] {
+  padding-left: 20px;
 }
 .pl-\[5rem\] {
   padding-left: 5rem;
@@ -3373,9 +3373,6 @@ select {
 }
 .pt-\[500px\] {
   padding-top: 500px;
-}
-.pl-\[20px\] {
-  padding-left: 20px;
 }
 .text-left {
   text-align: left;
@@ -5630,12 +5627,20 @@ input[type="radio"]:checked::before {
     font-size: 14px;
   }
 
+  .max-md\:text-\[15px\] {
+    font-size: 15px;
+  }
+
   .max-md\:text-\[16px\] {
     font-size: 16px;
   }
 
   .max-md\:text-\[1rem\] {
     font-size: 1rem;
+  }
+
+  .max-md\:text-\[30px\] {
+    font-size: 30px;
   }
 
   .max-md\:text-sm {
@@ -5646,19 +5651,6 @@ input[type="radio"]:checked::before {
   .max-md\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
-  }
-
-  .max-md\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  .max-md\:text-\[15px\] {
-    font-size: 15px;
-  }
-
-  .max-md\:text-\[30px\] {
-    font-size: 30px;
   }
 
   .max-md\:font-light {
@@ -6124,8 +6116,20 @@ input[type="radio"]:checked::before {
     margin-top: -2rem;
   }
 
+  .md\:ml-2 {
+    margin-left: 0.5rem;
+  }
+
+  .md\:ml-3 {
+    margin-left: 0.75rem;
+  }
+
   .md\:ml-\[2rem\] {
     margin-left: 2rem;
+  }
+
+  .md\:ml-\[3rem\] {
+    margin-left: 3rem;
   }
 
   .md\:ml-\[4rem\] {
@@ -6162,18 +6166,6 @@ input[type="radio"]:checked::before {
 
   .md\:mt-\[9rem\] {
     margin-top: 9rem;
-  }
-
-  .md\:ml-3 {
-    margin-left: 0.75rem;
-  }
-
-  .md\:ml-2 {
-    margin-left: 0.5rem;
-  }
-
-  .md\:ml-\[3rem\] {
-    margin-left: 3rem;
   }
 
   .md\:flex {
@@ -6292,14 +6284,14 @@ input[type="radio"]:checked::before {
     gap: 30px;
   }
 
-  .md\:gap-x-\[4rem\] {
-    -moz-column-gap: 4rem;
-         column-gap: 4rem;
-  }
-
   .md\:gap-x-10 {
     -moz-column-gap: 2.5rem;
          column-gap: 2.5rem;
+  }
+
+  .md\:gap-x-\[4rem\] {
+    -moz-column-gap: 4rem;
+         column-gap: 4rem;
   }
 
   .md\:divide-y > :not([hidden]) ~ :not([hidden]) {
@@ -6337,16 +6329,16 @@ input[type="radio"]:checked::before {
     padding-left: 1.4rem;
   }
 
+  .md\:pl-\[40px\] {
+    padding-left: 40px;
+  }
+
   .md\:pr-\[3rem\] {
     padding-right: 3rem;
   }
 
   .md\:pt-\[1\.6rem\] {
     padding-top: 1.6rem;
-  }
-
-  .md\:pl-\[40px\] {
-    padding-left: 40px;
   }
 
   .md\:text-\[1\.2rem\] {
