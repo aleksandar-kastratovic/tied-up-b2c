@@ -13,13 +13,15 @@ import WishlistActive from "../../assets/Icons/heart-active.png";
 import { useGlobalAddToCart, useGlobalAddToWishList } from "@/app/api/globals";
 import { ToastContainer, toast } from "react-toastify";
 import { currencyFormat } from "@/helpers/functions";
-import { get, list, post } from "@/app/api/api";
+import { get, list, post, deleteMethod } from "@/app/api/api";
 import ProductPrice from "@/components/ProductPrice/ProductPrice";
 import { useCartContext } from "@/app/api/cartContext";
 
-const Thumb = ({ data, slider, productsPerViewMobile }) => {
-  const [, , wishlist, mutateWishList] = useCartContext();
 
+const Thumb = ({ data, slider, productsPerViewMobile,   refreshWishlist = () => {}, }) => {
+  const [, , wishlist, mutateWishList] = useCartContext();
+  const [isAdded, setIsAdded] = useState(false);
+  const [isRemoved, setIsRemoved] = useState(false);
   const addToWishlist = async (id, name) => {
     await post("/wishlist", {
       id: null,
@@ -31,18 +33,45 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
     }).then((response) => {
       mutateWishList();
       if (response?.code === 200) {
+        setIsAdded(true);
         toast.success(`Proizvod ${name} uspešno dodat u listu želja`, {
           position: "top-center",
           autoClose: 2000,
         });
-      } else {
-        toast.warn("Proizvod je već dodat u listu želja!", {
-          position: "top-center",
-          autoClose: 2000,
-        });
-      }
+      } 
+      
     });
   };
+
+  const removeFromWishlist = async(id) => {
+    await deleteMethod(`/wishlist/${id}`).then((res) => {
+      switch(res?.code) {
+        case 200:
+          
+          mutateWishList();
+          setIsRemoved(true);
+          toast.success("Uspešno izbrisano iz liste želja.", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          break;
+          default:
+            toast.error("Greška prilikom brisanja iz liste želja.", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+            break;
+      }
+    })
+  }
   const [allFromWishlist, setAllFromWishlist] = useState([]);
   useEffect(() => {
     const getAllFromWishlist = async () => {
@@ -156,11 +185,18 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
     const variantOptionColor = product?.variant_options?.find((variant) => {
       return variant?.attribute?.slug === "boja";
     });
-
+    useEffect(() => {
+      if (isAdded || isRemoved) {
+        refetch();
+        refreshWishlist();
+        setIsAdded(false);
+        setIsRemoved(false);
+      }
+    }, [isAdded, isRemoved]);
     const isInWishlist = (allFromWishlist ?? [])?.find((item) => {
       return item?.wishlist?.id_product === product?.basic_data?.id_product;
     });
-
+ 
     return (
       <SwiperSlide key={product?.basic_data?.id} className="hoveredColor">
         <div
@@ -281,10 +317,15 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
             </Link>
             <div
               onClick={() => {
-                addToWishlist(
-                  product?.basic_data?.id_product,
-                  product?.basic_data?.name
-                );
+                if(!isInWishlist?.exist) {
+                  addToWishlist(
+                    product?.basic_data?.id_product,
+                    product?.basic_data?.name
+                  );
+                } else {
+                  removeFromWishlist(isInWishlist?.basic_data?.id_product,
+                  )
+                }
               }}
               className={` max-md:hidden rounded-full p-1 favorites cursor-pointer `}
             >
@@ -626,12 +667,17 @@ const Thumb = ({ data, slider, productsPerViewMobile }) => {
               {product?.basic_data?.name}
             </Link>
             <div
-              onClick={() => {
+            onClick={() => {
+              if(!isInWishlist?.exist) {
                 addToWishlist(
                   product?.basic_data?.id_product,
                   product?.basic_data?.name
                 );
-              }}
+              } else {
+                removeFromWishlist(product?.basic_data?.id_product,
+                )
+              }
+            }}
               className={` max-md:hidden rounded-full p-1 favorites cursor-pointer`}
             >
               <Image

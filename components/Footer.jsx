@@ -16,7 +16,7 @@ const Footer = () => {
                             Besplatna dostava za
                         </h1>
                         <h1 className="text-white text-[18px]">
-                            Iznos preko <span className="text-[#e10000]">6.000 RSD</span>
+                            Iznos preko <span className="text-[#de6a26]">6.000 RSD</span>
                         </h1>
                     </div>{" "}
                     <div className="flex flex-col font-bold items-center text-center justify-center gap-1">
@@ -24,7 +24,7 @@ const Footer = () => {
                             Rok isporuke do
                         </h1>
                         <h1 className="text-[#171717] uppercase text-[0.813rem]">
-                            <span className="text-[#e10000]">2</span> radna dana
+                            <span className="text-[#de6a26]">2</span> radna dana
                         </h1>
                     </div>{" "}
                     <div className="flex flex-col font-bold items-center text-center justify-center gap-1">
@@ -32,7 +32,7 @@ const Footer = () => {
                             Povrat robe
                         </h1>
                         <h1 className="text-[#171717] uppercase text-[0.813rem]">
-                            U roku od <span className="text-[#e10000]">14</span> dana
+                            U roku od <span className="text-[#de6a26]">14</span> dana
                         </h1>
                     </div>
                 </div>
@@ -79,37 +79,37 @@ const Footer = () => {
                         <h1 className="text-[1.063rem] font-bold">Korisnička podrška</h1>
                         <div className="flex flex-col items-start gap-[0.4rem] text-[0.813rem] font-normal">
                             <Link
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                                 href="/kako-kupiti"
                             >
                                 Kako kupiti
                             </Link>
                             <Link
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                                 href="/reklamacije"
                             >
                                 Reklamacije
                             </Link>
                             <Link
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                                 href="/povracaj-sredstava"
                             >
                                 Povraćaj sredstava
                             </Link>
                             <Link
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                                 href="/zamena-za-isti-artikal"
                             >
                                 Zamena za isti artikal
                             </Link>
                             <Link
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                                 href="/zamena-za-drugi-artikal"
                             >
                                 Zamena za drugi artikal
                             </Link>
                             <Link
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                                 href="/pravo-na-odustajanje"
                             >
                                 Pravo na odustajanje
@@ -121,21 +121,21 @@ const Footer = () => {
                         <div className="flex flex-col items-start gap-[0.4rem] text-[0.813rem] font-normal">
                             <Link
                                 href={`/stranica-u-izradi`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Više o kompaniji {process.env.NEXT_PUBLIC_COMPANY_NAME}
                             </Link>
 
                             <Link
                                 href={`/stranica-u-izradi`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Ponude za posao
                             </Link>
 
                             <Link
                                 href={`/stranica-u-izradi`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Naše prodavnice
                             </Link>
@@ -146,25 +146,25 @@ const Footer = () => {
                         <div className="flex flex-col items-start gap-[0.4rem] text-[0.813rem] font-normal">
                             <Link
                                 href={`/kategorije/muska-odeca/farmerice`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Farmerice
                             </Link>
                             <Link
                                 href={`/kategorije/muska-odeca/komplet-trenerke`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Trenerke
                             </Link>
                             <Link
                                 href={`/kategorije/muska-odeca/zimske-jakne`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Zimske jakne
                             </Link>
                             <Link
                                 href={`/kategorije/muska-obuca`}
-                                className="cursor-pointer hover:text-[#e10000]"
+                                className="cursor-pointer hover:text-[#de6a26]"
                             >
                                 Obuća
                             </Link>
@@ -263,31 +263,31 @@ const Footer = () => {
                 <div className="flex max-md:flex-wrap items-center gap-2">
                     <Link
                         href="/uslovi-koriscenja"
-                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#e10000] cursor-pointer"
+                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#de6a26] cursor-pointer"
                     >
                         Uslovi korišćenja •
                     </Link>
                     <Link
                         href="/zastita-privatnosti"
-                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#e10000] cursor-pointer"
+                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#de6a26] cursor-pointer"
                     >
                         Zaštita privatnosti •
                     </Link>
                     <Link
                         href="/isporuka"
-                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#e10000] cursor-pointer"
+                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#de6a26] cursor-pointer"
                     >
                         Isporuka •
                     </Link>
                     <Link
                         href="/najcesca-pitanja"
-                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#e10000] cursor-pointer"
+                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#de6a26] cursor-pointer"
                     >
                         Najčešća pitanja •
                     </Link>
                     <Link
                         href="/kolacici"
-                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#e10000] cursor-pointer"
+                        className="text-[0.813rem] font-normal text-[#191919] hover:text-[#de6a26] cursor-pointer"
                     >
                         Politika o 'Kolačićima'
                     </Link>
@@ -298,7 +298,7 @@ const Footer = () => {
                     <a
                         href="https://www.croonus.com"
                         target={"_blank"}
-                        className="hover:text-[#e10000] cursor-pointer bganimatethumb relative"
+                        className="hover:text-[#de6a26] cursor-pointer bganimatethumb relative"
                     >
                         Croonus Technologies
                     </a>

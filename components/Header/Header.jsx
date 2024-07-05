@@ -14,7 +14,7 @@ const Header = ({ categories }) => {
   const categoriesMain = [
     { name: "Početna", slug: "/", isCategory: false, id: 0 },
     ...categories,
-    // { name: "Gde kupiti", slug: "/gdekupiti", isCategory: false },
+    { name: "Gde kupiti", slug: "/gdekupiti", isCategory: false },
 
   ];
   const categoriesMainRight = [
@@ -121,7 +121,7 @@ const Header = ({ categories }) => {
                         ? "activeCategory"
                         : "font-normal"
                       } text-[13px] uppercase block relative w-fit text-black activeCategoryHover uppercase`}
-                    onMouseEnter={() => {
+                    onClick={() => {
                       setActiveCategory({
                         id:
                           category?.id === activeCategory?.id

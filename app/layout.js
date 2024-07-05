@@ -59,13 +59,13 @@ export default async function RootLayout({ children }) {
 }
 
 export const metadata = {
-  title: "Početna - Fashion Template",
-  description: "Dobrodošli na Fashion Template Online Shop",
+  title: "Početna - Tied up",
+  description: "Dobrodošli na Tied up Online Shop",
 
   robots: "index, follow",
   openGraph: {
-    title: "Fashion Template - Farmerke, Muške farmerke, Muška odeća",
-    description: "Dobrodošli na Fashion Template Online Shop",
+    title: "Tied up - Farmerke, Muške farmerke, Muška odeća",
+    description: "Dobrodošli na Tied up Online Shop",
     type: "website",
     url: "https://croonus.com",
     image: "https://croonus.com/images/logo.png",

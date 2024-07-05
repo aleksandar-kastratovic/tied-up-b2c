@@ -1127,7 +1127,7 @@ const CheckoutPage = ({
                   </div> */}
 
                   <p
-                    className={`text-base text-[#e10000] mt-1 font-bold ${
+                    className={`text-base text-[#de6a26] mt-1 font-bold ${
                       checkoutSummary?.summary?.totals?.items_discount > 6000
                         ? "hidden"
                         : ""

@@ -86,7 +86,7 @@ const CartProductItem = ({ item }) => {
             </div>
             <span>Ukupan iznos: {currencyFormat(total?.total, currency)}</span>
             {item?.product?.price?.per_item?.discount?.active && (
-              <span className="font-semibold text-[#e10000]">
+              <span className="font-semibold text-[#de6a26]">
                 Uštedeli ste:{" "}
                 {currencyFormat(
                   item?.product?.price?.cost?.discount_amount,

@@ -333,7 +333,7 @@ const ProductGallery = ({
             </Swiper>
           </div>
           <i
-            className={`fas fa-times absolute top-2 left-2 z-50 text-[#e10000] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
+            className={`fas fa-times absolute top-2 left-2 z-50 text-[#de6a26] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
             onClick={() => {
               setModalImage(null);
             }}

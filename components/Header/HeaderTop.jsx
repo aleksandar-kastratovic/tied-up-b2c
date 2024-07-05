@@ -12,8 +12,8 @@ function HeaderTop() {
 				<Link href='https://www.instagram.com/lifeatcroonus/' className='text-sm font-light' target='_blank'>Instagram</Link>
 				<span className='mx-2'>-</span>
 				<Link href='https://www.youtube.com/channel/UCTCxl3sqxPqafMhOsKVVEMQ/videos?view_as=subscriber' className='text-sm font-light' target='_blank'>Youtube</Link>
-				<span className='mx-4 font-thin'>│</span>
-				<Link href='/gde-kupiti' className='text-sm font-light' target='_blank'>Gde kupiti</Link>
+				
+				
 			</div>
 			<SliderHeader />
 			<div className='flex items-center'>

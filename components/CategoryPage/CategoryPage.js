@@ -214,7 +214,7 @@ const CategoryPage = ({
           <div className="flex items-center gap-2 px-[3%] flex-wrap">
             <Link
               href={`/`}
-              className="text-[#191919] text-[0.95rem] font-normal hover:text-[#e10000]"
+              className="text-[#191919] text-[0.95rem] font-normal hover:text-[#de6a26]"
             >
               Početna
             </Link>{" "}
@@ -228,7 +228,7 @@ const CategoryPage = ({
                         ? `/kategorije/${breadcrumb?.slug}`
                         : `/kategorije/${breadcrumb?.slug}`
                     }
-                    className="text-[#191919] text-[0.95rem] font-normal hover:text-[#e10000]"
+                    className="text-[#191919] text-[0.95rem] font-normal hover:text-[#de6a26]"
                   >
                     {breadcrumb?.name}
                   </Link>
