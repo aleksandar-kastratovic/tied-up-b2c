@@ -14,7 +14,7 @@ const Header = ({ categories }) => {
   const categoriesMain = [
     { name: "Početna", slug: "/", isCategory: false, id: 0 },
     ...categories,
-    { name: "Gde kupiti", slug: "/gdekupiti", isCategory: false },
+    // { name: "Gde kupiti", slug: "/gdekupiti", isCategory: false },
 
   ];
   const categoriesMainRight = [
