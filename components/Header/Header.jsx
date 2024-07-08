@@ -283,7 +283,7 @@ const Header = ({ categories }) => {
                         </Link>
                       );
                     })}
-                    <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 flex items-center">
+                    <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 text-left">
                       {activeCategory?.data?.map((category, index) => {
                         return category?.children?.length > 0 ? (
                           <button
@@ -292,7 +292,7 @@ const Header = ({ categories }) => {
                                 pathname.includes(category?.slug)
                                 ? "font-bold"
                                 : "font-normal"
-                              }  hover:underline block text-black`}
+                              }  hover:underline block text-black text-left`}
                             onClick={() => {
                               setActiveSubCategory({
                                 id:
