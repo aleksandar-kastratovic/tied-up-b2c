@@ -15,72 +15,21 @@ import { ToastContainer, toast } from "react-toastify";
 import { currencyFormat } from "@/helpers/functions";
 import { get, list, post, deleteMethod } from "@/app/api/api";
 import ProductPrice from "@/components/ProductPrice/ProductPrice";
+import { useQuery } from "@tanstack/react-query";
 import { useCartContext } from "@/app/api/cartContext";
 
+const Thumb = ({ data, slider, productsPerViewMobile,   setWishlistId = () => {}, isInWishlist = false}) => {
 
-const Thumb = ({ data, slider, productsPerViewMobile,   refreshWishlist = () => {}, }) => {
-  const [, , wishlist, mutateWishList] = useCartContext();
-  const [isAdded, setIsAdded] = useState(false);
-  const [isRemoved, setIsRemoved] = useState(false);
-  const addToWishlist = async (id, name) => {
-    await post("/wishlist", {
-      id: null,
-      id_product: id,
-      quantity: 1,
-      id_product_parent: null,
-      description: null,
-      status: null,
-    }).then((response) => {
-      mutateWishList();
-      if (response?.code === 200) {
-        setIsAdded(true);
-        toast.success(`Proizvod ${name} uspešno dodat u listu želja`, {
-          position: "top-center",
-          autoClose: 2000,
-        });
-      } 
-      
-    });
-  };
+  const [, , , mutateWishList] = useCartContext();
+  const { data: wishlist, refetch } = useQuery({
+    queryKey: ["wishlist"],
+    queryFn: async () => {
+      return await list(`/wishlist`).then((res) => res?.payload?.items);
+    },
+    refetchOnWindowFocus: false,
+  });
 
-  const removeFromWishlist = async(id) => {
-    await deleteMethod(`/wishlist/${id}`).then((res) => {
-      switch(res?.code) {
-        case 200:
-          
-          mutateWishList();
-          setIsRemoved(true);
-          toast.success("Uspešno izbrisano iz liste želja.", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          });
-          break;
-          default:
-            toast.error("Greška prilikom brisanja iz liste želja.", {
-              position: "top-center",
-              autoClose: 2000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-            });
-            break;
-      }
-    })
-  }
-  const [allFromWishlist, setAllFromWishlist] = useState([]);
-  useEffect(() => {
-    const getAllFromWishlist = async () => {
-      return await list(`/wishlist`).then((response) => {
-        setAllFromWishlist(response?.payload?.items);
-      });
-    };
-    getAllFromWishlist();
-  }, [wishlist]);
+
 
   const [swiper, setSwiper] = useState(null);
   const [loading, setLoading] = useState({
@@ -185,18 +134,17 @@ const Thumb = ({ data, slider, productsPerViewMobile,   refreshWishlist = () => 
     const variantOptionColor = product?.variant_options?.find((variant) => {
       return variant?.attribute?.slug === "boja";
     });
-    useEffect(() => {
-      if (isAdded || isRemoved) {
-        refetch();
-        refreshWishlist();
-        setIsAdded(false);
-        setIsRemoved(false);
-      }
-    }, [isAdded, isRemoved]);
-    const isInWishlist = (allFromWishlist ?? [])?.find((item) => {
-      return item?.wishlist?.id_product === product?.basic_data?.id_product;
-    });
+  
+    const isProductInWishlist = wishlist?.find(
+      (item) => item?.product?.id === product?.basic_data?.id_product,
+    );
  
+    const wishlist_item = wishlist?.filter(
+      (item1) => item1?.product?.id === product?.basic_data?.id_product
+    );
+
+  const wishlistId = wishlist_item?.[0]?.wishlist?.id;
+
     return (
       <SwiperSlide key={product?.basic_data?.id} className="hoveredColor">
         <div
@@ -316,45 +264,78 @@ const Thumb = ({ data, slider, productsPerViewMobile,   refreshWishlist = () => 
               </h1>
             </Link>
             <div
-              onClick={() => {
-                if(!isInWishlist?.exist) {
-                  addToWishlist(
-                    product?.basic_data?.id_product,
-                    product?.basic_data?.name
-                  );
-                } else {
-                  removeFromWishlist(isInWishlist?.basic_data?.id_product,
-                  )
-                }
-              }}
+              onMouseEnter={() => {
+                      setWishlistId(product?.basic_data?.id_product);
+                    }}
+                    onClick={async () => {
+                      if (!isProductInWishlist) {
+                        await post("/wishlist", {
+                          id: null,
+                          id_product: product?.basic_data?.id_product,
+                          quantity: 1,
+                          id_product_parent: null,
+                          description: null,
+                          status: null,
+                        }).then((res) => {
+                          if (res?.code === 200) {
+                            toast.success("Uspešno dodato u želje.", {
+                              autoClose: 2000,
+                              position: "top-center",
+                            });
+                            mutateWishList();
+                          }
+                        });
+                        refetch();
+                      } else {
+                        setTimeout(async () => {
+                          await deleteMethod(`/wishlist/${wishlistId}`).then(
+                              (res) => {
+                                if (res?.code === 200) {
+                                  toast.success("Uspešno uklonjeno iz želja.", {
+                                    autoClose: 2000,
+                                    position: "top-center",
+                                  });
+                                  mutateWishList();
+                                  refetch();
+                                } else {
+                                  toast.error("Došlo je do greške.", {
+                                    autoClose: 2000,
+                                    position: "top-center",
+                                  });
+                                }
+                              }
+                          );
+                        }, 500);
+                      }
+                    }}
+                
+                
               className={` max-md:hidden rounded-full p-1 favorites cursor-pointer `}
             >
-              {!isInWishlist ? (
-                <>
-                  <Image
-                      src={Wishlist}
-                      alt="wishlist"
-                      width={16}
-                      height={16}
-                      className={`favorite`}
-                  />
-                  <Image
-                      src={WishlistActive}
-                      alt="wishlist"
-                      width={16}
-                      height={16}
-                      className={`activeWishlist !hidden`}
-                  />
-                </>
-              ) : (
-                <><Image
-                    src={WishlistActive}
-                    alt="wishlist"
-                    width={15}
-                    height={15}
-                    className={``}
-                /></>
-              )}
+            {isInWishlist ? (
+                      <i
+                        className={`fa fa-solid fa-times cursor-pointer text-xl hover:text-red-500`}
+                      ></i>
+                    ) : isProductInWishlist ? (
+                      <Image
+                        alt="wishlist"
+                        src={WishlistActive}
+                        height={15}
+                        width={15}
+                        className="cursor-pointer hover:scale-110 transition-all duration-200"
+                
+                      />
+                    ) : (
+                      <Image
+                        src={Wishlist}
+                        alt="wishlist"
+                        height={15}
+                        width={15}
+                        className={`cursor-pointer transition-all duration-500 hover:scale-110 ${
+                          isProductInWishlist && "hidden"
+                        }`}
+                      />
+                    )}
             </div>
           </div>
           <div className=" flex items-center gap-1 flex-wrap max-md:text-[0.75rem] text-[0.813rem]  min-w-[5.938rem] max-w-max">
