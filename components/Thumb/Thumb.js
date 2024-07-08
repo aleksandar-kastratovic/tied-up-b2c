@@ -491,9 +491,15 @@ const Thumb = ({ data, slider, productsPerViewMobile,   setWishlistId = () => {}
         return variant?.attribute?.slug === "boja";
       });
 
-      const isInWishlist = (allFromWishlist ?? [])?.find((item) => {
-        return item?.wishlist?.id_product === product?.basic_data?.id_product;
-      });
+      const isProductInWishlist = wishlist?.find(
+        (item) => item?.product?.id === product?.basic_data?.id_product,
+      );
+   
+      const wishlist_item = wishlist?.filter(
+        (item1) => item1?.product?.id === product?.basic_data?.id_product
+      );
+  
+    const wishlistId = wishlist_item?.[0]?.wishlist?.id;
 
       return (
         <div
@@ -648,36 +654,78 @@ const Thumb = ({ data, slider, productsPerViewMobile,   setWishlistId = () => {}
               {product?.basic_data?.name}
             </Link>
             <div
-            onClick={() => {
-              if(!isInWishlist?.exist) {
-                addToWishlist(
-                  product?.basic_data?.id_product,
-                  product?.basic_data?.name
-                );
-              } else {
-                removeFromWishlist(product?.basic_data?.id_product,
-                )
-              }
-            }}
-              className={` max-md:hidden rounded-full p-1 favorites cursor-pointer`}
+              onMouseEnter={() => {
+                      setWishlistId(product?.basic_data?.id_product);
+                    }}
+                    onClick={async () => {
+                      if (!isProductInWishlist) {
+                        await post("/wishlist", {
+                          id: null,
+                          id_product: product?.basic_data?.id_product,
+                          quantity: 1,
+                          id_product_parent: null,
+                          description: null,
+                          status: null,
+                        }).then((res) => {
+                          if (res?.code === 200) {
+                            toast.success("Uspešno dodato u želje.", {
+                              autoClose: 2000,
+                              position: "top-center",
+                            });
+                            mutateWishList();
+                          }
+                        });
+                        refetch();
+                      } else {
+                        setTimeout(async () => {
+                          await deleteMethod(`/wishlist/${wishlistId}`).then(
+                              (res) => {
+                                if (res?.code === 200) {
+                                  toast.success("Uspešno uklonjeno iz želja.", {
+                                    autoClose: 2000,
+                                    position: "top-center",
+                                  });
+                                  mutateWishList();
+                                  refetch();
+                                } else {
+                                  toast.error("Došlo je do greške.", {
+                                    autoClose: 2000,
+                                    position: "top-center",
+                                  });
+                                }
+                              }
+                          );
+                        }, 500);
+                      }
+                    }}
+                
+                
+              className={` max-md:hidden rounded-full p-1 favorites cursor-pointer `}
             >
-              <Image
-                src={WishlistActive}
-                alt="wishlist"
-                width={15}
-                height={15}
-                className={`activeWishlist ${
-                  isInWishlist ? `block` : `hidden`
-                }`}
-              />
-
-              <Image
-                src={Wishlist}
-                alt="wishlist"
-                width={15}
-                height={15}
-                className={`favorite ${isInWishlist && "hidden"}`}
-              />
+            {isInWishlist ? (
+                      <i
+                        className={`fa fa-solid fa-times cursor-pointer text-xl hover:text-red-500`}
+                      ></i>
+                    ) : isProductInWishlist ? (
+                      <Image
+                        alt="wishlist"
+                        src={WishlistActive}
+                        height={15}
+                        width={15}
+                        className="cursor-pointer hover:scale-110 transition-all duration-200"
+                
+                      />
+                    ) : (
+                      <Image
+                        src={Wishlist}
+                        alt="wishlist"
+                        height={15}
+                        width={15}
+                        className={`cursor-pointer transition-all duration-500 hover:scale-110 ${
+                          isProductInWishlist && "hidden"
+                        }`}
+                      />
+                    )}
             </div>
           </div>
           <div className=" flex items-center gap-1 mt-2 flex-wrap max-md:text-[0.75rem] text-[0.813rem]  min-w-[5.938rem] max-w-max">
