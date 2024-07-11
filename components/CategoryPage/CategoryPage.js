@@ -186,6 +186,8 @@ const CategoryPage = ({
       generateBreadcrumbs(singleCategory);
     }
   }, [singleCategory, breadcrumbs]);
+
+
   return (
     <>
       <div className="">
@@ -214,7 +216,7 @@ const CategoryPage = ({
           <div className="flex items-center gap-2 px-[3%] flex-wrap">
             <Link
               href={`/`}
-              className="text-[#191919] text-[0.95rem] font-normal hover:text-[#e10000]"
+              className="text-[#191919] text-[0.95rem] font-normal hover:text-[#de6a26]"
             >
               Početna
             </Link>{" "}
@@ -225,10 +227,10 @@ const CategoryPage = ({
                   <Link
                     href={
                       index === arr.length - 1
-                        ? `/kategorije/${breadcrumb?.slug}`
-                        : `/kategorije/${breadcrumb?.slug}`
+                        ? `/${breadcrumb?.slug}`
+                        : `/${breadcrumb?.slug}`
                     }
-                    className="text-[#191919] text-[0.95rem] font-normal hover:text-[#e10000]"
+                    className="text-[#191919] text-[0.95rem] font-normal hover:text-[#de6a26]"
                   >
                     {breadcrumb?.name}
                   </Link>
@@ -285,7 +287,7 @@ const CategoryPage = ({
                         null,
                         "",
                         singleCategory
-                          ? `/kategorije/${singleCategory.slug_path}`
+                          ? `/${singleCategory.slug_path}`
                           : `/sekcija/${slug}`
                       );
                     }
@@ -307,7 +309,7 @@ const CategoryPage = ({
                           null,
                           "",
                           singleCategory
-                            ? `/kategorije/${singleCategory.slug_path}`
+                            ? `/${singleCategory.slug_path}`
                             : `/sekcija/${slug}`
                         );
                       }

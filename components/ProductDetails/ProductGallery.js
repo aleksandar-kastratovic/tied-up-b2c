@@ -10,6 +10,7 @@ import "swiper/css/zoom";
 import { FreeMode, Navigation, Pagination, Thumbs, Zoom } from "swiper";
 import Image from "next/image";
 import classes from "./styles.module.css";
+import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 
 const ProductGallery = ({
   productGallery,
@@ -18,10 +19,12 @@ const ProductGallery = ({
   setLoadingc,
   product,
   setLoading,
+  stickers,
 }) => {
   function ImageMagnifier({
     src,
     width,
+    alt,
     height,
     magnifierHeight = 300,
     magnifierWidth = 300,
@@ -45,10 +48,11 @@ const ProductGallery = ({
       >
         <Image
           src={src}
-          fill
           sizes={
             "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw, 20vw"
           }
+          width={width}
+          height={height}
           priority={true}
           className="h-full w-full object-cover"
           onMouseEnter={(e) => {
@@ -67,7 +71,7 @@ const ProductGallery = ({
           onMouseLeave={() => {
             setShowMagnifier(false);
           }}
-          alt={`Croonus Template`}
+          alt={alt}
         />
 
         <div
@@ -95,30 +99,33 @@ const ProductGallery = ({
       </div>
     );
   }
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [modalImage, setModalImage] = useState(null);
-  const productImage = productGallery?.map((image, index) => {
+
+  const productImage = productGallery?.map((item, index) => {
     return (
       <SwiperSlide key={index} className="w-full">
         <ImageMagnifier
-          src={image?.image}
-          width={2000}
-          height={2000}
+          src={convertHttpToHttps(item?.image_data?.url)}
+          alt={item?.image_data?.descriptions?.alt}
+          width={item?.image_data?.file_data?.width}
+          height={item?.image_data?.file_data?.height}
           onClick={() => {
-            setModalImage(image?.image);
+            setModalImage(item?.image_data?.url);
           }}
         />
       </SwiperSlide>
     );
   });
-  const thumbImage = productGallery?.map((image, index) => {
+  const thumbImage = productGallery?.map((item, index) => {
     return (
       <SwiperSlide key={index}>
         <Image
-          src={image?.image}
-          alt={`Croonus`}
-          width={2000}
-          height={2000}
+          src={convertHttpToHttps(item?.image_data?.url)}
+          alt={item?.image_data?.descriptions?.alt}
+          width={item?.image_data?.file_data?.width}
+          height={item?.image_data?.file_data?.height}
           priority={true}
           className="cursor-pointer max-md:hidden"
         />
@@ -145,9 +152,58 @@ const ProductGallery = ({
       }, 1000);
     }
   }, [productGallery]);
+
+  const renderDiscountPercentage = ({
+    price: {
+      discount: { campaigns },
+    },
+  }) => {
+    let discounts = campaigns?.map(({ calc: { original, price } }) => {
+      let price_num = Number(price);
+      let original_num = Number(original);
+
+      let discount = Math.round(
+        ((original_num - price_num) / original_num) * 100
+      );
+
+      return (
+        <p
+          className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+        >{`- ${discount}%`}</p>
+      );
+    });
+
+    return (
+      <div
+        className={`absolute right-2 top-2 z-[5] text-white text-[13px] flex flex-col gap-2`}
+      >
+        {discounts}
+      </div>
+    );
+  };
+
+  const renderStickers = ({ stickers }) => {
+    let stickers_tmp = stickers?.map(({ name }, i) => {
+      return (
+        <p className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}>
+          {name}
+        </p>
+      );
+    });
+
+    return (
+      <div
+        className={`absolute left-2 top-2 z-[5] text-white text-[13px] flex flex-col gap-2`}
+      >
+        {stickers_tmp}
+      </div>
+    );
+  };
+
   return (
-    <div className="col-span-2 max-lg:col-span-4 max-md:h-[500px] md:flex md:flex-row-reverse gap-5 md:h-[450px] lg:h-[500px] xl:h-[660px] 2xl:h-[700px] 3xl:h-[730px]">
+    <div className="col-span-2 max-lg:col-span-4 md:flex md:flex-row-reverse gap-5">
       <Swiper
+        autoHeight
         spaceBetween={10}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
@@ -200,24 +256,9 @@ const ProductGallery = ({
         ) : (
           productImage
         )}
-        {product?.data?.item?.price?.discount?.active && (
-          <div
-            className={`absolute right-2 top-2 z-[1] text-white text-[13px]`}
-          >
-            <div
-              className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
-            >
-              -
-              {(
-                ((product?.data?.item?.price?.price?.original -
-                  product?.data?.item?.price?.price?.discount) /
-                  product?.data?.item?.price?.price?.original) *
-                100
-              ).toFixed(0)}
-              %
-            </div>
-          </div>
-        )}
+        {product?.data?.item?.price?.discount?.active &&
+          renderDiscountPercentage({ price: product?.data?.item?.price })}
+        {stickers?.length > 0 && renderStickers({ stickers })}
       </Swiper>
       <Swiper
         onSwiper={(swiper) => setThumbsSwiper(swiper)}
@@ -333,7 +374,7 @@ const ProductGallery = ({
             </Swiper>
           </div>
           <i
-            className={`fas fa-times absolute top-2 left-2 z-50 text-[#e10000] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
+            className={`fas fa-times absolute top-2 left-2 z-50 text-[#de6a26] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
             onClick={() => {
               setModalImage(null);
             }}

@@ -1,77 +1,86 @@
 import { get, list } from "@/app/api/api";
 import ProductDetails from "@/components/ProductDetails/ProductDetails";
-import RecommendedProducts from "@/components/RecommendedProducts/RecommendedProducts";
-import ProductGallery from "../ProductMobileDetails/ProductMobileGallery";
 import ProductMobileDetails from "../ProductMobileDetails/ProductMobileDetails";
 
-const getProduct = async (slug) => {
-  return await get(`/product-details/basic-data/${slug}`).then(
-    (res) => res?.payload
-  );
+const getProduct = (slug) => {
+  return get(`/product-details/basic-data/${slug}`).then((res) => res?.payload);
 };
 
-const getProductGallery = async (slug) => {
-  return await get(`/product-details/gallery/${slug}`).then(
+const getProductGallery = (slug) => {
+  return get(`/product-details/gallery/${slug}`).then(
     (res) => res?.payload?.gallery
   );
 };
+const getProductStickers = (slug) => {
+  return get(`/product-details/gallery/${slug}`).then(
+    (res) => res?.payload?.stickers
+  );
+};
 
-const getProductLongDescription = async (slug) => {
-  return await get(`/product-details/description/${slug}`).then(
+const getProductLongDescription = (slug) => {
+  return get(`/product-details/description/${slug}`).then(
     (res) => res?.payload
   );
 };
 
+const getBreadcrumbs = (slug, categoryId) => {
+  return get(
+    `/product-details/breadcrumbs/${slug}?categoryId=${categoryId}`
+  ).then((res) => res?.payload);
+};
 
-
-const getBreadcrumbs = async (slug) => {
-  return await get(`/product-details/breadcrumbs/${slug}`).then(
+const getSpecification = (slug) => {
+  return get(`/product-details/specification/${slug}`).then(
     (res) => res?.payload
   );
 };
 
-const getSpecification = async (slug) => {
-  return await get(`/product-details/specification/${slug}`).then(
+const getDeclaration = (slug) => {
+  return get(`/product-details/declaration/${slug}`).then(
     (res) => res?.payload
   );
 };
-
-const getDeclaration = async (slug) => {
-  return await get(`/product-details/declaration/${slug}`).then(
-    (res) => res?.payload
-  );
-};
-const upsellProductsList = async (id) => {
-  const upsellProducts = await list(`/product-details/up-sell/${id}`).then(
+const upsellProductsList = (id) => {
+  return list(`/product-details/up-sell/${id}`).then(
     (response) => response?.payload?.items
   );
-  return upsellProducts;
 };
-const relatedProductsList = async (id) => {
-  const relatedProducts = await list(`/product-details/recommended/${id}`).then(
+const relatedProductsList = (id) => {
+  return list(`/product-details/recommended/${id}`).then(
     (response) => response?.payload?.items
   );
-  return relatedProducts;
 };
 
 const crosssellProductsList = async (id) => {
-  const crosssellProducts = await list(`/product-details/cross-sell/${id}`).then(
+  return await list(`/product-details/cross-sell/${id}`).then(
     (response) => response?.payload?.items
   );
-  return crosssellProducts;
 };
 
-const ProductPage = async ({ path }) => {
-  const product = await getProduct(path);
-  const productGallery = await getProductGallery(path);
-  const desc = await getProductLongDescription(path);
-
-  const relatedProducts = await relatedProductsList(path);
-  const upsellProducts = await upsellProductsList(path);
-  const crosssellProducts = await crosssellProductsList(path);
-  const breadcrumbs = await getBreadcrumbs(path);
-  const specification = await getSpecification(path);
-  const declaration = await getDeclaration(path);
+const ProductPage = async ({ path, categoryId }) => {
+  const [
+    product,
+    productGallery,
+    desc,
+    breadcrumbs,
+    specification,
+    declaration,
+    relatedProducts,
+    upsellProducts,
+    crosssellProducts,
+    stickers,
+  ] = await Promise.all([
+    getProduct(path),
+    getProductGallery(path),
+    getProductLongDescription(path),
+    getBreadcrumbs(path, categoryId),
+    getSpecification(path),
+    getDeclaration(path),
+    relatedProductsList(path),
+    upsellProductsList(path),
+    crosssellProductsList(path),
+    getProductStickers(path),
+  ]);
 
   return (
     <div className="">
@@ -87,6 +96,7 @@ const ProductPage = async ({ path }) => {
           relatedProducts={relatedProducts}
           upsellProducts={upsellProducts}
           crosssellProducts={crosssellProducts}
+          stickers={stickers}
         />
       </div>
       <div className="max-lg:block hidden">
@@ -98,10 +108,9 @@ const ProductPage = async ({ path }) => {
           breadcrumbs={breadcrumbs}
           specification={specification}
           declaration={declaration}
+          stickers={stickers}
         />
       </div>
-
-     
     </div>
   );
 };

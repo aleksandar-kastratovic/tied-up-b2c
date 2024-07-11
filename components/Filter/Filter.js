@@ -36,7 +36,7 @@ const Filter = ({
     // setSelectedFilters([...tmp]);
   };
 
-  let selected = tempSelectedFilters.filter(
+  let selected = (tempSelectedFilters ?? [])?.filter(
     (item) => item.column === filter.key
   )[0];
   selected = selected ? selected.value.selected : [];
@@ -211,7 +211,7 @@ const FilterWithinTree = ({ filter }) => {
             <Link
               className="text-[0.875rem] leading-[1.625rem]"
               htmlFor={"chbx-" + item.id}
-              href={`/kategorije/${item?.slug}`}
+              href={`/${item?.slug}`}
             >
               {item.label}
             </Link>

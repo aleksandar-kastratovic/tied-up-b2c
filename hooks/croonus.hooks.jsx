@@ -22,6 +22,7 @@ export const useIsMobile = () => {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   return isMobile;
 };
 
@@ -63,6 +64,26 @@ export const useScroll = () => {
   return { headerShowing, sideBarShowing };
 };
 
+//hook za dobijanje kategorija
+export const useCategoryTree = () => {
+  return useSuspenseQuery({
+    queryKey: ["categoryTree"],
+    queryFn: async () => {
+      return await GET(`/categories/product/tree`).then((res) => res?.payload);
+    },
+  });
+};
+
+//hook za dobijanje liste landing strana
+export const useLandingPages = () => {
+  return useSuspenseQuery({
+    queryKey: ["landingPagesList"],
+    queryFn: async () => {
+      return await LIST(`/landing-pages/list`).then((res) => res?.payload);
+    },
+  });
+};
+
 //hook za dodavanje u korpu, proslediti id i kolicinu
 export const useAddToCart = () => {
   const [, mutateCart] = useCartContext();
@@ -81,7 +102,14 @@ export const useAddToCart = () => {
         switch (res?.code) {
           case 200:
             mutateCart();
-            
+            toast.success(message ?? "Uspešno dodato u korpu", {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
             break;
           default:
             toast.error("Greška prilikom dodavanja u korpu", {
@@ -95,6 +123,35 @@ export const useAddToCart = () => {
             break;
         }
       });
+    },
+    refetchOnWindowFocus: false,
+  });
+};
+
+//hook za proveru kolicine artikala u korpi
+export const useCartBadge = () => {
+  const [cart] = useCartContext();
+
+  return useQuery({
+    queryKey: ["cartBadge", cart],
+    queryFn: async () => {
+      return await GET("/cart/badge-count").then(
+        (res) => res?.payload?.summary?.items_count ?? 0
+      );
+    },
+  });
+};
+
+//hook za proveru kolicine artikala u listi zelja
+export const useWishlistBadge = () => {
+  const [, , wishList] = useCartContext();
+
+  return useQuery({
+    queryKey: ["wishlistBadge", wishList],
+    queryFn: async () => {
+      return await GET("/wishlist/badge-count").then(
+        (res) => res?.payload?.summary?.items_count ?? 0
+      );
     },
     refetchOnWindowFocus: false,
   });
@@ -162,7 +219,7 @@ export const useAddToWishlist = () => {
         switch (res?.code) {
           case 200:
             mutateWishList();
-            toast.success(`Proizvod ${name} uspešno dodat u listu želja.`, {
+            toast.success(`Proizvod uspešno dodat u listu želja.`, {
               position: "top-center",
               autoClose: 2000,
               hideProgressBar: true,
@@ -273,12 +330,12 @@ export const useIsInWishlist = ({ id }) => {
 };
 
 //hook za dobijanje svih proizvoda u listi zelja
-export const useWishlist = ({render = true}) => {
+export const useWishlist = () => {
   return useQuery({
     queryKey: ["wishlist_items"],
     queryFn: async () => {
-      return await LIST(`/wishlist`,{
-        render:render
+      return await LIST(`/wishlist`, {
+        render: false,
       }).then((res) => res?.payload?.items ?? []);
     },
     refetchOnWindowFocus: false,
@@ -338,6 +395,7 @@ export const useCategoryFilters = ({
   limit,
   sort,
   selectedFilters,
+  isSection,
 }) => {
   return useMutation({
     mutationKey: [
@@ -357,9 +415,14 @@ export const useCategoryFilters = ({
       setAvailableFilters,
       availableFilters,
     }) => {
-      return await POST(`/products/category/filters/${slug}`, {
-        filters: selectedFilters,
-      }).then((response) => {
+      return await POST(
+        isSection
+          ? `/products/section/filters/${slug}`
+          : `/products/category/filters/${slug}`,
+        {
+          filters: selectedFilters,
+        }
+      ).then((response) => {
         const lastSelectedFilterValues = selectedFilters?.find((item) => {
           return item?.column === lastSelectedFilterKey;
         });
@@ -413,6 +476,7 @@ export const useCategoryProducts = ({
   setSort,
   render = true,
   setIsLoadingMore,
+  isSection,
 }) => {
   return useSuspenseQuery({
     queryKey: [
@@ -429,8 +493,8 @@ export const useCategoryProducts = ({
     queryFn: async () => {
       try {
         //vadimo filtere iz URL koji su prethodno selektovani i pushovani sa router.push()
-        const selectedFilters_tmp = (filterKey ?? ",")
-          ?.split(",")
+        const selectedFilters_tmp = (filterKey ?? "::")
+          ?.split("::")
           ?.map((filter) => {
             const [column, selected] = filter?.split("=");
             const selectedValues = selected?.split("_");
@@ -451,15 +515,22 @@ export const useCategoryProducts = ({
           direction: sort_tmp[1],
         };
 
-        return await LIST(`/products/category/list/${slug}`, {
-          page: page,
-          limit: limit,
-          sort: sortObj,
-          filters: selectedFilters_tmp?.every((column) => column?.column !== "")
-            ? selectedFilters_tmp
-            : [],
-          render: render,
-        }).then((res) => {
+        return await LIST(
+          isSection
+            ? `/products/section/list/${slug}`
+            : `/products/category/list/${slug}`,
+          {
+            page: page,
+            limit: limit,
+            sort: sortObj,
+            filters: selectedFilters_tmp?.every(
+              (column) => column?.column !== ""
+            )
+              ? selectedFilters_tmp
+              : [],
+            render: render,
+          }
+        ).then((res) => {
           //na kraju setujemo state za filtere i sort, da znamo koji su selektovani
           if (selectedFilters_tmp?.every((column) => column?.column !== "")) {
             setSelectedFilters(selectedFilters_tmp);
@@ -478,11 +549,13 @@ export const useCategoryProducts = ({
 };
 
 //hook za dobijanje proizvoda na detaljnoj strani
-export const useProduct = ({ slug, id }) => {
+export const useProduct = ({ slug, id, categoryId }) => {
   return useSuspenseQuery({
     queryKey: ["productBasicData", id ? id : null],
     queryFn: async () => {
-      return await GET(`/product-details/basic-data/${slug}`).then((res) => {
+      return await GET(
+        `/product-details/basic-data/${slug}?categoryId=${categoryId}`
+      ).then((res) => {
         return res?.payload;
       });
     },
@@ -490,24 +563,19 @@ export const useProduct = ({ slug, id }) => {
   });
 };
 
-export const useProductThumb = ({ slug, id }) => {
+export const useProductThumb = ({ id, categoryId }) => {
   return useSuspenseQuery({
-    queryKey: ["productThumb", id ? id : null],
+    queryKey: [
+      "productThumb",
+      {
+        id: id,
+      },
+    ],
     queryFn: async () => {
-      return await GET(`/product-details/thumb/${slug}`).then((res) => {
+      return await GET(
+        `/product-details/thumb/${id}?categoryId=${categoryId}`
+      ).then((res) => {
         return res?.payload;
-      });
-    },
-    refetchOnWindowFocus: false,
-  });
-};
-
-export const useProductSticker = ({ slug, id }) => {
-  return useSuspenseQuery({
-    queryKey: ["productThumb", id ? id : null],
-    queryFn: async () => {
-      return await GET(`/product-details/gallery/${slug}`).then((res) => {
-        return res?.payload?.stickers;
       });
     },
     refetchOnWindowFocus: false,
@@ -520,7 +588,7 @@ export const useProductGallery = ({ slug, id }) => {
     queryKey: ["productGallery", { slug: slug, id: id ? id : null }],
     queryFn: async () => {
       return await GET(`/product-details/gallery/${slug}`).then((res) => {
-        return res?.payload?.gallery;
+        return res?.payload;
       });
     },
     refetchOnWindowFocus: false,
@@ -559,6 +627,64 @@ export const useProductSpecification = ({ slug }) => {
     queryKey: ["productSpecification", { slug: slug }],
     queryFn: async () => {
       return await GET(`/product-details/specification/${slug}`).then((res) => {
+        return res?.payload;
+      });
+    },
+    refetchOnWindowFocus: false,
+  });
+};
+
+//hook za dobijanje deklaracije na detaljnoj strani
+export const useProductDeclaration = ({ slug }) => {
+  return useSuspenseQuery({
+    queryKey: ["productDeclaration", { slug: slug }],
+    queryFn: async () => {
+      return await GET(`/product-details/declaration/${slug}`).then((res) => {
+        return res?.payload;
+      });
+    },
+    refetchOnWindowFocus: false,
+  });
+};
+
+//hook za dobijanje related artikala na detaljnoj strani
+export const useRelatedProducts = ({ slug }) => {
+  return useSuspenseQuery({
+    queryKey: ["productDeclaration", { slug: slug }],
+    queryFn: async () => {
+      return await LIST(`/product-details/recommended/${slug}`, {
+        render: false,
+      }).then((res) => {
+        return res?.payload;
+      });
+    },
+    refetchOnWindowFocus: false,
+  });
+};
+
+//hook za dobijanje related artikala na detaljnoj strani
+export const useUpsell = ({ slug }) => {
+  return useSuspenseQuery({
+    queryKey: ["productDeclaration", { slug: slug }],
+    queryFn: async () => {
+      return await LIST(`/product-details/up-sell/${slug}`, {
+        render: false,
+      }).then((res) => {
+        return res?.payload;
+      });
+    },
+    refetchOnWindowFocus: false,
+  });
+};
+
+//hook za dobijanje related artikala na detaljnoj strani
+export const useCrossSell = ({ slug }) => {
+  return useSuspenseQuery({
+    queryKey: ["productDeclaration", { slug: slug }],
+    queryFn: async () => {
+      return await LIST(`/product-details/cross-sell/${slug}`, {
+        render: false,
+      }).then((res) => {
         return res?.payload;
       });
     },
@@ -627,8 +753,10 @@ export const useOrder = ({ order_token }) => {
 export const useNewProducts = () => {
   return useSuspenseQuery({
     queryKey: ["newProducts"],
-    queryFn: async () => {
-      return await LIST(`/products/new-in/list`).then((res) => res?.payload);
+    queryFn: async ({ render = true }) => {
+      return await LIST(`/products/new-in/list`, { render: render }).then(
+        (res) => res?.payload
+      );
     },
     refetchOnWindowFocus: false,
   });

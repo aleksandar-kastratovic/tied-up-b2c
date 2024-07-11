@@ -115,7 +115,6 @@ const HeaderIcons = () => {
                     className='object-cover' alt='search'
                     onClick={() => {
                         setSearchIsOpen(!searchIsOpen)
-                        setOpen(false);
                       }}
                 />
             </div>
@@ -126,14 +125,14 @@ const HeaderIcons = () => {
                         width={21} height={21} className='object-cover mx-5' alt='heart'
                     />
                     {wishListCount ? (
-                        <span className="absolute -top-2.5 text-white right-1 bg-[#e10000] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                        <span className="absolute -top-2.5 text-white right-1 bg-[#de6a26] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                             {wishListCount}
                         </span>
                     ) : null}
 
                 </div>
             </Link>
-            <Link href="/korpa">
+            <a href="/korpa">
                 <div className="relative">
                     <Image
                         src='/shopping-bag.png'
@@ -143,13 +142,13 @@ const HeaderIcons = () => {
                         alt='shopping-bag'
                     />
                     {cartCount ? (
-                        <span className="absolute -top-2 text-white -right-3 bg-[#e10000] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                        <span className="absolute -top-2 text-white -right-3 bg-[#de6a26] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                             {cartCount}
                         </span>
                     ) : null}
 
                 </div>
-            </Link>
+            </a>
             <div
             className={
                 searchIsOpen
@@ -189,7 +188,7 @@ const HeaderIcons = () => {
                     {data?.items?.slice(0, 6)?.map((item) => {
                           return(
                               <Link
-                                href={`/proizvod/${item?.slug_path}`}
+                                href={`/${item?.slug_path}`}
                                 className="h-[83px]"
                                 onClick={() => {
                                   setSearchTerm("");

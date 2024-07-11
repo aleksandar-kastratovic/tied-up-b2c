@@ -1,5 +1,3 @@
-
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,3 +24,8 @@ const Onama = () => {
 };
 
 export default Onama;
+
+export const metadata = {
+  title: "O nama | TiedUp",
+  description: "O nama",
+};

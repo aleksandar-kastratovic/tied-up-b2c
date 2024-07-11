@@ -118,7 +118,7 @@ const NavigationDesktop = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setVisible((scrollY === 0 && pathname === "/") || (open && scrollY > 0));
-      pathname?.includes("/kategorija" || "/proizvod") &&
+      pathname?.includes("/kategorija" || "") &&
         setVisible(false) &&
         setOpen(false);
     };
@@ -165,7 +165,7 @@ const NavigationDesktop = () => {
   }, []);
 
   useEffect(() => {
-    if (pathname?.includes("/kategorija" || "/proizvod")) {
+    if (pathname?.includes("/kategorija" || "")) {
       setOpen(false);
       setVisible(false);
     }
@@ -354,7 +354,7 @@ const NavigationDesktop = () => {
                         {searchData?.items?.slice(0, 6)?.map((item) => {
                           return (
                             <Link
-                              href={`/proizvod/${item?.slug_path}`}
+                              href={`/${item?.slug_path}`}
                               onClick={(e) => {
                                 setSearchData([]);
                                 setSearchOpen(false);
@@ -442,12 +442,12 @@ const NavigationDesktop = () => {
                       background === "white" ? "wiggle" : "invert wiggle"
                     }
                   />
-                  <span className="absolute -top-2.5 text-white -right-1 bg-[#e10000] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                  <span className="absolute -top-2.5 text-white -right-1 bg-[#de6a26] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                     {wishListCount}
                   </span>
                 </div>
               </Link>
-              <Link href="/korpa">
+              <a href="/korpa">
                 <div className="relative">
                   <Image
                     src={Cart}
@@ -458,11 +458,11 @@ const NavigationDesktop = () => {
                       background === "white" ? "wiggle" : "invert wiggle"
                     }
                   />
-                  <span className="absolute -top-1 text-white -right-1 bg-[#e10000] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                  <span className="absolute -top-1 text-white -right-1 bg-[#de6a26] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                     {cartCount}
                   </span>
                 </div>
-              </Link>
+              </a>
             </div>!
           </div>
         </div>
@@ -523,7 +523,7 @@ const NavigationDesktop = () => {
                   }}
                 >
                   <Link
-                    href={`/kategorije/${item?.slug_path}`}
+                    href={`/${item?.slug_path}`}
                     className="uppercase px-5 py-1 text-[0.8rem] hover:bg-black hover:text-white px-5 rounded cursor-pointer hover:translate-x-5 hover:text-slate-500 transition-all duration-300 font-medium"
                   >
                     {item?.name}
@@ -599,7 +599,7 @@ const NavigationDesktop = () => {
                         </h1>
                       ) : (
                         <Link
-                          href={`/kategorije/${category?.slug_path}`}
+                          href={`/${category?.slug_path}`}
                           onClick={() => {
                             setOpen(false);
                             setVisible(false);
@@ -641,12 +641,12 @@ const NavigationDesktop = () => {
                 return (
                   <div
                     className={`${pathname?.includes(category?.slug)
-                      ? `text-[#e10000]`
+                      ? `text-[#de6a26]`
                       : `text-black`
                       } text-xs hover:text-slate-500 hover:translate-x-2 transition-all duration-300 font-medium`}
                   >
                     <Link
-                      href={`/kategorije/${category?.slug_path}`}
+                      href={`/${category?.slug_path}`}
                       onClick={() => {
                         setOpen(false);
                         setVisible(false);

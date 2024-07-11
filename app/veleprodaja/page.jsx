@@ -1,5 +1,3 @@
-
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,3 +24,8 @@ const Veleprodaja = () => {
 };
 
 export default Veleprodaja;
+
+export const metadata = {
+  title: "Veleprodaja | TiedUp",
+  description: "Veleprodaja",
+};

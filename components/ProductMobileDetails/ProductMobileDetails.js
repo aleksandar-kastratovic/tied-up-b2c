@@ -12,6 +12,7 @@ const ProductMobileDetails = ({
   breadcrumbs,
   specification,
   declaration,
+  stickers,
 }) => {
   const [rawGallery, setRawGallery] = useState(productGallery);
   const [loading, setLoading] = useState(false);
@@ -40,6 +41,7 @@ const ProductMobileDetails = ({
         loading={loading}
         setLoading={setLoading}
         product={product}
+        stickers={stickers}
       />
       <ProductMobileInfo
         product={product}

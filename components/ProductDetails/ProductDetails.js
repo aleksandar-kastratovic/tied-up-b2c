@@ -8,17 +8,18 @@ import CrosssellProducts from "../CrosssellProducts/CrosssellProducts";
 import UpsellProducts from "../UpsellProducts/UpsellProducts";
 import RelatedProducts from "../RelatedProducts/RelatedProducts";
 
-
 const ProductDetails = ({
   product,
   productGallery,
   desc,
   path,
   breadcrumbs,
-  specification,declaration, 
+  specification,
+  declaration,
   relatedProducts,
   upsellProducts,
   crosssellProducts,
+  stickers,
 }) => {
   const [rawGallery, setRawGallery] = useState(productGallery);
   const [loading, setLoading] = useState(false);
@@ -38,9 +39,7 @@ const ProductDetails = ({
       setGallery((prev) => [newImage, ...prev]);
     }
   }, [color]);
-  console.log("kkk", crosssellProducts)
-  console.log("sssss", relatedProducts)
-  console.log(crosssellProducts.length)
+
   return (
     <div className="max-md:mt-[1rem]  max-md:w-[95%]  max-md:mx-auto md:mx-[3rem] mt-6">
       <div className="flex items-center gap-2 flex-wrap max-lg:hidden">
@@ -54,8 +53,8 @@ const ProductDetails = ({
               <Link
                 href={
                   index === arr.length - 1
-                    ? `/kategorije/${breadcrumb?.slug}`
-                    : `/kategorije/${breadcrumb?.slug}`
+                    ? `/${breadcrumb?.slug_path}`
+                    : `/${breadcrumb?.slug_path}`
                 }
                 className="text-[#000] text-[0.95rem] font-thin "
               >
@@ -77,6 +76,7 @@ const ProductDetails = ({
           loading={loading}
           setLoading={setLoading}
           product={product}
+          stickers={stickers}
         />
         <ProductInfo
           product={product}
@@ -85,28 +85,25 @@ const ProductDetails = ({
           color={color}
           setColor={setColor}
           breadcrumbs={breadcrumbs}
-          specification={specification} declaration={declaration}
+          specification={specification}
+          declaration={declaration}
         />
         {/*<div className={`mt-10 col-span-4`}>*/}
         {/*  <Tabs specification={specification} productsDesc={desc} />*/}
         {/*</div>*/}
-        
       </div>
       {relatedProducts?.length > 0 && (
-            <RelatedProducts
-              relatedProducts={relatedProducts}
-              loading={loading}
-            />
-          )}
-          {upsellProducts?.length > 0 && (
-            <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
-          )}
-          {crosssellProducts?.length > 0 && (
-            <CrosssellProducts
-              crosssellProducts={crosssellProducts}
-              loading={loading}
-            />
-          )}
+        <RelatedProducts relatedProducts={relatedProducts} loading={loading} />
+      )}
+      {upsellProducts?.length > 0 && (
+        <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
+      )}
+      {crosssellProducts?.length > 0 && (
+        <CrosssellProducts
+          crosssellProducts={crosssellProducts}
+          loading={loading}
+        />
+      )}
     </div>
   );
 };

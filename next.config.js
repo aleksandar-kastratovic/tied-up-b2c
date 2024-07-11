@@ -12,16 +12,11 @@ const nextConfig = {
   },
   images: {
     domains: [
-      "api.Croonusshop.croonus.com",
-      "192.168.1.174",
-      "192.168.1.83",
-      "api.staging.croonus.com",
       "scontent.cdninstagram.com",
-      "api.fashiondemo.croonus.com",
       "api.tiedup.croonus.com",
       "video.cdninstagram.com",
-
     ],
+    minimumCacheTTL: 60 * 60 * 24 * 90,
   },
 };
 

@@ -94,7 +94,7 @@ const NavigationMobile = () => {
     handleBodyOverflow();
   }, [menuOpen]);
   useEffect(() => {
-    if (!pathname?.includes("/kategorije/")) {
+    if (!pathname?.includes("/")) {
       setActiveCategory({
         id: categories[0]?.id ?? 0,
         data: categories[0]?.children ?? [],
@@ -209,16 +209,16 @@ const NavigationMobile = () => {
             <Link href={`/nalog`}>
               <Image src={User} width={33} height={33} />
             </Link>
-            <Link href="/korpa">
+            <a href="/korpa">
               <div className="relative">
                 <Image src={Cart} width={33} height={33} />
                 {cartCount > 0 && (
-                  <span className="absolute text-white text-xs -top-1 right-0 bg-[#e10000] px-1 py-0 rounded-full">
+                  <span className="absolute text-white text-xs -top-1 right-0 bg-[#de6a26] px-1 py-0 rounded-full">
                     {cartCount}
                   </span>
                 )}
               </div>
-            </Link>
+            </a>
           </div>
         </div>{" "}
       </div>
@@ -299,7 +299,7 @@ const NavigationMobile = () => {
             }}
           >
             <Link href="/lista-zelja"> Lista želja</Link>
-            <span className="absolute -top-2 -right-1 bg-[#e10000] rounded-full text-white px-1 text-xs">
+            <span className="absolute -top-2 -right-1 bg-[#de6a26] rounded-full text-white px-1 text-xs">
               {wishlistCount}
             </span>
           </div>
@@ -338,7 +338,7 @@ const NavigationMobile = () => {
                   <h1 className="text-[0.9rem] font-normal">Nazad</h1>
                 </div>
                 <Link
-                  href={`/kategorije/${activeCategory?.id}`}
+                  href={`/${activeCategory?.id}`}
                   onClick={() => {
                     setMenuOpen(false);
                     setActiveCategory({
@@ -405,14 +405,14 @@ const NavigationMobile = () => {
                     </div>
                   ) : (
                     <Link
-                      href={`/kategorije/${category?.slug_path}`}
+                      href={`/${category?.slug_path}`}
                       className={`${
                         activeCategory.firstCategory
                           ? `uppercase w-full`
                           : `w-full`
                       } ${
                         pathname?.includes(category?.slug)
-                          ? `text-[#e10000]`
+                          ? `text-[#de6a26]`
                           : `text-black`
                       } text-[0.9rem]`}
                       onClick={() => {
@@ -509,7 +509,7 @@ const NavigationMobile = () => {
                 {searchData?.items?.slice(0, 6)?.map((item) => {
                   return (
                     <Link
-                      href={`/proizvod/${item?.slug_path}`}
+                      href={`/${item?.slug_path}`}
                       onClick={(e) => {
                         setSearchData([]);
                         setSearchOpen(false);

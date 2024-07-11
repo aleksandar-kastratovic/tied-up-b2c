@@ -121,7 +121,7 @@ const Header = ({ categories }) => {
                         ? "activeCategory"
                         : "font-normal"
                       } text-[13px] uppercase block relative w-fit text-black activeCategoryHover uppercase`}
-                    onMouseEnter={() => {
+                    onClick={() => {
                       setActiveCategory({
                         id:
                           category?.id === activeCategory?.id
@@ -144,7 +144,7 @@ const Header = ({ categories }) => {
                     {category?.name}
                   </button>
                 ) : (
-                  <Link href={`/kategorije/${category?.slug_path}`} key={index}>
+                  <Link href={`/${category?.slug_path}`} key={index}>
                     <span
                       className={`text-[13px] uppercase block text-black w-fit relative activeCategoryHover ${pathname?.includes(category?.slug) && category?.id !== 0
                           ? "activeCategory"
@@ -218,7 +218,7 @@ const Header = ({ categories }) => {
                     {category?.name}
                   </button>
                 ) : (
-                  <Link href={`/kategorije/${category?.slug_path}`} key={index}>
+                  <Link href={`/${category?.slug_path}`} key={index}>
                     <span
                       className={`text-[13px] block uppercase text-black w-fit relative activeCategoryHover ${pathname?.includes(category?.slug) && category?.id !== 0
                           ? "activeCategory"
@@ -283,7 +283,7 @@ const Header = ({ categories }) => {
                         </Link>
                       );
                     })}
-                    <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 flex items-center">
+                    <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 text-left">
                       {activeCategory?.data?.map((category, index) => {
                         return category?.children?.length > 0 ? (
                           <button
@@ -292,7 +292,7 @@ const Header = ({ categories }) => {
                                 pathname.includes(category?.slug)
                                 ? "font-bold"
                                 : "font-normal"
-                              }  hover:underline block text-black`}
+                              }  hover:underline block text-black text-left`}
                             onClick={() => {
                               setActiveSubCategory({
                                 id:
@@ -320,7 +320,7 @@ const Header = ({ categories }) => {
                           </button>
                         ) : (
                           <Link
-                            href={`/kategorije/${category?.slug_path}`}
+                            href={`/${category?.slug_path}`}
                             key={index}
                             className={`${category?.id === activeCategory?.id
                                 ? "activeCategory"
@@ -350,7 +350,7 @@ const Header = ({ categories }) => {
                     {activeSubCategory?.name && (
                       <Link
                         className={`text-[15px] font-normal text-[#39ae00] hover:underline pb-7`}
-                        href={`/kategorije/${activeSubCategory?.slug_path}`}
+                        href={`/${activeSubCategory?.slug_path}`}
                         onClick={() => {
                           resetActiveCategory();
                         }}
@@ -363,7 +363,7 @@ const Header = ({ categories }) => {
                       {activeSubCategory &&
                         activeSubCategory?.data?.map((childCategory) => (
                           <Link
-                            href={`/kategorije/${childCategory?.slug_path}`}
+                            href={`/${childCategory?.slug_path}`}
                             onClick={resetActiveCategory}
                             key={childCategory?.id}
                             className={`text-[15px] lowercase text-black first-letter:uppercase block hover:underline ${pathname?.includes(childCategory?.slug_path)

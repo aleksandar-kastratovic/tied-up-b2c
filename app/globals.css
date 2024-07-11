@@ -11,7 +11,7 @@
     color: black;
     top: 0 !important;
     scroll-behavior: smooth;
-    overflow-x: hidden;
+   
   }
 }
 
@@ -137,7 +137,7 @@ input[type="radio"]:checked::before {
   left: 0;
   height: 1px;
   width: 0;
-  background-color: #e10000;
+  background-color: #de6a26;
   animation: progress-bar1 0.5s linear forwards;
 }
 
@@ -832,7 +832,7 @@ input[type="radio"]:checked::before {
   background-color: #de6a26;
 }
 
-.color {
+/* .color {
   display: none;
 }
 
@@ -842,15 +842,15 @@ input[type="radio"]:checked::before {
 
 .hoveredColor:hover .hoveredColor1 {
   display: none;
-}
+} */
 
 @media (0px <= width <= 650px) {
-  .color {
+  /* .color {
     display: flex;
   }
   .hoveredColor1 {
     display: none;
-  }
+  } */
 }
 
 .blogSlider .swiper-button-next {
