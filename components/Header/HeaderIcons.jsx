@@ -115,7 +115,6 @@ const HeaderIcons = () => {
                     className='object-cover' alt='search'
                     onClick={() => {
                         setSearchIsOpen(!searchIsOpen)
-                        setOpen(false);
                       }}
                 />
             </div>
@@ -133,7 +132,7 @@ const HeaderIcons = () => {
 
                 </div>
             </Link>
-            <Link href="/korpa">
+            <a href="/korpa">
                 <div className="relative">
                     <Image
                         src='/shopping-bag.png'
@@ -149,7 +148,7 @@ const HeaderIcons = () => {
                     ) : null}
 
                 </div>
-            </Link>
+            </a>
             <div
             className={
                 searchIsOpen
@@ -189,7 +188,7 @@ const HeaderIcons = () => {
                     {data?.items?.slice(0, 6)?.map((item) => {
                           return(
                               <Link
-                                href={`/proizvod/${item?.slug_path}`}
+                                href={`/${item?.slug_path}`}
                                 className="h-[83px]"
                                 onClick={() => {
                                   setSearchTerm("");

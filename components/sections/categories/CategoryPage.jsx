@@ -300,52 +300,6 @@ const CategoryPage = ({
 
   return (
     <div>
-      <div className="px-5 lg:px-[3rem]">
-        {singleCategory?.parents?.length > 0 && (
-          <div className="flex items-center gap-2 flex-wrap mt-5">
-            <Link
-              href={`/`}
-              className="text-[#191919] text-[0.95rem] font-thin"
-            >
-              Početna
-            </Link>
-            <>/</>
-            {singleCategory?.parents?.map((breadcrumb, index, arr) => {
-              return (
-                <div className="flex items-center gap-2">
-                  <Link
-                    href={`/kategorije/${breadcrumb?.slug}`}
-                    className="text-[#191919] text-[0.95rem] font-thin"
-                  >
-                    {breadcrumb?.name}
-                  </Link>
-                  {index !== arr.length - 1 && <>/</>}
-                </div>
-              );
-            })}
-            <>/</>
-            <h1 className="text-[#de6a26] text-[0.95rem] font-semibold">
-              {singleCategory?.basic_data?.name}
-            </h1>
-          </div>
-        )}
-      </div>
-      <div className="mt-[30px] md:mt-[80px] flex flex-col items-center justify-center">
-        <div className="flex flex-row  items-center justify-center">
-          <h1 className="text-[23px] md:text-[29px] font-semibold">
-            {singleCategory?.basic_data?.name ?? text ?? ""}
-          </h1>
-          {/* <span className="text-[23px] md:text-[29px] font-normal uppercase">
-            &nbsp;Kolekcija
-          </span> */}
-        </div>
-        <p
-          className="text-center text-[0.9rem] max-md:mt-[20px] max-w-[36.075rem] font-thin md:mt-[22px]"
-          dangerouslySetInnerHTML={{
-            __html: singleCategory?.basic_data?.short_description,
-          }}
-        ></p>
-      </div>
       <div className="max-md:hidden mt-[67px]">
         <Filters
           selectedFilters={selectedFilters}

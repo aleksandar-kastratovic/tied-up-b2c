@@ -1,5 +1,3 @@
-
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -7,7 +5,6 @@ const Galerija = () => {
   return (
     <>
       <div className="flex flex-col mt-[0rem] mt16 items-center  relative">
-        
         <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-opacity-50  text-center">
           <p className="font-bold soon">USKORO...</p>
           <p className="font-light text-[30px]">
@@ -26,3 +23,8 @@ const Galerija = () => {
 };
 
 export default Galerija;
+
+export const metadata = {
+  title: "Galerija | TiedUp",
+  description: "Galerija",
+};

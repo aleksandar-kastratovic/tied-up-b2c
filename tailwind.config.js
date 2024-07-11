@@ -1,14 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/****/***/**/*.{js,ts,jsx,tsx}",
-    "./pages/***/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./pages/*.{js,ts,jsx,tsx}",
-    "./components/****/***/**/*.{js,ts,jsx,tsx}",
-    "./components/***/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
-    "./app/****/***/**/*.{js,ts,jsx,tsx}",
+    "./_components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -33,7 +28,7 @@ module.exports = {
         topHeader: "#f7f7f7",
       },
       aspectRatio: {
-        '2/3': '2/3',
+        "2/3": "2/3",
       },
     },
   },

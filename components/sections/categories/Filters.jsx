@@ -21,22 +21,13 @@ const Filters = ({
   setPage,
 }) => {
   const [openIndex, setOpenIndex] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
   const [openSort, setOpenSort] = useState({
     open: false,
     key: {
-      field: "",
-      direction: "",
+      field: sort?.field,
+      direction: sort?.direction,
     },
   });
-  const [activeFilter, setActiveFilter] = useState(null);
-  const handleClick = (filter) => {
-    setActiveFilter(filter);
-  };
-  const [activeFilters, setActiveFilters] = useState([]);
-  useEffect(() => {
-    setActiveFilters(selectedFilters);
-  }, [selectedFilters]);
 
   const filterRef = useRef(null);
 
@@ -94,7 +85,7 @@ const Filters = ({
       });
     }
   }, [sortParam]);
-  console.log(sort);
+
   return (
     <>
       <div className=" mx-[50px] flex items-center justify-between bg-black text-white px-[2rem] font-thin text-[0.85rem]">
@@ -114,7 +105,7 @@ const Filters = ({
                     className={`relative py-[0.65rem] flex items-center filter gap-2`}
                   >
                     <h5 className="text-base text-center filter font-light">
-                      {filter?.name}
+                      {filter?.attribute?.name}
                     </h5>
                     <Image
                       className={
@@ -123,7 +114,7 @@ const Filters = ({
                           : `rotate-0 filter transition-all duration-500`
                       }
                       src={`/icons/chevron.png`}
-                      alt={`TFY Production`}
+                      alt={` `}
                       width={15}
                       height={15}
                     />
@@ -206,14 +197,14 @@ const Filters = ({
                 ref={sortRef}
                 className="absolute sortref z-[2] border border-[#f2f2f2] right-[-100px] top-[33px] flex flex-col items-center justify-end w-[250px]"
               >
-                {sortKeys.map((key) => {
+                {sortKeys?.map((key) => {
                   const isActive =
                     openSort?.key?.field === key?.field &&
                     openSort?.key?.direction === key?.direction;
                   return (
                     <div
                       className={`flex sortref items-center text-black justify-start w-full py-2 px-4 cursor-pointer text-[0.875rem] ${
-                        isActive ? "" : "bg-white "
+                        isActive ? "bg-white" : "bg-white "
                       }`}
                       onClick={() =>
                         setSort({

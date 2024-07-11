@@ -22,6 +22,7 @@ export const useIsMobile = () => {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   return isMobile;
 };
 
@@ -218,7 +219,7 @@ export const useAddToWishlist = () => {
         switch (res?.code) {
           case 200:
             mutateWishList();
-            toast.success(`Proizvod ${name} uspešno dodat u listu želja.`, {
+            toast.success(`Proizvod uspešno dodat u listu želja.`, {
               position: "top-center",
               autoClose: 2000,
               hideProgressBar: true,
@@ -548,11 +549,13 @@ export const useCategoryProducts = ({
 };
 
 //hook za dobijanje proizvoda na detaljnoj strani
-export const useProduct = ({ slug, id }) => {
+export const useProduct = ({ slug, id, categoryId }) => {
   return useSuspenseQuery({
     queryKey: ["productBasicData", id ? id : null],
     queryFn: async () => {
-      return await GET(`/product-details/basic-data/${slug}`).then((res) => {
+      return await GET(
+        `/product-details/basic-data/${slug}?categoryId=${categoryId}`
+      ).then((res) => {
         return res?.payload;
       });
     },
@@ -560,7 +563,7 @@ export const useProduct = ({ slug, id }) => {
   });
 };
 
-export const useProductThumb = ({ slug, id, categoryId }) => {
+export const useProductThumb = ({ id, categoryId }) => {
   return useSuspenseQuery({
     queryKey: [
       "productThumb",
@@ -570,7 +573,7 @@ export const useProductThumb = ({ slug, id, categoryId }) => {
     ],
     queryFn: async () => {
       return await GET(
-        `/product-details/thumb/${slug}?categoryId=${categoryId}`
+        `/product-details/thumb/${id}?categoryId=${categoryId}`
       ).then((res) => {
         return res?.payload;
       });

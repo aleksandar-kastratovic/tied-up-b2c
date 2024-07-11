@@ -186,6 +186,8 @@ const CategoryPage = ({
       generateBreadcrumbs(singleCategory);
     }
   }, [singleCategory, breadcrumbs]);
+
+
   return (
     <>
       <div className="">
@@ -225,8 +227,8 @@ const CategoryPage = ({
                   <Link
                     href={
                       index === arr.length - 1
-                        ? `/kategorije/${breadcrumb?.slug}`
-                        : `/kategorije/${breadcrumb?.slug}`
+                        ? `/${breadcrumb?.slug}`
+                        : `/${breadcrumb?.slug}`
                     }
                     className="text-[#191919] text-[0.95rem] font-normal hover:text-[#de6a26]"
                   >
@@ -285,7 +287,7 @@ const CategoryPage = ({
                         null,
                         "",
                         singleCategory
-                          ? `/kategorije/${singleCategory.slug_path}`
+                          ? `/${singleCategory.slug_path}`
                           : `/sekcija/${slug}`
                       );
                     }
@@ -307,7 +309,7 @@ const CategoryPage = ({
                           null,
                           "",
                           singleCategory
-                            ? `/kategorije/${singleCategory.slug_path}`
+                            ? `/${singleCategory.slug_path}`
                             : `/sekcija/${slug}`
                         );
                       }

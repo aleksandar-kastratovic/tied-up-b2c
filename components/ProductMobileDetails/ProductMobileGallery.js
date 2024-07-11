@@ -10,6 +10,7 @@ import "swiper/css/zoom";
 import { FreeMode, Navigation, Pagination, Thumbs, Zoom } from "swiper";
 import Image from "next/image";
 import classes from "./styles.module.css";
+import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 
 const ProductMobileGallery = ({
   productGallery,
@@ -17,11 +18,13 @@ const ProductMobileGallery = ({
   loading,
   setLoading,
   product,
+  stickers,
 }) => {
   function ImageMagnifier({
     src,
     width,
     height,
+    alt,
     magnifierHeight = 300,
     magnifierWidth = 300,
     zoomLevel = 2.5,
@@ -39,17 +42,18 @@ const ProductMobileGallery = ({
           position: "relative",
           zIndex: 100,
         }}
-        className="h-full w-full object-cover"
+        className="w-full"
         onClick={onClick}
       >
         <Image
           src={src}
-          fill
+          width={width ?? 0}
+          height={height ?? 0}
           sizes={
             "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw, 20vw"
           }
           priority={true}
-          className="h-full w-full object-cover"
+          className="!h-auto w-full"
           onMouseEnter={(e) => {
             const elem = e.currentTarget;
             const { width, height } = elem.getBoundingClientRect();
@@ -66,7 +70,7 @@ const ProductMobileGallery = ({
           onMouseLeave={() => {
             setShowMagnifier(false);
           }}
-          alt={`Croonus`}
+          alt={alt ?? " "}
         />
 
         <div
@@ -96,28 +100,31 @@ const ProductMobileGallery = ({
   }
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [modalImage, setModalImage] = useState(null);
-  const productImage = productGallery?.map((image, index) => {
+
+  const productImage = productGallery?.map((item, index) => {
     return (
-      <SwiperSlide key={index} className="w-full">
+      <SwiperSlide key={index} className="w-full !h-auto">
         <ImageMagnifier
-          src={image?.image}
-          width={2000}
-          height={2000}
+          src={convertHttpToHttps(item?.image_data?.url)}
+          alt={item?.image_data?.descriptions?.alt}
+          width={item?.image_data?.file_data?.width}
+          height={item?.image_data?.file_data?.height}
           onClick={() => {
-            setModalImage(image?.image);
+            setModalImage(item?.image_data?.url);
           }}
         />
       </SwiperSlide>
     );
   });
-  const thumbImage = productGallery?.map((image, index) => {
+
+  const thumbImage = productGallery?.map((item, index) => {
     return (
       <SwiperSlide key={index}>
         <Image
-          src={image?.image}
-          alt={`Croonus`}
-          width={2000}
-          height={2000}
+          src={convertHttpToHttps(item?.image_data?.url)}
+          alt={item?.image_data?.descriptions?.alt}
+          width={item?.image_data?.file_data?.width}
+          height={item?.image_data?.file_data?.height}
           priority={true}
           className="cursor-pointer max-md:hidden"
         />
@@ -145,9 +152,58 @@ const ProductMobileGallery = ({
       }, 1000);
     }
   }, [productGallery]);
+
+  const renderDiscountPercentage = ({
+    price: {
+      discount: { campaigns },
+    },
+  }) => {
+    let discounts = campaigns?.map(({ calc: { original, price } }) => {
+      let price_num = Number(price);
+      let original_num = Number(original);
+
+      let discount = Math.round(
+        ((original_num - price_num) / original_num) * 100
+      );
+
+      return (
+        <p
+          className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+        >{`- ${discount}%`}</p>
+      );
+    });
+
+    return (
+      <div
+        className={`absolute right-2 top-2 z-[5] text-white text-[13px] flex flex-col gap-2`}
+      >
+        {discounts}
+      </div>
+    );
+  };
+
+  const renderStickers = ({ stickers }) => {
+    let stickers_tmp = stickers?.map(({ name }, i) => {
+      return (
+        <p className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}>
+          {name}
+        </p>
+      );
+    });
+
+    return (
+      <div
+        className={`absolute left-2 top-2 z-[5] text-white text-[13px] flex flex-col gap-2`}
+      >
+        {stickers_tmp}
+      </div>
+    );
+  };
+
   return (
-    <div className="col-span-4 max-md:h-[500px] md:flex md:flex-row-reverse gap-5 md:h-[650px] lg:h-[700px] xl:h-[780px] 2xl:h-[790px] 3xl:h-[878px]">
+    <div className="col-span-4 md:flex md:flex-row-reverse gap-5">
       <Swiper
+        autoHeight={true}
         spaceBetween={10}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
@@ -158,7 +214,7 @@ const ProductMobileGallery = ({
         navigation={true}
         loop={true}
         onSwiper={(swiper) => setSwiper(swiper)}
-        className={`${classes.mySwiper2} productDetailsSwiper`}
+        className={`!h-auto`}
         breakpoints={{
           768: {
             direction: "horizontal",
@@ -200,87 +256,9 @@ const ProductMobileGallery = ({
         ) : (
           productImage
         )}
-        {product?.data?.item?.price?.discount?.active && (
-          <div
-            className={`absolute right-2 top-2 z-[1] text-white text-[13px]`}
-          >
-            <div
-              className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
-            >
-              -
-              {(
-                ((product?.data?.item?.price?.price?.original -
-                  product?.data?.item?.price?.price?.discount) /
-                  product?.data?.item?.price?.price?.original) *
-                100
-              ).toFixed(0)}
-              %
-            </div>
-          </div>
-        )}
-      </Swiper>
-      <Swiper
-        onSwiper={(swiper) => setThumbsSwiper(swiper)}
-        spaceBetween={10}
-        slidesPerView={0}
-        loop={true}
-        breakpoints={{
-          320: {
-            direction: "horizontal",
-            slidesPerView: 0,
-            thumbs: {
-              enabled: false,
-            },
-            modules: [],
-          },
-          768: {
-            direction: "vertical",
-            slidesPerView: 4.25,
-            enabled: true,
-            loop: true,
-            allowSlidePrev: true,
-            modules: [FreeMode, Thumbs],
-          },
-        }}
-        freeMode={true}
-        className={`${classes.mySwiper} mySwiper max-md:hidden !relative`}
-      >
-        {" "}
-        {thumbImage}
-        <div
-          className={`absolute ${
-            productGallery?.length > swiper?.params?.slidesPerView
-              ? `block`
-              : `hidden`
-          } bottom-0 left-0 w-full py-1 right-0 flex items-center justify-center z-50 cursor-pointer bg-white/80`}
-          onClick={() => {
-            swiper?.slideNext();
-          }}
-        >
-          <i
-            className={`fas fa-chevron-down`}
-            onClick={() => {
-              swiper?.slideNext();
-            }}
-          ></i>
-        </div>
-        <div
-          className={`absolute ${
-            productGallery?.length > swiper?.params?.slidesPerView
-              ? `block`
-              : `hidden`
-          } top-0 left-0 w-full py-1 right-0 flex items-center justify-center z-50 cursor-pointer bg-white/80`}
-          onClick={() => {
-            swiper?.slidePrev();
-          }}
-        >
-          <i
-            className={`fas fa-chevron-up`}
-            onClick={() => {
-              swiper?.slidePrev();
-            }}
-          ></i>
-        </div>
+        {product?.data?.item?.price?.discount?.active &&
+          renderDiscountPercentage({ price: product?.data?.item?.price })}
+        {stickers?.length > 0 && renderStickers({ stickers })}
       </Swiper>
       {modalImage && (
         <div
@@ -288,6 +266,7 @@ const ProductMobileGallery = ({
         >
           <div className="relative w-full h-full">
             <Swiper
+                autoHeight
               modules={[Pagination, Zoom]}
               pagination={true}
               direction={"vertical"}
@@ -299,7 +278,7 @@ const ProductMobileGallery = ({
               initialSlide={productGallery?.findIndex(
                 (item) => item?.image === modalImage
               )}
-              className={`${classes.mySwiper2} modalSwiper swiper-zoom-container`}
+              className={`${classes.mySwiper2} !h-auto modalSwiper swiper-zoom-container`}
               breakpoints={{
                 0: {
                   direction: "vertical",

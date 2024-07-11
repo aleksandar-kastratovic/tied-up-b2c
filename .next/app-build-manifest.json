@@ -16,6 +16,23 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
+    ],
+    "/[...path]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/[...path]/page.css",
+      "static/chunks/app/[...path]/page.js"
+    ],
+    "/korpa/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/korpa/page.css",
+      "static/chunks/app/korpa/page.js"
+    ],
+    "/korpa/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/korpa/loading.js"
     ]
   }
 }

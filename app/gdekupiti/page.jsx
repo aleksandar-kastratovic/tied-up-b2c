@@ -1,5 +1,4 @@
 
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,3 +25,7 @@ const Gdekupiti = () => {
 };
 
 export default Gdekupiti;
+export const metadata = {
+  title: "Gde kupiti | TiedUp",
+  description: "Gde kupiti",
+};

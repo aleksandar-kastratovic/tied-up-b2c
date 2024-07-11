@@ -32,7 +32,7 @@ const CartProductItem = ({ item }) => {
       <div className="col-span-2 grid grid-cols-4 gap-x-4 md:gap-x-10 mt-1 relative">
         <div className="relative max-md:col-span-2 col-span-1 w-full flex items-center">
           <div className="xl:h-[186px] xl:w-[186px] relative ">
-            <Link href={`/proizvod/${item?.product?.slug}`}>
+            <Link href={`/${item?.product?.slug}`}>
               <Image
                 src={convertHttpToHttps(item?.product?.image[0])}
                 width={250}
@@ -62,7 +62,7 @@ const CartProductItem = ({ item }) => {
         >
           <Image src={cancel} width={20} height={20} alt="Tied up"/>
         </span>
-          <Link href={`/proizvod/${item?.product?.slug}`}>
+          <Link href={`/${item?.product?.slug}`}>
             <span className="text-[18px] font-bold">
               {item?.product?.basic_data?.name}
             </span>

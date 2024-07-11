@@ -122,10 +122,14 @@ const FilterRange = ({ filter, onChange, selected }) => {
         />
       </div>
       <div className={classes.valueHolder}>
-        <span className={`md:text-[1rem] max-md:text-[1rem] text-black font-light`}>
+        <span
+          className={`md:text-[1rem] max-md:text-[1rem] text-black font-light`}
+        >
           od: {selectedValue[0]}
         </span>
-        <span className={`md:text-[1rem] max-md:text-[1rem] text-black font-light`}>
+        <span
+          className={`md:text-[1rem] max-md:text-[1rem] text-black font-light`}
+        >
           {" "}
           do: {selectedValue[1]}
         </span>
@@ -146,11 +150,11 @@ const FilterWithinTree = ({ filter }) => {
         <div key={item.id}>
           <div className="mt-2 flex flex-row items-center gap-2 pl-4 text-[0.775rem]">
             <Link
-              className="pl-2 text-[1rem] font-light hover:text-[#39ae00]"
+              className="pl-2 text-black text-[1rem] font-light hover:text-[#39ae00]"
               htmlFor={"chbx-" + item.id}
-              href={`/kategorije/${item?.slug}`}
+              href={`/${item?.slug_path}`}
             >
-              {item.label}
+              {item?.label}
             </Link>
           </div>
         </div>
@@ -185,7 +189,6 @@ const Filter = ({
     }
     setPage(1);
     setSelectedFilters([...tmp]);
-    setTempSelectedFilters([...tmp]);
     setLastSelectedFilterKey(data.column);
     setChangeFilters(true);
   };

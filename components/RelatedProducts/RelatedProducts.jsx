@@ -53,7 +53,7 @@ const RelatedProducts = ({ relatedProducts = [], loading }) => {
                                             ) : null}
                         
                                             <Link
-                                              href={`/proizvod/${item?.slug}`}
+                                              href={`/${item?.slug}`}
                                               key={item?.id}
                                             >
                                                <div className="h-[300px] w-[300px] relative overflow-hidden">
@@ -75,7 +75,7 @@ const RelatedProducts = ({ relatedProducts = [], loading }) => {
                                     <div className="mt-1 flex flex-col gap-1 max-lg:justify-center max-lg:items-start">
                            
                                         <Link
-                                          href={`/proizvod/${item?.slug}`}
+                                          href={`/${item?.slug}`}
                                           key={item?.id}
                                           className="ml-[0.6rem]"
                                         >

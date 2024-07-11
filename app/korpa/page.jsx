@@ -20,29 +20,28 @@ const getRecommendedProducts = async () => {
 };
 
 const getCountries = async () => {
-  return await get(`/checkout/ddl/id_country`).then(
-    (res) => res?.payload
-  );
+  return await get(`/checkout/ddl/id_country`).then((res) => res?.payload);
 };
 
 export const metadata = () => {
   return {
-    title: "Korpa - croonus.com - Farmerke, Muške farmerke, Muška odeća",
-    description: "Dobrodošli na croonus.com Online Shop",
+    title: "Korpa | TiedUp",
+    description: "Dobrodošli na TiedUp Online Shop",
     keywords: [
-      "Croonus",
+      "TiedUp",
       "online",
       "shop",
-      "croonus.com",
+      "TiedUp.com",
       "farmerke",
       "trenerke",
       "dukserice",
-      "Croonus obuca",
+      "TiedUp obuca",
       "obuca",
-      "Croonus online",
+      "TiedUp online",
     ],
   };
 };
+
 const Cart = async () => {
   const paymentoptions = await paymentOptions();
   const deliveryoptions = await deliveryOptions();
