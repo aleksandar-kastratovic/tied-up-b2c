@@ -1,5 +1,8 @@
 {
   "/page": "app/page.js",
+  "/gdekupiti/page": "app/gdekupiti/page.js",
   "/[...path]/page": "app/[...path]/page.js",
-  "/korpa/page": "app/korpa/page.js"
+  "/lista-zelja/page": "app/lista-zelja/page.js",
+  "/search/page": "app/search/page.js",
+  "/icon.ico/route": "app/icon.ico/route.js"
 }

@@ -1,4 +1,4 @@
-// File: C:\Users\HP\Documents\tied-up-b2c\app\layout.js
+// File: /Applications/XAMPP/xamppfiles/htdocs/tied-up-b2c/app/layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
