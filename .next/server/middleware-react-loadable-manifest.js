@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"components\\\\CheckoutPage\\\\CheckoutPage.js -> ../../components/CartProductBox\":{\"id\":\"components\\\\CheckoutPage\\\\CheckoutPage.js -> ../../components/CartProductBox\",\"files\":[\"static/css/_app-pages-browser_components_CartProductBox_js.css\",\"static/chunks/_app-pages-browser_components_CartProductBox_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"

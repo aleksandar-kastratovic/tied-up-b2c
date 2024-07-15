@@ -8,7 +8,7 @@ import { get, list} from "@/app/api/api";
 import useDebounce from "@/hooks/useDebounce";
 import { useSearch } from "@/hooks/croonus.hooks";
 import cancel from "@/assets/Icons/cancel.png"
-
+import { useRouter } from "next/navigation";
 
 const HeaderIcons = () => {
     const [cartCount, setCartCount] = useState(0);
@@ -19,7 +19,7 @@ const HeaderIcons = () => {
     const searchRef = useRef(null);
     const searchImgRef = useRef(null);
     const [loading, setLoading] = useState(false);
-
+    const router = useRouter();
 
     useEffect(() => {
         const handleOutsideClick = (e) => {
@@ -45,7 +45,7 @@ const HeaderIcons = () => {
         e.preventDefault();
         if (searchTerm?.length >= 3) {
           setSearchIsOpen(false);
-          router.push(`/pretraga?search=${searchTerm}`);
+          router.push(`/search?search=${searchTerm}`);
           setSearchTerm("");
           
         }
