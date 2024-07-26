@@ -5,18 +5,10 @@ const Veleprodaja = () => {
   return (
     <>
       <div className="flex flex-col mt-[0rem] mt16 items-center  relative">
-        
-        <div className="flex h-full w-full flex-col items-center justify-center rounded-lg bg-opacity-50  text-center">
-          <p className="font-bold soon">USKORO...</p>
-          <p className="font-light text-[30px]">
-            Izvinite, stranica je trenutno u izradi.
-          </p>
-          <Link
-            href="/"
-            className="rounded-md shadow-md border mt-10 px-10 font-medium  hover:bg-opacity-80 py-4"
-          >
-            Idite na početnu
-          </Link>
+        <div className="border border-black rounded-[26px] py-[3rem] max-md:px-5 md:px-[6rem] text-center max-md:w-[80%]">
+          <p>ZA VELEPRODAJU I INFORMACIJE O CENAMA KONTAKTIRAJTE NAS NA E-MAIL:</p>
+         <Link href="mailto:masnetiedup@gmail.com" className="underline font-semibold hover:text-[#c0c0c0] text-[20px] mt-4 block">masnetiedup@gmail.com</Link>
+
         </div>
       </div>
     </>

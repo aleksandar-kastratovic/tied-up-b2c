@@ -137,33 +137,41 @@ const Contact = () => {
                 className={`fa fa-map-marker text-[16px] w-5 text-[#04b400]`}
               ></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Adresa 1:</span> Kralja Petra I
-                30, 32000 Čačak
+                <span className={`font-bold`}>Adresa:</span> {process.env.ADDRESS}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-map-marker text-[16px] w-5 text-[#04b400]`}
+                className={`fa fa-phone text-[16px] w-5 text-[#04b400]`}
               ></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Adresa 2:</span> Borska 32, 11000
-                Beograd
+                <span className={`font-bold`}>Kontakt telefon:</span> {process.env.TELEPHONE}, {process.env.TELEPHONE2}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-map-marker text-[16px] w-5 text-[#04b400]`}
+                className={`fa fa-envelope text-[16px] w-5 text-[#04b400]`}
               ></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Adresa 3:</span> Old Vine Blvd
-                Lewes,United States
+                <span className={`font-bold`}>Email:</span> {process.env.EMAIL}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-phone text-[16px] w-5 text-[#04b400]`}></i>
+              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#04b400]`}></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Kontakt telefon:</span> +381 32 51
-                22 052
+                <span className={`font-bold`}>MB:</span> {process.env.MB}
+              </span>
+            </div>
+            <div className={`flex items-center gap-2`}>
+              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#04b400]`}></i>
+              <span className={`text-[0.95rem]`}>
+                <span className={`font-bold`}>PIB:</span> {process.env.PIB}
+              </span>
+            </div>
+            <div className={`flex items-center gap-2`}>
+              <i className={`fa fa-clock text-[16px] w-5 text-[#04b400]`}></i>
+              <span className={`text-[0.95rem]`}>
+                <span className={`font-bold`}>Radno vreme:</span> {process.env.WORKTIME}
               </span>
             </div>
           </div>

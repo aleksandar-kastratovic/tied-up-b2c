@@ -159,9 +159,10 @@ const NavigationMobile = () => {
   });
 
   const categoriesMain = [
-    { name: "Brendovi", slug: "/brendovi" },
-    { name: "Blog", slug: "/blog" },
-    { name: "Maloprodaje", slug: "/maloprodaje" },
+    { name: "Gde kupiti", slug: "/gdekupiti" },
+    { name: "O nama", slug: "/onama" },
+    { name: "Galerija", slug: "/Galerija" },
+    { name: "Veleprodaja", slug: "/veleprodaja" },
     { name: "Kontakt", slug: "/kontakt" },
   ];
 

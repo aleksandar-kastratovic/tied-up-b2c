@@ -1,10 +1,10 @@
 {
   "pages": {
-    "/page": [
+    "/kontakt/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/css/app/kontakt/page.css",
+      "static/chunks/app/kontakt/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -17,94 +17,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
     "/onama/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/onama/page.js"
     ],
-    "/stranica-u-izradi/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/stranica-u-izradi/page.js"
-    ],
     "/gdekupiti/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/gdekupiti/page.js"
-    ],
-    "/kako-kupiti/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/kako-kupiti/page.js"
-    ],
-    "/reklamacije/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/reklamacije/page.js"
-    ],
-    "/povrat-sredstava/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/povrat-sredstava/page.css",
-      "static/chunks/app/povrat-sredstava/page.js"
-    ],
-    "/zamena-za-isti-artikal/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/zamena-za-isti-artikal/page.css",
-      "static/chunks/app/zamena-za-isti-artikal/page.js"
-    ],
-    "/zamena-za-drugi-artikal/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/zamena-za-drugi-artikal/page.css",
-      "static/chunks/app/zamena-za-drugi-artikal/page.js"
-    ],
-    "/pravo-na-odustajanje/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/pravo-na-odustajanje/page.js"
-    ],
-    "/uslovi-koriscenja/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/uslovi-koriscenja/page.js"
-    ],
-    "/zastita-privatnosti/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/zastita-privatnosti/page.js"
-    ],
-    "/isporuka/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/isporuka/page.js"
-    ],
-    "/najcesca-pitanja/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/najcesca-pitanja/page.js"
-    ],
-    "/kolacici/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/kolacici/page.js"
-    ],
-    "/galerija/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/galerija/page.js"
-    ],
-    "/veleprodaja/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/veleprodaja/page.js"
-    ],
-    "/kontakt/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/kontakt/page.css",
-      "static/chunks/app/kontakt/page.js"
     ],
     "/[...path]/page": [
       "static/chunks/webpack.js",
@@ -112,22 +39,10 @@
       "static/css/app/[...path]/page.css",
       "static/chunks/app/[...path]/page.js"
     ],
-    "/lista-zelja/page": [
+    "/veleprodaja/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/lista-zelja/page.css",
-      "static/chunks/app/lista-zelja/page.js"
-    ],
-    "/search/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/search/page.css",
-      "static/chunks/app/search/page.js"
-    ],
-    "/search/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/search/loading.js"
+      "static/chunks/app/veleprodaja/page.js"
     ]
   }
 }

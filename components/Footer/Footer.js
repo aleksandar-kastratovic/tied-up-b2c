@@ -157,7 +157,7 @@ const Footer = () => {
         </div>
         <div className="max-md:col-span-8 col-span-4 flex flex-col justify-center items-center md:pt-[1.6rem]">
           <div className="flex max-md:mt-4 max-xl:mt-10 items-center gap-[1.938rem]">
-            <a href="https://www.instagram.com/lifeatcroonus/" target={"_blank"}>
+            <a href="https://www.instagram.com/masnetiedup/" target={"_blank"}>
               <Image
                 src={Instagram}
                 width={22}
@@ -167,7 +167,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href="https://www.youtube.com/channel/UCTCxl3sqxPqafMhOsKVVEMQ/videos?view_as=subscriber"
+              href="https://www.youtube.com/@tiedup4968"
               target={"_blank"}
             >
               {" "}
@@ -175,16 +175,16 @@ const Footer = () => {
                 src={Youtube}
                 width={24}
                 height={24}
-                alt="Instagram"
+                alt="Youtube"
                 className="hover:scale-110 transition-all duration-300 invert"
               />
             </a>
-            <a href="https://www.facebook.com/Croonus/" target={"_blank"}>
+            <a href="https://www.facebook.com/masnetiedup/" target={"_blank"}>
               <Image
                 src={Facebook}
                 width={22}
                 height={22}
-                alt="Instagram"
+                alt="Facebook"
                 className="hover:scale-110 transition-all duration-300 invert"
               />
             </a>
