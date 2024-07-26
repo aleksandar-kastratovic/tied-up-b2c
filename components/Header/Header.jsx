@@ -186,6 +186,7 @@ const Header = ({ categories }) => {
               />
             </Link>
             {categoriesMainRight?.map((category, index) => {
+             
               const isCategory = category?.isCategory ?? true;
               return isCategory ? (
                 category?.children ? (
@@ -266,6 +267,7 @@ const Header = ({ categories }) => {
                 image: null,
                 open: false,
               });
+              resetActiveCategory();
             }}
             className={`absolute top-[110px] left-[25%] bg-white z-[100] max-lg:hidden w-fit`}
           >
@@ -286,6 +288,7 @@ const Header = ({ categories }) => {
                     })}
                     <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 text-left">
                       {activeCategory?.data?.map((category, index) => {
+                    
                         return category?.children?.length > 0 ? (
                           <button
                             key={index}
@@ -348,6 +351,7 @@ const Header = ({ categories }) => {
                     <h3 className="text-[15px] text-black font-bold mb-4">
                       {activeSubCategory?.name}
                     </h3>
+                  
                     {activeSubCategory?.name && (
                       <Link
                         className={`text-[15px] font-normal text-[#39ae00] hover:underline pb-7`}
@@ -366,6 +370,7 @@ const Header = ({ categories }) => {
                           <Link
                             href={`/${childCategory?.slug_path}`}
                             onClick={resetActiveCategory}
+                         
                             key={childCategory?.id}
                             className={`text-[15px] lowercase text-black first-letter:uppercase block hover:underline ${pathname?.includes(childCategory?.slug_path)
                                 ? "font-bold"
