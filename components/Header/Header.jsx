@@ -86,6 +86,7 @@ const Header = ({ categories }) => {
           "sticky top-0 -translate-y-full transition-all duration-500"
         );
         resetActiveCategory();
+
       } else {
         setVisible("sticky top-0 translate-y-0 transition-all duration-500");
       }

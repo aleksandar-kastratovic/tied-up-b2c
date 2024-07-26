@@ -38,7 +38,7 @@ const Footer = () => {
                 </div>
                 <div className="flex max-xl:mt-10 items-center gap-[1.938rem]">
                     <a
-                        href="https://www.instagram.com/Croonusshop/?hl=en"
+                        href="https://www.instagram.com/masnetiedup/"
                         target={"_blank"}
                     >
                         <Image
@@ -50,7 +50,7 @@ const Footer = () => {
                         />
                     </a>
                     <a
-                        href="https://www.youtube.com/channel/UCP3vHNQyS-6mJTX_l-VfaZw"
+                        href="https://www.youtube.com/@tiedup4968"
                         target={"_blank"}
                     >
                         {" "}
@@ -62,12 +62,12 @@ const Footer = () => {
                             className="hover:scale-110 transition-all duration-300"
                         />
                     </a>
-                    <a href="https://www.facebook.com/Croonusshop/" target={"_blank"}>
+                    <a href="https://www.facebook.com/masnetiedup/" target={"_blank"}>
                         <Image
                             src='/facebook.png'
                             width={30}
                             height={30}
-                            alt="Instagram"
+                            alt="Facebook"
                             className="hover:scale-110 transition-all duration-300"
                         />
                     </a>

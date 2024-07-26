@@ -1,8 +1,7 @@
 {
+  "/kontakt/page": "app/kontakt/page.js",
   "/page": "app/page.js",
-  "/gdekupiti/page": "app/gdekupiti/page.js",
-  "/[...path]/page": "app/[...path]/page.js",
-  "/lista-zelja/page": "app/lista-zelja/page.js",
-  "/search/page": "app/search/page.js",
-  "/icon.ico/route": "app/icon.ico/route.js"
+  "/onama/page": "app/onama/page.js",
+  "/veleprodaja/page": "app/veleprodaja/page.js",
+  "/gdekupiti/page": "app/gdekupiti/page.js"
 }

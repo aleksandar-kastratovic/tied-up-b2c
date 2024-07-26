@@ -2630,6 +2630,9 @@ select {
 .rounded-\[10px\] {
   border-radius: 10px;
 }
+.rounded-\[26px\] {
+  border-radius: 26px;
+}
 .rounded-\[50\%\] {
   border-radius: 50%;
 }
@@ -2650,6 +2653,9 @@ select {
 }
 .rounded-xl {
   border-radius: 0.75rem;
+}
+.rounded-\[20px\] {
+  border-radius: 20px;
 }
 .rounded-b-lg {
   border-bottom-right-radius: 0.5rem;
@@ -3473,6 +3479,9 @@ select {
 .text-center {
   text-align: center;
 }
+.text-justify {
+  text-align: justify;
+}
 .text-start {
   text-align: start;
 }
@@ -3648,6 +3657,9 @@ select {
 .text-\[60px\] {
   font-size: 60px;
 }
+.text-\[70px\] {
+  font-size: 70px;
+}
 .text-\[8\.875rem\] {
   font-size: 8.875rem;
 }
@@ -3673,6 +3685,9 @@ select {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+.font-black {
+  font-weight: 900;
 }
 .font-bold {
   font-weight: 700;
@@ -3781,6 +3796,10 @@ select {
 .text-\[\#a7a7a7\] {
   --tw-text-opacity: 1;
   color: rgb(167 167 167 / var(--tw-text-opacity));
+}
+.text-\[\#c0c0c0\] {
+  --tw-text-opacity: 1;
+  color: rgb(192 192 192 / var(--tw-text-opacity));
 }
 .text-\[\#c9c9c9\] {
   --tw-text-opacity: 1;
@@ -4148,7 +4167,9 @@ input[type="radio"]:checked::before {
     position: absolute !important;
     opacity: 0.8;
   }
-
+  .mt16 {
+    margin-top: 5rem;
+  }
   .swiper-button-next {
     background-color: white !important;
     opacity: 0.8;
@@ -5130,6 +5151,11 @@ input[type="radio"]:checked::before {
   color: rgb(163 163 163 / var(--tw-text-opacity));
 }
 
+.hover\:text-\[\#c0c0c0\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(192 192 192 / var(--tw-text-opacity));
+}
+
 .hover\:text-\[\#de6a26\]:hover {
   --tw-text-opacity: 1;
   color: rgb(222 106 38 / var(--tw-text-opacity));
@@ -5671,6 +5697,11 @@ input[type="radio"]:checked::before {
     padding: 0.25rem;
   }
 
+  .max-md\:px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .max-md\:py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -5684,6 +5715,16 @@ input[type="radio"]:checked::before {
   .max-md\:py-\[2rem\] {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .max-md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .max-md\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .max-md\:pl-4 {
@@ -6323,6 +6364,10 @@ input[type="radio"]:checked::before {
     width: 78%;
   }
 
+  .md\:w-\[80\%\] {
+    width: 80%;
+  }
+
   .md\:w-\[890px\] {
     width: 890px;
   }
@@ -6412,6 +6457,16 @@ input[type="radio"]:checked::before {
   .md\:px-\[3rem\] {
     padding-left: 3rem;
     padding-right: 3rem;
+  }
+
+  .md\:px-\[5rem\] {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .md\:px-\[6rem\] {
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
 
   .md\:px-\[8rem\] {

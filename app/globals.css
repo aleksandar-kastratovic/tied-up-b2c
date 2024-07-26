@@ -216,7 +216,9 @@ input[type="radio"]:checked::before {
     position: absolute !important;
     opacity: 0.8;
   }
-
+  .mt16 {
+    margin-top: 5rem;
+  }
   .swiper-button-next {
     background-color: white !important;
     opacity: 0.8;
