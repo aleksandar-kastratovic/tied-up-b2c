@@ -307,18 +307,20 @@ const CheckoutPage = ({
             Korpa
           </div>
         </div>
-        {cartItems.length > 0 && !cartLoading ? (
+        {cartLoading ? (
+          <div className="flex justify-center items-center h-[200px]">
+            <p>Loading cart items...</p>
+          </div>
+        ) : cartItems.length > 0 ? (
           <>
             <div className="grid grid-cols-6 gap-y-3 gap-x-3 max-xl:mx-auto max-xl:w-[95%] xl:mx-[5rem] ">
               <div className="col-span-6 bg-white p-1 xl:col-span-3 max-md:mt-4">
-              
-
-                <h5 className="text-xl   font-bold ">Informacije za dostavu</h5>
+                <h5 className="text-xl font-bold">Informacije za dostavu</h5>
                 {formData.type === "personal" && (
                   <>
                     <div className="mt-4 grid grid-cols-2 gap-x-4 pb-4 max-xl:text-base">
                       <div className="flex flex-col gap-5 max-xl:col-span-3 xl:col-start-1 xl:col-end-2">
-                        <div className="flex flex-col gap-2  ">
+                        <div className="flex flex-col gap-2">
                           <label htmlFor="name" className="hidden">
                             Ime:{" "}
                             <span className="snap-mandatory text-red-500">
@@ -352,7 +354,7 @@ const CheckoutPage = ({
                             id="phone"
                             value={formData.phone}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("phone")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -360,8 +362,6 @@ const CheckoutPage = ({
                             placeholder="Telefon*"
                           />
                         </div>
-                       
-
                         <div className="flex flex-col gap-2">
                           <label htmlFor="email" className="hidden">
                             Email:
@@ -375,7 +375,7 @@ const CheckoutPage = ({
                             id="email"
                             value={formData.email}
                             onChange={formChangeHandler}
-                            className={`ml-2 h-[58px] max-sm:text-sm   ${
+                            className={`ml-2 h-[58px] max-sm:text-sm ${
                               errors.includes("email")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -391,7 +391,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <select
-                            className={`ml-2 h-[58px] max-sm:text-sm   ${
+                            className={`ml-2 h-[58px] max-sm:text-sm ${
                               errors.includes("id_country_shipping")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -413,7 +413,6 @@ const CheckoutPage = ({
                         </div>
                       </div>
                       <div className="flex flex-col gap-5 max-xl:col-span-3 xl:col-span-1 xl:col-start-2 xl:col-end-3">
-                      
                         <div className="flex flex-col gap-2 max-md:mt-4">
                           <label htmlFor="surname" className="hidden">
                             Prezime:{" "}
@@ -422,7 +421,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("last_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -449,7 +448,7 @@ const CheckoutPage = ({
                               id="address"
                               value={formData.address}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("address")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -470,7 +469,7 @@ const CheckoutPage = ({
                               id="object_number"
                               value={formData.object_number}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("object_number")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -493,7 +492,7 @@ const CheckoutPage = ({
                               id="zip_code"
                               value={formData.zip_code}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("zip_code")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -514,7 +513,7 @@ const CheckoutPage = ({
                               id="town"
                               value={formData.town}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("town")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -523,7 +522,6 @@ const CheckoutPage = ({
                             />
                           </div>
                         </div>
-
                         <div className="flex flex-col gap-2">
                           <label htmlFor="note" className="hidden">
                             Napomena:
@@ -535,7 +533,7 @@ const CheckoutPage = ({
                             id="note"
                             value={formData.note}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm   border-none focus:border-none focus:ring-0 bg-[#f5f5f7] max-xl:mx-3 ${
+                            className={`ml-2 max-sm:text-sm border-none focus:border-none focus:ring-0 bg-[#f5f5f7] max-xl:mx-3 ${
                               errors.includes("note")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -564,7 +562,7 @@ const CheckoutPage = ({
                             id="company_name"
                             value={formData.company_name}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("company_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -580,7 +578,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("pib")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -601,7 +599,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("maticni_broj")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -614,7 +612,7 @@ const CheckoutPage = ({
                             placeholder="Matični broj*"
                           />
                         </div>
-                        <div className="flex flex-col gap-2  ">
+                        <div className="flex flex-col gap-2">
                           <label htmlFor="name" className="hidden">
                             Ime:{" "}
                             <span className="snap-mandatory text-red-500">
@@ -622,7 +620,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("first_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -635,7 +633,6 @@ const CheckoutPage = ({
                             placeholder="Ime*"
                           />
                         </div>
-
                         <div className="flex flex-col gap-2">
                           <label htmlFor="surname" className="hidden">
                             Prezime:{" "}
@@ -644,7 +641,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("last_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -672,7 +669,7 @@ const CheckoutPage = ({
                             id="email"
                             value={formData.email}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("email")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -693,7 +690,7 @@ const CheckoutPage = ({
                             id="phone"
                             value={formData.phone}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px]   ${
+                            className={`ml-2 max-sm:text-sm h-[58px] ${
                               errors.includes("phone")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -715,7 +712,7 @@ const CheckoutPage = ({
                               id="address"
                               value={formData.address}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("address")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -736,7 +733,7 @@ const CheckoutPage = ({
                               id="object_number"
                               value={formData.object_number}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("object_number")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -759,7 +756,7 @@ const CheckoutPage = ({
                               id="zip_code"
                               value={formData.zip_code}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("zip_code")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -767,7 +764,7 @@ const CheckoutPage = ({
                               placeholder="Poštanski broj*"
                             />
                           </div>
-                          <div className="flex flex-col gap-2 max-xl:mt-2">
+                          <div className="flex flex-col gap-2 max-md:mt-5 max-xl:mt-2">
                             <label htmlFor="town" className="hidden">
                               Grad{" "}
                               <span className="snap-mandatory text-red-500">
@@ -780,7 +777,7 @@ const CheckoutPage = ({
                               id="town"
                               value={formData.town}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px]   ${
+                              className={`ml-2 max-sm:text-sm h-[58px] ${
                                 errors.includes("town")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -800,7 +797,7 @@ const CheckoutPage = ({
                             id="note"
                             value={formData.note}
                             onChange={formChangeHandler}
-                            className="ml-2 max-sm:text-sm   border-none focus:border-none focus:ring-none bg-[#f5f5f7] max-xl:mx-3"
+                            className="ml-2 max-sm:text-sm border-none focus:border-none focus:ring-none bg-[#f5f5f7] max-xl:mx-3"
                             placeholder="Napomena"
                           />
                         </div>
@@ -819,7 +816,7 @@ const CheckoutPage = ({
                           id="height"
                           value={formData.height}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px]   ${
+                          className={`ml-2 max-sm:text-sm h-[58px] ${
                             errors.includes("height")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -837,7 +834,7 @@ const CheckoutPage = ({
                           id="weight"
                           value={formData.weight}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px]   ${
+                          className={`ml-2 max-sm:text-sm h-[58px] ${
                             errors.includes("weight")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -856,7 +853,7 @@ const CheckoutPage = ({
                           id="foot_size"
                           value={formData.foot_size}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px]   ${
+                          className={`ml-2 max-sm:text-sm h-[58px] ${
                             errors.includes("foot_size")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -874,7 +871,7 @@ const CheckoutPage = ({
                           id="product_size_agreement"
                           value={formData.product_size_agreement}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px]   ${
+                          className={`ml-2 max-sm:text-sm h-[58px] ${
                             errors.includes("product_size_agreement")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -888,81 +885,93 @@ const CheckoutPage = ({
                     </div>
                   </>
                 )}
-                 {cartItems.length > 0 && (
-                <>
-                  <div className="grid grid-cols-1 max-md:mt-0 col-span-3  gap-y-3 mt-[2rem] max-md:mt-[2rem]">
-                    <span className="text-xl  font-bold ">Način dostave </span>
-                    <div className="bg-[#f5f5f7] pt-7 pt-[40px] p-[30px]">
-                      <div className="flex flex-col gap-2 relative">
-                        {errors.includes("delivery") && (
-                          <span
-                            className={`${classes.errorMsg} absolute -top-5 text-red-500`}
-                          >
-                            {errorSelect}
-                          </span>
-                        )}
-                        <div className="flex flex-col gap-1 max-xl:text-sm">
-                          {deliveryoptions.map((option) => (
-                            <div
-                              className="flex flex-row items-center gap-1"
-                              key={option.type}
+                {cartItems.length > 0 && (
+                  <>
+                    <div className="grid grid-cols-1 max-md:mt-0 col-span-3 gap-y-3 mt-[2rem] max-md:mt-[2rem]">
+                      <span className="text-xl font-bold">
+                        Način dostave{" "}
+                      </span>
+                      <div className="bg-[#f5f5f7] pt-7 pt-[40px] p-[30px]">
+                        <div className="flex flex-col gap-2 relative">
+                          {errors.includes("delivery") && (
+                            <span
+                              className={`${classes.errorMsg} absolute -top-5 text-red-500`}
                             >
-                              <input
-                                type="radio"
-                                name="delivery"
-                                value={option.id}
-                                id={"delivery" + option.id}
-                                onChange={formChangeHandler}
-                                className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none focus:bg-[#de6a26] text-[#191919]"
-                              />
-                              <label htmlFor={"delivery" + option.id} className="max-md:text-sm text-lg font-thin ml-2 max-md:font-light">
-                                {option.name}
-                              </label>
-                            </div>
-                          ))}
+                              {errorSelect}
+                            </span>
+                          )}
+                          <div className="flex flex-col gap-1 max-xl:text-sm">
+                            {deliveryoptions.map((option) => (
+                              <div
+                                className="flex flex-row items-center gap-1"
+                                key={option.type}
+                              >
+                                <input
+                                  type="radio"
+                                  name="delivery"
+                                  value={option.id}
+                                  id={"delivery" + option.id}
+                                  onChange={formChangeHandler}
+                                  className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none focus:bg-[#de6a26] text-[#191919]"
+                                />
+                                <label
+                                  htmlFor={"delivery" + option.id}
+                                  className="max-md:text-sm text-lg font-thin ml-2 max-md:font-light"
+                                >
+                                  {option.name}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="font-thin mt-[3rem] mb-[1rem] max-md:font-light">
+                          Poštovani kupci, trenutna organizacija poslovanja
+                          našim kupcima nudi dostavu na željenu adresu u
+                          najkraćem vremenskom periodu. Zamenu robe možete
+                          izvršiti u bilo kojoj maloprodaji.
+                        </p>
+                      </div>
+                      <span className="text-xl max-md:mt-0 font-bold mt-5 max-md:mt-[2rem]">
+                        Način plaćanja:
+                      </span>
+                      <div className="bg-[#f5f5f7] pt-7 p-[30px]">
+                        <div className="flex flex-col gap-2 relative">
+                          {errors.includes("payment") && (
+                            <span
+                              className={`${classes.errorMsg} absolute -top-5 text-red-500`}
+                            >
+                              {errorSelect}
+                            </span>
+                          )}
+                          <div className="flex flex-col gap-1">
+                            {(paymentoptions ?? []).map((option) => (
+                              <div
+                                className="flex flex-row items-center gap-1 text-sm xl:text-sm"
+                                key={option.id}
+                              >
+                                <input
+                                  type="radio"
+                                  name="payment"
+                                  value={option.id}
+                                  id={"payment" + option.id}
+                                  onChange={formChangeHandler}
+                                  className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none text-[#191919] max-md:font-light"
+                                />
+                                <label
+                                  htmlFor={"payment" + option.id}
+                                  className="max-md:text-sm text-lg max-md:font-light font-thin ml-2"
+                                >
+                                  {option.name}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                      <p className="font-thin mt-[3rem] mb-[1rem] max-md:font-light">Poštovani kupci, trenutna organizacija poslovanja našim kupcima nudi dostavu na željenu adresu u najkraćem vremenskom periodu. Zamenu robe možete izvršiti u bilo kojoj maloprodaji.</p>
                     </div>
-                    <span className="text-xl max-md:mt-0   font-bold mt-5 max-md:mt-[2rem]">
-                      Način plaćanja:
-                    </span>
-                    <div className="bg-[#f5f5f7] pt-7 p-[30px]">
-                      <div className="flex flex-col gap-2 relative">
-                        {errors.includes("payment") && (
-                          <span
-                            className={`${classes.errorMsg} absolute -top-5 text-red-500`}
-                          >
-                            {errorSelect}
-                          </span>
-                        )}
-                        <div className="flex flex-col gap-1">
-                          {(paymentoptions ?? []).map((option) => (
-                            <div
-                              className="flex flex-row items-center gap-1 text-sm xl:text-sm"
-                              key={option.id}
-                            >
-                              <input
-                                type="radio"
-                                name="payment"
-                                value={option.id}
-                                id={"payment" + option.id}
-                                onChange={formChangeHandler}
-                                className="h-3 w-3 focus:ring-0 focus:outline-none focus:border-none text-[#191919] max-md:font-light"
-                              />
-                              <label htmlFor={"payment" + option.id} className="max-md:text-sm text-lg max-md:font-light font-thin ml-2">
-                                {option.name}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                
-                  </div>
-                  <div></div>
-                </>
-              )}
+                    <div></div>
+                  </>
+                )}
               </div>
               <div
                 className={`col-span-6 lg:col-span-3 flex flex-col max-md:mt-[2rem]`}
@@ -974,115 +983,116 @@ const CheckoutPage = ({
                 <div className="mt-[4rem] ml-3">
                   <h5 className="font-bold text-xl mb-5">Kupon:</h5>
                   <div className="bg-[#f5f5f7] p-[30px] md:ml-3">
-                  <input
-                    id="coupon"
-                    type="text"
-                    placeholder="Ovde unesite kupon"
-                    className="h-[58px] w-full border-none bg-white px-5 text-lg placeholder:text-lg"
-                  />
-                  <p className="ml-4 mt-3 text-md font-thin max-md:font-light">*Uputstvo za upotrebu kupona</p>
-                  <button className="h-[48px] w-fit ml-auto px-[4rem] md:px-[8rem] bg-[#333e48] font-medium text-white uppercase mt-[1rem] flex justify-end items-center">
-                    Aktiviraj kupon
-                  </button>
+                    <input
+                      id="coupon"
+                      type="text"
+                      placeholder="Ovde unesite kupon"
+                      className="h-[58px] w-full border-none bg-white px-5 text-lg placeholder:text-lg"
+                    />
+                    <p className="ml-4 mt-3 text-md font-thin max-md:font-light">
+                      *Uputstvo za upotrebu kupona
+                    </p>
+                    <button className="h-[48px] w-fit ml-auto px-[4rem] md:px-[8rem] bg-[#333e48] font-medium text-white uppercase mt-[1rem] flex justify-end items-center">
+                      Aktiviraj kupon
+                    </button>
                   </div>
                 </div>
 
-                <div className="flex flex-col max-md:mt-5 col-span-6 lg:col-span-3 gap-4  max-sm:px-[0.45rem] sm:px-3 mt-[1rem] pt-7 pb-5">
-                {" "}
-
-                <h5 className="font-bold text-xl mb-1 ">Vrednost Vaše korpe:</h5>
-           
-                <div className="flex flex-col gap-0 bg-[#f5f5f7] p-[30px] md:ml-3 pl-[20px] md:pl-[40px]">
-                  <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 max-xl:text-base text-lg">
-                    <span className="font-thin max-md:font-light max-xl:text-sm">
-                      Ukupna vrednost korpe bez popusta:{" "}
-                    </span>
-                    <span className="sm:mr-3 font-thin max-md:font-light max-sm:ml-auto  max-xl:text-sm">
-                      {currencyFormat(
-                        checkoutSummary?.summary?.totals?.with_vat
-                      )}
-                    </span>
+                <div className="flex flex-col max-md:mt-5 col-span-6 lg:col-span-3 gap-4 max-sm:px-[0.45rem] sm:px-3 mt-[1rem] pt-7 pb-5">
+                  {" "}
+                  <h5 className="font-bold text-xl mb-1 ">
+                    Vrednost Vaše korpe:
+                  </h5>
+                  <div className="flex flex-col gap-0 bg-[#f5f5f7] p-[30px] md:ml-3 pl-[20px] md:pl-[40px]">
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 max-xl:text-base text-lg">
+                      <span className="font-thin max-md:font-light max-xl:text-sm">
+                        Ukupna vrednost korpe bez popusta:{" "}
+                      </span>
+                      <span className="sm:mr-3 font-thin max-md:font-light max-sm:ml-auto max-xl:text-sm">
+                        {currencyFormat(
+                          checkoutSummary?.summary?.totals?.with_vat
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 max-xl:text-base">
+                      <span className="font-thin max-md:font-light max-xl:text-sm text-lg ">
+                        Iznos popusta u korpi:{" "}
+                      </span>
+                      <span className="sm:mr-3 max-md:font-light font-thin text-lg max-xl:text-sm">
+                        {currencyFormat(
+                          checkoutSummary?.summary?.totals
+                            ?.items_discount_amount +
+                            checkoutSummary?.summary?.totals
+                              ?.cart_discount_amount
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 text-lg ">
+                      <span className="font-thin max-md:font-light max-xl:text-sm ">
+                        Ukupna vrednost korpe sa popustom:
+                      </span>
+                      <span className="sm:mr-3 max-md:font-light font-thin max-sm:ml-auto max-xl:text-sm">
+                        {currencyFormat(
+                          checkoutSummary?.summary?.totals?.cart_discount
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 text-lg ">
+                      <span className="font-thin max-md:font-light max-xl:text-sm">
+                        Iznos koštanja transporta:{" "}
+                      </span>
+                      <span className="sm:mr-3 font-thin max-md:font-light text max-xl:text-sm">
+                        {currencyFormat(
+                          checkoutSummary?.summary?.totals?.delivery_amount
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex mt-5 flex-row items-center justify-between border-b-[1px] border-b-slate-100 py-1">
+                      <span className="text-lg font-bold max-xl:text-sm">
+                        Ukupno za naplatu:
+                      </span>
+                      <span className="sm:mr-3 text-[1.5rem] font-bold max-xl:text-sm">
+                        {currencyFormat(checkoutSummary?.summary?.totals?.total)}
+                      </span>
+                    </div>{" "}
                   </div>
-                  <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed]  py-1 max-xl:text-base">
-                    <span className="font-thin max-md:font-light max-xl:text-sm text-lg ">
-                      Iznos popusta u korpi:{" "}
-                    </span>
-                    <span className="sm:mr-3 max-md:font-light font-thin text-lg max-xl:text-sm">
-                      {currencyFormat(
-                        checkoutSummary?.summary?.totals
-                          ?.items_discount_amount +
-                          checkoutSummary?.summary?.totals?.cart_discount_amount
-                      )}
-                    </span>
+                  <div className="mt-2 flex gap-3 py-3 relative items-center md:ml-[3rem]">
+                    <input
+                      type="radio"
+                      id="agreed"
+                      name="agreed"
+                      onChange={formChangeHandler}
+                      value={formData.agreed === "1" ? "" : "1"}
+                      className="focus:ring-0 focus:border-none focus:outline-none text-[#191919]"
+                    />
+                    <label
+                      htmlFor="agreed"
+                      className="max-md:text-[15px] text-lg md:ml-2 font-thin max-md:font-light"
+                    >
+                      Saglasan sam sa{" "}
+                      <a
+                        className={` underline`}
+                        href={`/uslovi-koriscenja`}
+                        target={`_blank`}
+                      >
+                        uslovima korišćenja
+                      </a>{" "}
+                      TIED UP-a.
+                    </label>
+                    {errors.includes("agreed") && (
+                      <span
+                        className={`${classes.errorMsg} text-red-500 -top-3.5 absolute `}
+                      >
+                        {errorCheck}
+                      </span>
+                    )}
+                    <br />
                   </div>
-                  <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed]  py-1 text-lg ">
-                    <span className="font-thin max-md:font-light max-xl:text-sm ">
-                      Ukupna vrednost korpe sa popustom:
-                    </span>
-                    <span className="sm:mr-3 max-md:font-light font-thin max-sm:ml-auto max-xl:text-sm">
-                      {currencyFormat(
-                        checkoutSummary?.summary?.totals?.cart_discount
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed]  py-1 text-lg ">
-                    <span className="font-thin max-md:font-light max-xl:text-sm">
-                      Iznos koštanja transporta:{" "}
-                    </span>
-                    <span className="sm:mr-3 font-thin max-md:font-light text max-xl:text-sm">
-                      {currencyFormat(
-                        checkoutSummary?.summary?.totals?.delivery_amount
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex mt-5 flex-row items-center justify-between border-b-[1px] border-b-slate-100 py-1">
-                    <span className="text-lg font-bold max-xl:text-sm">
-                      Ukupno za naplatu:
-                    </span>
-                    <span className="sm:mr-3 text-[1.5rem] font-bold max-xl:text-sm">
-                      {currencyFormat(checkoutSummary?.summary?.totals?.total)}
-                    </span>
-                  </div>{" "}
                 </div>
-                <div className="mt-2 flex gap-3 py-3 relative items-center md:ml-[3rem]">
-                <input
-                  type="radio"
-                  id="agreed"
-                  name="agreed"
-                  onChange={formChangeHandler}
-                  value={formData.agreed === "1" ? "" : "1"}
-                  className="focus:ring-0 focus:border-none focus:outline-none text-[#191919]"
-                />
-                <label htmlFor="agreed" className="max-md:text-[15px] text-lg md:ml-2 font-thin max-md:font-light">
-                  Saglasan sam sa{" "}
-                  <a
-                    className={` underline`}
-                    href={`/uslovi-koriscenja`}
-                    target={`_blank`}
-                  >
-                  uslovima korišćenja
-                  </a>{" "}
-                  TIED UP-a.
-                </label>
-                {errors.includes("agreed") && (
-                  <span
-                    className={`${classes.errorMsg} text-red-500 -top-3.5 absolute `}
-                  >
-                    {errorCheck}
-                  </span>
-                )}
-                <br />
               </div>
-              </div>
-              </div>
-              </div>
-              <div>
-
-            
-            
             </div>
+            <div></div>
             <div className="flex flex-col max-md:items-center max-md:justify-center items-end justify-end max-md:w-[95%] max-md:mx-auto md:mx-[5rem]">
-              
               <button
                 onClick={formSubmitHandler}
                 className="max-xl:w-full xl:w-[400px] border uppercase bg-[#de6a26] px-4 py-3 text-lg font-medium text-white hover:opacity-90"
@@ -1146,7 +1156,6 @@ const CheckoutPage = ({
                 )}
               </div>
             </div>
-
             <RecommendedProducts
               recommendedProducts={recommendedProducts}
               action4={`Gledali ste i ove modele`}
