@@ -17,8 +17,8 @@ function HeaderTop() {
 			<div className='flex items-center'>
 				<Translate/>
 				<span className='text-sm font-light' >Call Centar: </span>
-				<Link href={`tel:${process.env.TELEPHONE}`} className='text-sm font-light'>
-					{process.env.TELEPHONE}
+				<Link href={`tel:${process.env.TELEPHONE2}`} className='text-sm font-light'>
+					{process.env.TELEPHONE2}
 				</Link>
 			</div>
 		</div>

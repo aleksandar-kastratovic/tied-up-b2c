@@ -134,15 +134,15 @@ const Contact = () => {
           <div className={`flex flex-col gap-2 mt-5`}>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-map-marker text-[16px] w-5 text-[#04b400]`}
+                className={`fa fa-map-marker text-[16px] w-5 text-[#de6a26]`}
               ></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Adresa:</span> {process.env.ADDRESS}
+                <span className={`font-bold`}>Proizvodnja i prodajno mesto:</span> {process.env.ADDRESS}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-phone text-[16px] w-5 text-[#04b400]`}
+                className={`fa fa-phone text-[16px] w-5 text-[#de6a26]`}
               ></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>Kontakt telefon:</span> {process.env.TELEPHONE}, {process.env.TELEPHONE2}
@@ -150,26 +150,26 @@ const Contact = () => {
             </div>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-envelope text-[16px] w-5 text-[#04b400]`}
+                className={`fa fa-envelope text-[16px] w-5 text-[#de6a26]`}
               ></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>Email:</span> {process.env.EMAIL}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#04b400]`}></i>
+              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#de6a26]`}></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>MB:</span> {process.env.MB}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#04b400]`}></i>
+              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#de6a26]`}></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>PIB:</span> {process.env.PIB}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-clock text-[16px] w-5 text-[#04b400]`}></i>
+              <i className={`fa fa-clock text-[16px] w-5 text-[#de6a26]`}></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>Radno vreme:</span> {process.env.WORKTIME}
               </span>
@@ -196,7 +196,7 @@ const Contact = () => {
                   errors.includes("customer_name")
                     ? "border-red-500"
                     : " border-slate-300"
-                } border rounded-lg focus:border-[#04b400] focus:ring-0 focus:outline-0 p-2`}
+                } border rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2 lg:col-span-1`}>
@@ -212,7 +212,7 @@ const Contact = () => {
                   errors.includes("phone")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#04b400] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2 lg:col-span-1`}>
@@ -228,7 +228,7 @@ const Contact = () => {
                   errors.includes("email")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#04b400] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2 lg:col-span-1`}>
@@ -244,7 +244,7 @@ const Contact = () => {
                   errors.includes("subject")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#04b400] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2`}>
@@ -259,7 +259,7 @@ const Contact = () => {
                   errors.includes("message")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#04b400] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div
@@ -277,14 +277,14 @@ const Contact = () => {
                     errors.includes("accept_rules")
                       ? "border-red-500"
                       : " border-slate-300"
-                  } rounded-lg focus:border-[#04b400] focus:ring-0 focus:outline-0 p-2 text-[#04b400]`}
+                  } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2 text-[#de6a26]`}
                 />
                 <label htmlFor={`accept_rules`}>
                   <span className={`text-[0.85rem]`}>
                     Slažem se sa{" "}
                     <Link
                       href={`/zastita-privatnosti`}
-                      className={`underline text-[#04b400]`}
+                      className={`underline text-[#de6a26]`}
                     >
                       politikom privatnosti
                     </Link>
@@ -298,8 +298,8 @@ const Contact = () => {
                     handleSubmit(e);
                   }}
                   className={`${
-                    loading ? `bg-[#04b400]` : `bg-black`
-                  } lg:hover:bg-[#04b400] transition-all duration-500 text-white px-5 py-2 rounded-lg w-full`}
+                    loading ? `bg-[#de6a26]` : `bg-black`
+                  } lg:hover:bg-[#de6a26] transition-all duration-500 text-white px-5 py-2 rounded-lg w-full`}
                 >
                   {loading ? (
                     <i

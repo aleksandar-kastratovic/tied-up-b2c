@@ -9,8 +9,8 @@ import RightIcon from "../svg/RightIcon";
 const SliderHeader = () => {
   const [swiper, setSwiper] = useState(null);
   const banners = [
-    "Besplatna isporuka za iznos preko 5.000 RSD",
-    "Besplatna isporuka za iznos preko 10.000 RSD",
+    "Besplatna isporuka za iznos preko 5.000 RSD, sve ispod dostava je 280 RSD",
+    "Besplatna isporuka za iznos preko 5.000 RSD, sve ispod dostava je 280 RSD",
   ];
 
   return (

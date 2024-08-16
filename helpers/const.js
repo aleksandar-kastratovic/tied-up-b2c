@@ -1,14 +1,5 @@
 export const sortKeys = [
-  {
-    label: "Novo",
-    field: "new",
-    direction: "desc",
-  },
-  {
-    label: "Staro",
-    field: "new",
-    direction: "asc",
-  },
+ 
   {
     label: "Cena od niže prema višoj",
     field: "price",
