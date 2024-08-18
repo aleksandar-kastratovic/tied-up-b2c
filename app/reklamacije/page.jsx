@@ -1,7 +1,7 @@
 import Reklamacije from "@/components/Reklamacije/Reklamacije";
 export const metadata = () => {
   return {
-    title: "Reklamacije - croonus.com - Farmerke, Muške farmerke, Muška odeća",
+    title: "Reklamacije ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",

@@ -1,7 +1,7 @@
 export const metadata = () => {
   return {
     title:
-      "Zaštita privatnosti - croonus.com - Farmerke, Muške farmerke, Muška odeća",
+      "Zaštita privatnosti ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",

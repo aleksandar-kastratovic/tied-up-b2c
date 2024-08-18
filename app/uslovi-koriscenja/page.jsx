@@ -1,7 +1,7 @@
 export const metadata = () => {
   return {
     title:
-      "Uslovi korišćenja - croonus.com - Farmerke, Muške farmerke, Muška odeća",
+      "Uslovi korišćenja ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",

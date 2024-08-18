@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image1 from "../assets/Icons/404.png";
 export const metadata = () => {
   return {
-    title: "404 - croonus.com - Farmerke, Muške farmerke, Muška odeća",
+    title: "404 ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",

@@ -309,7 +309,7 @@ const ProductInfo = ({
                 />
               </div>
             )}
-            <button className="flex items-center gap-2">
+            {/* <button className="flex items-center gap-2">
               <Image
                 src={"/icons/measure.png"}
                 alt="measure"
@@ -322,7 +322,7 @@ const ProductInfo = ({
               >
                 Pomoć za veličine
               </span>
-            </button>
+            </button> */}
             <div className="mt-[4.188rem] max-md:mt-[2rem] flex items-center gap-3">
               <PlusMinusInputTwo setCount={setCount} amount={count} />
               <button

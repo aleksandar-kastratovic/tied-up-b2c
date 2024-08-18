@@ -113,7 +113,7 @@ const Footer = () => {
           <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
             <p>
             <Link
-              href={`/onama`}
+              href={`/stranica-u-izradi`}
               className={`cursor-pointer hover:text-[#de6a26] mr-1 ${pathname === "/onama" && "text-[#de6a26]"
                 }`}
             >
