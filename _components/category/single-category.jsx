@@ -44,7 +44,7 @@ export const SingleCategory = ({ slug, text }) => {
           </h1>
         </div>
         <p
-          className="text-center text-[0.9rem] max-md:mt-[20px] max-w-[36.075rem] font-thin md:mt-[22px]"
+          className="text-center text-[0.9rem] max-md:mt-[20px] max-w-[36.075rem] font-light md:mt-[22px]"
           dangerouslySetInnerHTML={{
             __html: data?.basic_data?.short_description,
           }}

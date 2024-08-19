@@ -887,11 +887,11 @@ const CheckoutPage = ({
                 )}
                 {cartItems.length > 0 && (
                   <>
-                    <div className="grid grid-cols-1 max-md:mt-0 col-span-3 gap-y-3 mt-[2rem] max-md:mt-[2rem]">
+                    <div className="grid grid-cols-1 col-span-3 gap-y-3 mt-[2rem] max-md:mt-[2rem]">
                       <span className="text-xl font-bold">
                         Način dostave{" "}
                       </span>
-                      <div className="bg-[#f5f5f7] pt-7 pt-[40px] p-[30px]">
+                      <div className="bg-[#f5f5f7] pt-7 p-[30px]">
                         <div className="flex flex-col gap-2 relative">
                           {errors.includes("delivery") && (
                             <span
@@ -931,7 +931,7 @@ const CheckoutPage = ({
                           izvršiti u bilo kojoj maloprodaji.
                         </p>
                       </div>
-                      <span className="text-xl max-md:mt-0 font-bold mt-5 max-md:mt-[2rem]">
+                      <span className="text-xl max-md:mt-0 font-bold mt-5">
                         Način plaćanja:
                       </span>
                       <div className="bg-[#f5f5f7] pt-7 p-[30px]">
