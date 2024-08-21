@@ -1,25 +1,15 @@
 "use client";
 
 import { list } from "@/app/api/api";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useCartContext } from "@/app/api/cartContext";
 import WishlistItems from "../WishlistItems/WishlistItems";
 import Link from "next/link";
+import { Thumb } from "@/_components/shared";
+import { useWishlist } from "@/hooks/croonus.hooks";
 
 const WishlistPage = () => {
-  const [wishlistData, setWishlistData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [, , wishlist] = useCartContext();
-
-  useEffect(() => {
-    const getWishlist = async () => {
-      await list("/wishlist").then((response) => {
-        setWishlistData(response?.payload?.items);
-        setLoading(false);
-      });
-    };
-    getWishlist();
-  }, [wishlist]);
+  const { data, isLoading: loading, refetch } = useWishlist();
 
   return (
     <>
@@ -27,15 +17,19 @@ const WishlistPage = () => {
         <div className="flex justify-center items-center h-[200px]">
           <p>Loading wishlist items...</p>
         </div>
-      ) : wishlistData?.length > 0 ? (
+      ) : data?.length > 0 ? (
         <div className="mt-5 mx-[0.625rem] grid grid-cols-1 gap-x-5 gap-y-5 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
-          {wishlistData?.map((item) => (
-            <div key={item?.wishlist?.id}>
-              <WishlistItems
-                items={item?.wishlist?.id}
-                product={item?.product}
-              />
-            </div>
+          {data?.map(({ id_product }) => (
+            <Suspense
+              key={`wishlist-${id_product}`}
+              fallback={<p>Loading...</p>}
+            >
+              <Thumb
+                id={id_product}
+                refreshWishlist={refetch}
+                categoryId={"*"}
+              />{" "}
+            </Suspense>
           ))}
         </div>
       ) : (

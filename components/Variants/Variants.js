@@ -327,14 +327,7 @@ export default function Variants({
                 variant_product = getProductVariant();
                 if (variant_product) {
                   updateProductVariant(variant_product);
-                  if (variant_product?.categories?.length > 0) {
-                    handleURLChange(
-                      `/${variant_product?.categories[0]?.slug}/${variant_product?.slug}`
-                    );
-                  } else {
-                    handleURLChange(variant_product?.slug);
-                  }
-
+                  handleURLChange(variant_product?.slug);
                   product_slug = variant_product?.slug;
                 } else {
                   updateProductVariant(null);

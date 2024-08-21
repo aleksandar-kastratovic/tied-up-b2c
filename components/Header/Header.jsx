@@ -3,24 +3,21 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import HeaderTop from "./HeaderTop";
 import Image from "next/image";
-import HeaderContainerLinks from "./HeaderContainerLinks";
-import { get, list } from "@/app/api/api";
+import { list } from "@/app/api/api";
 import HeaderIcons from "./HeaderIcons";
-import SearchProducts from "./SearchProducts";
-import Translate from "../Translate/Translate";
 import { usePathname } from "next/navigation";
 
 const Header = ({ categories }) => {
   const categoriesMain = [
     { name: "Početna", slug: "/", isCategory: false, id: 0 },
-    ...categories.filter(category => category.name !== "Personalizovano"),
-];
-const categoriesMainRight = [
+    ...categories.filter((category) => category.name !== "Personalizovano"),
+  ];
+  const categoriesMainRight = [
     { name: "Personalizovano", slug: "/personalizovano", isCategory: false },
     { name: "Blog", slug: "/blog", isCategory: false },
     { name: "Veleprodaja", slug: "/veleprodaja", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },
-];
+  ];
 
   const [activeCategory, setActiveCategory] = useState({
     open: false,
@@ -268,9 +265,9 @@ const categoriesMainRight = [
             }}
             className={`absolute top-[110px] left-[25%] bg-white z-[100] max-lg:hidden w-fit`}
           >
-            <div className="pl-[5rem] pr-0 py-6 relative h-full  pb-2">
+            <div className="pl-[5rem] pr-0 py-6 relative h-full pb-2">
               <div className="flex justify-between h-full">
-                <div className="flex items-center gap-x-[13rem]  pb-2">
+                <div className="flex gap-x-[13rem] pb-2">
                   <div className={`flex flex-col items-center justify-start`}>
                     {landingPagesList?.items?.map((item, index) => {
                       return (

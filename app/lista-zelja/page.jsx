@@ -1,21 +1,8 @@
 import WishlistPage from "@/components/Wishlist/Wishlist";
-export const metadata = () => {
-  return {
-    title: "Lista želja ",
-    description: "Dobrodošli na croonus.com Online Shop",
-    keywords: [
-      "Croonus",
-      "online",
-      "shop",
-      "croonus.com",
-      "farmerke",
-      "trenerke",
-      "dukserice",
-      "Croonus obuca",
-      "obuca",
-      "Croonus online",
-    ],
-  };
+export const metadata = {
+  title: "Lista želja | Tied Up",
+  description: "Dobrodošli Tied Up Online Shop",
+  keywords: ["Tied Up", "online", "shop"],
 };
 const Wishlist = async () => {
   return <WishlistPage />;

@@ -1,62 +1,61 @@
 "use client";
 import Variants from "../Variants/Variants";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useGlobalAddToCart, useGlobalAddToWishList } from "@/app/api/globals";
 import { currencyFormat } from "@/helpers/functions";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Wishlist from "../../assets/Icons/heart.png";
 import WishlistActive from "../../assets/Icons/heart-active.png";
-import DeliveryStatus from "../../assets/Icons/delivery-status.png";
-import Calendar from "../../assets/Icons/calendar.png";
-import FreeDelivery from "../../assets/Icons/package.png";
 import { notFound } from "next/navigation";
 import ProductPrice from "@/components/ProductPrice/ProductPrice";
-import CampaignsDetails from "./CampaignsDetails";
 import DeliveryModal from "./DeliveryModal";
 import InfoModal from "./InfoModal";
 import ReturnModal from "./ReturnModal";
-import { get, post } from "@/app/api/api";
-import { useCartContext } from "@/app/api/cartContext";
 import PlusMinusInputTwo from "../PlusMinusInputTwo";
+import {
+  useAddToCart,
+  useAddToWishlist,
+  useIsInWishlist,
+  useRemoveFromWishlist,
+} from "@/hooks/croonus.hooks";
+import {
+  checkIsInStock,
+  checkPrices,
+  Prices,
+} from "@/_components/shared/prices";
 
-const ProductInfo = ({
-  product,
-  desc,
-  path,
-  isNewURL,
-  setIsNewURL,
-  setVariantKey,
-  variantKey,
-  setColor,
-  breadcrumbs,
-  specification,
-  declaration,
-  color,
-}) => {
+const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
   const [productVariant, setProductVariant] = useState(null);
-  const campaignsDate =
-    product?.data?.item?.price?.discount?.campaigns[0]?.duration;
 
-  const router = useRouter();
   useEffect(() => {
     if (window.scrollY > 0) {
       window.scrollTo(0, 0);
     }
   }, []);
+
   const [newURL, setNewURL] = useState(null);
+
   useEffect(() => {
     if (newURL) {
       window?.history?.replaceState(null, null, newURL);
     }
   }, [newURL]);
 
-  const updateProductVariant = (newProduct) => {
-    setProductVariant(newProduct);
+  //azuriramo varijantu
+  const updateProductVariant = (variant) => {
+    setProductVariant({
+      ...variant,
+      price: {
+        ...variant?.price,
+        min: [],
+        max: [],
+      },
+    });
   };
+
   const handleURLChange = (newURL) => {
     setNewURL(newURL);
   };
@@ -68,104 +67,104 @@ const ProductInfo = ({
       setColor(selectedColor);
     }
   }, [selectedColor]);
-  const [, , , mutateWishList] = useCartContext();
-  const [count, setCount] = useState(1);
-  const [productAmount, setProductAmount] = useState(1);
-  const globalAddToCart = useGlobalAddToCart();
-  const globalAddToWishList = useGlobalAddToWishList();
-  const [setVariant, setVariantOnOff] = useState(true);
-  const addToWishlist = async () => {
-    await post(`/wishlist`, {
-      id: null,
-      id_product: product?.data?.item?.basic_data?.id_product,
-      quantity: 1,
-      id_product_parent: null,
-      description: null,
-      status: null,
-    }).then((res) => {
-      mutateWishList();
-      if (res?.code === 200) {
-        toast.success("Proizvod dodat u listu želja!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      } else {
-        toast.error("Došlo je do nepoznate greške!", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }
-    });
-  };
 
-  const [isInWishlist, setIsInWishlist] = useState(false);
+  const [count, setCount] = useState(1);
+
+  const [setVariant, setVariantOnOff] = useState(true);
+
+  const { mutate: addToWishlist, isSuccess: is_added } = useAddToWishlist();
+  const { mutate: addToCart, isPending } = useAddToCart();
+  const { data: is_in_wishlist, refetch } = useIsInWishlist({
+    id: product?.data?.item?.basic_data?.id_product,
+  });
+  const { mutate: removeFromWishlist, isSuccess: is_removed } =
+    useRemoveFromWishlist();
+
+  const isInWishlist = is_in_wishlist?.exist;
+  const wishlist_item_id = is_in_wishlist?.wishlist_item_id;
 
   useEffect(() => {
-    const getIsInWishlist = async () => {
-      return await get(
-        `/wishlist/product-in-wishlist/${product?.data?.item?.basic_data?.id_product}`
-      ).then((res) => {
-        setIsInWishlist(res?.payload?.exist);
-      });
-    };
+    if (is_removed || is_added) {
+      refetch();
+    }
+  }, [is_added, is_removed]);
 
-    getIsInWishlist();
-  }, [addToWishlist, product]);
+  const startDate = new Date(
+    product?.data?.item?.price?.discount?.campaigns[0]?.duration?.from
+  );
+  const endDate = new Date(
+    product?.data?.item?.price?.discount?.campaigns[0]?.duration?.to
+  );
 
-  const startDate = new Date(product?.data?.item?.price?.discount?.campaigns[0]?.duration?.from);
-  const endDate = new Date(product?.data?.item?.price?.discount?.campaigns[0]?.duration?.to); 
   const formatDateFirst = (date) => {
-    const options = { day: "numeric", month: "numeric"};
-  return date.toLocaleDateString("sr-RS", options);
+    const options = { day: "numeric", month: "numeric" };
+    return date.toLocaleDateString("sr-RS", options);
   };
+
   const formatDate = (date) => {
     const options = { day: "numeric", month: "numeric", year: "numeric" };
-  return date.toLocaleDateString("sr-RS", options);
+    return date.toLocaleDateString("sr-RS", options);
   };
+
   const formattedStartDate = formatDateFirst(startDate);
   const formattedEndDate = formatDate(endDate);
 
-  const addToCart = (e) => {
-    switch (true) {
-      case product?.product_type === "single":
-        switch (true) {
-          case product?.data?.item?.inventory?.inventory_defined:
-            globalAddToCart(product?.data?.item?.basic_data?.id_product, count);
-            toast.success(`Proizvod dodat u korpu!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
-            break;
-          case !product?.data?.item?.inventory?.inventory_defined:
-            toast.error(`Proizvod nije na stanju!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
+  const checkIsAddable = (price, inventory) => {
+    let addable_data = {};
+
+    let is_in_stock = checkIsInStock(inventory);
+    let { price_defined } = checkPrices(price);
+    if (is_in_stock && price_defined) {
+      addable_data.addable = true;
+      addable_data.text = "DODAJ U KORPU";
+    } else {
+      addable_data.addable = false;
+      addable_data.text = "POŠALJI UPIT";
+    }
+
+    return addable_data;
+  };
+
+  const router = useRouter();
+  //hendlujemo dodavanje u korpu
+  const handleAddToCart = () => {
+    switch (product?.product_type) {
+      case "single":
+        let is_addable = checkIsAddable(
+          product?.data?.item?.price,
+          product?.data?.item?.inventory
+        );
+        if (is_addable?.addable) {
+          addToCart({
+            id: product?.data?.item?.basic_data?.id_product,
+            quantity: count,
+          });
+        } else {
+          router.push(`/kontakt?slug=${product?.data?.item?.slug}`);
         }
         break;
-      case product?.product_type === "variant":
-        switch (true) {
-          case !productVariant?.id:
-            toast.error(`Izaberite varijaciju!`, {
-              position: toast.POSITION.TOP_CENTER,
+      case "variant":
+        if (productVariant?.id) {
+          let is_addable = checkIsAddable(
+            productVariant?.price,
+            productVariant?.inventory
+          );
+
+          if (is_addable?.addable) {
+            addToCart({
+              id: productVariant?.id,
+              quantity: count,
             });
-            break;
-          case productVariant?.id &&
-            productVariant?.inventory?.inventory_defined:
-            globalAddToCart(productVariant?.basic_data?.id_product, 1);
-            toast.success(`Proizvod dodat u korpu!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
-            break;
-          case productVariant?.id &&
-            !productVariant?.inventory?.inventory_defined:
-            toast.error(`Proizvod nije na stanju!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
+          } else {
+            router.push(`/kontakt?slug=${productVariant?.slug}`);
+          }
         }
         break;
       default:
-        setCount(1);
-        
         break;
     }
   };
+
   const [deliveryModal, setDeliveryModal] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
   const [returnModal, setReturnModal] = useState(false);
@@ -183,7 +182,6 @@ const ProductInfo = ({
 
   const [text, setText] = useState("Dodaj u korpu");
 
-
   const handleTextChangeAddToCart = () => {
     switch (true) {
       case product?.product_type === "variant" && !productVariant?.id && !color:
@@ -198,11 +196,10 @@ const ProductInfo = ({
         setText("Dodaj u korpu");
     }
   };
-  
+
   useEffect(() => {
     if (product?.product_type === "variant" && productVariant?.id) {
       setText("Dodaj u korpu");
- 
     }
   }, [productVariant]);
 
@@ -211,7 +208,7 @@ const ProductInfo = ({
   const [activeTab, setActiveTab] = useState(1);
 
   useEffect(() => {
-    if (( text === "Izaberite boju") && color) {
+    if (text === "Izaberite boju" && color) {
       setText("Izaberite veličinu");
     }
   }, [color]);
@@ -289,7 +286,7 @@ const ProductInfo = ({
               <div
                 className={`mt-[2.125rem] text-[1.313rem] flex items-center gap-3 font-bold`}
               >
-                <ProductPrice
+                <Prices
                   price={
                     productVariant?.id
                       ? productVariant?.price
@@ -306,7 +303,7 @@ const ProductInfo = ({
                       : `font-bold text-[1.172rem]  py-0.5`
                   }
                 />
-                 {product?.data?.item?.price?.discount?.active && (
+                {product?.data?.item?.price?.discount?.active && (
                   <div className="group relative inline-block">
                     <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition bg-green-500 text-white p-[6px] rounded absolute -top-8 left-0 text-[10px] font-normal">
                       Važeća MP cena
@@ -332,30 +329,35 @@ const ProductInfo = ({
                   </div>
                 )}
               </div>
-                {product?.data?.item?.price?.discount?.active && (
-                  
-                  <>
-                    <div className=" mb-[1.2rem]">
-                  <span className="text-[#de6a26] text-[16px] font-semibold">Ušteda :  {currencyFormat(
-                    product?.data?.item?.price?.discount?.amount
-                  )}</span>
+              {product?.data?.item?.price?.discount?.active && (
+                <>
+                  <div className=" mb-[1.2rem]">
+                    <span className="text-[#de6a26] text-[16px] font-semibold">
+                      Ušteda :{" "}
+                      {currencyFormat(
+                        product?.data?.item?.price?.discount?.amount
+                      )}
+                    </span>
                   </div>
 
                   <div className="border-b-2 border-[#c0c0c0] w-[90%] 2xl:w-full flex justify-between text-sm">
                     <div>
-                      <p className="font-thin text-[16px]">Akcijska cena važi od {formattedStartDate} do {formattedEndDate}</p>
+                      <p className="font-thin text-[16px]">
+                        Akcijska cena važi od {formattedStartDate} do{" "}
+                        {formattedEndDate}
+                      </p>
                     </div>
-                    
                   </div>
-                  </>
-                  )}
-                 
-               
-                  <p
-                        className={`text-[16px] mt-[1.6rem] font-light`}
-                        dangerouslySetInnerHTML={{ __html: product?.data?.item?.basic_data?.short_description }}
-                      ></p>
-             
+                </>
+              )}
+
+              <p
+                className={`text-[16px] mt-[1.6rem] font-light`}
+                dangerouslySetInnerHTML={{
+                  __html: product?.data?.item?.basic_data?.short_description,
+                }}
+              ></p>
+
               {product?.data?.item?.inventory?.amount >= 2 &&
                 product?.data?.item?.inventory?.amount <= 4 && (
                   <>
@@ -366,8 +368,6 @@ const ProductInfo = ({
                     </p>
                   </>
                 )}
-            
-             
             </div>
             {product?.product_type === "variant" && (
               <div className="pt-12 pb-7 max-md:py-[1.5rem]">
@@ -400,14 +400,10 @@ const ProductInfo = ({
               </span>
             </button> */}
             <div className="mt-[3rem] max-md:mt-[2rem] flex items-center gap-3">
-            <PlusMinusInputTwo setCount={setCount} amount={count} />
+              <PlusMinusInputTwo setCount={setCount} amount={count} />
               <button
-                disabled={
-                  productVariant?.id
-                    ? !productVariant?.inventory?.inventory_defined
-                    : !product?.data?.item?.inventory?.inventory_defined
-                }
-                className={
+                disabled={isPending}
+                className={`${
                   productVariant === null || productVariant.length === 0
                     ? `max-sm:w-[8.5rem] ${
                         text === "Izaberite veličinu" ||
@@ -421,26 +417,35 @@ const ProductInfo = ({
                           ? `bg-red-500`
                           : `bg-[#de6a26]`
                       } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px] flex justify-center items-center uppercase text-white text-lg font-semibold pt-1`
-                }
+                } disabled:opacity-50`}
                 onClick={() => {
-                  if (
-                    product?.product_type === "variant" &&
-                    productVariant?.id
-                  ) {
-                    addToCart();
-                  }
-                  if (product?.product_type === "single") {
-                    addToCart();
-                  }
+                  handleAddToCart();
                   handleTextChangeAddToCart();
                 }}
               >
-                {text}
+                {isPending
+                  ? "DODAJEM.."
+                  : checkIsAddable(
+                      productVariant?.id
+                        ? productVariant?.price
+                        : product?.data?.item?.price,
+                      productVariant?.id
+                        ? productVariant?.inventory
+                        : product?.data?.item?.inventory
+                    ).text}
               </button>
-             
+
               <div
                 className="w-[39px] h-[35px] cursor-pointer"
-                onClick={addToWishlist}
+                onClick={() => {
+                  if (!isInWishlist) {
+                    addToWishlist({
+                      id: product?.data?.item?.basic_data?.id_product,
+                    });
+                  } else {
+                    removeFromWishlist({ id: wishlist_item_id });
+                  }
+                }}
               >
                 <Image
                   src={isInWishlist ? WishlistActive : Wishlist}
@@ -482,20 +487,19 @@ const ProductInfo = ({
             </div> */}
             <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-center max-md:w-full">
               <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
-              <div
-                 className="relative cursor-pointer"
-                onClick={() => setDeliveryModal(true)}
-               >
+                <div
+                  className="relative cursor-pointer"
+                  onClick={() => setDeliveryModal(true)}
+                >
                   Opis
-              </div>
-              <div
-                 className="relative cursor-pointer"
-                onClick={() => setInfoModal(true)}
+                </div>
+                <div
+                  className="relative cursor-pointer"
+                  onClick={() => setInfoModal(true)}
                 >
                   Informacije
                 </div>
-               
-            </ul>
+              </ul>
 
               {/* <div className={`flex flex-col divide-y md:max-w-[80%] h-[310px] overflow-y-auto`}>
                 {specification?.length > 0 &&
@@ -673,14 +677,14 @@ const ProductInfo = ({
           </div>
 
           <DeliveryModal
-           deliveryModal={deliveryModal}
-           setDeliveryModal={setDeliveryModal}
-           description={desc?.description}
+            deliveryModal={deliveryModal}
+            setDeliveryModal={setDeliveryModal}
+            description={desc?.description}
           />
-          <InfoModal infoModal={infoModal} setInfoModal={setInfoModal}/>
+          <InfoModal infoModal={infoModal} setInfoModal={setInfoModal} />
           <ReturnModal
-           returnModal={returnModal}
-           setReturnModal={setReturnModal}
+            returnModal={returnModal}
+            setReturnModal={setReturnModal}
           />
 
           {(deliveryModal || infoModal || returnModal || openModal) && (

@@ -230,7 +230,7 @@ const Thumb = ({
               {product?.image?.map((image, index) => (
                 <SwiperSlide key={index}>
                   <Link
-                    href={`/${product?.slug}`}
+                    href={`/${product?.slug_path}`}
                     scroll={true}
                     className="z-[100]"
                   >
@@ -240,11 +240,9 @@ const Thumb = ({
                         alt={product?.basic_data?.name}
                         width={0}
                         height={0}
-                        sizes={
-                          "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                        }
+                        sizes={`100vw`}
                         priority
-                        className={`transition-all duration-200 opacity-100 object-cover w-full h-full`}
+                        className={`transition-all duration-200 opacity-100 w-full`}
                       />
                     )}
                   </Link>
@@ -339,7 +337,7 @@ const Thumb = ({
               <Prices price={product?.price} inventory={product?.inventory} />
             </div>
           </div>
-          <div className={` w-full`}>
+          <div className={`w-full`}>
             <div
               className={`flex flex-row items-start gap-[0.05rem] md:gap-[0.35rem] mt-2 color`}
             >
