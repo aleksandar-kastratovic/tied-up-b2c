@@ -14,7 +14,7 @@ const fetchSingleCategory = async (slug) => {
 export async function generateMetadata({ params: { path } }, { searchParams }) {
   const singleCategory = await fetchSingleCategory(path[path?.length - 1]);
   return {
-    title: `${singleCategory?.basic_data?.name} - croonus.com - Farmerke, Muške farmerke, Muška odeća`,
+    title: `${singleCategory?.basic_data?.name} `,
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",

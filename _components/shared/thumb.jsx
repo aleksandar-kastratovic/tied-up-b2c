@@ -111,7 +111,7 @@ export const Thumb = ({
 
   return (
     <div
-      className={`col-span-1 flex flex-col relative group aspect-2/3`}
+      className={`col-span-1 flex flex-col relative group`}
       onMouseEnter={() => {
         handleSwiperNavigation({ id: product?.basic_data?.id_product });
       }}
@@ -155,7 +155,7 @@ export const Thumb = ({
           className={`categoryImageSwiper relative`}
           onSwiper={(swiper) => setSwiper(swiper)}
         >
-          {product?.image_data?.map(
+          {(product?.image_data ?? [])?.map(
             (
               { url, descriptions: { alt }, file_data: { height, width } },
               index
@@ -166,13 +166,11 @@ export const Thumb = ({
                     loading={`eager`}
                     src={convertHttpToHttps(url)}
                     alt={alt ?? product?.basic_data?.name}
-                    sizes={
-                      "(max-width: 639px) 100vw, (max-width: 767px) 100vw, (max-width: 1023px) 100vw, (max-width: 1279px) 100vw, (min-width: 1600px) 50vw"
-                    }
+                    sizes={"100vw"}
                     width={width ?? 0}
                     height={height ?? 0}
                     priority={true}
-                    className={`!w-full !h-full !object-cover group-hover:scale-110 transition-all duration-500`}
+                    className={`!w-full !h-auto group-hover:scale-110 transition-all duration-500`}
                   />
                 </SwiperSlide>
               );

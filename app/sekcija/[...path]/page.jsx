@@ -1,4 +1,4 @@
-import { CategoryData } from "@/components/sections/categories/CategoryPage";
+import CategoryData from "@/components/sections/categories/CategoryPage";
 
 const Section = async ({
   params: { path },
@@ -11,7 +11,7 @@ const Section = async ({
       break;
     default:
       break;
- }
+  }
 
   //vadimo sort iz URL
   const sort = (sortURL ?? "_")?.split("_");
@@ -50,3 +50,13 @@ const Section = async ({
 };
 
 export default Section;
+
+export const metadata = {
+  title: "Preporučeno | Tied Up",
+  description: "Preporučeni proizvodi",
+  keywords: "preporučeni proizvodi",
+  robots: {
+    index: true,
+    follow: true,
+  },
+};

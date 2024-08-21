@@ -263,7 +263,7 @@ const NavigationMobile = () => {
             onClick={() => setMenuOpen(false)}
           ></i>
         </div>
-        <div className="w-[95%] flex flex-row gap-7 mx-auto mt-5 border-b border-b-[#e5e7eb]">
+        <div className="w-[95%] flex flex-wrap flex-row gap-7 mx-auto mt-5 border-b border-b-[#e5e7eb]">
           {categories?.map((category) => {
             const isActive = activeCategory?.parentCategory === category?.id;
             return (

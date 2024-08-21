@@ -27,7 +27,7 @@ const Novo = () => {
 export default Novo;
 
 export const metadata = {
-  title: "Novo - croonus.com - Farmerke, Muške farmerke, Muška odeća",
+  title: "Novo ",
   description: "Dobrodošli na croonus.com Online Shop",
   keywords: [
     "Croonus",

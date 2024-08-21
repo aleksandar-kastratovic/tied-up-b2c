@@ -1,6 +1,6 @@
 export const metadata = () => {
   return {
-    title: "Kolacici - croonus.com - Farmerke, Muške farmerke, Muška odeća",
+    title: "Kolacici ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",

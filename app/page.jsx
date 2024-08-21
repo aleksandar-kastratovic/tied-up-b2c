@@ -28,10 +28,7 @@ const getIndexBanner = async () => {
 };
 
 const fetchAction4 = async () => {
-  const fetchAction4 = await get("/banners/akcija4").then(
-    (response) => response?.payload
-  );
-  return fetchAction4;
+  return await get("/banners/akcija4").then((response) => response?.payload);
 };
 
 const getNew = async () => {
@@ -39,7 +36,6 @@ const getNew = async () => {
     (res) => res?.payload
   );
 };
-export const revalidate = 30;
 
 const Home = async () => {
   const banners = await getBanners();
@@ -73,3 +69,4 @@ const Home = async () => {
 };
 
 export default Home;
+export const revalidate = 30;

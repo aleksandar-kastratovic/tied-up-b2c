@@ -45,7 +45,7 @@ const Footer = () => {
                 Besplatna dostava za
               </p>
               <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
-                Iznos preko <span className="text-[#de6a26]  max-md:text-[14px] ">6.000 RSD</span>
+                Iznos preko <span className="text-[#de6a26]  max-md:text-[14px] ">5.000 RSD</span>
               </p>
             </div>{" "}
           </div>
@@ -113,20 +113,20 @@ const Footer = () => {
           <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
             <p>
             <Link
-              href={`/onama`}
+              href={`/stranica-u-izradi`}
               className={`cursor-pointer hover:text-[#de6a26] mr-1 ${pathname === "/onama" && "text-[#de6a26]"
                 }`}
             >
               Više o kompaniji
             </Link>
             {", "}
-            <Link
+            {/* <Link
               href={`/stranica-u-izradi`}
               className={`cursor-pointer hover:text-[#de6a26] ml-1 ${pathname === "/joinlife" && "text-[#de6a26]"
                 }`}
             >
               Join Life
-            </Link>
+            </Link> */}
             </p>
             <p>
             <Link
@@ -137,13 +137,13 @@ const Footer = () => {
               Ponude za posao
             </Link>
             {", "}
-            <Link
+            {/* <Link
               href={`/stranica-u-izradi`}
               className={`cursor-pointer hover:text-[#de6a26] ml-1 ${pathname === "/stampa" && "text-[#de6a26]"
                 }`}
             >
              Štampa
-            </Link>
+            </Link> */}
             </p>
             <Link
               href={`/gdekupiti`}

@@ -61,7 +61,7 @@ export const metadata = {
     description: "Dobrodošli na Tied up Online Shop",
     type: "website",
     url: "https://tiedup.com",
-    image: "https://tiedup.com/images/logo.png",
+    image: "https://ibb.co/8srntZv",
     site_name: "tiedup.com",
     locale: "sr_RS",
   },

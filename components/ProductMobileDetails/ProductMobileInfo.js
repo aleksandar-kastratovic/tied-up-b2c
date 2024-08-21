@@ -2,7 +2,6 @@
 import Variants from "../Variants/Variants";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useGlobalAddToCart, useGlobalAddToWishList } from "@/app/api/globals";
 import { currencyFormat } from "@/helpers/functions";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,6 +18,17 @@ import CampaignsDetails from "../ProductDetails/CampaignsDetails";
 import { get } from "@/app/api/api";
 import WishlistActive from "@/assets/Icons/heart-active.png";
 import PlusMinusInputTwo from "../PlusMinusInputTwo";
+import {
+  useAddToCart,
+  useAddToWishlist,
+  useIsInWishlist,
+  useRemoveFromWishlist,
+} from "@/hooks/croonus.hooks";
+import {
+  checkIsInStock,
+  checkPrices,
+  Prices,
+} from "@/_components/shared/prices";
 
 const ProductInfo = ({
   product,
@@ -45,18 +55,27 @@ const ProductInfo = ({
       window.scrollTo(0, 0);
     }
   }, []);
+
   const [newURL, setNewURL] = useState(null);
+
   useEffect(() => {
     if (newURL) {
-      router.replace(newURL, {
-        scroll: false,
-      });
+      window?.history?.replaceState(null, null, newURL);
     }
   }, [newURL]);
 
-  const updateProductVariant = (newProduct) => {
-    setProductVariant(newProduct);
+  //azuriramo varijantu
+  const updateProductVariant = (variant) => {
+    setProductVariant({
+      ...variant,
+      price: {
+        ...variant?.price,
+        min: [],
+        max: [],
+      },
+    });
   };
+
   const handleURLChange = (newURL) => {
     setNewURL(newURL);
   };
@@ -70,61 +89,80 @@ const ProductInfo = ({
   }, [selectedColor]);
 
   const [productAmount, setProductAmount] = useState(1);
-  const globalAddToCart = useGlobalAddToCart();
-  const globalAddToWishList = useGlobalAddToWishList();
+
   const [setVariant, setVariantOnOff] = useState(true);
-  const addToWishlist = (e) => {
-    globalAddToWishList(product.data.item.basic_data?.id_product);
-    toast.success(
-      `Proizvod ${product.data.item.basic_data?.name} dodat u listu želja!`,
-      {
-        position: toast.POSITION.TOP_CENTER,
-      }
-    );
+
+  const { mutate: addToCart, isPending } = useAddToCart();
+  const { mutate: addToWishlist, isSuccess: is_added } = useAddToWishlist();
+  const { data: is_in_wishlist, refetch } = useIsInWishlist({
+    id: product?.data?.item?.basic_data?.id_product,
+  });
+  const { mutate: removeFromWishlist, isSuccess: is_removed } =
+    useRemoveFromWishlist();
+
+  const isInWishlist = is_in_wishlist?.exist;
+  const wishlist_item_id = is_in_wishlist?.wishlist_item_id;
+
+  useEffect(() => {
+    if (is_removed || is_added) {
+      refetch();
+    }
+  }, [is_added, is_removed]);
+
+  const checkIsAddable = (price, inventory) => {
+    let addable_data = {};
+
+    let is_in_stock = checkIsInStock(inventory);
+    let { price_defined } = checkPrices(price);
+    if (is_in_stock && price_defined) {
+      addable_data.addable = true;
+      addable_data.text = "DODAJ U KORPU";
+    } else {
+      addable_data.addable = false;
+      addable_data.text = "POŠALJI UPIT";
+    }
+
+    return addable_data;
   };
-  const addToCart = (e) => {
-    switch (true) {
-      case product?.product_type === "single":
-        switch (true) {
-          case product?.data?.item?.inventory?.inventory_defined:
-            globalAddToCart(product?.data?.item?.basic_data?.id_product, count);
-            toast.success(`Proizvod dodat u korpu!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
-            break;
-          case !product?.data?.item?.inventory?.inventory_defined:
-            toast.error(`Proizvod nije na stanju!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
+  //hendlujemo dodavanje u korpu
+  const handleAddToCart = () => {
+    switch (product?.product_type) {
+      case "single":
+        let is_addable = checkIsAddable(
+          product?.data?.item?.price,
+          product?.data?.item?.inventory
+        );
+        if (is_addable?.addable) {
+          addToCart({
+            id: product?.data?.item?.basic_data?.id_product,
+            quantity: count,
+          });
+        } else {
+          router.push(`/kontakt?slug=${product?.data?.item?.slug}`);
         }
         break;
-      case product?.product_type === "variant":
-        switch (true) {
-          case !productVariant?.id:
-            toast.error(`Izaberite varijaciju!`, {
-              position: toast.POSITION.TOP_CENTER,
+      case "variant":
+        if (productVariant?.id) {
+          let is_addable = checkIsAddable(
+            productVariant?.price,
+            productVariant?.inventory
+          );
+
+          if (is_addable?.addable) {
+            addToCart({
+              id: productVariant?.id,
+              quantity: count,
             });
-            break;
-          case productVariant?.id &&
-            productVariant?.inventory?.inventory_defined:
-            globalAddToCart(productVariant?.basic_data?.id_product, 1);
-            toast.success(`Proizvod dodat u korpu!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
-            break;
-          case productVariant?.id &&
-            !productVariant?.inventory?.inventory_defined:
-            toast.error(`Proizvod nije na stanju!`, {
-              position: toast.POSITION.TOP_CENTER,
-            });
+          } else {
+            router.push(`/kontakt?slug=${productVariant?.slug}`);
+          }
         }
         break;
       default:
-        setCount(1);
-
         break;
     }
   };
+
   const [deliveryModal, setDeliveryModal] = useState(false);
   const [infoModal, setInfoModal] = useState(false);
   const [returnModal, setReturnModal] = useState(false);
@@ -155,20 +193,6 @@ const ProductInfo = ({
     }
   }, [productVariant]);
   const [activeTab, setActiveTab] = useState(1);
-
-  const [isInWishlist, setIsInWishlist] = useState(false);
-
-  useEffect(() => {
-    const getIsInWishlist = async () => {
-      return await get(
-        `/wishlist/product-in-wishlist/${product?.data?.item?.basic_data?.id_product}`
-      ).then((res) => {
-        setIsInWishlist(res?.payload?.exist);
-      });
-    };
-
-    getIsInWishlist();
-  }, [addToWishlist, product]);
 
   return (
     <>
@@ -245,7 +269,7 @@ const ProductInfo = ({
               <div
                 className={`mt-[2.125rem] text-[1.313rem] flex items-center gap-3 font-bold`}
               >
-                <ProductPrice
+                <Prices
                   price={
                     productVariant?.id
                       ? productVariant?.price
@@ -309,7 +333,7 @@ const ProductInfo = ({
                 />
               </div>
             )}
-            <button className="flex items-center gap-2">
+            {/* <button className="flex items-center gap-2">
               <Image
                 src={"/icons/measure.png"}
                 alt="measure"
@@ -322,7 +346,7 @@ const ProductInfo = ({
               >
                 Pomoć za veličine
               </span>
-            </button>
+            </button> */}
             <div className="mt-[4.188rem] max-md:mt-[2rem] flex items-center gap-3">
               <PlusMinusInputTwo setCount={setCount} amount={count} />
               <button
@@ -347,24 +371,33 @@ const ProductInfo = ({
                       } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px] flex justify-center items-center uppercase text-white text-lg font-semibold pt-1`
                 }
                 onClick={() => {
-                  if (
-                    product?.product_type === "variant" &&
-                    productVariant?.id
-                  ) {
-                    addToCart();
-                  }
-                  if (product?.product_type === "single") {
-                    addToCart();
-                  }
+                  handleAddToCart();
                   handleTextChangeAddToCart();
                 }}
               >
-                {text}
+                {isPending
+                  ? "DODAJEM.."
+                  : checkIsAddable(
+                      productVariant?.id
+                        ? productVariant?.price
+                        : product?.data?.item?.price,
+                      productVariant?.id
+                        ? productVariant?.inventory
+                        : product?.data?.item?.inventory
+                    ).text}
               </button>
 
               <div
                 className="w-[39px] h-[35px] cursor-pointer"
-                onClick={addToWishlist}
+                onClick={() => {
+                  if (!isInWishlist) {
+                    addToWishlist({
+                      id: product?.data?.item?.basic_data?.id_product,
+                    });
+                  } else {
+                    removeFromWishlist({ id: wishlist_item_id });
+                  }
+                }}
               >
                 <Image
                   src={isInWishlist ? WishlistActive : Wishlist}
