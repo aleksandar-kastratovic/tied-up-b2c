@@ -126,6 +126,7 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
   };
 
   const router = useRouter();
+
   //hendlujemo dodavanje u korpu
   const handleAddToCart = () => {
     switch (product?.product_type) {

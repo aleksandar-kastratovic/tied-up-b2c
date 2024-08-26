@@ -16,7 +16,6 @@ const ProductGallery = ({
   productGallery,
   color,
   loading,
-  setLoadingc,
   product,
   setLoading,
   stickers,
@@ -103,7 +102,7 @@ const ProductGallery = ({
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [modalImage, setModalImage] = useState(null);
 
-  const productImage = productGallery?.map((item, index) => {
+  const productImage = (productGallery ?? [])?.map((item, index) => {
     return (
       <SwiperSlide key={index} className="w-full">
         <ImageMagnifier
@@ -118,7 +117,8 @@ const ProductGallery = ({
       </SwiperSlide>
     );
   });
-  const thumbImage = productGallery?.map((item, index) => {
+
+  const thumbImage = (productGallery ?? [])?.map((item, index) => {
     return (
       <SwiperSlide key={index}>
         <Image
@@ -144,14 +144,6 @@ const ProductGallery = ({
       swiper?.slideTo(newImage);
     }
   }, [color]);
-
-  useEffect(() => {
-    if (productGallery?.length) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }
-  }, [productGallery]);
 
   const renderDiscountPercentage = ({
     price: {

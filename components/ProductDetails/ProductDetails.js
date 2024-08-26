@@ -31,7 +31,6 @@ const ProductDetails = ({
 
   useEffect(() => {
     if (color !== null) {
-      setLoading(true);
       setGallery(filteredImages);
       const newImage = rawGallery?.find((item) => {
         return item?.variant_key?.includes(color);
@@ -41,13 +40,15 @@ const ProductDetails = ({
   }, [color]);
 
   return (
-    <div className="max-md:mt-[1rem]  max-md:w-[95%]  max-md:mx-auto md:mx-[3rem] mt-6">
+    <div
+      className={`max-md:mt-[1rem]  max-md:w-[95%]  max-md:mx-auto md:mx-[3rem] mt-6`}
+    >
       <div className="flex items-center gap-2 flex-wrap max-lg:hidden">
         <Link href={`/`} className="text-[#191919] text-[0.95rem] font-thin">
           Početna
         </Link>{" "}
         <>/</>
-        {breadcrumbs?.steps?.map((breadcrumb, index, arr) => {
+        {(breadcrumbs?.steps ?? [])?.map((breadcrumb, index, arr) => {
           return (
             <div className="flex items-center gap-2">
               <Link
