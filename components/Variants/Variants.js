@@ -21,6 +21,7 @@ export default function Variants({
   let product_slug = productSlug; // slug proizvoda koji se prikazuje
   let variant_product = null; // krajnji proizvod koji se prikazuje
   const [selected, setSelected] = useState([]); // niz selektovanih variant_options
+
   useEffect(() => {
     if (setVariant) {
       setSelected([
@@ -45,7 +46,7 @@ export default function Variants({
     // ako postoji item iz variant_items na osnovu slug-a i setuje se selected
     if (selected_item) {
       setSelected(selected_item.variant_key_array);
-      setSelectedColor(selected_item.variant_key_array[1]?.value_key);
+      setSelectedColor(selected_item?.variant_key_array?.[0]?.value_key);
     }
 
     if (selected_item) {
@@ -141,9 +142,9 @@ export default function Variants({
         selected.map((temp_condition) => {
           item.variant_key_array.map((temp_variant_key_array) => {
             if (
-              temp_condition.attribute_key ==
+              temp_condition.attribute_key ===
                 temp_variant_key_array.attribute_key &&
-              temp_condition.value_key == temp_variant_key_array.value_key
+              temp_condition.value_key === temp_variant_key_array.value_key
             ) {
               t_count += 1;
             }
@@ -151,7 +152,7 @@ export default function Variants({
         });
       }
 
-      if (t_count == selected.length) {
+      if (t_count === selected.length) {
         options.push(item);
       }
     });
@@ -173,9 +174,9 @@ export default function Variants({
   // funkcija koja oznacuje variant_options koja je selektovana
   const selectVariantOptions = (variant_options, attribute_key, value_key) => {
     variant_options.map((item) => {
-      if (item.attribute.key == attribute_key) {
+      if (item.attribute.key === attribute_key) {
         item.values.map((value) => {
-          if (value.key == value_key) {
+          if (value.key === value_key) {
             value.selected = true;
             item.attribute.selected_value = true;
           }
@@ -209,7 +210,7 @@ export default function Variants({
     let options = [];
     selected_variants.map((item) => {
       item.variant_key_array.map((variant_key_array) => {
-        if (variant_key_array.attribute_key == temp_not_selected) {
+        if (variant_key_array.attribute_key === temp_not_selected) {
           options.push(variant_key_array.value_key);
         }
       });
@@ -225,9 +226,9 @@ export default function Variants({
     values_to_show
   ) => {
     variant_options.map((item) => {
-      if (item.attribute.key == temp_not_selected) {
+      if (item.attribute.key === temp_not_selected) {
         item.values.map((value) => {
-          if (values_to_show.indexOf(value.key) == -1) {
+          if (values_to_show.indexOf(value.key) === -1) {
             value.display = "hide";
           } else {
             value.display = "show";
@@ -289,7 +290,7 @@ export default function Variants({
     };
 
     let temp_index = temp_selected.findIndex(
-      (x) => x.attribute_key == temp_selected_item.attribute_key
+      (x) => x.attribute_key === temp_selected_item.attribute_key
     );
 
     if (temp_index > -1) {
@@ -305,6 +306,7 @@ export default function Variants({
 
     setSelected(temp_selected);
   };
+
   return (
     <div className="flex flex-col  gap-3 max-lg:w-full  2xl:w-1/2">
       {variantOptions.map((item) => {
@@ -322,21 +324,25 @@ export default function Variants({
               name={item.attribute.key}
               className=" max-sm:text-right max-sm:float-right focus:ring-0 focus:border-black max-sm:p-2 py-1  max-sm:flex max-sm:justify-end border-2 border-black md:w-[60%] max-md:w-[80%]"
               onChange={(e) => {
-                onChangeHandler(item.attribute.key, e.target.value);
-                handleVariantOptionChange();
-                variant_product = getProductVariant();
-                if (variant_product) {
-                  updateProductVariant(variant_product);
-                  handleURLChange(variant_product?.slug);
-                  product_slug = variant_product?.slug;
-                } else {
-                  updateProductVariant(null);
+                if (e.target.value !== "none") {
+                  onChangeHandler(item.attribute.key, e.target.value);
+                  setSelectedColor(e.target.value);
+                  handleVariantOptionChange();
+                  variant_product = getProductVariant();
+                  if (variant_product) {
+                    updateProductVariant(variant_product);
+                    handleURLChange(variant_product?.slug);
+                    product_slug = variant_product?.slug;
+                  } else {
+                    updateProductVariant(null);
+                  }
                 }
               }}
             >
-              <option>Izaberite</option>
+              <option value={`none`}>Izaberite</option>
               {item.values.map((value) => {
                 let display = value.display;
+
                 return (
                   <option
                     key={value.id}
