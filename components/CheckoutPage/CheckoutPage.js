@@ -259,25 +259,20 @@ const CheckoutPage = ({
           const creditCardForm = response?.payload?.payment_provider_data?.form;
           const paypalForm = response?.payload?.payment_provider_data?.form;
 
-          if (paypalForm && paypalForm?.includes("paypal")) {
-            //redirect
-            window.location.href = paypalForm;
-          }
-
+          // if (paypalForm && paypalForm?.includes("paypal")) {
+          //   //redirect
+          //   window.location.href = paypalForm;
+          // }
           const orderToken = response?.payload?.order?.order_token;
           if (response?.code === 200) {
             if (creditCardForm) {
               const dom = document.createElement("div");
               dom.innerHTML = creditCardForm;
               document.body.appendChild(dom);
-              setLoading(false);
-
               const formData = document.getElementById("bank_send_form");
               formData.submit();
-              mutateCart();
             } else {
               router.push(`/kupovina/${orderToken}`);
-
               mutateCart();
               setLoading(false);
             }
@@ -328,7 +323,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("first_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -354,7 +349,7 @@ const CheckoutPage = ({
                             id="phone"
                             value={formData.phone}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("phone")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -375,7 +370,7 @@ const CheckoutPage = ({
                             id="email"
                             value={formData.email}
                             onChange={formChangeHandler}
-                            className={`ml-2 h-[58px] max-sm:text-sm ${
+                            className={`ml-2 !py-4 max-sm:text-sm ${
                               errors.includes("email")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -391,7 +386,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <select
-                            className={`ml-2 h-[58px] max-sm:text-sm ${
+                            className={`ml-2 !py-4 max-sm:text-sm ${
                               errors.includes("id_country_shipping")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -421,7 +416,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("last_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -448,7 +443,7 @@ const CheckoutPage = ({
                               id="address"
                               value={formData.address}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("address")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -469,7 +464,7 @@ const CheckoutPage = ({
                               id="object_number"
                               value={formData.object_number}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("object_number")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -492,7 +487,7 @@ const CheckoutPage = ({
                               id="zip_code"
                               value={formData.zip_code}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("zip_code")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -513,7 +508,7 @@ const CheckoutPage = ({
                               id="town"
                               value={formData.town}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("town")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -562,7 +557,7 @@ const CheckoutPage = ({
                             id="company_name"
                             value={formData.company_name}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("company_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -578,7 +573,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("pib")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -599,7 +594,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("maticni_broj")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -620,7 +615,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("first_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -641,7 +636,7 @@ const CheckoutPage = ({
                             </span>
                           </label>
                           <input
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("last_name")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -669,7 +664,7 @@ const CheckoutPage = ({
                             id="email"
                             value={formData.email}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("email")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -690,7 +685,7 @@ const CheckoutPage = ({
                             id="phone"
                             value={formData.phone}
                             onChange={formChangeHandler}
-                            className={`ml-2 max-sm:text-sm h-[58px] ${
+                            className={`ml-2 max-sm:text-sm !py-4 ${
                               errors.includes("phone")
                                 ? "border-red-500 focus:border-red-500"
                                 : "border-none focus:border-none"
@@ -712,7 +707,7 @@ const CheckoutPage = ({
                               id="address"
                               value={formData.address}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("address")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -733,7 +728,7 @@ const CheckoutPage = ({
                               id="object_number"
                               value={formData.object_number}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("object_number")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -756,7 +751,7 @@ const CheckoutPage = ({
                               id="zip_code"
                               value={formData.zip_code}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("zip_code")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -777,7 +772,7 @@ const CheckoutPage = ({
                               id="town"
                               value={formData.town}
                               onChange={formChangeHandler}
-                              className={`ml-2 max-sm:text-sm h-[58px] ${
+                              className={`ml-2 max-sm:text-sm !py-4 ${
                                 errors.includes("town")
                                   ? "border-red-500 focus:border-red-500"
                                   : "border-none focus:border-none"
@@ -816,7 +811,7 @@ const CheckoutPage = ({
                           id="height"
                           value={formData.height}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px] ${
+                          className={`ml-2 max-sm:text-sm !py-4 ${
                             errors.includes("height")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -834,7 +829,7 @@ const CheckoutPage = ({
                           id="weight"
                           value={formData.weight}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px] ${
+                          className={`ml-2 max-sm:text-sm !py-4 ${
                             errors.includes("weight")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -853,7 +848,7 @@ const CheckoutPage = ({
                           id="foot_size"
                           value={formData.foot_size}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px] ${
+                          className={`ml-2 max-sm:text-sm !py-4 ${
                             errors.includes("foot_size")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -871,7 +866,7 @@ const CheckoutPage = ({
                           id="product_size_agreement"
                           value={formData.product_size_agreement}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px] ${
+                          className={`ml-2 max-sm:text-sm !py-4 ${
                             errors.includes("product_size_agreement")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -888,9 +883,7 @@ const CheckoutPage = ({
                 {cartItems.length > 0 && (
                   <>
                     <div className="grid grid-cols-1 col-span-3 gap-y-3 mt-[2rem] max-md:mt-[2rem]">
-                      <span className="text-xl font-bold">
-                        Način dostave{" "}
-                      </span>
+                      <span className="text-xl font-bold">Način dostave </span>
                       <div className="bg-[#f5f5f7] pt-7 p-[30px]">
                         <div className="flex flex-col gap-2 relative">
                           {errors.includes("delivery") && (
@@ -987,7 +980,7 @@ const CheckoutPage = ({
                       id="coupon"
                       type="text"
                       placeholder="Ovde unesite kupon"
-                      className="h-[58px] w-full border-none bg-white px-5 text-lg placeholder:text-lg"
+                      className="!py-4 w-full border-none bg-white px-5 text-lg placeholder:text-lg"
                     />
                     <p className="ml-4 mt-3 text-md font-thin max-md:font-light">
                       *Uputstvo za upotrebu kupona
@@ -1052,7 +1045,9 @@ const CheckoutPage = ({
                         Ukupno za naplatu:
                       </span>
                       <span className="sm:mr-3 text-[1.5rem] font-bold max-xl:text-sm">
-                        {currencyFormat(checkoutSummary?.summary?.totals?.total)}
+                        {currencyFormat(
+                          checkoutSummary?.summary?.totals?.total
+                        )}
                       </span>
                     </div>{" "}
                   </div>
