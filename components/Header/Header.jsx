@@ -93,6 +93,7 @@ const Header = ({ categories }) => {
     };
   }, []);
   const pathname = usePathname();
+
   return (
     <>
       <header
