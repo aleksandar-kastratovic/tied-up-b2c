@@ -23,9 +23,11 @@ const ProductDetails = ({
 }) => {
   const [rawGallery, setRawGallery] = useState(productGallery);
   const [loading, setLoading] = useState(false);
+
   const filteredImages = productGallery?.filter((image) => {
     return !image?.variant_key;
   });
+
   const [gallery, setGallery] = useState(filteredImages);
   const [color, setColor] = useState(null);
 
@@ -35,7 +37,9 @@ const ProductDetails = ({
       const newImage = rawGallery?.find((item) => {
         return item?.variant_key?.includes(color);
       });
-      setGallery((prev) => [newImage, ...prev]);
+      if (newImage) {
+        setGallery((prev) => [newImage, ...prev]);
+      }
     }
   }, [color]);
 
