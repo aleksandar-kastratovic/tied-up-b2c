@@ -217,7 +217,7 @@ const Registration = ({ setIsReg }) => {
                         <span className="snap-mandatory text-red-500">*</span>
                       </label>
                       <input
-                        className={`sm:ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`sm:ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("first_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0"
@@ -242,7 +242,7 @@ const Registration = ({ setIsReg }) => {
                         id="phone"
                         value={formData.phone}
                         onChange={formChangeHandler}
-                        className={`sm:ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`sm:ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("phone")
                             ? "border-red-500 focus:border-red-500"
                             : "border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0"
@@ -262,7 +262,7 @@ const Registration = ({ setIsReg }) => {
                         id="email"
                         value={formData.email}
                         onChange={formChangeHandler}
-                        className={`sm:ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`sm:ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("email")
                             ? "border-red-500 focus:border-red-500"
                             : "border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0"
@@ -281,7 +281,7 @@ const Registration = ({ setIsReg }) => {
                         id="note"
                         value={formData.note}
                         onChange={formChangeHandler}
-                        className={`sm:ml-2 max-sm:text-sm h-[58px]  text-black border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0 bg-white sm:mx-3 `}
+                        className={`sm:ml-2 max-sm:text-sm !py-4  text-black border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0 bg-white sm:mx-3 `}
                         placeholder="Napomena"
                       />
                     </div>
@@ -293,7 +293,7 @@ const Registration = ({ setIsReg }) => {
                         <span className="snap-mandatory text-red-500">*</span>
                       </label>
                       <input
-                        className={`sm:ml-2 max-sm:text-sm h-[58px]  text-black sm:mr-[1px] ${
+                        className={`sm:ml-2 max-sm:text-sm !py-4  text-black sm:mr-[1px] ${
                           errors.includes("last_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0"
@@ -318,7 +318,7 @@ const Registration = ({ setIsReg }) => {
                           form="genderform"
                           value={formData.gender}
                           onChange={formChangeHandler}
-                          className={`sm:ml-2 max-sm:text-sm h-[58px] ${
+                          className={`sm:ml-2 max-sm:text-sm !py-4 ${
                             errors.includes("gender")
                               ? `border border-red-500 focus:border-red-500 focus:outline-0 focus:ring-0`
                               : `border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0`
@@ -340,7 +340,7 @@ const Registration = ({ setIsReg }) => {
                           id="birth_date"
                           value={formData.birth_date}
                           onChange={formChangeHandler}
-                          className={`sm:ml-2 max-sm:text-sm h-[58px] ${
+                          className={`sm:ml-2 max-sm:text-sm !py-4 ${
                             errors.includes("birth_date")
                               ? `border border-red-500 focus:border-red-500 focus:outline-0 focus:ring-0`
                               : `border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0`
@@ -363,7 +363,7 @@ const Registration = ({ setIsReg }) => {
                           <span className="snap-mandatory text-red-500">*</span>
                         </label>
                         <input
-                          className={`sm:ml-2 max-sm:text-sm h-[58px]  text-black ${
+                          className={`sm:ml-2 max-sm:text-sm !py-4  text-black ${
                             errors.includes("password")
                               ? "border-red-500 focus:border-red-500"
                               : "border border-[#e0e0e0] focus:border-[#e0e0e0] focus:outline-0 focus:ring-0"
@@ -422,8 +422,8 @@ const Registration = ({ setIsReg }) => {
                         htmlFor="accept_terms"
                         className="max-md:text-xs text-[#4b4b4b] w-full "
                       >
-                        Slažem se sa Croonus politikom privatnosti i
-                        čuvanjem podataka.
+                        Slažem se sa Croonus politikom privatnosti i čuvanjem
+                        podataka.
                       </label>
                     </div>
                     <div className="nlAgree flex items-center max-sm:mt-[1rem]">
@@ -472,7 +472,7 @@ const Registration = ({ setIsReg }) => {
                         <span className="snap-mandatory text-red-500">*</span>
                       </label>
                       <input
-                        className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("first_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border-none focus:border-none"
@@ -493,7 +493,7 @@ const Registration = ({ setIsReg }) => {
                           type="text"
                           name="pib"
                           id="pib"
-                          className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                          className={`ml-2 max-sm:text-sm !py-4  text-black ${
                             errors.includes("first_name")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -510,7 +510,7 @@ const Registration = ({ setIsReg }) => {
                           type="text"
                           name="maticni_broj"
                           id="maticni_broj"
-                          className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                          className={`ml-2 max-sm:text-sm !py-4  text-black ${
                             errors.includes("first_name")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"
@@ -530,7 +530,7 @@ const Registration = ({ setIsReg }) => {
                         id="phone"
                         value={formData.phone}
                         onChange={formChangeHandler}
-                        className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("first_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border-none focus:border-none"
@@ -549,7 +549,7 @@ const Registration = ({ setIsReg }) => {
                         name="email"
                         autoComplete="off"
                         id="email"
-                        className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("first_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border-none focus:border-none"
@@ -580,7 +580,7 @@ const Registration = ({ setIsReg }) => {
                         <span className="snap-mandatory text-red-500">*</span>
                       </label>
                       <input
-                        className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("first_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border-none focus:border-none"
@@ -597,7 +597,7 @@ const Registration = ({ setIsReg }) => {
                         <span className="snap-mandatory text-red-500">*</span>
                       </label>
                       <input
-                        className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                        className={`ml-2 max-sm:text-sm !py-4  text-black ${
                           errors.includes("first_name")
                             ? "border-red-500 focus:border-red-500"
                             : "border-none focus:border-none"
@@ -620,7 +620,7 @@ const Registration = ({ setIsReg }) => {
                           form="genderform"
                           value={formData.gender}
                           onChange={formChangeHandler}
-                          className={`ml-2 max-sm:text-sm h-[58px] border-0 bg-croonus-gray `}
+                          className={`ml-2 max-sm:text-sm !py-4 border-0 bg-croonus-gray `}
                         >
                           <option value="male">Izaberite pol</option>
                           <option value="male">Muški pol</option>
@@ -636,7 +636,7 @@ const Registration = ({ setIsReg }) => {
                           type="date"
                           name="birth_date"
                           id="birth_date"
-                          className={`ml-2 max-sm:text-sm h-[58px] border-0 bg-croonus-gray `}
+                          className={`ml-2 max-sm:text-sm !py-4 border-0 bg-croonus-gray `}
                           placeholder="Datum rodjenja*"
                         />
                       </div>
@@ -644,7 +644,7 @@ const Registration = ({ setIsReg }) => {
                     <div className="xl:grid xl:grid-col xl:gap-x-3">
                       <div className="flex">
                         <input
-                          className={`ml-2 max-sm:text-sm h-[58px]  text-black ${
+                          className={`ml-2 max-sm:text-sm !py-4  text-black ${
                             errors.includes("first_name")
                               ? "border-red-500 focus:border-red-500"
                               : "border-none focus:border-none"

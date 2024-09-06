@@ -1,20 +1,8 @@
 import Reklamacije from "@/components/Reklamacije/Reklamacije";
 export const metadata = () => {
   return {
-    title: "Reklamacije ",
-    description: "Dobrodošli na croonus.com Online Shop",
-    keywords: [
-      "Croonus",
-      "online",
-      "shop",
-      "croonus.com",
-      "farmerke",
-      "trenerke",
-      "dukserice",
-      "Croonus obuca",
-      "obuca",
-      "Croonus online",
-    ],
+    title: "Reklamacije | TiedUp",
+    description: "Dobrodošli na TiedUpcroonus.com Online Shop",
   };
 };
 const ReklamacijePage = () => {
