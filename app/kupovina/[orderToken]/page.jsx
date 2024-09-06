@@ -1,10 +1,10 @@
 import { get } from "@/app/api/api";
 import OrderSuccess from "@/components/OrderToken/OrderToken";
+
 const userOrderToken = async (orderToken) => {
-  const userOrderToken = await get(`/checkout/info/${orderToken}`).then(
+  return await get(`/checkout/info/${orderToken}`).then(
     (response) => response?.payload
   );
-  return userOrderToken;
 };
 const orderToken = async ({ params: { orderToken } }) => {
   const order = await userOrderToken(orderToken);
@@ -13,3 +13,20 @@ const orderToken = async ({ params: { orderToken } }) => {
 };
 
 export default orderToken;
+
+export const metadata = {
+  title: "Kupovina | TiedUp",
+  description: "Dobrodošli na TiedUp Online Shop",
+  keywords: [
+    "TiedUp",
+    "online",
+    "shop",
+    "TiedUp.com",
+    "farmerke",
+    "trenerke",
+    "dukserice",
+    "TiedUp obuca",
+    "obuca",
+    "TiedUp online",
+  ],
+};

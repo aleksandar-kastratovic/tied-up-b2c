@@ -49,7 +49,7 @@ const Reklamacije = () => {
         Ovim pravilnikom trgovac uređuje način, uslove i postupak
         re&scaron;avanja reklamacije ili prigovora potro&scaron;ača zbog
         nesaobraznosti ugovoru, robe kupljene putem sajta&nbsp;
-        <strong>croonus.com</strong>, kao i ovla&scaron;ćenja, obaveze i
+        <strong>tiedup.com</strong>, kao i ovla&scaron;ćenja, obaveze i
         odgovornosti trgovca u pogledu ostvarivanja prava potro&scaron;ača na
         reklamaciju.
       </p>
@@ -94,8 +94,8 @@ const Reklamacije = () => {
       </h6>
       <p>
         Zahtev za reklamaciju može se dostaviti po&scaron;tom na adresu&nbsp;
-        <strong>Croonus NOVI PAZAR</strong>, Paralovo bb, 36300 Novi Pazar, sa
-        naznakom:&nbsp;<strong>REKLAMACIJA</strong>.
+        <strong>TiedUp</strong>, {process.env.ADDRESS}, sa naznakom:&nbsp;
+        <strong>REKLAMACIJA</strong>.
       </p>
       <p>Tro&scaron;kove dostave snosi kupac.</p>
       <p>

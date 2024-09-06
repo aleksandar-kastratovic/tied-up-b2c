@@ -23,23 +23,21 @@ const getCountries = async () => {
   return await get(`/checkout/ddl/id_country`).then((res) => res?.payload);
 };
 
-export const metadata = () => {
-  return {
-    title: "Korpa | TiedUp",
-    description: "Dobrodošli na TiedUp Online Shop",
-    keywords: [
-      "TiedUp",
-      "online",
-      "shop",
-      "TiedUp.com",
-      "farmerke",
-      "trenerke",
-      "dukserice",
-      "TiedUp obuca",
-      "obuca",
-      "TiedUp online",
-    ],
-  };
+export const metadata = {
+  title: "Korpa | TiedUp",
+  description: "Dobrodošli na TiedUp Online Shop",
+  keywords: [
+    "TiedUp",
+    "online",
+    "shop",
+    "TiedUp.com",
+    "farmerke",
+    "trenerke",
+    "dukserice",
+    "TiedUp obuca",
+    "obuca",
+    "TiedUp online",
+  ],
 };
 
 const Cart = async () => {

@@ -1,19 +1,18 @@
 export const metadata = () => {
   return {
-    title:
-      "Uslovi korišćenja ",
-    description: "Dobrodošli na croonus.com Online Shop",
+    title: "Uslovi korišćenja ",
+    description: "Dobrodošli na TiedUp.com Online Shop",
     keywords: [
-      "Croonus",
+      "TiedUp",
       "online",
       "shop",
-      "croonus.com",
+      "TiedUp.com",
       "farmerke",
       "trenerke",
       "dukserice",
-      "Croonus obuca",
+      "TiedUp obuca",
       "obuca",
-      "Croonus online",
+      "TiedUp online",
     ],
   };
 };
@@ -28,16 +27,13 @@ const UsloviKoriscenja = () => {
       </h5>
       <p>
         Ovaj dokument (zajedno sa ovde spomenutim drugim dokumentima) utvrđuje
-        op&scaron;te uslove za kori&scaron;ćenje veb-sajta: croonus.com (u daljem
+        op&scaron;te uslove za kori&scaron;ćenje veb-sajta: TiedUp.com (u daljem
         tekstu: Veb-sajt) i kupovine proizvoda preko Veb-sajta.
       </p>
       <p>Postavljanjem, upravljanjem i prodajom preko Veb-sajta rukovodi:</p>
-      <p>
-       TRGOVINA NA MALO POSREDSTVOM INTERNETA Croonus
+      <p>TRGOVINA NA MALO POSREDSTVOM INTERNETA TiedUp</p>
 
-      </p>
-
-      <p>Email:&nbsp;info@croonus.com&nbsp;(u daljem tekstu: Croonus ili mi).</p>
+      <p>Email:&nbsp;info@tiedup.com&nbsp;(u daljem tekstu: TiedUp ili mi).</p>
       <p>
         <br />
       </p>
@@ -51,7 +47,7 @@ const UsloviKoriscenja = () => {
         <br />
       </p>
       <p>
-        Croonus može da izmeni sadržaj ovih Uslova kori&scaron;ćenja, asortiman
+        TiedUp može da izmeni sadržaj ovih Uslova kori&scaron;ćenja, asortiman
         proizvoda, cene proizvoda, kao i druge podatke koji se odnose na
         Veb-sajt, zbog čega su korisnici Veb-sajta dužni da prilikom svake
         posete pažljivo pregledaju sadržaj Veb-sajta. Prilikom kori&scaron;ćenja
@@ -60,7 +56,7 @@ const UsloviKoriscenja = () => {
         kori&scaron;ćenja i svrhom i načinom obrade Va&scaron;ih ličnih podataka
         molimo Vas da ne koristite Veb-sajt. Ako imate pitanja u vezi sa
         Uslovima kori&scaron;ćenja možete da nas kontaktirati na email
-        adresu:&nbsp;info@croonus.com&nbsp;ili adresu sedi&scaron;ta Croonus Cacak
+        adresu:&nbsp;info@TiedUp.com&nbsp;ili adresu sedi&scaron;ta TiedUp Cacak
       </p>
       <p>
         <br />
@@ -69,7 +65,7 @@ const UsloviKoriscenja = () => {
         <strong>Odricanje od odgovornosti</strong>
       </h5>
       <p>
-        Croonus ne preuzima odgovornost za &scaron;tetu koju korisnik pretrpi
+        TiedUp ne preuzima odgovornost za &scaron;tetu koju korisnik pretrpi
         usled: toga &scaron;to nije pročitao Uslove kori&scaron;ćenja;
         nemogućnosti da se izvr&scaron;i kupovina preko Veb-sajta iz opravdanih
         razloga; nemogućnosti kori&scaron;ćenja Veb-sajta zbog održavanja,
@@ -103,7 +99,7 @@ const UsloviKoriscenja = () => {
         su tačni, važeći i potpuni.
       </p>
       <p>
-        Naručivanjem proizvoda preko Veb-sajta pristajete da Croonus upotrebljava
+        Naručivanjem proizvoda preko Veb-sajta pristajete da TiedUp upotrebljava
         Va&scaron;e podatke, kao i da Vas kontaktira u svrhu izvr&scaron;enja
         Va&scaron;e narudžbine, ukoliko je to potrebno, a u skladu sa
         Obave&scaron;tenjem o obradi podataka o ličnosti. Ukoliko ne navedete
@@ -121,10 +117,10 @@ const UsloviKoriscenja = () => {
       <p>
         Prezentacija proizvoda na Veb-sajtu predstavlja ponudu za zaključenje
         ugovora o kupoprodaji proizvoda. &nbsp;Ugovor o kupoprodaji zaključujete
-        sa Croonus kao prodavcem. Zaključenjem ugovora o kupoprodaji sa Croonus
+        sa TiedUp kao prodavcem. Zaključenjem ugovora o kupoprodaji sa TiedUp
         imate sva prava predviđena važećim zakonima. Naručivanjem proizvoda
         preko Veb-sajta korisnik se obavezuje da izvr&scaron;i plaćanje
-        Croonus-iju.
+        TiedUp-iju.
       </p>
       <p>
         <br />
@@ -193,7 +189,7 @@ const UsloviKoriscenja = () => {
         Nakon obavljene narudžbine (kao &scaron;to je u prethodnom delu detaljno
         opisano), dobićete na svoj email obave&scaron;tenje u kome stoje svi
         podaci o narudžbini. Međutim, ukoliko iz nekog razloga isporuka naručene
-        robe ne bude moguća, Croonus je dužan da Vas bez odlaganja o tome
+        robe ne bude moguća, TiedUp je dužan da Vas bez odlaganja o tome
         obavesti.
       </p>
       <p>
@@ -243,25 +239,6 @@ const UsloviKoriscenja = () => {
         narudžbinu.
       </p>
       <p>
-        Ukoliko posedujete platnu karticu (Visa, MasterCard ili Maestro) koja se
-        na osnovu odobrenja banke izdavaoca može koristiti za elektronsko
-        plaćanje, mozete izabrati ovaj način plaćanja. Nakon &scaron;to
-        potvrdite narudžbinu, bićete preusmereni na veb-sajt &nbsp;
-        <a href="https://www.wspay.rs/" rel="nofollow noopener" target="_blank">
-          https://www.wspay.rs/
-        </a>{" "}
-        na kojem vr&scaron;ite unos podataka sa platne kartice i obavljate
-        plaćanje. Ukoliko je transakcija uspe&scaron;na bićete vraćeni na
-        Veb-sajt sa obave&scaron;tenjem da je plaćanje uspe&scaron;no obavljeno.
-        U slučaju da plaćanje nije uspelo, bićete vraćeni na Veb-sajt sa
-        informacijom o neuspelom plaćanju i moćićete da ponovite plaćanje ili da
-        izaberete drugi način plaćanja. Iz sigurnosnih razloga, podaci o
-        Va&scaron;oj platnoj kartici su vidljivi samo kompaniji koja pruža
-        usluge sigurnog plaćanja &nbsp;WSPay &ndash; CSTI GROUP d.o.o. kao
-        procesoru kartica. Veb-sajt WSPay &ndash; CSTI GROUP d.o.o. je
-        za&scaron;tićen i siguran za ovaj način plaćanja.
-      </p>
-      <p>
         <br />
       </p>
       <h5>
@@ -272,7 +249,7 @@ const UsloviKoriscenja = () => {
       <p>
         Nakon &scaron;to ste izvr&scaron;ili naručivanje, status svoje
         narudžbine možete pratiti putem email obave&scaron;tenja koje ćete
-        dobiti od Croonus ili putem stranice &bdquo;moj nalog&ldquo; na
+        dobiti od TiedUp ili putem stranice &bdquo;moj nalog&ldquo; na
         Veb-sajtu, ali samo ukoliko ste registrovani korisnik Veb-sajta.
       </p>
       <p>
@@ -297,7 +274,7 @@ const UsloviKoriscenja = () => {
         dali za dostavu.
       </p>
       <p>
-        Croonus će biti obave&scaron;ten da ste po&scaron;iljku primili, nakon
+        TiedUp će biti obave&scaron;ten da ste po&scaron;iljku primili, nakon
         čega po&scaron;iljka dobija status &bdquo;zavr&scaron;eno&ldquo;.
       </p>
       <p>
@@ -310,7 +287,7 @@ const UsloviKoriscenja = () => {
       </p>
       <p>
         Va&scaron;a po&scaron;iljka će Vam biti dostavljena putem dostavljača sa
-        kojim Croonus ima zaključen ugovor na adresu koju ste naveli za isporuku,
+        kojim TiedUp ima zaključen ugovor na adresu koju ste naveli za isporuku,
         i to u periodu između 8h &ndash; 16h svakog radnog dana (subotom i
         nedeljom se ne vr&scaron;i isporuka). Iz tog razloga Vas molimo da u tom
         periodu obezbedite da na adresi koju ste naznačili za isporuku bude
@@ -322,7 +299,7 @@ const UsloviKoriscenja = () => {
         neuspe&scaron;an dostavljač će Vas pozvati telefonom na broj koji ste
         ostavili prilikom kreiranja narudžbine i ugovoriti sa Vama novi termin
         isporuke. Ukoliko ni tada ne bude mogla da se izvr&scaron;i isporuka,
-        po&scaron;iljka se vraća nama (Croonus).
+        po&scaron;iljka se vraća nama (TiedUp).
       </p>
       <p>
         Prilikom preuzimanja po&scaron;iljke, potrebno je da vizuelno pregledate
@@ -357,29 +334,29 @@ const UsloviKoriscenja = () => {
         popunjavanjem i slanjem izjave o odustanku od ugovora zaključenog na
         daljinu (dalje: obrazac za odustanak od ugovora), koji se nalazi na
         Veb-sajtu ili popunjavanjem i slanjem obrazca za odustanak od ugovora,
-        koji ste dobili uz kupljenu robu, po&scaron;tom na adresu Croonus-ija.
+        koji ste dobili uz kupljenu robu, po&scaron;tom na adresu TiedUp-a.
         Takođe, od ugovora o kupoprodaji možete odustati i na drugi nedvosmislen
         način.
       </p>
       <p>
         Izjava o odustanku od ugovora proizvodi pravno dejstvo od dana kada je
-        poslata Croonusu i smatra se blagovremenom ako je poslata u roku od 14
+        poslata TiedUpu i smatra se blagovremenom ako je poslata u roku od 14
         dana od dana kada je roba dostavljena Vama, odnosno trećem licu koje ste
         odredili kao primaoca.
       </p>
       <p>
         U slučaju da odustanete od ugovora vi snosite tro&scaron;kove vraćanja
         robe i dužni ste da u roku od 14 dana od dana odustajanja od ugovora
-        vratite Croonus-iju kupljenu robu.
+        vratite TiedUp-iju kupljenu robu.
       </p>
       <p>
-        Croonus je dužan da bez odlaganja, a najkasnije u roku od 14 dana od dana
+        TiedUp je dužan da bez odlaganja, a najkasnije u roku od 14 dana od dana
         kada je primio obrazac za odustanak od ugovora izvr&scaron;i povraćaj
         uplata koje je primio za robu, uključujući i tro&scaron;kove isporuke s
         tim &scaron;to može da odloži povraćaj sredstava dok ne dobije robu koja
-        se vraća ili dok ne primi dokaz &nbsp;da ste robu poslali Croonus-iju u
+        se vraća ili dok ne primi dokaz &nbsp;da ste robu poslali TiedUp-iju u
         zavisnosti od toga &scaron;ta nastupa prvo, osim u slučaju kada je
-        Croonus ponudio da sam preuzme robu.
+        TiedUp ponudio da sam preuzme robu.
       </p>
       <p>
         Kupovinom robe putem Veb-sajta dajete izričitu saglasnost da se povraćaj
@@ -404,17 +381,17 @@ const UsloviKoriscenja = () => {
       <p>Ukoliko menjate za isti artikal</p>
       <p>Ukoliko menjate za drugi artikal</p>
       <p>
-        Pored slanja obrasca dužni ste da Croonus-iju u roku od 14 dana od dana
+        Pored slanja obrasca dužni ste da TiedUp-iju u roku od 14 dana od dana
         slanja obrasca dostavite kupljeni proizvod sa popunjenim obrascem za
         zamenu proizvoda.
       </p>
       <p>
-        Croonus je dužan da Vam u roku od 14 dana od dana kada je primio proizvod
+        TiedUp je dužan da Vam u roku od 14 dana od dana kada je primio proizvod
         koji želite da zamenite isporuči proizvod u skladu sa podacima iz
         obrasca za zamenu proizvoda.
       </p>
       <p>
-        U slučaju da Croonus ne primi proizvod u roku od 14 dana od prijema
+        U slučaju da TiedUp ne primi proizvod u roku od 14 dana od prijema
         obrasca smatraće se da niste ni podneli zahtev za zamenu.
       </p>
       <p>
@@ -422,7 +399,7 @@ const UsloviKoriscenja = () => {
         proizvoda.
       </p>
       <p>
-        Croonus neće izvr&scaron;iti zamenu u slučaju da je proizvod
+        TiedUp neće izvr&scaron;iti zamenu u slučaju da je proizvod
         kori&scaron;ćen.
       </p>
       <p>
@@ -432,7 +409,7 @@ const UsloviKoriscenja = () => {
         <strong>Zakonska odgovornost zbog nesaobraznosti robe ugovoru</strong>
       </h5>
       <p>
-        Obave&scaron;tavamo Vas da je saglasno zakonu Croonus odgovoran za
+        Obave&scaron;tavamo Vas da je saglasno zakonu TiedUp odgovoran za
         nesaobraznost robe ugovoru koja se pojavi u roku od dve godine od dana
         isporuke robe Vama ili trećem licu koje ste odredili kao primaoca.
       </p>
@@ -443,15 +420,15 @@ const UsloviKoriscenja = () => {
         nesaobraznosti.
       </p>
       <p>
-        Croonus je dužan da isporuči robu koja je saobrazna ugovoru o
+        TiedUp je dužan da isporuči robu koja je saobrazna ugovoru o
         kupoprodaji.
       </p>
       <p>
-        Croonus odgovara za nesaobraznosti isporučene robe ugovoru ako: je
+        TiedUp odgovara za nesaobraznosti isporučene robe ugovoru ako: je
         postojala u momentu isporuke robe Vama ili trećem licu koje ste odredili
         kao primaoca po&scaron;iljke, kao i u slučaju kad se nesaobraznost
         pojavila posle isporuke, a potiče od uzroka koji je postojao pre
-        isporuke, ukoliko je Croonus izjavio da je roba saobrazna ugovoru. Croonus
+        isporuke, ukoliko je TiedUp izjavio da je roba saobrazna ugovoru. TiedUp
         je odgovoran i za nesaobraznost nastalu zbog nepravilnog pakovanja.
       </p>
       <p>
@@ -460,7 +437,7 @@ const UsloviKoriscenja = () => {
         otkloniti zamenom, odgovarajućim umanjenjem cene ili da izjavite da
         raskidate ugovor. Ako se nesaobraznost pojavi po isteku roka od
         &scaron;est meseci od dana isporuke robe, imate pravo da izaberete da li
-        će Croonus da otkloni nesaobraznost robe opravkom ili zamenom.
+        će TiedUp da otkloni nesaobraznost robe opravkom ili zamenom.
       </p>
       <p>
         Ne možete da raskinete ugovor o kupoprodaji robe ako je nesaobraznost
@@ -469,7 +446,7 @@ const UsloviKoriscenja = () => {
       <p>
         Sve tro&scaron;kove koji su neophodni da bi se roba saobrazila ugovoru,
         a naročito tro&scaron;kove rada, materijala, preuzimanja i isporuke,
-        snosi Croonus.
+        snosi TiedUp.
       </p>
       <p>
         Obave&scaron;tenje o načinu i mestu prijema reklamacija i načinu
@@ -478,8 +455,8 @@ const UsloviKoriscenja = () => {
       <p>
         Obave&scaron;tavamo Vas da reklamacije na robu kupljenu preko Veb-sajta
         možete da izjavite elektronskim putem na email
-        adresu:&nbsp;reklamacije@croonus.com, ili po&scaron;tom na napred navedenu
-        adresu Croonus-ja. Prilikom izjavljivanja reklamacije dužni ste da
+        adresu:&nbsp;reklamacije@TiedUp.com, ili po&scaron;tom na napred
+        navedenu adresu TiedUpa. Prilikom izjavljivanja reklamacije dužni ste da
         dostavite robu na koju se reklamacija odnosi, kao i račun na uvid ili
         drugi dokaz o kupovini robe &nbsp;(kopija računa, slip i sl.).
       </p>
@@ -515,8 +492,217 @@ const UsloviKoriscenja = () => {
       <p>
         <br />
       </p>
+
+      <h5>
+        <strong>Izjava o konverziji</strong>
+      </h5>
       <p>
-        <strong>Poslednji put izmenjeno: 13.08.2022</strong>.
+        Sva plaćanja biće izvršena u lokalnoj valuti Republike Srbije – dinar
+        (RSD).Za informativni prikaz cena u drugim valutama koristi se srednji
+        kurs Narodne Banke Srbije. Iznos za koji će biti zadužena Vaša platna
+        kartica biće izražen u Vašoj lokalnoj valuti kroz konverziju u istu po
+        kursu koji koriste kartičarske organizacije, a koji nama u trenutku
+        transakcije ne može biti poznat. Kao rezultat ove konverzije postoji
+        mogućnost neznatne razlike od originalne cene navedene na našem sajtu.
+      </p>
+
+      <h5 className={`mt-5`}>
+        <strong>Zaštita privatnosti korisnika</strong>
+      </h5>
+      <p>
+        U ime TiedUp-a obavezujemo se da ćemo čuvati privatnost svih naših
+        kupaca. Prikupljamo samo neophodne, osnovne podatke o kupcima/
+        korisnicima i podatke neophodne za poslovanje i informisanje korisnika u
+        skladu sa dobrim poslovnim običajima i u cilju pružanja kvalitetne
+        usluge. Dajemo kupcima mogućnost izbora uključujući mogućnost odluke da
+        li žele ili ne da se izbrišu sa mailing lista koje se koriste za
+        marketinške kampanje. Svi podaci o korisnicima/kupcima se strogo čuvaju
+        i dostupni su samo zaposlenima kojima su ti podaci nužni za obavljanje
+        posla. Svi zaposleni TiedUp-a (i poslovni partneri) odgovorni su za
+        poštovanje načela zaštite privatnosti.
+      </p>
+
+      <h5 className={`mt-5`}>
+        <strong>Zaštita poverljivih podataka o transakciji</strong>
+      </h5>
+      <p>
+        Prilikom unošenja podataka o platnoj kartici, poverljive informacija se
+        prenose putem javne mreže u zaštićenoj (kriptovanoj) formi upotrebom SSL
+        protokola i PKI sistema, kao trenutno najsavremenije kriptografske
+        tehnologije.
+      </p>
+      <p className={`mt-2`}>
+        Sigurnost podataka prilikom kupovine, garantuje procesor platnih
+        kartica, Banca Intesa ad Beograd, pa se tako kompletni proces naplate
+        obavlja na stranicama banke. Niti jednog trenutka podaci o platnoj
+        kartici nisu dostupni našem sistemu.
+      </p>
+
+      <h5 className={`mt-5`}>
+        <strong>Povraćaj sredstava</strong>
+      </h5>
+      <p>
+        U slučaju vraćanja robe i povraćaja sredstava kupcu koji je prethodno
+        platio nekom od platnih kartica, delimično ili u celosti, a bez obzira
+        na razlog vraćanja, TiedUp je u obavezi da povraćaj vrši isključivo
+        preko VISA, EC/MC, Maestro, Amex i Dina metoda plaćanja, što znači da će
+        banka na zahtev prodavca obaviti povraćaj sredstava na račun korisnika
+        kartice.
+      </p>
+      <h5 className={`mt-5`}>
+        <strong>
+          Pravilnik o postupku i načinu re&scaron;avanja reklamacije robe
+          kupljene putem sajta
+        </strong>
+      </h5>
+      <div>
+        <strong>&nbsp;</strong>
+      </div>
+      <h6>
+        <strong>Član 1.</strong>
+      </h6>
+      <p>
+        Ovim pravilnikom trgovac uređuje način, uslove i postupak
+        re&scaron;avanja reklamacije ili prigovora potro&scaron;ača zbog
+        nesaobraznosti ugovoru, robe kupljene putem sajta&nbsp;
+        <strong>tiedup.com</strong>, kao i ovla&scaron;ćenja, obaveze i
+        odgovornosti trgovca u pogledu ostvarivanja prava potro&scaron;ača na
+        reklamaciju.
+      </p>
+      <h6>
+        <strong>Član 2.</strong>
+      </h6>
+      <p>
+        Potro&scaron;ač je fizičko lice koje na trži&scaron;tu pribavlja robu
+        ili usluge u svrhe koje nisu namenjene njegovoj poslovnoj ili drugoj
+        komercijalnoj delatnosti.
+      </p>
+      <h6>
+        <strong>Član 3.</strong>
+      </h6>
+      <p>
+        Zbog nesaobraznosti robe i usluge ugovoru, postoji zakonska odgovornost.
+      </p>
+      <h6>
+        <strong>Član 4.</strong>
+      </h6>
+      <p>
+        Potro&scaron;ač ima pravo reklamacije na kupljeni proizvod u roku od dve
+        godine od dana kupovine.
+      </p>
+      <h6>
+        <strong>Član 5.</strong>
+      </h6>
+      <p>
+        U slučaju da se ustanovi nesaobraznost robe ugovoru, ista roba se može
+        ponuditi kupcu i prodati po posebnim uslovima.
+        <br />
+        Kupac će dobiti određeni popust za ovu robu.
+        <br />
+        Na računu u napomeni će pisati da roba nije saobrazna ugovoru.
+        <br />
+        Za ovu robu, potro&scaron;ač ima pravo reklamacije u roku od godinu dana
+        od dana kupovine, za o&scaron;tećenje koje mu trgovac pre prodaje nije
+        ukazao.
+      </p>
+      <h6>
+        <strong>Član 6.</strong>
+      </h6>
+      <p>
+        Zahtev za reklamaciju može se dostaviti po&scaron;tom na adresu&nbsp;
+        <strong>TiedUp</strong>, {process.env.ADDRESS}, sa naznakom:&nbsp;
+        <strong>REKLAMACIJA</strong>.
+      </p>
+      <p>Tro&scaron;kove dostave snosi kupac.</p>
+      <p>
+        Prilikom podno&scaron;enja zahteva za reklamaciju potro&scaron;ač je
+        dužan da:
+        <br />
+        &nbsp;a. Reklamirani artikal dostavi zajedno sa dokazom o kupovini
+        &ndash; računom.
+        <br />
+        b. Dostavi popunjen reklamacioni list, koji je moguće preuzeti na
+        sledećem linku &ndash;{" "}
+        <a href="https://croonus.com/wp-content/uploads/2022/08/Croonus_REKLAMACIONI_LIST.pdf">
+          REKLAMACIONI LIST
+        </a>
+        <br />
+        &nbsp;c. U reklamacionom listu potrebno je navesti razlog za
+        reklamiranje robe i željeni način re&scaron;avanja.
+      </p>
+      <h6>
+        <strong>Član 7.</strong>
+      </h6>
+      <p>
+        Osnovanost zahteva za reklamaciju utvrđuje nadležna komisija.
+        <br />
+        Odgovor na izjavljenu reklamaciju potro&scaron;aču će biti poslat u
+        najkraćem mogućem roku, a najkasnije u roku od 8 dana od dana prijema
+        reklamacije. Rok za re&scaron;avanje reklamacije ne može biti duži od 15
+        dana, odnosno 30 dana za tehničku robu, od dana podno&scaron;enja
+        reklamacije.
+      </p>
+      <p>
+        Prema Zakonu o za&scaron;titi potro&scaron;ača, rok za re&scaron;avanje
+        reklamacije prekida se kada potro&scaron;ač primi odgovor prodavca, a tu
+        se misli na odgovor koji se daje u roku od 8 dana, i počinje da teče
+        iznova kada prodavac primi izja&scaron;njenje potro&scaron;ača.
+        Potro&scaron;ač je dužan da se izjasni na odgovor prodavca najkasnije u
+        roku od tri dana od dana prijema odgovora prodavca. Ukoliko se
+        potro&scaron;ač u propisanom roku ne izjasni, smatraće se da nije
+        saglasan sa predlogom prodavca o načinu re&scaron;avanja reklamacije.
+      </p>
+      <h6>
+        <strong>Član 8.</strong>
+      </h6>
+      <p>
+        U slučaju osnovanosti reklamacije i prihvatanja iste od strane trgovca,
+        potro&scaron;ač ima pravo, po sopstvenom izboru, na:
+        <br />
+        a. Zamenu reklamirane robe, za novu robu saobraznu ugovoru, ili
+        otklanjanje nedostatka na robi (ukoliko je to moguće).
+        <br />
+        b. Povraćaj novčanih sredstava prema priloženom računu. Povraćaj
+        novčanih sredstava potro&scaron;aču, izvr&scaron;iće se elektronskim
+        putem na tekući račun potro&scaron;ača, u roku od 15 dana od dana
+        re&scaron;avanja reklamacije.
+      </p>
+      <p>
+        <strong>&nbsp;</strong>
+        <strong>&nbsp;</strong>
+      </p>
+      <h6>
+        <strong>Član 9.</strong>
+      </h6>
+      <p>
+        Ako potro&scaron;ač nije zadovoljan kako je re&scaron;ena reklamacija
+        ili prigovor,&nbsp;
+        <strong>
+          potro&scaron;ač ima mogućnost vansudskog re&scaron;avanja sporova
+        </strong>
+        , a trgovac je po zakonu obavezan da učestvuje u postupku vansudskog
+        re&scaron;avanja potro&scaron;ačkih sporova. (čl.151. Zakona o
+        za&scaron;titi potro&scaron;ača)
+        <br />
+        Osnovni uslov za pokretanje vansudskog postupka od strane
+        potro&scaron;ača jeste prethodno izjavljivanje reklamacije trgovcu.
+        <br />
+        Postupak vansudskog re&scaron;avanja sporova pokreće se
+        podno&scaron;enjem predloga potro&scaron;ača Ministarstvu trgovine,
+        turizma i telekomunikacija, a koje dalje to prosleđuje telu koje je po
+        mestu obavljanja vansudskog re&scaron;avanja potro&scaron;ačkog spora
+        najbliže mestu prebivali&scaron;ta potro&scaron;ača, ili telu za koje
+        Ministarstvo proceni da će postupak vansudskog re&scaron;avanja spora
+        re&scaron;iti na najefikasniji i najcelishodniji način, imajući u vidu
+        predlog potro&scaron;ača (npr. vođenje postupka elektronskim putem,
+        izbor tela najbližeg boravi&scaron;tu potro&scaron;ača i sl.).
+      </p>
+      <p>
+        Lista tela za vansudsko re&scaron;avanje potro&scaron;ačkih sporova može
+        se videti na sajtu Ministarstva trgovine,turizma telekominikacija: Link
+      </p>
+      <p className={`mt-5`}>
+        <strong>Poslednji put izmenjeno: 20.08.2024</strong>.
       </p>
     </div>
   );
