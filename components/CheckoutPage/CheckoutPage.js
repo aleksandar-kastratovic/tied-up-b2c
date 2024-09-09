@@ -29,10 +29,7 @@ const CheckoutPage = ({
   countries,
 }) => {
   const router = useRouter();
-  const { asPath } = router;
-  function handleClick() {
-    router.back();
-  }
+
   const [cart, mutateCart] = useCartContext();
   const [cartData, setCartData] = useState([]);
   const [secondAddress, setSecondAddress] = useState(false);
@@ -909,7 +906,7 @@ const CheckoutPage = ({
                                 />
                                 <label
                                   htmlFor={"delivery" + option.id}
-                                  className="max-md:text-sm text-lg font-thin ml-2 max-md:font-light"
+                                  className="max-md:text-sm text-lg font-light ml-2"
                                 >
                                   {option.name}
                                 </label>
@@ -917,7 +914,7 @@ const CheckoutPage = ({
                             ))}
                           </div>
                         </div>
-                        <p className="font-thin mt-[3rem] mb-[1rem] max-md:font-light">
+                        <p className="font-light mt-[3rem] mb-[1rem]">
                           Poštovani kupci, trenutna organizacija poslovanja
                           našim kupcima nudi dostavu na željenu adresu u
                           najkraćem vremenskom periodu. Zamenu robe možete
@@ -952,7 +949,7 @@ const CheckoutPage = ({
                                 />
                                 <label
                                   htmlFor={"payment" + option.id}
-                                  className="max-md:text-sm text-lg max-md:font-light font-thin ml-2"
+                                  className="max-md:text-sm text-lg font-light ml-2"
                                 >
                                   {option.name}
                                 </label>
@@ -982,7 +979,7 @@ const CheckoutPage = ({
                       placeholder="Ovde unesite kupon"
                       className="!py-4 w-full border-none bg-white px-5 text-lg placeholder:text-lg"
                     />
-                    <p className="ml-4 mt-3 text-md font-thin max-md:font-light">
+                    <p className="ml-4 mt-3 text-md font-light">
                       *Uputstvo za upotrebu kupona
                     </p>
                     <button className="h-[48px] w-fit ml-auto px-[4rem] md:px-[8rem] bg-[#333e48] font-medium text-white uppercase mt-[1rem] flex justify-end items-center">
@@ -998,20 +995,20 @@ const CheckoutPage = ({
                   </h5>
                   <div className="flex flex-col gap-0 bg-[#f5f5f7] p-[30px] md:ml-3 pl-[20px] md:pl-[40px]">
                     <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 max-xl:text-base text-lg">
-                      <span className="font-thin max-md:font-light max-xl:text-sm">
+                      <span className="font-light max-xl:text-sm">
                         Ukupna vrednost korpe bez popusta:{" "}
                       </span>
-                      <span className="sm:mr-3 font-thin max-md:font-light max-sm:ml-auto max-xl:text-sm">
+                      <span className="sm:mr-3 font-light max-sm:ml-auto max-xl:text-sm">
                         {currencyFormat(
                           checkoutSummary?.summary?.totals?.with_vat
                         )}
                       </span>
                     </div>
                     <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 max-xl:text-base">
-                      <span className="font-thin max-md:font-light max-xl:text-sm text-lg ">
+                      <span className="font-light max-xl:text-sm text-lg ">
                         Iznos popusta u korpi:{" "}
                       </span>
-                      <span className="sm:mr-3 max-md:font-light font-thin text-lg max-xl:text-sm">
+                      <span className="sm:mr-3 font-light text-lg max-xl:text-sm">
                         {currencyFormat(
                           checkoutSummary?.summary?.totals
                             ?.items_discount_amount +
@@ -1021,20 +1018,20 @@ const CheckoutPage = ({
                       </span>
                     </div>
                     <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 text-lg ">
-                      <span className="font-thin max-md:font-light max-xl:text-sm ">
+                      <span className="font-light max-xl:text-sm ">
                         Ukupna vrednost korpe sa popustom:
                       </span>
-                      <span className="sm:mr-3 max-md:font-light font-thin max-sm:ml-auto max-xl:text-sm">
+                      <span className="sm:mr-3 font-light max-sm:ml-auto max-xl:text-sm">
                         {currencyFormat(
                           checkoutSummary?.summary?.totals?.cart_discount
                         )}
                       </span>
                     </div>
                     <div className="flex flex-row items-center justify-between border-b-[1px] border-b-[#ededed] py-1 text-lg ">
-                      <span className="font-thin max-md:font-light max-xl:text-sm">
+                      <span className="font-light max-xl:text-sm">
                         Iznos koštanja transporta:{" "}
                       </span>
-                      <span className="sm:mr-3 font-thin max-md:font-light text max-xl:text-sm">
+                      <span className="sm:mr-3 font-light text max-xl:text-sm">
                         {currencyFormat(
                           checkoutSummary?.summary?.totals?.delivery_amount
                         )}
@@ -1062,7 +1059,7 @@ const CheckoutPage = ({
                     />
                     <label
                       htmlFor="agreed"
-                      className="max-md:text-[15px] text-lg md:ml-2 font-thin max-md:font-light"
+                      className="max-md:text-[15px] text-lg md:ml-2 font-light"
                     >
                       Saglasan sam sa{" "}
                       <a
