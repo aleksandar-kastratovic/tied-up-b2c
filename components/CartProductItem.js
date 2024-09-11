@@ -6,8 +6,7 @@ import { currencyFormat } from "../helpers/functions";
 import PlusMinusInputOne from "./PlusMinusInputOne";
 import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 import Link from "next/link";
-import cancel from "@/assets/Icons/cancel.png"
-
+import cancel from "@/assets/Icons/cancel.png";
 
 const CartProductItem = ({ item }) => {
   const [productAmount, setProductAmount] = useState(
@@ -42,37 +41,39 @@ const CartProductItem = ({ item }) => {
               />
             </Link>
             {item?.product?.price?.per_item?.discount?.active && (
-              <div className={`absolute top-2 right-2 bg-[#c23d27] px-[0.85rem] py-0.5 rounded-lg font-thin text-xs text-white`}>
-                -{(
-                  (
-                    ((item?.product?.price?.per_item?.price_with_vat -
-                      item?.product?.price?.per_item?.price_discount) /
-                      item?.product?.price?.per_item?.price_with_vat) *
-                    100
-                  ).toFixed(0)
-                )}%
+              <div
+                className={`absolute top-2 right-2 bg-[#c23d27] px-[0.85rem] py-0.5 rounded-lg font-thin text-xs text-white`}
+              >
+                -
+                {(
+                  ((item?.product?.price?.per_item?.price_with_vat -
+                    item?.product?.price?.per_item?.price_discount) /
+                    item?.product?.price?.per_item?.price_with_vat) *
+                  100
+                ).toFixed(0)}
+                %
               </div>
             )}
           </div>
         </div>
         <div className=" col-span-2 flex  flex-col relative">
-        <span
-          className="absolute -top-4 -right-6 cursor-pointer text-lg"
-          onClick={() => setSureCheck(true)}
-        >
-          <Image src={cancel} width={20} height={20} alt="Tied up"/>
-        </span>
+          <span
+            className="absolute -top-4 -right-6 cursor-pointer text-lg"
+            onClick={() => setSureCheck(true)}
+          >
+            <Image src={cancel} width={20} height={20} alt="Tied up" />
+          </span>
           <Link href={`/${item?.product?.slug}`}>
             <span className="text-[18px] font-bold">
               {item?.product?.basic_data?.name}
             </span>
           </Link>
-          <div className="flex flex-col font-thin">
+          <div className="flex flex-col font-light">
             <span className="mt-5">
               Šifra: {item?.product?.basic_data?.sku}
             </span>
             <div className="flex items-center gap-3 max-md:hidden">
-              <span>Količina</span>
+              <span className={`font-light`}>Količina</span>
               <PlusMinusInputOne
                 setCount={setProductAmount}
                 count={productAmount}
@@ -96,7 +97,6 @@ const CartProductItem = ({ item }) => {
             )}
           </div>
         </div>
-       
       </div>
       {sureCheck && (
         <div
