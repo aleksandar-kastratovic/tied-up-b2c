@@ -249,7 +249,7 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
                 {breadcrumbs?.end?.name}
               </h1>
             </div>
-            <div className="flex flex-col md:pr-[3rem]">
+            <div className="flex flex-col md:pr-[3rem] max-md:mt-5">
               <h1 className="text-[1.563rem] max-md:text-[1.1rem] font-bold group">
                 {product?.data?.item?.basic_data?.name}
               </h1>
@@ -486,7 +486,7 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
                 <p className="text-sm regular">Povrat do 14 dana</p>
               </div>
             </div> */}
-            <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-center max-md:w-full">
+            <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-start max-md:w-full">
               <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
                 <div
                   className="relative cursor-pointer"

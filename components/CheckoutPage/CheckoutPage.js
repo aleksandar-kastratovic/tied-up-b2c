@@ -14,12 +14,8 @@ import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
-import Breadcrumbs from "../../helpers/generateBreadCrumbsServer";
 import { currencyFormat } from "@/helpers/functions";
-import { Breadcrumb } from "rsuite";
-import GenerateBreadCrumbsServer from "../../helpers/generateBreadCrumbsServer";
 import { ToastContainer, toast } from "react-toastify";
-import RecommendedCategories from "@/components/RecommendedCategories/RecommendedCategories";
 import RecommendedProducts from "@/components/sections/homepage/RecommendedProducts";
 
 const CheckoutPage = ({

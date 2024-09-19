@@ -162,7 +162,6 @@ const NavigationMobile = () => {
     { name: "Gde kupiti", slug: "/gdekupiti" },
     { name: "O nama", slug: "/onama" },
     { name: "Galerija", slug: "/Galerija" },
-    { name: "Veleprodaja", slug: "/veleprodaja" },
     { name: "Kontakt", slug: "/kontakt" },
   ];
 

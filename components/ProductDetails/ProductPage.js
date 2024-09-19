@@ -84,33 +84,19 @@ const ProductPage = async ({ path, categoryId }) => {
 
   return (
     <div className="">
-      <div className="hidden lg:block">
-        <ProductDetails
-          product={product}
-          productGallery={productGallery}
-          desc={desc}
-          path={path}
-          breadcrumbs={breadcrumbs}
-          specification={specification}
-          declaration={declaration}
-          relatedProducts={relatedProducts}
-          upsellProducts={upsellProducts}
-          crosssellProducts={crosssellProducts}
-          stickers={stickers}
-        />
-      </div>
-      <div className="max-lg:block hidden">
-        <ProductMobileDetails
-          product={product}
-          productGallery={productGallery}
-          desc={desc}
-          path={path}
-          breadcrumbs={breadcrumbs}
-          specification={specification}
-          declaration={declaration}
-          stickers={stickers}
-        />
-      </div>
+      <ProductDetails
+        product={product}
+        productGallery={productGallery}
+        desc={desc}
+        path={path}
+        breadcrumbs={breadcrumbs}
+        specification={specification}
+        declaration={declaration}
+        relatedProducts={relatedProducts}
+        upsellProducts={upsellProducts}
+        crosssellProducts={crosssellProducts}
+        stickers={stickers}
+      />
     </div>
   );
 };

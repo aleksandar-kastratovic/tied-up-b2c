@@ -60,7 +60,7 @@ const FilterIn = ({ filter, onChange = () => {}, selected }) => {
               id={"chbx-" + item.id}
             />
             <label
-              className="text-[1rem] font-light leading-[1.625rem]"
+              className="text-[1rem] font-light text-black leading-[1.625rem]"
               htmlFor={"chbx-" + item.id}
             >
               {item.label}

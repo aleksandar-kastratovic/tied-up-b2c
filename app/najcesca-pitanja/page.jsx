@@ -1,7 +1,6 @@
 export const metadata = () => {
   return {
-    title:
-      "Najčešća pitanja ",
+    title: "Najčešća pitanja ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",
@@ -88,7 +87,7 @@ const FAQ = () => {
               Ukoliko vrednost va&scaron;e porudžbine iznosi preko 6,000
               RSD,&nbsp;<strong>isporuka je besplatna</strong>. Ukoliko su ispod
               navedene sume, tro&scaron;kove po&scaron;tarine snosi kupac i oni
-              iznose 240 dinara sa PDV-om.
+              iznose 320 dinara sa PDV-om.
             </p>
           </div>
         </div>

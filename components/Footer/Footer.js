@@ -474,16 +474,6 @@ const Footer = () => {
                 >
                   Više o kompaniji
                 </Link>
-
-                <Link
-                  href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/join-life" && "text-[#de6a26]"
-                  }`}
-                >
-                  Join life
-                </Link>
-
                 <Link
                   href={`/stranica-u-izradi`}
                   className={`cursor-pointer hover:text-[#de6a26] ${
@@ -491,14 +481,6 @@ const Footer = () => {
                   }`}
                 >
                   Ponude za posao
-                </Link>
-                <Link
-                  href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/stampa" && "text-[#de6a26]"
-                  }`}
-                >
-                  Štampa
                 </Link>
                 <Link
                   href={`/gdekupiti`}
@@ -540,6 +522,15 @@ const Footer = () => {
             }`}
           >
             Isporuka
+          </Link>
+          <span>•</span>
+          <Link
+            href="/veleprodaja"
+            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
+              pathname === "/veleprodaja" && "text-[#de6a26]"
+            }`}
+          >
+            Veleprodaja
           </Link>
           <span>•</span>
           <Link

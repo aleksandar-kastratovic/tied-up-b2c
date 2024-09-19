@@ -47,13 +47,11 @@ const ProductGallery = ({
       >
         <Image
           src={src}
-          sizes={
-            "(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw, 20vw"
-          }
+          sizes={"100vw"}
           width={width}
           height={height}
           priority={true}
-          className="h-full w-full object-cover"
+          className="!w-full !h-auto"
           onMouseEnter={(e) => {
             const elem = e.currentTarget;
             const { width, height } = elem.getBoundingClientRect();

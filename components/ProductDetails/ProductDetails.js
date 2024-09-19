@@ -97,18 +97,23 @@ const ProductDetails = ({
         {/*  <Tabs specification={specification} productsDesc={desc} />*/}
         {/*</div>*/}
       </div>
-      {relatedProducts?.length > 0 && (
-        <RelatedProducts relatedProducts={relatedProducts} loading={loading} />
-      )}
-      {upsellProducts?.length > 0 && (
-        <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
-      )}
-      {crosssellProducts?.length > 0 && (
-        <CrosssellProducts
-          crosssellProducts={crosssellProducts}
-          loading={loading}
-        />
-      )}
+      <div className={`mt-10`}>
+        {relatedProducts?.length > 0 && (
+          <RelatedProducts
+            relatedProducts={relatedProducts}
+            loading={loading}
+          />
+        )}
+        {upsellProducts?.length > 0 && (
+          <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
+        )}
+        {crosssellProducts?.length > 0 && (
+          <CrosssellProducts
+            crosssellProducts={crosssellProducts}
+            loading={loading}
+          />
+        )}
+      </div>
     </div>
   );
 };
