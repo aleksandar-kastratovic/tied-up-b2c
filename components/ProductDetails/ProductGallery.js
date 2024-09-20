@@ -42,7 +42,7 @@ const ProductGallery = ({
           position: "relative",
           zIndex: 100,
         }}
-        className="h-full w-full object-cover"
+        className="!w-full"
         onClick={onClick}
       >
         <Image
@@ -102,7 +102,7 @@ const ProductGallery = ({
 
   const productImage = (productGallery ?? [])?.map((item, index) => {
     return (
-      <SwiperSlide key={index} className="w-full">
+      <SwiperSlide key={index} className="w-full !h-auto">
         <ImageMagnifier
           src={convertHttpToHttps(item?.image_data?.url)}
           alt={item?.image_data?.descriptions?.alt}
@@ -204,7 +204,6 @@ const ProductGallery = ({
         navigation={true}
         loop={true}
         onSwiper={(swiper) => setSwiper(swiper)}
-        className={`${classes.mySwiper2} mySwiper2`}
         breakpoints={{
           768: {
             direction: "horizontal",
@@ -251,6 +250,7 @@ const ProductGallery = ({
         {stickers?.length > 0 && renderStickers({ stickers })}
       </Swiper>
       <Swiper
+        autoHeight
         onSwiper={(swiper) => setThumbsSwiper(swiper)}
         spaceBetween={10}
         slidesPerView={0}
@@ -274,7 +274,7 @@ const ProductGallery = ({
           },
         }}
         freeMode={true}
-        className={`${classes.mySwiper} mySwiper max-md:hidden !relative`}
+        className={`${classes.mySwiper} mySwiper max-md:!hidden !relative`}
       >
         {" "}
         {thumbImage}

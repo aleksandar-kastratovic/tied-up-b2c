@@ -28,7 +28,7 @@ const Footer = () => {
   return (
     <div className="max-md:mt-[3rem] mt-[7.75rem] bg-black">
       <div className="md:mx-[5rem] max-xl:flex-col py-[1.4rem] flex items-center justify-between border-l-0 border-t-0 border-r-0 border-b-4 border-b-white">
-        <div className="flex max-md:flex-row max-xl:flex-col max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center gap-[3rem] max-md:w-full max-md:justify-between">
+        <div className="flex max-md:flex-row max-xl:flex-col max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center px-2 gap-[3rem] max-md:w-full max-md:justify-between">
           <div className="flex items-center gap-5 max-md:flex-col">
             <div>
               <Image
@@ -283,7 +283,7 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <p className="text-[12px] font-thin text-center text-white ">
+            <p className="text-[12px] px-1 font-thin text-center text-white ">
               Cene na sajtu su iskazane u dinarima sa uračunatim porezom, a
               plaćanje se vrši isključivo u dinarima. Isporuka se vrši SAMO na
               teritoriji Republike Srbije. Nastojimo da budemo što precizniji u

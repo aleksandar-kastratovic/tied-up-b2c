@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { list } from "@/app/api/api";
-import Thumb from "../Thumb/Thumb";
+import { Thumb } from "@/_components/shared/thumb";
 import Image from "next/image";
 import Link from "next/link";
 import Image1 from "../../assets/Icons/no-results.png";
@@ -14,12 +14,13 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getProducts = async (search) => {
-      const getProducts = await list("/products/search/list", { search }).then(
-        (response) => {
-          setReturnedProducts(response?.payload?.items);
-          setLoading(false);
-        }
-      );
+      const getProducts = await list("/products/search/list", {
+        search,
+        render: false,
+      }).then((response) => {
+        setReturnedProducts(response?.payload?.items);
+        setLoading(false);
+      });
     };
     getProducts(search);
   }, [search]);
@@ -33,7 +34,26 @@ const SearchPage = () => {
           {loading ? (
             <i className="fas fa-spinner animate-spin text-xl"></i>
           ) : (
-            <Thumb data={returnedProducts} slider={false} />
+            (returnedProducts ?? [])?.map(({ id }) => {
+              return (
+                <Suspense
+                  key={`suspense-${id}`}
+                  fallback={
+                    <div
+                      className={`aspect-square bg-slate-200 animate-pulse w-full h-full col-span-1`}
+                    />
+                  }
+                >
+                  <Thumb
+                    key={`thumb-${id}`}
+                    id={id}
+                    categoryId={"*"}
+                    productsPerViewMobile={2}
+                    refreshWishlist={() => {}}
+                  />
+                </Suspense>
+              );
+            })
           )}
         </div>
       ) : (
