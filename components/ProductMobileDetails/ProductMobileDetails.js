@@ -3,16 +3,22 @@ import ProductMobileGallery from "./ProductMobileGallery";
 import React, { useEffect, useState } from "react";
 import ProductMobileInfo from "./ProductMobileInfo";
 import Tabs from "@/components/ProductDetails/Tabs";
+import RelatedProducts from "@/components/RelatedProducts/RelatedProducts";
+import UpsellProducts from "@/components/UpsellProducts/UpsellProducts";
+import CrosssellProducts from "@/components/CrosssellProducts/CrosssellProducts";
 
 const ProductMobileDetails = ({
+  breadcrumbs,
+  path,
+  crosssellProducts,
+  declaration,
+  desc,
   product,
   productGallery,
-  desc,
-  path,
-  breadcrumbs,
+  relatedProducts,
   specification,
-  declaration,
   stickers,
+  upsellProducts,
 }) => {
   const [rawGallery, setRawGallery] = useState(productGallery);
   const [loading, setLoading] = useState(false);
@@ -52,9 +58,23 @@ const ProductMobileDetails = ({
         specification={specification}
         declaration={declaration}
       />
-      {/*<div className={`col-span-4`}>*/}
-      {/*  <Tabs productsDesc={desc} specification={specification} />*/}
-      {/*</div>{" "}*/}
+      <div className={`mt-10`}>
+        {relatedProducts?.length > 0 && (
+          <RelatedProducts
+            relatedProducts={relatedProducts}
+            loading={loading}
+          />
+        )}
+        {upsellProducts?.length > 0 && (
+          <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
+        )}
+        {crosssellProducts?.length > 0 && (
+          <CrosssellProducts
+            crosssellProducts={crosssellProducts}
+            loading={loading}
+          />
+        )}
+      </div>
     </div>
   );
 };

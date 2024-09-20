@@ -22,10 +22,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link
+          rel={`stylesheet`}
+          href={`https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css`}
+        />
+
         <Script
-          crossOrigin="anonymous"
-          src="https://kit.fontawesome.com/f141ac3909.js"
-        />{" "}
+          src={`https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/regular.js`}
+        ></Script>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />

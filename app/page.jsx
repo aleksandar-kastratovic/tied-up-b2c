@@ -47,10 +47,7 @@ const Home = async () => {
   return (
     <>
       <div className="block relative overflow-hidden">
-        <div
-          className="relative max-sm:h-[300px] md:h-[510px] lg:h-[690px] xl:h-[400px] 2xl:h-[620px] 3xl:h-[800px] block"
-          id="slider"
-        >
+        <div className="relative block" id="slider">
           <IndexSlider banners={banners} mobileBanners={mobileBanners} />
         </div>
         <div className="overflow-hidden">

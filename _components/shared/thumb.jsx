@@ -193,7 +193,7 @@ export const Thumb = ({
               addToWishlist({ id: product?.basic_data?.id_product });
             }
           }}
-          className={`max-md:hidden rounded-full p-1 favorites cursor-pointer `}
+          className={`rounded-full p-1 favorites cursor-pointer `}
         >
           {wishlist_data?.is_in_wishlist ? (
             <Image

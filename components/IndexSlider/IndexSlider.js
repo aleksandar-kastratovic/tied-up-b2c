@@ -3,11 +3,14 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Aos from "aos";
+import { useIsMobile } from "@/hooks/croonus.hooks";
 
 const IndexSlider = ({ banners, mobileBanners }) => {
+  const is_mobile = useIsMobile();
+
   const [currentSlide, setCurrentSlide] = useState({
     index: 0,
-    banner: banners[0]?.image,
+    banner: is_mobile ? mobileBanners?.[0]?.image : banners[0]?.image,
   });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartIndex, setDragStartIndex] = useState(0);
@@ -15,11 +18,13 @@ const IndexSlider = ({ banners, mobileBanners }) => {
   const sliderRef = useRef();
 
   useEffect(() => {
+    let banner = is_mobile ? mobileBanners : banners;
+
     const handleMouseUp = () => {
       if (isDragging) {
         setCurrentSlide({
           index: draggingIndex,
-          banner: banners[draggingIndex]?.image,
+          banner: banner?.[draggingIndex]?.image,
         });
         setIsDragging(false);
       }
@@ -27,13 +32,14 @@ const IndexSlider = ({ banners, mobileBanners }) => {
 
     const handleMouseMove = (event) => {
       if (isDragging) {
+        let banner = is_mobile ? mobileBanners : banners;
         event.preventDefault();
         const sliderRect = sliderRef.current.getBoundingClientRect();
-        const slideWidth = sliderRect.width / banners.length;
+        const slideWidth = sliderRect.width / banner.length;
         const mouseX = event.clientX - sliderRect.left;
         let newIndex = Math.floor(mouseX / slideWidth);
         if (newIndex < 0) newIndex = 0;
-        if (newIndex > banners.length - 1) newIndex = banners.length - 1;
+        if (newIndex > banner.length - 1) newIndex = banner.length - 1;
         setDraggingIndex(newIndex);
       }
     };
@@ -45,12 +51,14 @@ const IndexSlider = ({ banners, mobileBanners }) => {
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [isDragging, draggingIndex, banners]);
+  }, [isDragging, draggingIndex, banners, mobileBanners]);
 
   const handleSlideChange = (index) => {
     setCurrentSlide({
       index: index,
-      banner: banners[index]?.image,
+      banner: is_mobile
+        ? mobileBanners?.[index]?.image
+        : banners?.[index]?.image,
     });
   };
 
@@ -66,12 +74,14 @@ const IndexSlider = ({ banners, mobileBanners }) => {
   const intervalRef = useRef(null);
 
   useEffect(() => {
+    let banner = is_mobile ? mobileBanners : banners;
+
     const nextSlide = () => {
       setCurrentSlide((prevState) => {
-        const nextIndex = (prevState.index + 1) % banners.length;
+        const nextIndex = (prevState.index + 1) % banner?.length;
         return {
           index: nextIndex,
-          banner: banners[nextIndex]?.image,
+          banner: banner?.[nextIndex]?.image,
         };
       });
     };
@@ -87,17 +97,13 @@ const IndexSlider = ({ banners, mobileBanners }) => {
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("keydown", handleInteraction);
     };
-  }, [banners]);
+  }, [banners, mobileBanners]);
 
   return (
-    <div
-      data-aos="zoom-out"
-      className="absolute w-screen block max-sm:h-[300px] md:h-[510px] lg:h-[450px] xl:h-[500px] 2xl:h-[620px] 3xl:h-[800px]"
-      ref={sliderRef}
-    >
+    <div data-aos="zoom-out" className="w-screen block" ref={sliderRef}>
       <div className="relative h-full overflow-hidden">
-        <div className=" items-center max-sm:h-[300px] justify-between h-full w-full">
-          {banners.map((banner, index) => {
+        <div className="items-center justify-between h-full w-full">
+          {(is_mobile ? mobileBanners : banners ?? [])?.map((banner, index) => {
             const isActive = currentSlide?.index === index;
 
             return (
@@ -109,13 +115,14 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                     : "absolute w-full h-full overflow-hidden opacity-0 duration-[1000ms] transition-all ease-linear"
                 }
               >
-                <div className="relative max-sm:h-[400px] sm:h-full">
+                <div className="relative sm:h-full">
                   <Image
                     src={banner?.image}
                     alt={banner?.title}
-                    width={1920}
-                    height={1080}
-                    className="bg-fixed w-full h-full object-cover"
+                    width={0}
+                    height={0}
+                    sizes={`100vw`}
+                    className="w-full h-auto"
                   />
                   <Link
                     href={`${banner?.url ?? `/stranica-u-izradi`}`}
@@ -134,9 +141,9 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                         </h2>
                       )}
                       {banner?.text && (
-                          <p className="text-white text-left sm:max-w-[60%] max-sm:text-[0.925rem] text-base font-normal">
-                            {banner?.text}
-                          </p>
+                        <p className="text-white text-left sm:max-w-[60%] max-sm:text-[0.925rem] text-base font-normal">
+                          {banner?.text}
+                        </p>
                       )}
                       {banner?.button && (
                         <button className="bg-transparent  hover:bg-white hover:text-black transition-all duration-300  text-white text-sm font-bold uppercase py-4 px-12 max-sm:px-2 max-sm:py-2 max-sm:flex max-sm:items-center max-sm:justify-center border border-white max-sm:w-[250px] mt-2">

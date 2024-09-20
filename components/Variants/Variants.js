@@ -322,7 +322,7 @@ export default function Variants({
               key={item.id}
               id={item.id}
               name={item.attribute.key}
-              className=" max-sm:text-right max-sm:float-right focus:ring-0 focus:border-black max-sm:p-2 py-1  max-sm:flex max-sm:justify-end border-2 border-black md:w-[60%] max-md:w-[80%]"
+              className="focus:ring-0 focus:border-black max-sm:p-2 py-1 max-sm:flex max-sm:justify-end border-2 border-black md:w-[60%] max-md:w-full"
               onChange={(e) => {
                 if (e.target.value !== "none") {
                   onChangeHandler(item.attribute.key, e.target.value);

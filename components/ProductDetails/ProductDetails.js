@@ -47,7 +47,7 @@ const ProductDetails = ({
     <div
       className={`max-md:mt-[1rem]  max-md:w-[95%]  max-md:mx-auto md:mx-[3rem] mt-6`}
     >
-      <div className="flex items-center gap-2 flex-wrap max-lg:hidden">
+      <div className="flex items-center gap-2 flex-wrap">
         <Link href={`/`} className="text-[#191919] text-[0.95rem] font-thin">
           Početna
         </Link>{" "}
@@ -70,9 +70,9 @@ const ProductDetails = ({
           );
         })}
         <>/</>
-        <h1 className="text-[#de6a26] text-[0.95rem] font-normal">
+        <p className="text-[#de6a26] text-[0.95rem] font-normal">
           {breadcrumbs?.end?.name}
-        </h1>
+        </p>
       </div>
       <div className=" grid grid-cols-4  gap-x-[4.063rem] mt-10">
         <ProductGallery
@@ -97,18 +97,23 @@ const ProductDetails = ({
         {/*  <Tabs specification={specification} productsDesc={desc} />*/}
         {/*</div>*/}
       </div>
-      {relatedProducts?.length > 0 && (
-        <RelatedProducts relatedProducts={relatedProducts} loading={loading} />
-      )}
-      {upsellProducts?.length > 0 && (
-        <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
-      )}
-      {crosssellProducts?.length > 0 && (
-        <CrosssellProducts
-          crosssellProducts={crosssellProducts}
-          loading={loading}
-        />
-      )}
+      <div className={`mt-10`}>
+        {relatedProducts?.length > 0 && (
+          <RelatedProducts
+            relatedProducts={relatedProducts}
+            loading={loading}
+          />
+        )}
+        {upsellProducts?.length > 0 && (
+          <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
+        )}
+        {crosssellProducts?.length > 0 && (
+          <CrosssellProducts
+            crosssellProducts={crosssellProducts}
+            loading={loading}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -18,8 +18,8 @@ const WishlistPage = () => {
           <p>Loading wishlist items...</p>
         </div>
       ) : data?.length > 0 ? (
-        <div className="mt-5 mx-[0.625rem] grid grid-cols-1 gap-x-5 gap-y-5 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
-          {data?.map(({ id_product }) => (
+        <div className="mt-5 mx-[0.625rem] grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5 xl:grid-cols-3 3xl:grid-cols-4">
+          {(data ?? [])?.map(({ id_product }) => (
             <Suspense
               key={`wishlist-${id_product}`}
               fallback={<p>Loading...</p>}
@@ -28,7 +28,7 @@ const WishlistPage = () => {
                 id={id_product}
                 refreshWishlist={refetch}
                 categoryId={"*"}
-              />{" "}
+              />
             </Suspense>
           ))}
         </div>

@@ -218,38 +218,8 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
     <>
       {product ? (
         <>
-          <div className="max-lg:col-span-4 mt-[2rem] lg:col-span-2 ">
-            <div className="max-lg:flex hidden items-center gap-2 flex-wrap">
-              <Link
-                href={`/`}
-                className="text-[#191919] text-[0.75rem] font-normal hover:text-[#de6a26]"
-              >
-                Početna
-              </Link>{" "}
-              <>/</>{" "}
-              {breadcrumbs?.steps?.map((breadcrumb, index, arr) => {
-                return (
-                  <div className="flex items-center gap-2">
-                    <Link
-                      href={
-                        index === arr.length - 1
-                          ? `/${breadcrumb?.slug}`
-                          : `/${breadcrumb?.slug}`
-                      }
-                      className="text-[#191919] text-[0.75rem] font-normal hover:text-[#de6a26]"
-                    >
-                      {breadcrumb?.name}
-                    </Link>
-                    {index !== arr.length - 1 && <>/</>}
-                  </div>
-                );
-              })}
-              <>/</>
-              <h1 className="text-[#191919] text-[0.75rem] font-normal">
-                {breadcrumbs?.end?.name}
-              </h1>
-            </div>
-            <div className="flex flex-col md:pr-[3rem]">
+          <div className="max-lg:col-span-4 mt-5 lg:mt-[2rem] lg:col-span-2 ">
+            <div className="flex flex-col md:pr-[3rem] max-md:mt-5">
               <h1 className="text-[1.563rem] max-md:text-[1.1rem] font-bold group">
                 {product?.data?.item?.basic_data?.name}
               </h1>
@@ -486,7 +456,7 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
                 <p className="text-sm regular">Povrat do 14 dana</p>
               </div>
             </div> */}
-            <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-center max-md:w-full">
+            <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-start max-md:w-full">
               <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
                 <div
                   className="relative cursor-pointer"

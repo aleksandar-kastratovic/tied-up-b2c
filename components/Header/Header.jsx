@@ -15,7 +15,6 @@ const Header = ({ categories }) => {
   const categoriesMainRight = [
     { name: "Personalizovano", slug: "/personalizovano", isCategory: false },
     { name: "Blog", slug: "/blog", isCategory: false },
-    { name: "Veleprodaja", slug: "/veleprodaja", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },
   ];
 

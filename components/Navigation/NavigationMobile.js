@@ -68,8 +68,9 @@ const NavigationMobile = () => {
     id: undefined,
     data: [],
     parentCategory: undefined,
-    firstCategory: null,
+    firstCategory: true,
   });
+  console.log(activeCategory);
   const [lastActiveCategory, setLastActiveCategory] = useState({
     id: undefined,
     data: [],
@@ -161,8 +162,7 @@ const NavigationMobile = () => {
   const categoriesMain = [
     { name: "Gde kupiti", slug: "/gdekupiti" },
     { name: "O nama", slug: "/onama" },
-    { name: "Galerija", slug: "/Galerija" },
-    { name: "Veleprodaja", slug: "/veleprodaja" },
+    { name: "Galerija", slug: "/galerija" },
     { name: "Kontakt", slug: "/kontakt" },
   ];
 
@@ -245,7 +245,7 @@ const NavigationMobile = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             onMouseDown={() => setSearchOpen(true)}
           />
-          <h1 className="absolute left-8 text-sm">Pretraga</h1>
+          <p className="absolute left-8 text-sm">Pretraga</p>
           <i className="text-xs text-white fa-solid fa-search absolute left-2 top-5"></i>
         </form>
       </div>
@@ -264,35 +264,62 @@ const NavigationMobile = () => {
           ></i>
         </div>
         <div className="w-[95%] flex flex-wrap flex-row gap-7 mx-auto mt-5 border-b border-b-[#e5e7eb]">
-          {categories?.map((category) => {
+          {(categories ?? [])?.map((category) => {
             const isActive = activeCategory?.parentCategory === category?.id;
+            let has_children =
+              category?.children && category?.children?.length > 0;
             return (
               <div
                 className="flex flex-row items-center justify-between gap-5"
                 key={category?.id}
               >
-                <h1
-                  className={
-                    isActive
-                      ? `font-bold uppercase text-[0.9rem]`
-                      : `uppercase text-[0.9rem]`
-                  }
-                  onClick={() => {
-                    setActiveCategory({
-                      id: category?.id,
-                      data: category?.children,
-                      parentCategory: category?.id,
-                      firstCategory: true,
-                    });
-                    setActiveImage(category?.image);
-                    setGenerateBreadcrumbs(category?.name);
-                  }}
-                >
-                  {category?.name}
-                </h1>
+                {!has_children ? (
+                  <Link
+                    href={`/${category?.slug_path}`}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setActiveCategory({
+                        id: null,
+                        data: null,
+                        parentCategory: null,
+                        firstCategory: true,
+                      });
+                    }}
+                  >
+                    <p
+                      className={
+                        isActive
+                          ? `font-bold uppercase text-[0.9rem]`
+                          : `uppercase text-[0.9rem]`
+                      }
+                    >
+                      {category?.name}
+                    </p>
+                  </Link>
+                ) : (
+                  <p
+                    className={
+                      isActive
+                        ? `font-bold uppercase text-[0.9rem]`
+                        : `uppercase text-[0.9rem]`
+                    }
+                    onClick={() => {
+                      setActiveCategory({
+                        id: category?.id,
+                        data: category?.children,
+                        parentCategory: category?.id,
+                        firstCategory: true,
+                      });
+                      setActiveImage(category?.image);
+                      setGenerateBreadcrumbs(category?.name);
+                    }}
+                  >
+                    {category?.name}
+                  </p>
+                )}
               </div>
             );
-          })}{" "}
+          })}
           <div
             className="self-end justify-self-end ml-auto relative"
             onClick={() => {
@@ -336,10 +363,10 @@ const NavigationMobile = () => {
               <div className={`w-full flex items-center justify-between`}>
                 <div className="flex items-center gap-2">
                   <i className="fa-solid fa-chevron-left text-base"></i>
-                  <h1 className="text-[0.9rem] font-normal">Nazad</h1>
+                  <p className="text-[0.9rem] font-normal">Nazad</p>
                 </div>
                 <Link
-                  href={`/${activeCategory?.id}`}
+                  href={`/${activeCategory?.slug_path}`}
                   onClick={() => {
                     setMenuOpen(false);
                     setActiveCategory({
@@ -386,6 +413,7 @@ const NavigationMobile = () => {
                         setActiveCategory({
                           id: category?.id,
                           data: category?.children,
+                          slug_path: category?.slug_path,
                           parentCategory: activeCategory?.parentCategory,
                         });
                         setActiveImage(category?.image);
@@ -399,7 +427,7 @@ const NavigationMobile = () => {
                         exActiveIds.push(category?.id);
                       }}
                     >
-                      <h1>{category?.name}</h1>
+                      <p>{category?.name}</p>
                       {category?.children?.length > 0 && (
                         <i className="fas fa-chevron-right"></i>
                       )}
@@ -505,7 +533,7 @@ const NavigationMobile = () => {
           </div>
           {searchData?.items?.length > 0 && searchTerm?.length > 0 && (
             <div className="w-[95%] mx-auto mt-5">
-              <h1 className="text-[1rem] font-normal">Rezultati pretrage</h1>
+              <p className="text-[1rem] font-normal">Rezultati pretrage</p>
               <div className="flex flex-col gap-5 mt-3">
                 {searchData?.items?.slice(0, 6)?.map((item) => {
                   return (
@@ -528,15 +556,15 @@ const NavigationMobile = () => {
                           />
                         </div>
                         <div className="flex flex-col gap-1">
-                          <h1 className="text-[0.9rem] font-normal">
+                          <p className="text-[0.9rem] font-normal">
                             {item?.basic_data?.name}
-                          </h1>
-                          <h1 className="text-[0.9rem] w-fit bg-[#f8ce5d] px-2 font-bold text-center">
+                          </p>
+                          <p className="text-[0.9rem] w-fit bg-[#f8ce5d] px-2 font-bold text-center">
                             {currencyFormat(
                               item?.price?.price?.discount ??
                                 item?.price?.price?.original
                             )}
-                          </h1>
+                          </p>
                         </div>
                       </div>
                     </Link>

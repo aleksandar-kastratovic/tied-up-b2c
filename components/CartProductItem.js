@@ -30,14 +30,15 @@ const CartProductItem = ({ item }) => {
     <>
       <div className="col-span-2 grid grid-cols-4 gap-x-4 md:gap-x-10 mt-1 relative">
         <div className="relative max-md:col-span-2 col-span-1 w-full flex items-center">
-          <div className="xl:h-[186px] xl:w-[186px] relative ">
-            <Link href={`/${item?.product?.slug}`}>
+          <div className="relative">
+            <Link href={`/${item?.product?.slug_path}`}>
               <Image
                 src={convertHttpToHttps(item?.product?.image[0])}
-                width={250}
-                height={250}
+                width={0}
+                height={0}
+                sizes={`100vw`}
                 alt=""
-                className="object-cover h-full"
+                className="w-full h-auto"
               />
             </Link>
             {item?.product?.price?.per_item?.discount?.active && (
@@ -56,15 +57,15 @@ const CartProductItem = ({ item }) => {
             )}
           </div>
         </div>
-        <div className=" col-span-2 flex  flex-col relative">
+        <div className={`col-span-2 flex flex-col relative`}>
           <span
-            className="absolute -top-4 -right-6 cursor-pointer text-lg"
+            className="absolute -top-5 right-2 md:-right-6 cursor-pointer text-lg"
             onClick={() => setSureCheck(true)}
           >
             <Image src={cancel} width={20} height={20} alt="Tied up" />
           </span>
-          <Link href={`/${item?.product?.slug}`}>
-            <span className="text-[18px] font-bold">
+          <Link href={`/${item?.product?.slug_path}`}>
+            <span className="text-sm md:text-[18px] block font-bold">
               {item?.product?.basic_data?.name}
             </span>
           </Link>
