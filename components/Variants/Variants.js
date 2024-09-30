@@ -336,6 +336,10 @@ export default function Variants({
                   } else {
                     updateProductVariant(null);
                   }
+                } else {
+                  handleURLChange(product?.data?.item?.slug);
+                  setSelected([]);
+                  updateProductVariant(null);
                 }
               }}
             >

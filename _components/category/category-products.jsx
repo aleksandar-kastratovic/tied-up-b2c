@@ -1,11 +1,9 @@
 "use client";
 import { useState, useEffect, Suspense } from "react";
-import Image from "next/image";
-import FilterIcon from "../../assets/Icons/filter.png";
+
 import { Thumb } from "@/_components/shared/thumb";
 import Filters from "@/components/sections/categories/Filters";
 import FiltersMobile from "@/components/sections/categories/FilterMobile";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   useCategoryProducts,

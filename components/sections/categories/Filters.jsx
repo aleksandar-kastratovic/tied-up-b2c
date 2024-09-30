@@ -104,9 +104,15 @@ const Filters = ({
                   <div
                     className={`relative py-[0.65rem] flex items-center filter gap-2`}
                   >
-                    <h5 className="text-base text-center filter font-light">
+                    <p
+                      className={`text-base text-center filter font-light ${
+                        openIndex === index
+                          ? "text-[#de6a26]"
+                          : "hover:text-[#de6a26]"
+                      }`}
+                    >
                       {filter?.attribute?.name}
-                    </h5>
+                    </p>
                     <Image
                       className={
                         isOpen
@@ -156,18 +162,16 @@ const Filters = ({
             }}
           >
             <div className={`relative flex items-center gap-2`}>
-              <h1 className="font-medium text-base text-center">
-                Izbrišite sve
-              </h1>
+              <p className="font-medium text-base text-center">Izbrišite sve</p>
               <i className="fa-solid fa-times text-lg  mr-2"></i>
             </div>
           </div>
         )}
         <div className={`flex items-center gap-10`}>
           <div className="col-span-1 col-start-7 flex items-center justify-end relative">
-            <h1 className=" font-light text-base text-center">
+            <p className=" font-light text-base text-center">
               {pagination?.total_items} Proizvoda
-            </h1>
+            </p>
           </div>
           <div className="col-span-1 col-start-8 flex items-center justify-end relative">
             <div
@@ -179,7 +183,13 @@ const Filters = ({
                 })
               }
             >
-              <h1 className=" text-base  font-light text-center">Sortiranje</h1>
+              <p
+                className={`text-base font-light text-center ${
+                  openSort?.open ? "text-[#de6a26]" : "hover:text-[#de6a26]"
+                }`}
+              >
+                Sortiranje
+              </p>
               <Image
                 className={
                   openSort.open
@@ -187,7 +197,7 @@ const Filters = ({
                     : `rotate-0 transition-all duration-500`
                 }
                 src={`/icons/chevron.png`}
-                alt={`TFY Production`}
+                alt={`TiedUp`}
                 width={15}
                 height={15}
               />
@@ -213,10 +223,10 @@ const Filters = ({
                         })
                       }
                     >
-                      <h1
+                      <p
                         className={` sortref ${
-                          isActive ? `text-[#39ae00]` : ``
-                        } text-[1rem] text-center hover:text-[#39ae00] font-light`}
+                          isActive ? ` text-[#de6a26]` : ` hover:text-[#de6a26]`
+                        } text-[1rem] text-center font-light`}
                         onClick={() =>
                           setOpenSort({
                             open: false,
@@ -228,7 +238,7 @@ const Filters = ({
                         }
                       >
                         {key?.label}
-                      </h1>
+                      </p>
                     </div>
                   );
                 })}
@@ -236,7 +246,7 @@ const Filters = ({
             )}
           </div>
           <div className="col-span-1 col-start-9 flex items-center gap-3 justify-end relative md:hidden lg:flex">
-            <h1 className=" font-light text-base text-center">Prikaz:</h1>
+            <p className=" font-light text-base text-center">Prikaz:</p>
             <div className="flex items-center justify-center gap-2">
               <button
                 onClick={() => setProductsPerView(2)}

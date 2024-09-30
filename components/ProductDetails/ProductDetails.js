@@ -57,7 +57,7 @@ const ProductDetails = ({
             <div className="flex items-center gap-2">
               <Link
                 href={
-                  index === arr.length - 1
+                  index === arr?.length - 1
                     ? `/${breadcrumb?.slug_path}`
                     : `/${breadcrumb?.slug_path}`
                 }
@@ -69,7 +69,7 @@ const ProductDetails = ({
             </div>
           );
         })}
-        <>/</>
+        {breadcrumbs?.steps?.length > 0 && <>/</>}
         <p className="text-[#de6a26] text-[0.95rem] font-normal">
           {breadcrumbs?.end?.name}
         </p>

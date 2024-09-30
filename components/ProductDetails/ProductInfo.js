@@ -292,11 +292,6 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
                         />
                       </svg>
                     </span>
-                    <span className="text-[#818181] text-[19px] line-through font-bold">
-                      {currencyFormat(
-                        product?.data?.item?.price?.price?.original
-                      )}
-                    </span>
                   </div>
                 )}
               </div>
