@@ -17,7 +17,7 @@ const PlusMinusInputOne = ({
     if (amount === "") setCount(1);
     updateCart({
       id: id,
-      quantity: count - 1,
+      quantity: amount - 1,
     });
   };
 
@@ -28,7 +28,7 @@ const PlusMinusInputOne = ({
     else setCount((prev) => prev + 1);
     updateCart({
       id: id,
-      quantity: count + 1,
+      quantity: amount + 1,
     });
   };
 

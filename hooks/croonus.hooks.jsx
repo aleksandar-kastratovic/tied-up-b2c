@@ -7,6 +7,7 @@ import {
   deleteMethod as DELETE,
   list as LIST,
   get as GET,
+  put as PUT,
 } from "@/app/api/api";
 import { toast } from "react-toastify";
 import { useCartContext } from "@/app/api/cartContext";
