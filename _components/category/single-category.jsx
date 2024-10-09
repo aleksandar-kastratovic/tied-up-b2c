@@ -1,12 +1,25 @@
 "use client";
 import Link from "next/link";
 import { useCategory } from "@/hooks/croonus.hooks";
+import { generateBreadcrumbSchema } from "@/_functions";
 
-export const SingleCategory = ({ slug, text }) => {
+export const SingleCategory = ({ slug, text, path, base_url }) => {
   const { data } = useCategory({ slug });
+
+  const breadcrumbs_schema = generateBreadcrumbSchema(
+    data?.parents,
+    data?.basic_data?.name,
+    path,
+    "category"
+  );
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs_schema) }}
+      />
+
       <div className="px-5 lg:px-[3rem]">
         {data?.parents?.length > 0 && (
           <div className="flex items-center gap-2 flex-wrap mt-5">
@@ -21,7 +34,7 @@ export const SingleCategory = ({ slug, text }) => {
               return (
                 <div key={index} className="flex items-center gap-2">
                   <Link
-                    href={`/${breadcrumb?.slug_path}`}
+                    href={`/${breadcrumb?.link?.link_path}`}
                     className="text-[#191919] text-[0.95rem] font-thin hover:text-[#de6a26]"
                   >
                     {breadcrumb?.name}

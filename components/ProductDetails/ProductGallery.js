@@ -48,8 +48,8 @@ const ProductGallery = ({
         <Image
           src={src}
           sizes={"100vw"}
-          width={width}
-          height={height}
+          width={width ?? 0}
+          height={height ?? 0}
           priority={true}
           className="!w-full !h-auto"
           onMouseEnter={(e) => {
@@ -122,8 +122,9 @@ const ProductGallery = ({
         <Image
           src={convertHttpToHttps(item?.image_data?.url)}
           alt={item?.image_data?.descriptions?.alt}
-          width={item?.image_data?.file_data?.width}
-          height={item?.image_data?.file_data?.height}
+          width={item?.image_data?.file_data?.width ?? 0}
+          height={item?.image_data?.file_data?.height ?? 0}
+          sizes={`100vw`}
           priority={true}
           className="cursor-pointer max-md:hidden"
         />

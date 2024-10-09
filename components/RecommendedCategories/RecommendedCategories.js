@@ -18,14 +18,16 @@ const RecommendedCategories = ({ categories }) => {
         return (
           <div className="col-span-1" key={index}>
             <div className="relative lg:h-[450px] 2xl:h-[500px] h-[350px]">
-             {category?.images?.image && <Image
-                src={category?.images?.image}
-                alt={category.slug}
-                fill
-                priority={true}
-                className="h-full bg-fixed max-xl:object-cover"
-              />}
-              <Link href={`/${category?.slug_path}`}>
+              {category?.images?.image && (
+                <Image
+                  src={category?.images?.image}
+                  alt={category.slug}
+                  fill
+                  priority={true}
+                  className="h-full bg-fixed max-xl:object-cover"
+                />
+              )}
+              <Link href={`/${category?.link?.link_path}`}>
                 <div className="absolute h-full  top-0 right-0 bottom-0 left-0 flex flex-col justify-center items-center">
                   <div className="relative z-[53] ">
                     <h1 className="max-lg:text-[3.5rem] lg:text-[4rem] text-[5rem] 2xl:text-[8.5rem] font-light text-white uppercase">
@@ -37,7 +39,7 @@ const RecommendedCategories = ({ categories }) => {
                   </div>
                 </div>
               </Link>
-              <Link href={`/${category?.slug_path}`}>
+              <Link href={`/${category?.link?.link_path}`}>
                 <div className="absolute transition-all duration-500 h-full w-full top-0 right-0 bottom-0 left-0 bg-transparent hover:bg-black hover:bg-opacity-30 z-[50]"></div>
               </Link>
             </div>

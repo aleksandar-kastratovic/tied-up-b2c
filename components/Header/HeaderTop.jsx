@@ -11,14 +11,16 @@ function HeaderTop() {
           href="https://www.facebook.com/masnetiedup/"
           className="hover:text-[#de6a26] text-sm font-light"
           target="_blank"
+          rel={`noreferrer noopener nofollow`}
         >
           Facebook
         </Link>
-        <span className="mx-2">-</span>
+        <span className={`mx-2`}>-</span>
         <Link
           href="https://www.instagram.com/masnetiedup/"
           className="hover:text-[#de6a26] text-sm font-light"
           target="_blank"
+          rel={`noreferrer noopener nofollow`}
         >
           Instagram
         </Link>
@@ -27,6 +29,7 @@ function HeaderTop() {
           href="https://www.youtube.com/@tiedup4968"
           className="hover:text-[#de6a26] text-sm font-light"
           target="_blank"
+          rel={`noreferrer noopener nofollow`}
         >
           Youtube
         </Link>

@@ -1,6 +1,7 @@
 import { get, list } from "@/app/api/api";
 import ProductDetails from "@/components/ProductDetails/ProductDetails";
 import ProductMobileDetails from "../ProductMobileDetails/ProductMobileDetails";
+import { headers } from "next/headers";
 
 const getProduct = (slug) => {
   return get(`/product-details/basic-data/${slug}`).then((res) => res?.payload);
@@ -82,6 +83,8 @@ const ProductPage = async ({ path, categoryId }) => {
     getProductStickers(path),
   ]);
 
+  const canonical = headers()?.get("x-pathname");
+
   return (
     <div className="">
       <ProductDetails
@@ -96,6 +99,7 @@ const ProductPage = async ({ path, categoryId }) => {
         upsellProducts={upsellProducts}
         crosssellProducts={crosssellProducts}
         stickers={stickers}
+        canonical={canonical}
       />
     </div>
   );

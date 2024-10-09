@@ -26,8 +26,17 @@ import {
   checkPrices,
   Prices,
 } from "@/_components/shared/prices";
+import { generateProductSchema } from "@/_functions";
 
-const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
+const ProductInfo = ({
+  product,
+  desc,
+  path,
+  setColor,
+  breadcrumbs,
+  color,
+  canonical,
+}) => {
   const [productVariant, setProductVariant] = useState(null);
 
   useEffect(() => {
@@ -214,10 +223,16 @@ const ProductInfo = ({ product, desc, path, setColor, breadcrumbs, color }) => {
     }
   }, [color]);
 
+  const product_schema = generateProductSchema(product, [], canonical);
+
   return (
     <>
       {product ? (
         <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(product_schema) }}
+          ></script>
           <div className="max-lg:col-span-4 mt-5 lg:mt-[2rem] lg:col-span-2 ">
             <div className="flex flex-col md:pr-[3rem] max-md:mt-5">
               <h1 className="text-[1.563rem] max-md:text-[1.1rem] font-bold group">

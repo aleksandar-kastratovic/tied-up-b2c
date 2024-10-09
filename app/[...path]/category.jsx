@@ -1,5 +1,6 @@
 import { CategoryProducts, SingleCategory } from "@/_components/category";
 import { Suspense } from "react";
+import { headers } from "next/headers";
 
 const CategoryPage = ({
   params: { path },
@@ -23,6 +24,9 @@ const CategoryPage = ({
     };
   });
 
+  let headersList = headers();
+  let base_url = headersList?.get("x-base_url");
+
   return (
     <>
       <Suspense
@@ -32,7 +36,7 @@ const CategoryPage = ({
           </>
         }
       >
-        <SingleCategory slug={slug} />
+        <SingleCategory slug={slug} base_url={base_url} path={path} />
       </Suspense>
       <CategoryProducts
         slug={slug}

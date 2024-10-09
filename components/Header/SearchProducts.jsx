@@ -53,7 +53,8 @@ const SearchProducts = () => {
         {searchTerm?.length >= 1 && searchTerm?.length < 3 ? (
           <div className="absolute right-2 top-1/2 -translate-y-1/2 py-2">
             <span className={`text-[0.8rem] font-normal text-red-500`}>
-              Unesite najmanje 3 karaktera.</span>
+              Unesite najmanje 3 karaktera.
+            </span>
           </div>
         ) : (
           <div className="absolute right-2 top-1/2 -translate-y-1/2 py-2">
@@ -80,7 +81,7 @@ const SearchProducts = () => {
                 {searchData?.items?.slice(0, 6)?.map((item) => {
                   return (
                     <Link
-                      href={`/${item?.slug_path}`}
+                      href={`/${item?.link?.link_path}`}
                       onClick={(e) => {
                         setSearchTerm("");
                       }}

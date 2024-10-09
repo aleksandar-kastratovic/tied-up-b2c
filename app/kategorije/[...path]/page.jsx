@@ -48,7 +48,7 @@ export async function generateStaticParams() {
   let paths = [];
   const recursiveChildren = (categories, paths) => {
     categories?.forEach((category) => {
-      paths?.push(category?.slug_path.toString());
+      paths?.push(category?.link?.link_path.toString());
       recursiveChildren(category?.children, paths);
     });
   };
