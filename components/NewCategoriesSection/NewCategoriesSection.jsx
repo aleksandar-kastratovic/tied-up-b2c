@@ -6,11 +6,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 const NewCategoriesSections = ({ categories }) => {
-
   if (!categories || categories.length === 0) {
     return null;
   }
-  
+
   return (
     <div className="mt-16 lg:mt-28 max-md:w-[95%] mx-auto md:w-full md:px-[3rem]">
       {/* <h2 className="font-bold text-[25px] mb-7 text-[#171717]">
@@ -23,7 +22,7 @@ const NewCategoriesSections = ({ categories }) => {
             className={`${
               index === 0 ? "row-span-2 h-full" : ""
             } aspect-square relative w-full overflow-hidden`}
-            href={`/${category?.slug_path}`}
+            href={`/${category?.link?.link_path}`}
           >
             {category?.images?.image && (
               <Image

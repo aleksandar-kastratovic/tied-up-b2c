@@ -187,7 +187,6 @@ const CategoryPage = ({
     }
   }, [singleCategory, breadcrumbs]);
 
-
   return (
     <>
       <div className="">
@@ -287,7 +286,7 @@ const CategoryPage = ({
                         null,
                         "",
                         singleCategory
-                          ? `/${singleCategory.slug_path}`
+                          ? `/${singleCategory.link?.link_path}`
                           : `/sekcija/${slug}`
                       );
                     }
@@ -309,7 +308,7 @@ const CategoryPage = ({
                           null,
                           "",
                           singleCategory
-                            ? `/${singleCategory.slug_path}`
+                            ? `/${singleCategory.link?.link_path}`
                             : `/sekcija/${slug}`
                         );
                       }

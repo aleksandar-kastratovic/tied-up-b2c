@@ -15,34 +15,9 @@ const SliderHeader = () => {
 
   return (
     <div className=" max-w-[30%] justify-between flex items-center">
-      <button className="" type="button" onClick={() => swiper.slidePrev()}>
-        <LeftIcon />
-      </button>
-      <Swiper
-        className="overflow-hidden max-w-[80%]"
-        spaceBetween={50}
-        slidesPerView={1}
-        onSwiper={(swiper) => setSwiper(swiper)}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        modules={[Autoplay]}
-        getswiper={setSwiper}
-        centeredSlides={true}
-      >
-        {banners?.map((banner, index) => (
-          <SwiperSlide key={index}>
-            <p className="text-xs font-light text-white bg-[#171612]">
-              {banner}
-            </p>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <button className="" type="button" onClick={() => swiper.slideNext()}>
-        <RightIcon />
-      </button>
+      <p className="text-xs font-light text-white bg-[#171612]">
+        Besplatna isporuka za iznos preko 5.000 RSD
+      </p>
     </div>
   );
 };

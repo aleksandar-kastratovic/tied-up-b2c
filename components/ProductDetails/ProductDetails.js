@@ -20,6 +20,7 @@ const ProductDetails = ({
   upsellProducts,
   crosssellProducts,
   stickers,
+  canonical,
 }) => {
   const [rawGallery, setRawGallery] = useState(productGallery);
   const [loading, setLoading] = useState(false);
@@ -57,9 +58,9 @@ const ProductDetails = ({
             <div className="flex items-center gap-2">
               <Link
                 href={
-                  index === arr.length - 1
-                    ? `/${breadcrumb?.slug_path}`
-                    : `/${breadcrumb?.slug_path}`
+                  index === arr?.length - 1
+                    ? `/${breadcrumb?.link?.link_path}`
+                    : `/${breadcrumb?.link?.link_path}`
                 }
                 className="text-[#000] text-[0.95rem] font-thin "
               >
@@ -69,7 +70,7 @@ const ProductDetails = ({
             </div>
           );
         })}
-        <>/</>
+        {breadcrumbs?.steps?.length > 0 && <>/</>}
         <p className="text-[#de6a26] text-[0.95rem] font-normal">
           {breadcrumbs?.end?.name}
         </p>
@@ -84,6 +85,7 @@ const ProductDetails = ({
           stickers={stickers}
         />
         <ProductInfo
+          canonical={canonical}
           product={product}
           desc={desc}
           path={path}

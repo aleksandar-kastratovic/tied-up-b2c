@@ -70,7 +70,6 @@ const NavigationMobile = () => {
     parentCategory: undefined,
     firstCategory: true,
   });
-  console.log(activeCategory);
   const [lastActiveCategory, setLastActiveCategory] = useState({
     id: undefined,
     data: [],
@@ -275,7 +274,7 @@ const NavigationMobile = () => {
               >
                 {!has_children ? (
                   <Link
-                    href={`/${category?.slug_path}`}
+                    href={`/${category?.link?.link_path}`}
                     onClick={() => {
                       setMenuOpen(false);
                       setActiveCategory({
@@ -413,7 +412,7 @@ const NavigationMobile = () => {
                         setActiveCategory({
                           id: category?.id,
                           data: category?.children,
-                          slug_path: category?.slug_path,
+                          slug_path: category?.link?.link_path,
                           parentCategory: activeCategory?.parentCategory,
                         });
                         setActiveImage(category?.image);
@@ -434,7 +433,7 @@ const NavigationMobile = () => {
                     </div>
                   ) : (
                     <Link
-                      href={`/${category?.slug_path}`}
+                      href={`/${category?.link?.link_path}`}
                       className={`${
                         activeCategory.firstCategory
                           ? `uppercase w-full`
@@ -538,7 +537,7 @@ const NavigationMobile = () => {
                 {searchData?.items?.slice(0, 6)?.map((item) => {
                   return (
                     <Link
-                      href={`/${item?.slug_path}`}
+                      href={`/${item?.link?.link_path}`}
                       onClick={(e) => {
                         setSearchData([]);
                         setSearchOpen(false);

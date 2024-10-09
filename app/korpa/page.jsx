@@ -1,62 +1,75 @@
-import CheckoutPage from "@/components/CheckoutPage/CheckoutPage";
-import { get, list } from "../api/api";
-const paymentOptions = async () => {
-  const paymentOptions = await get("/checkout/payment-options").then(
-    (response) => response?.payload
-  );
-  return paymentOptions;
-};
-const deliveryOptions = async () => {
-  const deliveryOptions = await get("/checkout/delivery-options").then(
-    (response) => response?.payload
-  );
-  return deliveryOptions;
-};
+import { headers } from "next/headers";
+import { get, list } from "@/app/api/api";
+import { CheckoutPage } from "@/components/CheckoutPage/CheckoutPage";
 
+const getPaymentOptions = async () => {
+  return await get("/checkout/payment-options").then(
+    (response) => response?.payload
+  );
+};
+const getDeliveryOptions = async () => {
+  return await get("/checkout/delivery-options").then(
+    (response) => response?.payload
+  );
+};
 const getRecommendedProducts = async () => {
   return await list("/products/section/list/recommendation").then(
     (res) => res?.payload?.items
   );
 };
-
 const getCountries = async () => {
   return await get(`/checkout/ddl/id_country`).then((res) => res?.payload);
 };
 
-export const metadata = {
-  title: "Korpa | TiedUp",
-  description: "Dobrodošli na TiedUp Online Shop",
-  keywords: [
-    "TiedUp",
-    "online",
-    "shop",
-    "TiedUp.com",
-    "farmerke",
-    "trenerke",
-    "dukserice",
-    "TiedUp obuca",
-    "obuca",
-    "TiedUp online",
-  ],
-};
-
 const Cart = async () => {
-  const paymentoptions = await paymentOptions();
-  const deliveryoptions = await deliveryOptions();
-  const recommendedProducts = await getRecommendedProducts();
-  const countries = await getCountries();
+  const [payment_options, delivery_options, recommended_products, countries] =
+    await Promise.all([
+      getPaymentOptions(),
+      getDeliveryOptions(),
+      getRecommendedProducts(),
+      getCountries(),
+    ]);
+
   return (
-    <div className="">
-      <CheckoutPage
-        paymentoptions={paymentoptions}
-        deliveryoptions={deliveryoptions}
-        recommendedProducts={recommendedProducts}
-        countries={countries}
-      />
-    </div>
+    <CheckoutPage
+      payment_options={payment_options}
+      delivery_options={delivery_options}
+      recommendedProducts={recommended_products}
+      countries={countries}
+    />
   );
 };
 
 export default Cart;
 
 export const revalidate = 30;
+
+export const generateMetadata = async () => {
+  const header_list = headers();
+  let canonical = header_list?.get("x-pathname");
+  return {
+    title: `Korpa | TiedUp`,
+    description: "Dobrodošli na TiedUp Online Shop",
+    alternates: {
+      canonical: canonical,
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+    openGraph: {
+      title: `Korpa | TiedUp`,
+      description: "Dobrodošli na TiedUp Online Shop",
+      type: "website",
+      images: [
+        {
+          url: "",
+          width: 800,
+          height: 600,
+          alt: "TiedUp",
+        },
+      ],
+      locale: "sr_RS",
+    },
+  };
+};

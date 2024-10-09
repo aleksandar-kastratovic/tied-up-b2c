@@ -151,7 +151,7 @@ const HeaderIcons = () => {
                       {data?.items?.slice(0, 6)?.map((item) => {
                         return (
                           <Link
-                            href={`/${item?.slug_path}`}
+                            href={`/${item?.link?.link_path}`}
                             className="h-[83px]"
                             onClick={() => {
                               setSearchTerm("");

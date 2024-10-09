@@ -200,9 +200,8 @@ const Thumb = ({
           <div className="w-full item relative hoveredColor">
             <Swiper
               modules={[Navigation, Pagination]}
-              // onSwiper={(swiper) => setSwiper(swiper)}
+              onSwiper={(swiper) => setSwiper(swiper)}
               pagination={true}
-              // direction={"horizontal"}
               loop={true}
               navigation={
                 navigationEnabled.enabled === true &&
@@ -221,16 +220,14 @@ const Thumb = ({
                   pagination: {
                     enabled: false,
                   },
-                  // direction: "horizontal",
                 },
               }}
               className={`categoryImageSwiper relative`}
-              onSwiper={(swiper) => setSwiper(swiper)}
             >
-              {product?.image?.map((image, index) => (
+              {(product?.image ?? [])?.map((image, index) => (
                 <SwiperSlide key={index}>
                   <Link
-                    href={`/${product?.slug_path}`}
+                    href={`/${product?.link?.link_path}`}
                     scroll={true}
                     className="z-[100]"
                   >
@@ -242,7 +239,7 @@ const Thumb = ({
                         height={0}
                         sizes={`100vw`}
                         priority
-                        className={`transition-all duration-200 opacity-100 w-full`}
+                        className={`transition-all duration-200 opacity-100 !w-full !h-auto`}
                       />
                     )}
                   </Link>
@@ -252,7 +249,7 @@ const Thumb = ({
           </div>
           <div className="mt-[0.813rem] max-md:text-left  flex max-md:items-start items-center justify-between relative z-[50]">
             <Link
-              href={`/${product?.slug_path}`}
+              href={`/${product?.link?.link_path}`}
               scroll={true}
               className="relative z-[5]"
             >

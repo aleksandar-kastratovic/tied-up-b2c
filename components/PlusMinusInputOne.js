@@ -1,12 +1,24 @@
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 
-const PlusMinusInputOne = ({ className, amount, setCount, maxAmount }) => {
+const PlusMinusInputOne = ({
+  className,
+  amount,
+  setCount,
+  maxAmount,
+  count,
+  updateCart,
+  id,
+}) => {
   // If minus is clicked
   const onMinusHandler = (e) => {
     e.preventDefault();
     if (amount !== 1) setCount((prev) => prev - 1);
     if (amount === "") setCount(1);
+    updateCart({
+      id: id,
+      quantity: amount - 1,
+    });
   };
 
   // If plus is clicked
@@ -14,13 +26,23 @@ const PlusMinusInputOne = ({ className, amount, setCount, maxAmount }) => {
     e.preventDefault();
     if (amount === "") setCount(1);
     else setCount((prev) => prev + 1);
+    updateCart({
+      id: id,
+      quantity: amount + 1,
+    });
   };
 
   // If value is typed in
   const onInputChange = (e) => {
     if (!isNaN(e.target.value)) {
       if (+e.target.value < 1) setCount("");
-      else setCount(+e.target.value);
+      else {
+        setCount(+e.target.value);
+        updateCart({
+          id: id,
+          quantity: +e.target.value,
+        });
+      }
     }
   };
 

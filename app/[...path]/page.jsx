@@ -3,6 +3,8 @@ import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 import { notFound, redirect } from "next/navigation";
 import Category from "./category";
 import ProductDetailPage from "./product";
+import { headers } from "next/headers";
+import { getRobots, handleCategoryRobots } from "@/_functions";
 
 const handleData = async (slug) => {
   return await get(`/slugs/product-categories?slug=${slug}`).then(
@@ -45,40 +47,26 @@ const DynamicPage = async ({ params: { path }, params, searchParams }) => {
 export default DynamicPage;
 
 const defaultMetadata = {
-  title: "Početna | Pazari.rs",
-  description: "Dobrodošli na Pazari.rs Online Shop",
-  keywords: [
-    "pazari",
-    "online",
-    "shop",
-    "pazari.rs",
-    "farmerke",
-    "trenerke",
-    "dukserice",
-    "pazari obuca",
-    "obuca",
-    "pazari online",
-  ],
+  title: "Početna | TiedUp",
+  description: "Dobrodošli na TiedUp Online Shop",
+  keywords: ["TiedUp", "online", "shop"],
   robots: "index, follow",
   openGraph: {
-    title: "Početna | Pazari.rs",
-    description: "Dobrodošli na Pazari.rs Online Shop",
+    title: "Početna | TiedUp",
+    description: "Dobrodošli na TiedUp Online Shop",
     type: "website",
-    url: "https://pazari.rs",
-    images: [
-      {
-        url: "https://api.pazarishop.croonus.com/croonus-uploads/config/b2c/logo-72770d76501e340970560b80adbe09d6.jpeg",
-      },
-    ],
-    site_name: "Pazari.rs",
     locale: "sr_RS",
   },
 };
 
-export async function generateMetadata({ params: { path } }) {
+export async function generateMetadata({
+  params: { path },
+  searchParams: { filteri, sort, viewed, strana },
+}) {
   const str = path?.join("/");
   const data = await handleData(str);
-
+  const headersList = headers();
+  let canonical = headersList?.get("x-pathname");
   switch (true) {
     case data?.status === false &&
       data?.type === null &&
@@ -89,31 +77,43 @@ export async function generateMetadata({ params: { path } }) {
     case data?.type === "category" &&
       data?.status &&
       data?.redirect_url === false:
-      const category = await fetchCategorySEO(path[path?.length - 1]);
-      const image_category = convertHttpToHttps(category?.image) ?? "";
+      const category = await fetchCategorySEO(data?.id);
 
       if (category) {
+        let {
+          meta_title: title,
+          meta_keywords: keywords,
+          meta_description: description,
+          meta_image: image,
+          meta_canonical_link: canonical_link,
+          meta_robots: robots,
+          social: { share_title, share_description, share_image },
+        } = category;
+
         return {
-          title: `${category?.title} | TiedUp` ?? "",
-          description: category?.description ?? "",
-          keywords: category?.keywords ?? "",
-          type: category?.type ?? "",
-          image: image_category ?? "",
+          title: title ?? "",
+          description: description ?? "",
+          keywords: keywords ?? "",
+          image: image ?? "",
+          alternates: {
+            canonical: `${canonical_link ?? canonical}`,
+          },
           openGraph: {
-            title: `${category?.title} | TiedUp` ?? "",
-            description: category?.description ?? "",
-            type: category?.type ?? "",
+            title: `${share_title}` ?? "",
+
+            description: share_description ?? "",
             images: [
               {
-                url: image_category ?? "",
+                url: share_image ?? "",
                 width: 800,
                 height: 600,
-                alt: category?.description ?? "",
-                title: category?.title ?? "",
-                description: category?.description ?? "",
+                alt: share_description ?? "",
+                title: share_title ?? "",
+                description: share_description ?? "",
               },
             ],
           },
+          robots: handleCategoryRobots(strana, filteri, sort, viewed, robots),
         };
       } else {
         return defaultMetadata;
@@ -122,15 +122,21 @@ export async function generateMetadata({ params: { path } }) {
     case data?.type === "product" &&
       data?.status &&
       data?.redirect_url === false:
-      const productSEO = await getProductSEO(path[path?.length - 1]);
+      const productSEO = await getProductSEO(data?.id);
+
+      let robots = getRobots(productSEO?.meta_robots);
+
       const image = convertHttpToHttps(productSEO?.meta_image) ?? "";
       if (productSEO) {
         return {
-          title: `${productSEO?.meta_title} | TiedUp` ?? "",
-          description: productSEO?.meta_description ?? "",
+          alternates: {
+            canonical: `${productSEO?.meta_canonical_link ?? canonical}`,
+          },
+          description:
+            `${productSEO?.meta_title} - ${productSEO?.meta_description}` ?? "",
           keywords: productSEO?.meta_keywords ?? "",
           openGraph: {
-            title: `${productSEO?.meta_title} | TiedUp` ?? "",
+            title: `${productSEO?.meta_title}` ?? "",
             description: productSEO?.meta_description ?? "",
             type: "website",
             images: [
@@ -142,6 +148,8 @@ export async function generateMetadata({ params: { path } }) {
               },
             ],
           },
+          robots: robots,
+          title: `${productSEO?.meta_title}` ?? "",
         };
       } else {
         return defaultMetadata;

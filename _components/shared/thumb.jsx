@@ -20,17 +20,43 @@ import { deleteMethod, post } from "@/app/api/api";
 import { toast } from "react-toastify";
 import WishlistActive from "@/assets/Icons/heart-active.png";
 import Wishlist from "@/assets/Icons/heart.png";
+import { icons } from "@/_lib/icons";
 
 export const Thumb = ({
   id,
   categoryId = "*",
   refreshWishlist = () => {},
   productsPerViewMobile = 1,
+  section_data = {
+    categories: [],
+    setCategories: () => {},
+    setProducts: () => {},
+    products: [],
+    selectedCategory: null,
+  },
 }) => {
   const { data: product } = useProductThumb({
     id: id,
     categoryId: categoryId ?? "*",
   });
+
+  useEffect(() => {
+    if (product) {
+      const categories = product?.categories || [];
+      section_data?.setCategories((prev) => {
+        return [
+          ...new Set([
+            ...prev,
+            {
+              categories,
+              product,
+            },
+          ]),
+        ];
+      });
+    }
+  }, [product]);
+
   const { mutate: addToWishlist, isSuccess: isAdded } = useAddToWishlist();
   const { mutate: removeFromWishlist, isSuccess: isRemoved } =
     useRemoveFromWishlist();
@@ -94,7 +120,10 @@ export const Thumb = ({
   const renderStickers = ({ stickers }) => {
     let stickers_tmp = stickers?.map(({ name }, i) => {
       return (
-        <p className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}>
+        <p
+          key={`sticker-${i}`}
+          className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}
+        >
           {name}
         </p>
       );
@@ -108,7 +137,6 @@ export const Thumb = ({
       </div>
     );
   };
-
   return (
     <div
       className={`col-span-1 flex flex-col relative group`}
@@ -124,35 +152,33 @@ export const Thumb = ({
 
       {product?.stickers?.length > 0 &&
         renderStickers({ stickers: product?.stickers })}
-
-      <Link href={`/${product?.slug_path}`} className={`flex-1`}>
+      <div className={`!relative`}>
+        {navigationEnabled?.enabled &&
+          navigationEnabled?.id === product?.basic_data?.id_product &&
+          product?.image_data?.length > 1 && (
+            <div
+              onClick={() => {
+                swiper.slidePrev();
+              }}
+              className={`absolute top-1/2 transform -translate-y-1/2 left-2 z-[5] flex items-center gap-2`}
+            >
+              <button className={`text-black`}>{icons.chevron_left}</button>
+            </div>
+          )}
         <Swiper
-          modules={[Navigation, Pagination]}
+          modules={[Pagination]}
           pagination={true}
           direction={"horizontal"}
           rewind={product?.image?.length > 1}
-          navigation={
-            navigationEnabled.enabled === true &&
-            navigationEnabled.id === product?.basic_data?.id_product &&
-            product?.image?.length > 1
-          }
           breakpoints={{
-            320: {
-              navigation: {
-                enabled: false,
-              },
-            },
             1024: {
-              navigation: {
-                enabled: true,
-              },
               pagination: {
                 enabled: false,
               },
               direction: "horizontal",
             },
           }}
-          className={`categoryImageSwiper relative`}
+          className={`categoryImageSwiper !relative`}
           onSwiper={(swiper) => setSwiper(swiper)}
         >
           {(product?.image_data ?? [])?.map(
@@ -161,23 +187,43 @@ export const Thumb = ({
               index
             ) => {
               return (
-                <SwiperSlide key={index} className={`!overflow-hidden`}>
-                  <Image
-                    loading={`eager`}
-                    src={convertHttpToHttps(url)}
-                    alt={alt ?? product?.basic_data?.name}
-                    sizes={"100vw"}
-                    width={width ?? 0}
-                    height={height ?? 0}
-                    priority={true}
-                    className={`!w-full !h-auto group-hover:scale-110 transition-all duration-500`}
-                  />
+                <SwiperSlide
+                  key={index}
+                  className={`!overflow-hidden !relative`}
+                >
+                  <Link
+                    href={`/${product?.link?.link_path}`}
+                    className={`flex-1`}
+                  >
+                    <Image
+                      loading={`eager`}
+                      src={convertHttpToHttps(url)}
+                      alt={alt ?? product?.basic_data?.name}
+                      sizes={"100vw"}
+                      width={width ?? 0}
+                      height={height ?? 0}
+                      priority={true}
+                      className={`!w-full !h-auto group-hover:scale-110 transition-all duration-500`}
+                    />
+                  </Link>
                 </SwiperSlide>
               );
             }
           )}
         </Swiper>
-      </Link>
+        {navigationEnabled?.enabled &&
+          navigationEnabled?.id === product?.basic_data?.id_product &&
+          product?.image_data?.length > 1 && (
+            <div
+              onClick={() => {
+                swiper.slideNext();
+              }}
+              className={`absolute top-1/2 transform -translate-y-1/2 right-2 z-[5] flex items-center gap-2`}
+            >
+              <button className={`text-black`}>{icons.chevron_right}</button>
+            </div>
+          )}
+      </div>
       <div className="mt-auto pt-[0.813rem] flex items-center justify-between relative">
         <Link
           href={`/${product?.slug}`}
