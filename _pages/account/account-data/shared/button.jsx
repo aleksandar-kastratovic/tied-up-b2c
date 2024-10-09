@@ -8,7 +8,7 @@ import {
   useTabChange,
 } from "@/_pages/account/sidebar/functions";
 import { useLogout } from "@/hooks/croonus.hooks";
-import { userContext } from "@/_context/userContext";
+import { userContext } from "@/context/userContext";
 import { icons } from "@/_lib/icons";
 
 export const Button = ({
