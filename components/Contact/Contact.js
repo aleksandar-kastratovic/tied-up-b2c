@@ -74,7 +74,7 @@ const Contact = () => {
     if (errors?.length > 0) {
       setLoading(false);
     } else {
-      await POST(`/contact/contact_page?page_section=contact_page`, {
+      await POST(`/contact/contact_page?form_section=contact_page`, {
         ...formData,
         gcaptcha: token,
       }).then((res) => {
