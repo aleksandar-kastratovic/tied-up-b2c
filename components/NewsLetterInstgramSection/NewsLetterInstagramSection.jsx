@@ -21,7 +21,7 @@ const NewsLetterInstagramSection = () => {
     if (!email?.includes("@")) {
       setError(true);
     } else {
-      setError(false)
+      setError(false);
       await post("/newsletter", { email: email }).then((response) => {
         if (!response?.code) {
           setEmail("");
@@ -71,12 +71,12 @@ const NewsLetterInstagramSection = () => {
       <div className="max-md:mt-[6rem] mt-[12rem] gap-14 2xl:gap-28 max-md:w-[95%] mx-auto md:w-full md:px-[3rem] justify-center flex text-center">
         <div className="self-center">
           <h2 className="font-bold text-[30px] md:text-[40px] text-black">
-            Ostvari 10% popusta
+            Prijava na newsletter
           </h2>
           <div className="md:w-[70%] mx-auto">
             <p className="text-[20px] font-light text-black my-8">
-              Prijavi se na naš bilten i dobićeš 10% popusta na sledeću kupovinu,
-              pristup ekskluzivnim promocijama i još mnogo toga!
+              Prijavite se na naš newsletter i budite u toku sa svim novostima i
+              akcijama.
             </p>
             <form className="relative md:w-[78%] mx-auto" onSubmit={onSubmit}>
               <input
@@ -99,7 +99,7 @@ const NewsLetterInstagramSection = () => {
               </button>
             </form>
           </div>
-   
+
           {/* <Link
             href="/"
             className="text-base text-black mt-6 font-bold underline block"

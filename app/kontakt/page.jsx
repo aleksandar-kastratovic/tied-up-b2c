@@ -24,3 +24,11 @@ const Kontakt = () => {
 };
 
 export default Kontakt;
+
+export const metadata = {
+  title: "Kontakt | TiedUp",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};

@@ -38,6 +38,8 @@ const ProductInfo = ({
   canonical,
 }) => {
   const [productVariant, setProductVariant] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState(null);
+  const [tempError, setTempError] = useState(null);
 
   useEffect(() => {
     if (window.scrollY > 0) {
@@ -50,6 +52,7 @@ const ProductInfo = ({
   useEffect(() => {
     if (newURL) {
       window?.history?.replaceState(null, null, newURL);
+      setTempError(null);
     }
   }, [newURL]);
 
@@ -136,6 +139,49 @@ const ProductInfo = ({
 
   const router = useRouter();
 
+  const checkSelectedOptions = (options) => {
+    let text = "";
+    if (options && product?.product_type === "variant") {
+      let options_length = product?.data?.variant_options?.length;
+      let selected_options_length = options?.length;
+
+      if (options_length !== selected_options_length) {
+        let not_selected_attributes = [];
+
+        let selected_attributes = (options ?? [])?.map(
+          ({ attribute_key }) => attribute_key
+        );
+
+        (product?.data?.variant_options ?? [])?.forEach((option) => {
+          if (!selected_attributes?.includes(option?.attribute?.key)) {
+            not_selected_attributes.push(option?.attribute?.name);
+          }
+        });
+
+        not_selected_attributes = (not_selected_attributes ?? [])?.map(
+          (attribute) => {
+            if (attribute?.[attribute?.length - 1] === "a") {
+              return attribute?.slice(0, -1)?.toLowerCase() + "u";
+            } else {
+              return attribute;
+            }
+          }
+        );
+
+        switch (true) {
+          case not_selected_attributes?.length === 1:
+            text = `Odaberite ${not_selected_attributes?.[0]}`;
+            break;
+          case not_selected_attributes?.length > 1:
+            text = `Odaberite ${(not_selected_attributes ?? [])?.map((item) => {
+              return item;
+            })}`;
+        }
+      }
+    }
+    return text;
+  };
+
   //hendlujemo dodavanje u korpu
   const handleAddToCart = () => {
     switch (product?.product_type) {
@@ -168,6 +214,9 @@ const ProductInfo = ({
           } else {
             router.push(`/kontakt?slug=${productVariant?.slug}`);
           }
+        } else {
+          let text = checkSelectedOptions(selectedOptions);
+          setTempError(text);
         }
         break;
       default:
@@ -225,6 +274,29 @@ const ProductInfo = ({
 
   const product_schema = generateProductSchema(product, [], canonical);
 
+  const handleSavings = () => {
+    switch (true) {
+      case product?.product_type === "single":
+        return `Ušteda: ${currencyFormat(
+          product?.data?.item?.price?.discount?.amount
+        )}`;
+      case product?.product_type === "variant":
+        switch (true) {
+          case Boolean(productVariant?.id) === true:
+            switch (true) {
+              case productVariant?.price?.min?.price_defined:
+                return `Ušteda: ${currencyFormat(
+                  productVariant?.price?.min?.discount?.amount
+                )}`;
+              case !productVariant?.price?.min?.price_defined:
+                return `Ušteda: ${currencyFormat(
+                  productVariant?.price?.discount?.amount
+                )}`;
+            }
+        }
+    }
+  };
+
   return (
     <>
       {product ? (
@@ -235,7 +307,7 @@ const ProductInfo = ({
           ></script>
           <div className="max-lg:col-span-4 mt-5 lg:mt-[2rem] lg:col-span-2 ">
             <div className="flex flex-col md:pr-[3rem] max-md:mt-5">
-              <h1 className="text-[1.563rem] max-md:text-[1.1rem] font-bold group">
+              <h1 className="text-[1.563rem] max-md:text-[1.1rem] font-bold group uppercase">
                 {product?.data?.item?.basic_data?.name}
               </h1>
               <p className="mt-[6px] text-[#636363] text-[0.9rem]">
@@ -249,7 +321,7 @@ const ProductInfo = ({
                   {!productVariant?.inventory?.inventory_defined && (
                     <>
                       <p
-                        className={`text-[#de6a26] w-fit text-sm font-bold mt-5`}
+                        className={`text-[#052922] w-fit text-sm font-bold mt-5`}
                       >
                         Proizvod nije dostupan.
                       </p>
@@ -261,7 +333,7 @@ const ProductInfo = ({
                   {!product?.data?.item?.inventory?.inventory_defined && (
                     <>
                       <p
-                        className={`text-[#de6a26] w-fit text-sm font-bold mt-5`}
+                        className={`text-[#052922] w-fit text-sm font-bold mt-5`}
                       >
                         Proizvod nije dostupan.
                       </p>
@@ -273,6 +345,7 @@ const ProductInfo = ({
                 className={`mt-[2.125rem] text-[1.313rem] flex items-center gap-3 font-bold`}
               >
                 <Prices
+                  is_details
                   price={
                     productVariant?.id
                       ? productVariant?.price
@@ -289,48 +362,28 @@ const ProductInfo = ({
                       : `font-bold text-[1.172rem]  py-0.5`
                   }
                 />
-                {product?.data?.item?.price?.discount?.active && (
-                  <div className="group relative inline-block">
-                    <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition bg-green-500 text-white p-[6px] rounded absolute -top-8 left-0 text-[10px] font-normal">
-                      Važeća MP cena
-                      <svg
-                        className="absolute z-50 w-6 h-6 text-green-500 transform left-[45%] -translate-x-1/2 -translate-y-[2px] fill-current stroke-current"
-                        width="8"
-                        height="8"
-                      >
-                        <rect
-                          x="12"
-                          y="-10"
-                          width="8"
-                          height="8"
-                          transform="rotate(45)"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                )}
               </div>
-              {product?.data?.item?.price?.discount?.active && (
-                <>
-                  <div className=" mb-[1.2rem]">
-                    <span className="text-[#de6a26] text-[16px] font-semibold">
-                      Ušteda :{" "}
-                      {currencyFormat(
-                        product?.data?.item?.price?.discount?.amount
-                      )}
-                    </span>
-                  </div>
-
-                  <div className="border-b-2 border-[#c0c0c0] w-[90%] 2xl:w-full flex justify-between text-sm">
-                    <div>
-                      <p className="font-thin text-[16px]">
-                        Akcijska cena važi od {formattedStartDate} do{" "}
-                        {formattedEndDate}
-                      </p>
+              {product?.data?.item?.price?.discount?.active &&
+                (productVariant?.id
+                  ? productVariant?.inventory?.inventory_defined
+                  : product?.data?.item?.inventory?.inventory_defined) && (
+                  <>
+                    <div className=" mb-[1.2rem]">
+                      <span className="text-[#052922] text-[16px] font-semibold">
+                        {handleSavings()}
+                      </span>
                     </div>
-                  </div>
-                </>
-              )}
+
+                    <div className="border-b-2 border-[#c0c0c0] w-[90%] 2xl:w-full flex justify-between text-sm">
+                      <div>
+                        <p className="font-thin text-[16px]">
+                          Akcijska cena važi od {formattedStartDate} do{" "}
+                          {formattedEndDate}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                )}
 
               <p
                 className={`text-[16px] mt-[1.6rem] font-light`}
@@ -343,7 +396,7 @@ const ProductInfo = ({
                 product?.data?.item?.inventory?.amount <= 4 && (
                   <>
                     <p
-                      className={`text-[#de6a26] w-fit text-sm font-bold mt-5`}
+                      className={`text-[#052922] w-fit text-sm font-bold mt-5`}
                     >
                       Male količine
                     </p>
@@ -357,6 +410,7 @@ const ProductInfo = ({
                   product={product}
                   productSlug={path}
                   handleURLChange={handleURLChange}
+                  setSelectedOptions={setSelectedOptions}
                   updateProductVariant={updateProductVariant}
                   setSelectedColor={setSelectedColor}
                   productVariant={productVariant}
@@ -384,28 +438,15 @@ const ProductInfo = ({
               <PlusMinusInputTwo setCount={setCount} amount={count} />
               <button
                 disabled={isPending}
-                className={`${
-                  productVariant === null || productVariant.length === 0
-                    ? `max-sm:w-[8.5rem] ${
-                        text === "Izaberite veličinu" ||
-                        text === "Izaberite boju"
-                          ? `bg-red-500`
-                          : `bg-[#de6a26]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative`
-                    : `max-sm:w-[8.5rem] ${
-                        text === "Izaberite veličinu" ||
-                        text === "Izaberite boju"
-                          ? `bg-red-500`
-                          : `bg-[#de6a26]`
-                      } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px] flex justify-center items-center uppercase text-white text-lg font-semibold pt-1`
-                } disabled:opacity-50`}
-                onClick={() => {
-                  handleAddToCart();
-                  handleTextChangeAddToCart();
-                }}
+                className={`max-sm:w-[8.5rem] bg-[#052922] sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative disabled:opacity-50 ${
+                  tempError ? "!bg-red-500" : ""
+                }`}
+                onClick={handleAddToCart}
               >
                 {isPending
-                  ? "DODAJEM.."
+                  ? "DODAJEM..."
+                  : tempError
+                  ? tempError
                   : checkIsAddable(
                       productVariant?.id
                         ? productVariant?.price
@@ -413,7 +454,7 @@ const ProductInfo = ({
                       productVariant?.id
                         ? productVariant?.inventory
                         : product?.data?.item?.inventory
-                    ).text}
+                    )?.text}
               </button>
 
               <div
@@ -437,35 +478,6 @@ const ProductInfo = ({
                 />
               </div>
             </div>
-            {/* <div className="md:hidden mt-5 flex items-center gap-[10px] justify-between py-5 ">
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={FreeDelivery}
-                  alt="free delivery"
-                  width={30}
-                  height={30}
-                />
-                <p className="text-sm regular">Besplatna dostava</p>
-              </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={Calendar}
-                  alt="free delivery"
-                  width={30}
-                  height={30}
-                />
-                <p className="text-sm regular">2 dana isporuka</p>
-              </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <Image
-                  src={DeliveryStatus}
-                  alt="free delivery"
-                  width={30}
-                  height={30}
-                />
-                <p className="text-sm regular">Povrat do 14 dana</p>
-              </div>
-            </div> */}
             <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-start max-md:w-full">
               <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
                 <div
@@ -481,7 +493,6 @@ const ProductInfo = ({
                   Informacije
                 </div>
               </ul>
-
               {/* <div className={`flex flex-col divide-y md:max-w-[80%] h-[310px] overflow-y-auto`}>
                 {specification?.length > 0 &&
                   specification?.map((item) => {
@@ -898,6 +909,38 @@ const ProductInfo = ({
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+      <div className="max-md:hidden fixed z-[100] max-w-[114px] right-0 top-[30%] flex flex-col gap-[30px] px-5 py-[37px] bg-white drop-shadow-2xl rounded-l-lg">
+        <div className="flex flex-col items-center text-center justify-center">
+          <Image
+            alt="free delivery"
+            loading="lazy"
+            width={50}
+            height={50}
+            src={"/package1.png"}
+          />
+          <p className="text-sm regular">Besplatna dostava</p>
+        </div>
+        <div className="flex flex-col items-center text-center justify-center">
+          <Image
+            alt="free delivery"
+            loading="lazy"
+            width={50}
+            height={50}
+            src={"/calendar1.png"}
+          />
+          <p className="text-sm regular">2 dana isporuka</p>
+        </div>
+        <div className="flex flex-col items-center text-center justify-center">
+          <Image
+            alt="free delivery"
+            loading="lazy"
+            width={50}
+            height={50}
+            src={"/delivery-status1.png"}
+          />
+          <p className="text-sm regular">Povrat do 14 dana</p>
         </div>
       </div>
     </>

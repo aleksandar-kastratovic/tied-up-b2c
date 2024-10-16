@@ -88,7 +88,7 @@ const Filters = ({
 
   return (
     <>
-      <div className=" mx-[50px] flex items-center justify-between bg-black text-white px-[2rem] font-thin text-[0.85rem]">
+      <div className=" mx-[50px] flex items-center justify-between bg-[#B89980] text-black px-[2rem] font-thin text-[0.85rem]">
         <div className={`flex items-center gap-[4.5rem]`}>
           {(availableFilters ?? []).map((filter, index) => {
             const isOpen = openIndex === index;
@@ -106,9 +106,7 @@ const Filters = ({
                   >
                     <p
                       className={`text-base text-center filter font-light ${
-                        openIndex === index
-                          ? "text-[#de6a26]"
-                          : "hover:text-[#de6a26]"
+                        openIndex === index ? "text-white" : "hover:text-white"
                       }`}
                     >
                       {filter?.attribute?.name}
@@ -132,7 +130,7 @@ const Filters = ({
                     ref={filterRef}
                     className={` z-[20] ${
                       filter?.name === "Cena" && "w-[230px]"
-                    } w-[150px] top-[43px] bg-white/80 border-l border-r border-b border-[#f2f2f2] border-t left-0 absolute font-thin`}
+                    } w-[150px] top-[43px] bg-white border-l border-r border-b border-[#f2f2f2] border-t left-0 absolute font-thin`}
                   >
                     <div className="pb-3.5 filter">
                       <Filter
@@ -185,7 +183,7 @@ const Filters = ({
             >
               <p
                 className={`text-base font-light text-center ${
-                  openSort?.open ? "text-[#de6a26]" : "hover:text-[#de6a26]"
+                  openSort?.open ? "text-white" : "hover:text-white"
                 }`}
               >
                 Sortiranje
@@ -225,7 +223,7 @@ const Filters = ({
                     >
                       <p
                         className={` sortref ${
-                          isActive ? ` text-[#de6a26]` : ` hover:text-[#de6a26]`
+                          isActive ? ` text-[#052922]` : ` hover:text-[#052922]`
                         } text-[1rem] text-center font-light`}
                         onClick={() =>
                           setOpenSort({
@@ -246,12 +244,12 @@ const Filters = ({
             )}
           </div>
           <div className="col-span-1 col-start-9 flex items-center gap-3 justify-end relative md:hidden lg:flex">
-            <p className=" font-light text-base text-center">Prikaz:</p>
+            <p className="font-light text-base text-center">Prikaz:</p>
             <div className="flex items-center justify-center gap-2">
               <button
                 onClick={() => setProductsPerView(2)}
                 className={`text-base  ${
-                  productsPerView === 2 ? `text-[#de6a26]` : `text-white `
+                  productsPerView === 2 ? `text-white` : `text-black`
                 }`}
               >
                 2
@@ -260,7 +258,7 @@ const Filters = ({
               <button
                 onClick={() => setProductsPerView(3)}
                 className={`2xl:hidden text-base ${
-                  productsPerView === 3 ? `text-[#de6a26]` : `font-light`
+                  productsPerView === 3 ? `text-white` : `text-black`
                 }`}
               >
                 3
@@ -268,7 +266,7 @@ const Filters = ({
               <button
                 onClick={() => setProductsPerView(4)}
                 className={`max-2xl:hidden text-base ${
-                  productsPerView === 4 ? `text-[#de6a26]` : `font-light`
+                  productsPerView === 4 ? `text-white` : `text-black`
                 }`}
               >
                 4

@@ -168,7 +168,7 @@ const ProductMobileGallery = ({
 
       return (
         <p
-          className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -185,7 +185,9 @@ const ProductMobileGallery = ({
   const renderStickers = ({ stickers }) => {
     let stickers_tmp = stickers?.map(({ name }, i) => {
       return (
-        <p className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}>
+        <p
+          className={`bg-[#E7DCD1] text-black px-[0.85rem] py-1 rounded-lg font-bold`}
+        >
           {name}
         </p>
       );
@@ -266,7 +268,7 @@ const ProductMobileGallery = ({
         >
           <div className="relative w-full h-full">
             <Swiper
-                autoHeight
+              autoHeight
               modules={[Pagination, Zoom]}
               pagination={true}
               direction={"vertical"}
@@ -312,7 +314,7 @@ const ProductMobileGallery = ({
             </Swiper>
           </div>
           <i
-            className={`fas fa-times absolute top-2 left-2 z-50 text-[#de6a26] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
+            className={`fas fa-times absolute top-2 left-2 z-50 text-[#052922] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
             onClick={() => {
               setModalImage(null);
             }}

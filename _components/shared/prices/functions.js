@@ -1,9 +1,26 @@
 import { currencyFormat } from "@/helpers/functions";
 
 /**
- * Returns status of the price
- * @param {object} price - The object that holds the price data.
- * @returns {string} - The status of the price.
+ * Returns
+ * status
+ * of
+ * the
+ * price
+ * @param {object} price -
+ *     The
+ *     object
+ *     that
+ *     holds
+ *     the
+ *     price
+ *     data.
+ * @returns {string}
+ *     -
+ *     The
+ *     status
+ *     of
+ *     the
+ *     price.
  */
 export const getPriceStatus = (price) => {
   let status = "default";
@@ -22,27 +39,92 @@ export const getPriceStatus = (price) => {
 };
 
 /**
- * Returns are prices equal
- * @param {object} price - The object that holds the price data.
- * @returns {boolean} - Are prices equal.
+ * Returns
+ * are
+ * prices
+ * equal
+ * @param {object} price -
+ *     The
+ *     object
+ *     that
+ *     holds
+ *     the
+ *     price
+ *     data.
+ * @returns {boolean}
+ *     -
+ *     Are
+ *     prices
+ *     equal.
  */
 export const getArePricesEqual = (price) => {
   return price?.min?.price?.original === price?.max?.price?.original;
 };
 
 /**
- * Returns status of the inventory
- * @param {object} inventory - The object that holds the inventory data.
- * @returns {boolean} - The status of the inventory - is in stock or not.
+ * Returns
+ * status
+ * of
+ * the
+ * inventory
+ * @param {object} inventory -
+ *     The
+ *     object
+ *     that
+ *     holds
+ *     the
+ *     inventory
+ *     data.
+ * @returns {boolean}
+ *     -
+ *     The
+ *     status
+ *     of
+ *     the
+ *     inventory
+ *     -
+ *     is
+ *     in
+ *     stock
+ *     or
+ *     not.
  */
 export const checkIsInStock = (inventory) => {
   return inventory?.inventory_defined && Number(inventory?.amount) > 0;
 };
 
 /**
- * Returns status of the inventory
- * @param {object} price - The object that holds the price data.
- * @returns {object} - The status of the price - is it defined and is it the range of prices.
+ * Returns
+ * status
+ * of
+ * the
+ * inventory
+ * @param {object} price -
+ *     The
+ *     object
+ *     that
+ *     holds
+ *     the
+ *     price
+ *     data.
+ * @returns {object}
+ *     -
+ *     The
+ *     status
+ *     of
+ *     the
+ *     price
+ *     -
+ *     is
+ *     it
+ *     defined
+ *     and
+ *     is
+ *     it
+ *     the
+ *     range
+ *     of
+ *     prices.
  */
 export const checkPrices = (price) => {
   let data = {};
@@ -56,9 +138,27 @@ export const checkPrices = (price) => {
 };
 
 /**
- * Returns status of the inventory
- * @param {object} data - The object that holds the price data.
- * @returns {JSX.Element} - Default prices, without rebates or discounts.
+ * Returns
+ * status
+ * of
+ * the
+ * inventory
+ * @param {object} data -
+ *     The
+ *     object
+ *     that
+ *     holds
+ *     the
+ *     price
+ *     data.
+ * @returns {JSX.Element}
+ *     -
+ *     Default
+ *     prices,
+ *     without
+ *     rebates
+ *     or
+ *     discounts.
  */
 export const renderDefaultPrices = (data = {}) => {
   let is_range = data?.is_price_range;
@@ -90,9 +190,24 @@ export const renderDefaultPrices = (data = {}) => {
 };
 
 /**
- * Returns status of the inventory
- * @param {object} data - The object that holds the price data.
- * @returns {JSX.Element} - Prices after discount.
+ * Returns
+ * status
+ * of
+ * the
+ * inventory
+ * @param {object} data -
+ *     The
+ *     object
+ *     that
+ *     holds
+ *     the
+ *     price
+ *     data.
+ * @returns {JSX.Element}
+ *     -
+ *     Prices
+ *     after
+ *     discount.
  */
 export const renderDiscountPrices = (data = {}) => {
   let is_range = data?.is_price_range;
@@ -109,9 +224,27 @@ export const renderDiscountPrices = (data = {}) => {
           <p className={`font-bold`}>
             {currencyFormat(price?.min?.price?.discount)}
           </p>
-          <p className={`line-through`}>
+          <div className={`line-through text-xs group relative`}>
             {currencyFormat(price?.min?.price?.original)}
-          </p>
+            {data?.is_details && (
+              <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition bg-[#B89980] text-white p-[6px] rounded absolute -top-12 left-0 text-[10px] font-normal">
+                Važeća MP cena
+                <svg
+                  className="absolute z-50 w-6 h-6 text-[#B89980] transform left-[45%] -translate-x-1/2 -translate-y-[2px] fill-current stroke-current"
+                  width="8"
+                  height="8"
+                >
+                  <rect
+                    x="12"
+                    y="-10"
+                    width="8"
+                    height="8"
+                    transform={"rotate(45)"}
+                  />
+                </svg>
+              </span>
+            )}
+          </div>
         </div>
       );
     } else {
@@ -123,10 +256,28 @@ export const renderDiscountPrices = (data = {}) => {
             {currencyFormat(price?.min?.price?.discount)} -{" "}
             {currencyFormat(price?.max?.price?.discount)}
           </p>
-          <p className={`line-through`}>
+          <div className={`line-through text-xs group relative`}>
             {currencyFormat(price?.min?.price?.original)} -{" "}
             {currencyFormat(price?.max?.price?.original)}
-          </p>
+            {data?.is_details && (
+              <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition bg-[#B89980] text-white p-[6px] rounded absolute -top-12 left-0 text-[10px] font-normal">
+                Važeća MP cena
+                <svg
+                  className="absolute z-50 w-6 h-6 text-[#B89980] transform left-[45%] -translate-x-1/2 -translate-y-[2px] fill-current stroke-current"
+                  width="8"
+                  height="8"
+                >
+                  <rect
+                    x="12"
+                    y="-10"
+                    width="8"
+                    height="8"
+                    transform={"rotate(45)"}
+                  />
+                </svg>
+              </span>
+            )}
+          </div>
         </div>
       );
     }
@@ -136,9 +287,27 @@ export const renderDiscountPrices = (data = {}) => {
         className={`mt-2 flex flex-row flex-wrap items-center gap-3 font-sans`}
       >
         <p className={`font-bold`}>{currencyFormat(price?.price?.discount)}</p>
-        <p className={`line-through`}>
+        <div className={`line-through text-xs group relative`}>
           {currencyFormat(price?.price?.original)}
-        </p>
+          {data?.is_details && (
+            <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition bg-[#B89980] text-white p-[6px] rounded absolute -top-12 left-0 text-[10px] font-normal">
+              Važeća MP cena
+              <svg
+                className="absolute z-50 w-6 h-6 text-[#B89980] transform left-[45%] -translate-x-1/2 -translate-y-[2px] fill-current stroke-current"
+                width="8"
+                height="8"
+              >
+                <rect
+                  x="12"
+                  y="-10"
+                  width="8"
+                  height="8"
+                  transform={"rotate(45)"}
+                />
+              </svg>
+            </span>
+          )}
+        </div>
       </div>
     );
   }

@@ -15,11 +15,6 @@ export const TemplateOne = ({
     <GoogleReCaptchaProvider reCaptchaKey={process.env.CAPTCHAKEY}>
       <GoogleReCaptcha onVerify={verifyCaptcha} refreshReCaptcha={true} />
       <div className="mx-auto text-sm 4xl:container mt-[1rem] lg:mt-[4rem] placeholder">
-        <div className="md:hidden bg-[#f5f5f6]">
-          <div className="font-semibold py-3 text-xl w-[85%] mx-auto">
-            Korpa
-          </div>
-        </div>
         <>
           <div className="grid grid-cols-5 gap-y-3 gap-x-3 max-xl:mx-auto max-xl:w-[95%] xl:mx-[5rem] ">
             <div className="col-span-5 bg-white p-1 max-xl:row-start-1">
@@ -29,6 +24,13 @@ export const TemplateOne = ({
               {children}
             </div>
           </div>
+
+          {/*{recommendedProducts?.length > 0 && (*/}
+          {/*  <RecommendedProducts*/}
+          {/*    recommendedProducts={recommendedProducts}*/}
+          {/*    action4={`Gledali ste i ove modele`}*/}
+          {/*  />*/}
+          {/*)}*/}
         </>
       </div>
     </GoogleReCaptchaProvider>

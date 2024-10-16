@@ -49,7 +49,10 @@ const ProductDetails = ({
       className={`max-md:mt-[1rem]  max-md:w-[95%]  max-md:mx-auto md:mx-[3rem] mt-6`}
     >
       <div className="flex items-center gap-2 flex-wrap">
-        <Link href={`/`} className="text-[#191919] text-[0.95rem] font-thin">
+        <Link
+          href={`/`}
+          className="text-[#191919] text-[0.95rem] font-thin hover:text-[#B89980]"
+        >
           Početna
         </Link>{" "}
         <>/</>
@@ -62,7 +65,7 @@ const ProductDetails = ({
                     ? `/${breadcrumb?.link?.link_path}`
                     : `/${breadcrumb?.link?.link_path}`
                 }
-                className="text-[#000] text-[0.95rem] font-thin "
+                className="text-[#000] text-[0.95rem] font-thin hover:text-[#B89980]"
               >
                 {breadcrumb?.name}
               </Link>
@@ -71,7 +74,7 @@ const ProductDetails = ({
           );
         })}
         {breadcrumbs?.steps?.length > 0 && <>/</>}
-        <p className="text-[#de6a26] text-[0.95rem] font-normal">
+        <p className="text-[#052922] text-[0.95rem] font-normal">
           {breadcrumbs?.end?.name}
         </p>
       </div>

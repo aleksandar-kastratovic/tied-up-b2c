@@ -1,10 +1,11 @@
 import { get } from "@/app/api/api";
 import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 import { notFound, redirect } from "next/navigation";
-import Category from "./category";
+import { CategoryPage } from "@/_components/category";
 import ProductDetailPage from "./product";
 import { headers } from "next/headers";
 import { getRobots, handleCategoryRobots } from "@/_functions";
+import { Suspense } from "react";
 
 const handleData = async (slug) => {
   return await get(`/slugs/product-categories?slug=${slug}`).then(
@@ -32,7 +33,15 @@ const DynamicPage = async ({ params: { path }, params, searchParams }) => {
     case data?.type === "category" &&
       data?.status === true &&
       data?.redirect_url === false:
-      return <Category params={params} searchParams={searchParams} />;
+      let headersList = headers();
+      let base_url = headersList?.get("x-base_url");
+      return (
+        <CategoryPage
+          params={params}
+          searchParams={searchParams}
+          base_url={base_url}
+        />
+      );
     case data?.type === "product" &&
       data?.status === true &&
       data?.redirect_url === false:

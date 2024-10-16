@@ -27,7 +27,7 @@ const CheckoutOptions = ({
         `checkout/delivery-option-form/${formData?.delivery_method}`,
         {
           order_data: {},
-        },
+        }
       ).then((res) => res?.payload);
     },
   });
@@ -37,7 +37,7 @@ const CheckoutOptions = ({
     if (value) {
       let method_id = formData?.delivery_method;
       let method_name = (delivery_options ?? [])?.find(
-        (o) => o?.id === formData?.delivery_method,
+        (o) => o?.id === formData?.delivery_method
       )?.name;
 
       data = {
@@ -69,14 +69,9 @@ const CheckoutOptions = ({
     <>
       <div className={`col-span-2 lg:col-span-1`}>
         <div className={`flex flex-col gap-5`}>
+          <h2 className="text-xl font-bold ">Način dostave</h2>
+
           <div className={`bg-[#f7f7f7] p-3`}>
-            <h3
-              className={`pb-4 text-[0.965rem] font-light ${className} uppercase underline ${
-                errors?.includes("delivery_method") ? `text-red-500` : ``
-              }`}
-            >
-              ODABERITE NAČIN DOSTAVE
-            </h3>
             {(delivery_options ?? [])?.map(({ id, name }) => {
               return (
                 <div className={`flex flex-col gap-2 pl-2.5`} key={id}>
@@ -93,9 +88,7 @@ const CheckoutOptions = ({
                           delivery_method: e.target.value,
                         });
                         setErrors(
-                          errors?.filter(
-                            (error) => error !== "delivery_method",
-                          ),
+                          errors?.filter((error) => error !== "delivery_method")
                         );
                       }}
                     />
@@ -118,15 +111,14 @@ const CheckoutOptions = ({
                 </div>
               );
             })}
+            {errors?.includes("delivery_method") && (
+              <p className="text-red-500 text-sm mt-2">
+                Molimo Vas da izaberete način dostave.
+              </p>
+            )}
           </div>
+          <h2 className="text-xl font-bold ">Način plaćanja</h2>
           <div className={`bg-[#f7f7f7] p-3`}>
-            <h3
-              className={`pb-4 text-[0.965rem] font-light ${className} uppercase underline ${
-                errors?.includes("payment_method") ? `text-red-500` : ``
-              }`}
-            >
-              ODABERITE NAČIN PLAĆANJA
-            </h3>
             {(payment_options ?? [])?.map(({ id, name, type }) => {
               return (
                 <div className={`flex items-center gap-3 pl-2.5`} key={id}>
@@ -142,7 +134,7 @@ const CheckoutOptions = ({
                         payment_method: e.target.value,
                       });
                       setErrors(
-                        errors?.filter((error) => error !== "payment_method"),
+                        errors?.filter((error) => error !== "payment_method")
                       );
                     }}
                   />
@@ -155,6 +147,11 @@ const CheckoutOptions = ({
                 </div>
               );
             })}
+            {errors?.includes("payment_method") && (
+              <p className="text-red-500 text-sm mt-2">
+                Molimo Vas da izaberete način plaćanja.
+              </p>
+            )}
           </div>
         </div>
       </div>

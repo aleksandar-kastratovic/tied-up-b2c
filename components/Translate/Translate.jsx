@@ -5,8 +5,8 @@ import { getCookie, hasCookie, setCookie } from "cookies-next";
 const Translate = () => {
   const baseLanguage = "/auto/sr-Lat";
   const languages = [
-    { label: `SR`, value: "/auto/sr-Lat", shortLabel: 'SR'},
-    { label: "EN", value: "/auto/en", shortLabel: 'EN' },
+    { label: `SR`, value: "/auto/sr-Lat", shortLabel: "SR" },
+    { label: "EN", value: "/auto/en", shortLabel: "EN" },
   ];
   const [selected, setSelected] = useState(baseLanguage);
 
@@ -44,7 +44,7 @@ const Translate = () => {
     window.googleTranslateElementInit = googleTranslateElementInit;
   }, []);
 
-const langChange = (value) => {
+  const langChange = (value) => {
     if (value == baseLanguage) {
       setCookie("googtrans", "", { path: "/", domain: ".croonus.com" });
       setCookie("googtrans", "", { path: "/" });
@@ -56,7 +56,6 @@ const langChange = (value) => {
     }
     window.location.reload();
   };
-
 
   return (
     <>
@@ -72,18 +71,18 @@ const langChange = (value) => {
       ></div>{" "}
       <div className="notranslate flex items-center gap-3 custom-select-container">
         <select
-          className="custom-select rounded-lg border-none text-xs font-light text-white focus:ring-0 cursor-pointer bg-transparent"
+          className="custom-select rounded-lg border-none text-xs font-light text-black focus:ring-0 cursor-pointer bg-transparent"
           onChange={(e) => langChange(e.target.value)}
           value={selected}
         >
           {/* <option className='bg-transparent text-white azosansserif font-thin'>{selected?.split('/')[selected?.split('/').length - 1] || 'SRB'}</option> */}
-       
+
           {languages.map((language) => (
             <option
               key={language.value}
               onChange={() => langChange(language.value)}
               value={language.value}
-              className="text-white font-thin"
+              className="text-black bg-white font-thin"
             >
               {language.label}
             </option>

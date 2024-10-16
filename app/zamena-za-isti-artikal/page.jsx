@@ -153,14 +153,15 @@ const ZamenaZaIstiArtikal = () => {
             <span>&nbsp;</span>kurirskom službom
           </strong>
           , i da D-Espress-u obavezno napomenete, da se &scaron;alje O
-          TRO&Scaron;KU Croonus-ja PREKO UGOVORA.
+          TRO&Scaron;KU TiedUp-a PREKO UGOVORA.
           <br />U slučaju da nam artikal po&scaron;aljete nekom drugom kurirskom
           službom, po&scaron;iljka neće biti primljena, već će Vam biti vraćena,
           i u tom slučaju sve tro&scaron;kove slanja i povrata ide na Va&scaron;
           tro&scaron;ak.
           <br />
-          Artikal nam &scaron;aljete na adresu sa računa (Kralja Petra I 30,32000 Čačak), sa naznakom problema koji je nastao, uz račun, odnosno
-          dokaz o kupovini.
+          Artikal nam &scaron;aljete na adresu sa računa (Prvoslava Stojanovića
+          4, 34000 Kragujevac), sa naznakom problema koji je nastao, uz račun,
+          odnosno dokaz o kupovini.
         </p>
         <p>
           Potro&scaron;ač nema pravo na zamenu artikla u slučaju isporuke
@@ -173,7 +174,7 @@ const ZamenaZaIstiArtikal = () => {
         </p>
         <p>
           Artikal ne možete samoinicijativno menjati u nekom od maloprodajnih
-          objekata Croonus-ja.
+          objekata TiedUp-a.
         </p>
         <p>
           Artikal nije moguće menjati ukoliko je no&scaron;en &ndash; &scaron;to
@@ -186,7 +187,8 @@ const ZamenaZaIstiArtikal = () => {
           veličina, molimo Vas da nas kontaktirate putem forme ispod.
           <br />I u ovom slučaju, artikal nam možete poslati bilo kojom
           kurirskom službom o&nbsp;<u>Va&scaron;em tro&scaron;ku</u>.<br />
-          Artikal nam &scaron;aljete na adresu sa računa (Kralja Petra I 30,32000 Čačak), uz račun, odnosno dokaz o kupovini.
+          Artikal nam &scaron;aljete na adresu sa računa (Prvoslava Stojanovića
+          4, 34000 Kragujevac), uz račun, odnosno dokaz o kupovini.
           <br />
           Dostava zamenskog artikla takođe ide o Va&scaron;em tro&scaron;ku.
         </p>

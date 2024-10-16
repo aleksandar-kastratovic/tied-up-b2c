@@ -12,56 +12,21 @@ import Cart from "../../assets/Icons/shopping-bag.png";
 import { currencyFormat } from "@/helpers/functions";
 import useDebounce from "@/hooks/useDebounce";
 import { useQuery } from "@tanstack/react-query";
+import {
+  useCartBadge,
+  useCategoryTree,
+  useWishlistBadge,
+} from "@/hooks/croonus.hooks";
 
 const NavigationMobile = () => {
+  const { data: categories } = useCategoryTree();
+  const { data: cartCount } = useCartBadge();
+  const { data: wishlistCount } = useWishlistBadge();
+
   const router = useRouter();
-  const [cart, , wishList] = useCartContext();
   const pathname = usePathname();
-
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
-  const [wishlistCount, setWishlistCount] = useState(0);
-  const getCartCount = useCallback(() => {
-    get("/cart/badge-count")
-      .then((response) => {
-        setCartCount(response?.payload?.summary?.items_count ?? 0);
-      })
-      .catch((error) => console.warn(error));
-  }, []);
-  useEffect(() => {
-    getCartCount();
-  }, [getCartCount, cart]);
 
-  const getWishlistCount = useCallback(() => {
-    get("/wishlist/badge-count")
-      .then((response) => {
-        setWishlistCount(response?.payload?.summary?.items_count ?? 0);
-      })
-      .catch((error) => console.warn(error));
-  }, []);
-  useEffect(() => {
-    getWishlistCount();
-  }, [getWishlistCount, wishList]);
-
-  useEffect(() => {
-    const getCategories = async () => {
-      const getCategories = await get("/categories/product/tree").then((res) =>
-        setCategories(res?.payload)
-      );
-    };
-    getCategories();
-  }, []);
-
-  useEffect(() => {
-    const getProducts = async () => {
-      const getProducts = await list("/products/new-in/list").then((res) =>
-        setProducts(res?.payload?.items)
-      );
-    };
-    getProducts();
-  }, []);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState({
@@ -93,6 +58,7 @@ const NavigationMobile = () => {
     };
     handleBodyOverflow();
   }, [menuOpen]);
+
   useEffect(() => {
     if (!pathname?.includes("/")) {
       setActiveCategory({
@@ -127,10 +93,10 @@ const NavigationMobile = () => {
 
   useEffect(() => {
     if (pathname?.includes("/korpa/")) {
-      getCartCount();
       router?.refresh();
     }
   }, [pathname]);
+
   const [landingPagesList, setLandingPagesList] = useState([]);
 
   useEffect(() => {
@@ -160,8 +126,10 @@ const NavigationMobile = () => {
 
   const categoriesMain = [
     { name: "Gde kupiti", slug: "/gdekupiti" },
+    { name: "Veleprodaja", slug: "/veleprodaja" },
     { name: "O nama", slug: "/onama" },
-    { name: "Galerija", slug: "/galerija" },
+    { name: "Personalizovano", slug: "/personalizovano" },
+    { name: "Blog", slug: "/blog" },
     { name: "Kontakt", slug: "/kontakt" },
   ];
 
@@ -174,11 +142,10 @@ const NavigationMobile = () => {
           </div>
           <Link href="/">
             <div className="relative">
-              <Image alt={`logo`} src={"/logo.png"} width={80} height={26} />
+              <Image alt={`logo`} src={"/logo1.png"} width={170} height={26} />
             </div>
           </Link>
           <div className="relative flex items-center gap-4">
-            {" "}
             {pathname === "/" ? (
               <div
                 className={
@@ -206,14 +173,21 @@ const NavigationMobile = () => {
                 />
               </div>
             )}
-            <Link href={`/nalog`}>
-              <Image src={User} width={33} height={33} />
-            </Link>
+            <a href={`/lista-zelja`}>
+              <div className="relative">
+                <Image src="/heart.png" width={25} height={33} />
+                {wishlistCount > 0 && (
+                  <span className="absolute text-white text-xs -top-[0.6rem] right-0 bg-[#052922] px-1 py-0 rounded-full">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+            </a>
             <a href="/korpa">
               <div className="relative">
                 <Image src={Cart} width={33} height={33} />
                 {cartCount > 0 && (
-                  <span className="absolute text-white text-xs -top-1 right-0 bg-[#de6a26] px-1 py-0 rounded-full">
+                  <span className="absolute text-white text-xs -top-1 right-0 bg-[#052922] px-1 py-0 rounded-full">
                     {cartCount}
                   </span>
                 )}
@@ -256,7 +230,7 @@ const NavigationMobile = () => {
         }
       >
         <div className="w-[95%]  mx-auto flex items-center justify-between py-3.5">
-          <Image src="/logo.png" width={150} height={150} alt="logo" />
+          <Image src="/logo1.png" width={150} height={150} alt="logo" />
           <i
             className="fas fa-times text-2xl"
             onClick={() => setMenuOpen(false)}
@@ -319,17 +293,6 @@ const NavigationMobile = () => {
               </div>
             );
           })}
-          <div
-            className="self-end justify-self-end ml-auto relative"
-            onClick={() => {
-              setMenuOpen(false);
-            }}
-          >
-            <Link href="/lista-zelja"> Lista želja</Link>
-            <span className="absolute -top-2 -right-1 bg-[#de6a26] rounded-full text-white px-1 text-xs">
-              {wishlistCount}
-            </span>
-          </div>
         </div>
 
         <div className="w-[95%] mx-auto mt-5">
@@ -380,7 +343,7 @@ const NavigationMobile = () => {
                       data: categories[0]?.children,
                     });
                   }}
-                  className={`text-[0.9rem] font-normal text-[#39ae00]`}
+                  className={`text-[0.9rem] font-normal text-[#052922]`}
                 >
                   Pogledaj sve
                 </Link>
@@ -440,7 +403,7 @@ const NavigationMobile = () => {
                           : `w-full`
                       } ${
                         pathname?.includes(category?.slug)
-                          ? `text-[#de6a26]`
+                          ? `text-[#052922]`
                           : `text-black`
                       } text-[0.9rem]`}
                       onClick={() => {
@@ -558,7 +521,7 @@ const NavigationMobile = () => {
                           <p className="text-[0.9rem] font-normal">
                             {item?.basic_data?.name}
                           </p>
-                          <p className="text-[0.9rem] w-fit bg-[#f8ce5d] px-2 font-bold text-center">
+                          <p className="text-[0.9rem] w-fit px-2 font-bold text-center">
                             {currencyFormat(
                               item?.price?.price?.discount ??
                                 item?.price?.price?.original
@@ -574,7 +537,6 @@ const NavigationMobile = () => {
                     href={`/search?search=${searchTerm}`}
                     className={`text-[0.9rem] text-center text-white bg-[#191919] mt-4 py-3 w-[80%] mx-auto font-normal`}
                     onClick={(e) => {
-                      setSearchData([]);
                       setSearchOpen(false);
                       handleSearch(e);
                       setSearchTerm("");

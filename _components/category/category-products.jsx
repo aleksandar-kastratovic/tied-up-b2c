@@ -304,23 +304,18 @@ export const CategoryProducts = ({
           );
         })}
       </div>
-      {data?.pagination?.total_pages > 1 && (
-        <Pagination
-          generateQueryString={() => {
-            const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
-              sort,
-              selectedFilters,
-              page
-            );
-            return generateQueryString(sort_tmp, filters_tmp, page_tmp);
-          }}
-          data={data}
-          page={page}
-          slug={slug}
-          setPage={setPage}
-          getPaginationArray={getPaginationArray}
-        />
+      {Number(data?.pagination?.total_pages) > 1 && (
+        <Suspense>
+          <Pagination
+            data={data}
+            page={page}
+            slug={slug}
+            setPage={setPage}
+            getPaginationArray={getPaginationArray}
+          />
+        </Suspense>
       )}
+
       <div
         className={
           filterOpen

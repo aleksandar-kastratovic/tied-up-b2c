@@ -321,12 +321,8 @@ export const CheckoutData = ({
           )}
         </div>
         <PromoCode />
+        <h2 className="text-xl font-bold ">Vrednost Vaše korpe</h2>
         <div className={`bg-[#f7f7f7] p-3`}>
-          <h3
-            className={`pb-4 text-[0.965rem] font-light ${className} uppercase underline`}
-          >
-            VREDNOST VAŠE KORPE
-          </h3>
           <CheckoutTotals
             totals={totals}
             options={options}
@@ -468,13 +464,6 @@ const NoStockModal = ({
       <div
         className={`relative inset-0 m-auto h-fit w-fit rounded-md bg-white p-[1rem] max-sm:mx-2`}
       >
-        <Image
-          src={`/fail.png`}
-          alt={`ecommerce`}
-          width={100}
-          height={100}
-          className={`absolute -top-[3.15rem] left-0 right-0 mx-auto`}
-        />
         <div className={`mt-[3rem] px-[0.25rem] md:px-9`}>
           <h3 className={`mt-4 text-center text-xl font-semibold ${className}`}>
             U korpi su proizvodi koji trenutno nisu na stanju.

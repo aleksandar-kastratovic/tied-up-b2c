@@ -15,6 +15,7 @@ export default function Variants({
   productVariant,
   setVariant,
   setVariantOnOff,
+  setSelectedOptions,
 }) {
   let variant_options = product?.data?.variant_options; // niz svih variant_options
   let variant_items = product?.data?.variant_items; // niz svih varijanti proizvoda
@@ -33,6 +34,10 @@ export default function Variants({
       setVariantOnOff(false);
     }
   }, [setVariant]);
+
+  useEffect(() => {
+    setSelectedOptions(selected);
+  }, [selected]);
 
   const [variantOptions, setVariantOptions] = useState(variant_options); // niz variant_options koji se prikazuje
   useEffect(() => {

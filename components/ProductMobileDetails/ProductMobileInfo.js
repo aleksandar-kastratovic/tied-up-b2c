@@ -202,7 +202,7 @@ const ProductInfo = ({
             <div className="flex items-center gap-2 flex-wrap">
               <Link
                 href={`/`}
-                className="text-[#191919] text-[0.75rem] font-normal hover:text-[#de6a26]"
+                className="text-[#191919] text-[0.75rem] font-normal hover:text-[#052922]"
               >
                 Početna
               </Link>{" "}
@@ -216,7 +216,7 @@ const ProductInfo = ({
                           ? `/${breadcrumb?.link?.link_path}`
                           : `/${breadcrumb?.link?.link_path}`
                       }
-                      className="text-[#191919] text-[0.75rem] font-normal hover:text-[#de6a26]"
+                      className="text-[#191919] text-[0.75rem] font-normal hover:text-[#052922]"
                     >
                       {breadcrumb?.name}
                     </Link>
@@ -227,7 +227,7 @@ const ProductInfo = ({
                 );
               })}
               <i className="fas fa-chevron-right text-[#191919] text-[0.65rem]"></i>
-              <h1 className="text-[0.75rem] font-normal text-[#de6a26]">
+              <h1 className="text-[0.75rem] font-normal text-[#052922]">
                 {breadcrumbs?.end?.name}
               </h1>
             </div>
@@ -246,7 +246,7 @@ const ProductInfo = ({
                   {!productVariant?.inventory?.inventory_defined && (
                     <>
                       <p
-                        className={`text-[#de6a26] w-fit text-sm font-bold mt-5`}
+                        className={`text-[#052922] w-fit text-sm font-bold mt-5`}
                       >
                         Proizvod nije dostupan.
                       </p>
@@ -258,7 +258,7 @@ const ProductInfo = ({
                   {!product?.data?.item?.inventory?.inventory_defined && (
                     <>
                       <p
-                        className={`text-[#de6a26] w-fit text-sm font-bold mt-5`}
+                        className={`text-[#052922] w-fit text-sm font-bold mt-5`}
                       >
                         Proizvod nije dostupan.
                       </p>
@@ -291,7 +291,7 @@ const ProductInfo = ({
               </div>
               {product?.data?.item?.price?.discount?.active && (
                 <div className="mt-3">
-                  <h2 className="text-[17px] text-[#2bc48a] font-semibold">
+                  <h2 className="text-[17px] text-[#B89980] font-semibold">
                     Ušteda:{" "}
                     {currencyFormat(
                       product?.data?.item?.price?.discount?.amount
@@ -303,7 +303,7 @@ const ProductInfo = ({
                 product?.data?.item?.inventory?.amount <= 4 && (
                   <>
                     <p
-                      className={`text-[#de6a26] w-fit text-sm font-bold mt-5`}
+                      className={`text-[#052922] w-fit text-sm font-bold mt-5`}
                     >
                       Male količine
                     </p>
@@ -361,13 +361,13 @@ const ProductInfo = ({
                         text === "Izaberite veličinu" ||
                         text === "Izaberite boju"
                           ? `bg-red-500`
-                          : `bg-[#de6a26]`
+                          : `bg-[#052922]`
                       } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative`
                     : `max-sm:w-[8.5rem] ${
                         text === "Izaberite veličinu" ||
                         text === "Izaberite boju"
                           ? `bg-red-500`
-                          : `bg-[#de6a26]`
+                          : `bg-[#052922]`
                       } sm:w-[15.313rem] hover:bg-opacity-80 h-[54px] flex justify-center items-center uppercase text-white text-lg font-semibold pt-1`
                 }
                 onClick={() => {

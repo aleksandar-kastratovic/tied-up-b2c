@@ -15,22 +15,16 @@ const queryClient = new QueryClient({
 
 const persister = createSyncStoragePersister({
   storage: typeof window !== "undefined" ? window.localStorage : null,
-  key: "queryCache",
+  key: "tiedUpcache",
 });
 
 export const QueryProvider = ({ children }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <PersistQueryClientProvider
       client={queryClient}
       persistOptions={{ persister }}
     >
-      {mounted && children}
+      {children}
     </PersistQueryClientProvider>
   );
 };

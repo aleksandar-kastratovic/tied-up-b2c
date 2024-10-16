@@ -1,7 +1,6 @@
 export const metadata = () => {
   return {
-    title:
-      "Zaštita privatnosti ",
+    title: "Zaštita privatnosti ",
     description: "Dobrodošli na croonus.com Online Shop",
     keywords: [
       "Croonus",
@@ -31,10 +30,7 @@ const ZastitaPrivatnosti = () => {
       </p>
       <p>
         Naziv:&nbsp;
-        <strong>
-          TRGOVINA NA MALO POSREDSTVOM INTERNETA
-          Croonus
-        </strong>
+        <strong>TRGOVINA NA MALO POSREDSTVOM INTERNETA Croonus</strong>
       </p>
       <p>
         Adresa:&nbsp;<strong>Kralja Petra Prvog 30</strong>
@@ -140,7 +136,9 @@ const ZastitaPrivatnosti = () => {
       <p>
         Ukoliko želite da povučete saglasnost za obradu podataka, molimo da nam
         uputite zahtev na sledeću email adresu:{" "}
-        <a href="mailto:zastitapodataka@croonus.com">zastitapodataka@croonus.com</a>
+        <a href="mailto:zastitapodataka@croonus.com">
+          zastitapodataka@croonus.com
+        </a>
         . Mi ćemo na osnovu Va&scaron;eg zahteva dalje postupiti u skladu sa
         zakonom.
       </p>
@@ -186,7 +184,7 @@ const ZastitaPrivatnosti = () => {
         koristite:
       </p>
       <ol className="list-inside list-none">
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies"
             rel="nofollow noopener"
@@ -195,7 +193,7 @@ const ZastitaPrivatnosti = () => {
             Microsofts Windows Internet Explorer
           </a>
         </li>
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.microsoft.com/en-gb/help/10635/windows-phone-change-privacy-and-other-browser-settings"
             rel="nofollow noopener"
@@ -204,7 +202,7 @@ const ZastitaPrivatnosti = () => {
             Microsoft&rsquo;s Windows Internet Explorer Mobile
           </a>
         </li>
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences"
             rel="nofollow noopener"
@@ -213,7 +211,7 @@ const ZastitaPrivatnosti = () => {
             Mozilla Firefox
           </a>
         </li>
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.google.com/chrome/answer/95647?hl=en-GB"
             rel="nofollow noopener"
@@ -222,7 +220,7 @@ const ZastitaPrivatnosti = () => {
             Google Chrome dektop verzija
           </a>
         </li>
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.google.com/chrome/answer/2392709?hl=en-GB&co=GENIE.Platform%3DAndroid&oco=1"
             rel="nofollow noopener"
@@ -231,7 +229,7 @@ const ZastitaPrivatnosti = () => {
             Google Chrome mobilna verzija
           </a>
         </li>
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.apple.com/kb/PH17191?locale=en_US&viewlocale=de_DE"
             rel="nofollow noopener"
@@ -240,7 +238,7 @@ const ZastitaPrivatnosti = () => {
             Apple Safari desktop verzija
           </a>
         </li>
-        <li className="text-[#de6a26] ml-5 py-1">
+        <li className="text-[#052922] ml-5 py-1">
           <a
             href="https://support.apple.com/en-gb/HT201265"
             rel="nofollow noopener"

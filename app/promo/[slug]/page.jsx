@@ -1,5 +1,6 @@
 import LandingPage from "@/components/PromoPage/LandingPage";
 import { get } from "@/app/api/api";
+import { headers } from "next/headers";
 
 const PromoPage = async ({ params: { slug } }) => {
   return (

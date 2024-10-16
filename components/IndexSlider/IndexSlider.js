@@ -99,6 +99,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
     };
   }, [banners, mobileBanners]);
 
+  console.log(banners);
   return (
     <div data-aos="zoom-out" className="w-screen block" ref={sliderRef}>
       <div className="relative h-full overflow-hidden">
@@ -126,7 +127,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                   />
                   <Link
                     href={`${banner?.url ?? `/stranica-u-izradi`}`}
-                    target={banner?.target ?? "_self"}
+                    target={`_${banner?.target}` ?? "_self"}
                     className="absolute z-[49] top-0 left-0 w-full h-full bg-black transition-all duration-500 bg-opacity-40"
                   >
                     <div className="absolute flex flex-col items-center md:items-start justify-center md:justify-start max-sm:gap-[20px] gap-[10px] max-sm:top-[50%] top-[48%] text-center left-[8%] transform -translate-y-1/2">

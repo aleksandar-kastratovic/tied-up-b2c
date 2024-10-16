@@ -89,7 +89,7 @@ export const OrderItemsInfo = ({ order }) => {
                   </h1>
                   <p className={`text-xs`}>{item?.basic_data?.sku}</p>
                   <p
-                    className={`bg-[#f8ce5d] px-2 w-fit text-xs mt-2 font-bold text-center`}
+                    className={` px-2 w-fit text-xs mt-2 font-bold text-center`}
                   >
                     {currencyFormat(item?.price?.total)}
                   </p>

@@ -26,7 +26,7 @@ const NewProductsPage = async () => {
             </h1>
             <h2 className="font-normal text-[15px] mt-3">Proverite kasnije.</h2>
             <Link href="/">
-              <button className="bg-[#2bc48a] mt-5 px-10 font-medium text-white hover:bg-opacity-80 py-4">
+              <button className="bg-[#df6a25] mt-5 px-10 font-medium text-white hover:bg-opacity-80 py-4">
                 Vrati se na početnu stranu
               </button>
             </Link>

@@ -11,7 +11,7 @@ const Tabs = ({ productsDesc, specification = [] }) => {
             <div
               onClick={() => setActiveTab(1)}
               className={`cursor-pointer px-4 py-2 max-lg:text-sm ${
-                activeTab === 1 ? "border-b-2 border-b-[#2bc48a]" : ""
+                activeTab === 1 ? "border-b-2 border-b-[#B89980]" : ""
               }`}
             >
               Opis proizvoda
@@ -21,7 +21,7 @@ const Tabs = ({ productsDesc, specification = [] }) => {
             <div
               onClick={() => setActiveTab(2)}
               className={`cursor-pointer px-4 py-2 max-lg:text-sm ${
-                activeTab === 2 ? "border-b-2 border-b-[#2bc48a]" : ""
+                activeTab === 2 ? "border-b-2 border-b-[#B89980]" : ""
               }`}
             >
               Specifikacija
