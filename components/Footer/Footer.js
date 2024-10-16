@@ -28,8 +28,8 @@ const Footer = () => {
   return (
     <div className="max-md:mt-[3rem] mt-[7.75rem] bg-black">
       <div className="md:mx-[5rem] max-xl:flex-col py-[1.4rem] flex items-center justify-between border-l-0 border-t-0 border-r-0 border-b-4 border-b-white">
-        <div className="flex max-md:flex-row max-xl:flex-col max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center px-2 gap-[3rem] max-md:w-full max-md:justify-between">
-          <div className="flex items-center gap-5 max-md:flex-col">
+        <div className="flex max-md:flex-row max-xl:flex-col max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center mx-auto px-2 gap-[3rem] max-md:w-full max-md:justify-between">
+          <div className="flex items-center justify-center gap-5 max-md:flex-col">
             <div>
               <Image
                 src={delivery}
@@ -45,7 +45,7 @@ const Footer = () => {
               </p>
               <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
                 Iznos preko{" "}
-                <span className="text-[#de6a26]  max-md:text-[14px] ">
+                <span className="text-[#B89980]  max-md:text-[14px] ">
                   5.000 RSD
                 </span>
               </p>
@@ -66,7 +66,7 @@ const Footer = () => {
                 Povrat robe
               </h1>
               <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
-                U roku od <span className="text-[#de6a26]">14</span> dana
+                U roku od <span className="text-[#B89980]">14</span> dana
               </p>
             </div>{" "}
           </div>
@@ -85,7 +85,7 @@ const Footer = () => {
                 Rok isporuke do
               </p>
               <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
-                <span className="text-[#de6a26]">2</span> radna dana
+                <span className="text-[#B89980]">2</span> radna dana
               </p>
             </div>
           </div>
@@ -97,61 +97,46 @@ const Footer = () => {
           </div>
         </div> */}
       </div>
-      <div className="flex justify-center -mt-[2.3rem]">
+      <div className="flex justify-center mt-5">
         <Link href={`/`}>
           <Image
-            src={"/logo-footer.png"}
-            width={160}
+            src={"/logo1.png"}
+            width={200}
             height={45}
             alt="Tied up"
+            className={`invert`}
           />
         </Link>
       </div>
-      <div className="grid grid-cols-8 md:mx-[5rem] border-b-2 border-b-[#de6a26] pb-[1.4rem]">
+      <div className="grid grid-cols-8 md:mx-[5rem] border-b-2 border-b-[#B89980] pb-[1.4rem]">
         <div className="max-md:hidden col-span-2 text-white flex flex-col md:items-center">
           <div>
             <h3 className="text-[1rem] font-semibold">O nama</h3>
             <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
               <p>
                 <Link
-                  href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#de6a26] mr-1 ${
-                    pathname === "/onama" && "text-[#de6a26]"
+                  href={`/onama`}
+                  className={`cursor-pointer hover:text-[#B89980] mr-1 ${
+                    pathname === "/onama" && "text-[#B89980]"
                   }`}
                 >
-                  Više o kompaniji
+                  Više o kompaniji,
                 </Link>
-                {", "}
-                {/* <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#de6a26] ml-1 ${pathname === "/joinlife" && "text-[#de6a26]"
-                }`}
-            >
-              Join Life
-            </Link> */}
               </p>
               <p>
                 <Link
                   href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#de6a26] mr-1 ${
-                    pathname === "/posao" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] mr-1 ${
+                    pathname === "/posao" && "text-[#B89980]"
                   }`}
                 >
-                  Ponude za posao
+                  Ponude za posao,
                 </Link>
-                {", "}
-                {/* <Link
-              href={`/stranica-u-izradi`}
-              className={`cursor-pointer hover:text-[#de6a26] ml-1 ${pathname === "/stampa" && "text-[#de6a26]"
-                }`}
-            >
-             Štampa
-            </Link> */}
               </p>
               <Link
                 href={`/gdekupiti`}
-                className={`cursor-pointer hover:text-[#de6a26] ${
-                  pathname === "/gdekupiti" && "text-[#de6a26]"
+                className={`cursor-pointer hover:text-[#B89980] ${
+                  pathname === "/gdekupiti" && "text-[#B89980]"
                 }`}
               >
                 Prodajna mesta
@@ -300,27 +285,26 @@ const Footer = () => {
             <div className="flex flex-col items-start text-[17px] font-extralight mt-4">
               <p>
                 <Link
-                  href={`/kako-kupiti`}
-                  className={`cursor-pointer hover:text-[#de6a26] mr-1 ${
-                    pathname === "/kako-kupiti" && "text-[#de6a26]"
+                  href={`/strana/kako-kupiti`}
+                  className={`cursor-pointer hover:text-[#B89980] mr-1 ${
+                    pathname === "/strana/kako-kupiti" && "text-[#B89980]"
                   }`}
                 >
-                  Kako kupiti
+                  Kako kupiti,
                 </Link>
-                {", "}
+
                 <Link
-                  href={`/reklamacije`}
-                  className={`cursor-pointer hover:text-[#de6a26] ml-1 ${
-                    pathname === "/reklamacije" && "text-[#de6a26]"
+                  href={`/strana/reklamacije`}
+                  className={`cursor-pointer hover:text-[#B89980] ml-1 ${
+                    pathname === "/strana/reklamacije" && "text-[#B89980]"
                   }`}
                 >
-                  Reklamacije
+                  Reklamacije,
                 </Link>
-                {", "}
                 <Link
                   href={`/povrat-sredstava`}
-                  className={`cursor-pointer hover:text-[#de6a26] ml-1 ${
-                    pathname === "/povrat-sredstava" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ml-1 ${
+                    pathname === "/povrat-sredstava" && "text-[#B89980]"
                   }`}
                 >
                   Povrat sredstava
@@ -329,26 +313,26 @@ const Footer = () => {
               <p>
                 <Link
                   href={`/zamena-za-isti-artikal`}
-                  className={`cursor-pointer hover:text-[#de6a26] mr-1 ${
-                    pathname === "/zamena-za-isti-artikal" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] mr-1 ${
+                    pathname === "/zamena-za-isti-artikal" && "text-[#B89980]"
                   }`}
                 >
-                  Zamena za isti artikal
+                  Zamena za isti artikal,
                 </Link>
-                {", "}
                 <Link
                   href={`/zamena-za-drugi-artikal`}
-                  className={`cursor-pointer hover:text-[#de6a26] ml-1 ${
-                    pathname === "/zamena-za-drugi-artikal" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ml-1 ${
+                    pathname === "/zamena-za-drugi-artikal" && "text-[#B89980]"
                   }`}
                 >
                   Zamena za drugi artikal
                 </Link>
               </p>
               <Link
-                href={`/pravo-na-odustajanje`}
-                className={`cursor-pointer hover:text-[#de6a26] ${
-                  pathname === "/pravo-na-odustajanje" && "text-[#de6a26]"
+                href={`/strana/pravo-na-odustajanje`}
+                className={`cursor-pointer hover:text-[#B89980] ${
+                  pathname === "/strana/pravo-na-odustajanje" &&
+                  "text-[#B89980]"
                 }`}
               >
                 Pravo na odustajanje
@@ -369,90 +353,92 @@ const Footer = () => {
             {open?.id === 1 && (
               <div className="flex flex-col items-center justify-center gap-[0.4rem] font-thin text-[#c9c9c9]">
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/kako-kupiti" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/kako-kupiti" && "text-[#B89980]"
                   }`}
-                  href="/kako-kupiti"
+                  href="/strana/kako-kupiti"
                 >
                   Kako kupiti
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/reklamacije" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/reklamacije" && "text-[#B89980]"
                   }`}
-                  href="/reklamacije"
+                  href="/strana/reklamacije"
                 >
                   Reklamacije
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/povrat-sredstava" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/povrat-sredstava" && "text-[#B89980]"
                   }`}
                   href="/povrat-sredstava"
                 >
                   Povrat sredstava
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/zamena-za-isti-artikal" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/zamena-za-isti-artikal" && "text-[#B89980]"
                   }`}
                   href="/zamena-za-isti-artikal"
                 >
                   Zamena za isti artikal
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/zamena-za-drugi-artikal" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/zamena-za-drugi-artikal" && "text-[#B89980]"
                   }`}
                   href="/zamena-za-drugi-artikal"
                 >
                   Zamena za drugi artikal
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/pravo-na-odustajanje" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/pravo-na-odustajanje" &&
+                    "text-[#B89980]"
                   }`}
-                  href="/pravo-na-odustajanje"
+                  href="/strana/pravo-na-odustajanje"
                 >
                   Pravo na odustajanje
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/uslovi-koriscenja" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/uslovi-koriscenja" && "text-[#B89980]"
                   }`}
-                  href="/uslovi-koriscenja"
+                  href="/strana/uslovi-koriscenja"
                 >
                   Uslovi korišćenja
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/zastita-privatnosti" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/zastita-privatnosti" &&
+                    "text-[#B89980]"
                   }`}
-                  href="/zastita-privatnosti"
+                  href="/strana/zastita-privatnosti"
                 >
                   Zaštita privatnosti
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/isporuka" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/isporuka" && "text-[#B89980]"
                   }`}
-                  href="/isporuka"
+                  href="/strana/isporuka"
                 >
                   Isporuka
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/najcesca-pitanja" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/najcesca-pitanja" && "text-[#B89980]"
                   }`}
-                  href="/najcesca-pitanja"
+                  href="/strana/najcesca-pitanja"
                 >
                   Najčešća pitanja
                 </Link>
                 <Link
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/kolacici" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/strana/kolacici" && "text-[#B89980]"
                   }`}
-                  href="/kolacici"
+                  href="/strana/kolacici"
                 >
                   Politika o Kolačićima
                 </Link>
@@ -468,24 +454,24 @@ const Footer = () => {
               <div className="flex flex-col items-center justify-center gap-[0.4rem]  font-thin text-[#c9c9c9]">
                 <Link
                   href={`/onama`}
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/onama" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/onama" && "text-[#B89980]"
                   }`}
                 >
                   Više o kompaniji
                 </Link>
                 <Link
                   href={`/stranica-u-izradi`}
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/posao" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/posao" && "text-[#B89980]"
                   }`}
                 >
                   Ponude za posao
                 </Link>
                 <Link
                   href={`/gdekupiti`}
-                  className={`cursor-pointer hover:text-[#de6a26] ${
-                    pathname === "/gdekupiti" && "text-[#de6a26]"
+                  className={`cursor-pointer hover:text-[#B89980] ${
+                    pathname === "/gdekupiti" && "text-[#B89980]"
                   }`}
                 >
                   Prodajna mesta
@@ -498,54 +484,45 @@ const Footer = () => {
       <div className="mx-[5rem] max-md:flex-col max-md:gap-10 max-md:w-[95%] max-md:mx-auto py-[1rem] flex items-center justify-between text-white">
         <div className=" max-md:hidden flex max-md:flex-wrap items-center gap-3 4xl:gap-6">
           <Link
-            href="/uslovi-koriscenja"
-            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
-              pathname === "/uslovi-koriscenja" && "text-[#de6a26]"
+            href="/strana/uslovi-koriscenja"
+            className={`text-[17px]  font-extralight hover:text-[#B89980] cursor-pointer ${
+              pathname === "/strana/uslovi-koriscenja" && "text-[#B89980]"
             }`}
           >
             Uslovi korišćenja
           </Link>
           <span>•</span>
           <Link
-            href="/zastita-privatnosti"
-            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
-              pathname === "/zastita-privatnosti" && "text-[#de6a26]"
+            href="/strana/zastita-privatnosti"
+            className={`text-[17px]  font-extralight hover:text-[#B89980] cursor-pointer ${
+              pathname === "/strana/zastita-privatnosti" && "text-[#B89980]"
             }`}
           >
             Zaštita privatnosti
           </Link>
           <span>•</span>
           <Link
-            href="/isporuka"
-            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
-              pathname === "/isporuka" && "text-[#de6a26]"
+            href="/strana/isporuka"
+            className={`text-[17px]  font-extralight hover:text-[#B89980] cursor-pointer ${
+              pathname === "/strana/isporuka" && "text-[#B89980]"
             }`}
           >
             Isporuka
           </Link>
           <span>•</span>
           <Link
-            href="/veleprodaja"
-            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
-              pathname === "/veleprodaja" && "text-[#de6a26]"
-            }`}
-          >
-            Veleprodaja
-          </Link>
-          <span>•</span>
-          <Link
-            href="/najcesca-pitanja"
-            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
-              pathname === "/najcesca-pitanja" && "text-[#de6a26]"
+            href="/strana/najcesca-pitanja"
+            className={`text-[17px]  font-extralight hover:text-[#B89980] cursor-pointer ${
+              pathname === "/strana/najcesca-pitanja" && "text-[#B89980]"
             }`}
           >
             Najčešća pitanja
           </Link>
           <span>•</span>
           <Link
-            href="/kolacici"
-            className={`text-[17px]  font-extralight hover:text-[#de6a26] cursor-pointer ${
-              pathname === "/kolacici" && "text-[#de6a26]"
+            href="/strana/kolacici"
+            className={`text-[17px]  font-extralight hover:text-[#B89980] cursor-pointer ${
+              pathname === "/strana/kolacici" && "text-[#B89980]"
             }`}
           >
             Politika o 'Kolačićima'
@@ -557,7 +534,7 @@ const Footer = () => {
           <a
             href="https://www.croonus.com"
             target={"_blank"}
-            className="hover:text-[#de6a26] cursor-pointer bganimatethumb relative"
+            className="hover:text-[#B89980] cursor-pointer bganimatethumb relative"
           >
             Croonus Technologies
           </a>

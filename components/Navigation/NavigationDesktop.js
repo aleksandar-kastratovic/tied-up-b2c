@@ -382,7 +382,7 @@ const NavigationDesktop = () => {
                                   <h1 className="text-[0.9rem] font-normal">
                                     {item?.basic_data?.name}
                                   </h1>
-                                  <h1 className="text-[0.9rem] w-fit bg-[#f8ce5d] px-2 font-bold text-center">
+                                  <h1 className="text-[0.9rem] w-fit px-2 font-bold text-center">
                                     {currencyFormat(
                                       item?.price?.price?.discount ??
                                         item?.price?.price?.original
@@ -449,7 +449,7 @@ const NavigationDesktop = () => {
                       background === "white" ? "wiggle" : "invert wiggle"
                     }
                   />
-                  <span className="absolute -top-2.5 text-white -right-1 bg-[#de6a26] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                  <span className="absolute -top-2.5 text-white -right-1 bg-[#052922] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                     {wishListCount}
                   </span>
                 </div>
@@ -465,7 +465,7 @@ const NavigationDesktop = () => {
                       background === "white" ? "wiggle" : "invert wiggle"
                     }
                   />
-                  <span className="absolute -top-1 text-white -right-1 bg-[#de6a26] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                  <span className="absolute -top-1 text-white -right-1 bg-[#052922] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                     {cartCount}
                   </span>
                 </div>
@@ -653,7 +653,7 @@ const NavigationDesktop = () => {
                   <div
                     className={`${
                       pathname?.includes(category?.slug)
-                        ? `text-[#de6a26]`
+                        ? `text-[#052922]`
                         : `text-black`
                     } text-xs hover:text-slate-500 hover:translate-x-2 transition-all duration-300 font-medium`}
                   >

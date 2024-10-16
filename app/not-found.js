@@ -17,7 +17,7 @@ const notFound = () => {
             Proverite da li ste uneli ispravan URL.
           </h2>
           <Link href="/">
-            <button className="bg-[#2bc48a] mt-5 px-10 font-medium text-white hover:bg-opacity-80 py-4">
+            <button className="bg-[#df6a25] mt-5 px-10 font-medium text-white hover:bg-opacity-80 py-4">
               Vrati se na početnu stranu
             </button>
           </Link>

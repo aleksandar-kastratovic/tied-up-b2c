@@ -1,10 +1,11 @@
-import { CategoryProducts, SingleCategory } from "@/_components/category";
+"use client";
+import { CategoryProducts, SingleCategory } from "@/_components/category/index";
 import { Suspense } from "react";
-import { headers } from "next/headers";
 
-const CategoryPage = ({
+export const CategoryPage = ({
   params: { path },
   searchParams: { sort: sortURL, strana, filteri },
+  base_url,
 }) => {
   const slug = path[path?.length - 1];
   const sort = (sortURL ?? "_")?.split("_");
@@ -23,9 +24,6 @@ const CategoryPage = ({
       },
     };
   });
-
-  let headersList = headers();
-  let base_url = headersList?.get("x-base_url");
 
   return (
     <>
@@ -50,5 +48,3 @@ const CategoryPage = ({
     </>
   );
 };
-
-export default CategoryPage;

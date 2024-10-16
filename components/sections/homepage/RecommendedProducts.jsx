@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Thumb } from "@/_components/shared";
 import { usePathname } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
 
 const RecommendedProducts = ({ recommendedProducts, action4 }) => {
   const [products, setProducts] = useState(recommendedProducts);
@@ -32,7 +33,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
         <div className="relative flex flex-col justify-between max-lg:gap-3 lg:flex-row lg:items-center">
           <div>
             <p
-              className={`max-md:text-[30px] text-[44px] font-bold text-[#de6a26] leading-normal`}
+              className={`max-md:text-[30px] text-[44px] font-bold text-[#052922] leading-normal`}
             >
               {action4}
             </p>
@@ -73,7 +74,27 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
         </div>
       </div>
       <div className="max-sm:mt-[1rem] mt-[4rem]">
-        <Swiper slidesPerView={4} spaceBetween={20}>
+        <Swiper
+          slidesPerView={1.2}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 4,
+            },
+          }}
+          spaceBetween={20}
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 2000,
+            pauseOnMouseEnter: true,
+            reverseDirection: true,
+          }}
+        >
           {(products ?? [])?.map((item) => {
             if (item) {
               const { id } = item;

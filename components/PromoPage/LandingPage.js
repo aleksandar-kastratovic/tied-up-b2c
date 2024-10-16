@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { get, list } from "@/app/api/api";
 import Image from "next/image";
-import Thumb from "@/components/Thumb/Thumb";
+import { Thumb } from "@/_components/shared";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import Link from "next/link";
@@ -43,7 +43,10 @@ const LandingPage = ({ slug }) => {
       );
 
       const conditionsResponse = await list(
-        `/landing-pages/conditions/${slug}`
+        `/landing-pages/conditions/${slug}`,
+        {
+          render: false,
+        }
       ).then((res) => {
         setData((prevData) => ({
           ...prevData,
@@ -61,7 +64,7 @@ const LandingPage = ({ slug }) => {
     <>
       {data ? (
         <div className={`w-[93.5%] mx-auto`}>
-          <div className={`mt-[3rem] md:mt-[9rem] pb-10`}>
+          <div className={`mt-[3rem] pb-10`}>
             <div className={`flex items-start flex-col justify-center`}>
               {loadingBasicData ? (
                 <div className="h-[50px] mb-4 w-full bg-slate-300 object-cover animate-pulse"></div>
@@ -83,11 +86,11 @@ const LandingPage = ({ slug }) => {
                       <Image
                         src={data?.basic_data?.image}
                         alt={``}
-                        width={1920}
-                        height={400}
+                        width={0}
+                        height={0}
                         priority
                         quality={100}
-                        style={{ objectFit: "cover" }}
+                        sizes={`100vw`}
                         className={`w-full h-auto`}
                       />
                     </div>
@@ -164,7 +167,24 @@ const LandingPage = ({ slug }) => {
                     ))}
                   </>
                 ) : (
-                  <Thumb data={data?.conditions} slider={false} />
+                  data?.conditions?.map((condition) => {
+                    return (
+                      <Suspense
+                        key={`condition-${condition?.id}`}
+                        fallback={
+                          <div
+                            className={`aspect-square bg-slate-200 animate-pulse col-span-1`}
+                          ></div>
+                        }
+                      >
+                        <Thumb
+                          id={condition?.id}
+                          refreshWishlist={() => {}}
+                          categoryId={"*"}
+                        />
+                      </Suspense>
+                    );
+                  })
                 )}
               </div>
               <div

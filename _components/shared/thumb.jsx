@@ -40,22 +40,22 @@ export const Thumb = ({
     categoryId: categoryId ?? "*",
   });
 
-  useEffect(() => {
-    if (product) {
-      const categories = product?.categories || [];
-      section_data?.setCategories((prev) => {
-        return [
-          ...new Set([
-            ...prev,
-            {
-              categories,
-              product,
-            },
-          ]),
-        ];
-      });
-    }
-  }, [product]);
+  // useEffect(() => {
+  //   if (product) {
+  //     const categories = product?.categories || [];
+  //     section_data?.setCategories((prev) => {
+  //       return [
+  //         ...new Set([
+  //           ...prev,
+  //           {
+  //             categories,
+  //             product,
+  //           },
+  //         ]),
+  //       ];
+  //     });
+  //   }
+  // }, [product]);
 
   const { mutate: addToWishlist, isSuccess: isAdded } = useAddToWishlist();
   const { mutate: removeFromWishlist, isSuccess: isRemoved } =
@@ -103,7 +103,7 @@ export const Thumb = ({
 
       return (
         <p
-          className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -122,7 +122,7 @@ export const Thumb = ({
       return (
         <p
           key={`sticker-${i}`}
-          className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#E7DCD1] px-[0.85rem] py-1 text-black rounded-lg font-bold`}
         >
           {name}
         </p>
@@ -152,6 +152,7 @@ export const Thumb = ({
 
       {product?.stickers?.length > 0 &&
         renderStickers({ stickers: product?.stickers })}
+
       <div className={`!relative`}>
         {navigationEnabled?.enabled &&
           navigationEnabled?.id === product?.basic_data?.id_product &&
@@ -226,8 +227,8 @@ export const Thumb = ({
       </div>
       <div className="mt-auto pt-[0.813rem] flex items-center justify-between relative">
         <Link
-          href={`/${product?.slug}`}
-          className="max-md:text-[0.85] text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-1 group-hover:text-[#04b400]"
+          href={`/${product?.link?.link_path}`}
+          className="max-md:text-[0.85] uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-1 group-hover:text-[#052922]"
         >
           {product?.basic_data?.name}
         </Link>

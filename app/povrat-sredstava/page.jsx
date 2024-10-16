@@ -251,14 +251,14 @@ const Povracaj = () => {
                                   <br />
                                   Povraćaj novčanih sredstava se ne može
                                   zahtevati odlaskom u neki od maloprodajnih
-                                  objekata Croonus-ja.
+                                  objekata TiedUp-a.
                                 </p>
                                 <p>
                                   U slučaju vraćanja robe ili povraćaja
                                   sredstava kupcu koji je prethodno
                                   izvr&scaron;io plaćanje nekom od platnih
                                   kartica (delimično ili u celosti), a bez
-                                  obzira na razlog vraćanja, Croonus internet
+                                  obzira na razlog vraćanja, TiedUp internet
                                   prodavnica je u obavezi da povraćaj
                                   izvr&scaron;i isključivo putem VISA i
                                   Mastercard metoda plaćanja, tako &scaron;to će
@@ -269,13 +269,14 @@ const Povracaj = () => {
                                   Ukoliko iz nekog razloga ne možete poslati
                                   zahtev za povraćaj novčanih sredstava preko
                                   forme za povraćaj sredstava, možete nas
-                                  kontaktirati preko telefona {process.env.TELEPHONE}.
+                                  kontaktirati preko telefona{" "}
+                                  {process.env.TELEPHONE}.
                                   <br />
                                   Takođe, ako imate dodatna pitanja, uvek nas
                                   možete kontaktirati preko istog broja
                                   telefona.
                                   <br />
-                                  Va&scaron; Croonus
+                                  Va&scaron; TiedUp
                                 </p>
                               </div>
                             </div>
@@ -300,7 +301,7 @@ const Povracaj = () => {
               <input
                 type={`text`}
                 disabled
-                value={`Croonus`}
+                value={`TiedUp`}
                 className={`mt-1 w-full border border-[#e0e0e0]`}
               />
             </div>
@@ -309,7 +310,7 @@ const Povracaj = () => {
               <input
                 type={`text`}
                 disabled
-                value={`Kralja Petra I 30, 32000 Čačak`}
+                value={`Prvoslava Stojanovića 4, 34000 Kragujevac`}
                 className={`mt-1 w-full border border-[#e0e0e0]`}
               />
             </div>
@@ -327,7 +328,7 @@ const Povracaj = () => {
               <input
                 type={`text`}
                 disabled
-                value={`info@croonus.com`}
+                value={`masnetiedup@gmail.com`}
                 className={`mt-1 w-full border border-[#e0e0e0]`}
               />
             </div>

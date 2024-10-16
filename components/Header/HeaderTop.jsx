@@ -5,11 +5,11 @@ import Translate from "@/components/Translate/Translate";
 
 function HeaderTop() {
   return (
-    <div className="bg-[#171612] h-8 w-full flex items-center justify-between px-[5rem] text-white">
+    <div className="bg-[#B89980] h-8 w-full flex items-center justify-between px-[5rem] text-black">
       <div>
         <Link
           href="https://www.facebook.com/masnetiedup/"
-          className="hover:text-[#de6a26] text-sm font-light"
+          className="hover:text-white text-sm font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
@@ -18,7 +18,7 @@ function HeaderTop() {
         <span className={`mx-2`}>-</span>
         <Link
           href="https://www.instagram.com/masnetiedup/"
-          className="hover:text-[#de6a26] text-sm font-light"
+          className="hover:text-white text-sm font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
@@ -27,7 +27,7 @@ function HeaderTop() {
         <span className="mx-2">-</span>
         <Link
           href="https://www.youtube.com/@tiedup4968"
-          className="hover:text-[#de6a26] text-sm font-light"
+          className="hover:text-white text-sm font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
@@ -40,7 +40,7 @@ function HeaderTop() {
         <span className="text-sm font-light">Call Centar: </span>
         <Link
           href={`tel:${process.env.TELEPHONE2}`}
-          className="text-sm font-light hover:text-[#de6a26]"
+          className="text-sm font-light hover:text-white"
         >
           {process.env.TELEPHONE2}
         </Link>

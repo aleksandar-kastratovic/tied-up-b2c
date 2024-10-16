@@ -6,7 +6,7 @@ import {
   renderDiscountPrices,
 } from "./functions";
 
-export const Prices = ({ price, inventory }) => {
+export const Prices = ({ price, inventory, is_details = false }) => {
   let status = getPriceStatus(price);
   let is_in_stock = checkIsInStock(inventory);
   let prices = checkPrices(price);
@@ -17,6 +17,7 @@ export const Prices = ({ price, inventory }) => {
     price_defined: prices?.price_defined,
     is_price_range: prices?.price_range,
     price: price,
+    is_details: is_details,
   };
 
   if (!data?.is_in_stock || !data.price_defined) {

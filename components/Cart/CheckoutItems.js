@@ -66,17 +66,18 @@ const CheckoutItems = ({
             width={0}
             height={0}
             sizes={`90vw`}
-            className={`aspect-2/3 h-full max-h-[250px] w-full`}
+            className={`!h-auto !w-full`}
           />
         </Link>
         <div
           className={`col-span-3 mb-auto ml-[2rem] flex flex-col items-start gap-2`}
         >
-          <h4
-            className={`${className} mt-2 text-center text-[1.1rem] font-normal`}
+          <Link
+            href={`/${slug_path}`}
+            className={`${className} mt-2 text-left max-w-[80%] mr-auto text-[1.1rem] font-normal`}
           >
             {name}
-          </h4>
+          </Link>
           <div className={`flex items-center`}>
             <span className={`${className} text-[0.9rem]`}>Količina:</span>{" "}
             &nbsp;
@@ -119,7 +120,7 @@ const CheckoutItems = ({
                 Ne
               </button>
               <button
-                className="rounded-lg bg-[#E5E5E5] px-5 py-2 hover:bg-green-500 hover:text-white max-md:text-[15px]"
+                className="rounded-lg bg-[#E5E5E5] px-5 py-2 hover:bg-[#B89980] hover:text-white max-md:text-[15px]"
                 onClick={() => {
                   removeFromCart({ id: id });
                 }}

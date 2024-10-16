@@ -13,7 +13,7 @@ export const CartNoItems = () => {
           </div>
           <div className="mt-5 text-center">
             <Link href="/">
-              <button className="bg-croonus-1 mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
+              <button className="bg-[#df6a25] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
                 Vrati se na početnu stranu
               </button>
             </Link>
@@ -25,11 +25,19 @@ export const CartNoItems = () => {
                 - Ukoliko Vam je potrebna pomoć u svakom trenutku nas možete
                 kontaktirati pozivom na broj call centra{" "}
                 <a href={`tel:${process.env.TELEPHONE}`}>
-                  ${process.env.TELEPHONE}
+                  {process.env.TELEPHONE}
                 </a>
                 .
               </li>
-              <li>- Pogledajte uputstvo za pomoć pri kupovini.</li>
+              <li>
+                -{" "}
+                <Link
+                  href={`/strana/kako-kupiti`}
+                  className={`hover:underline`}
+                >
+                  Pogledajte uputstvo za pomoć pri kupovini.
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

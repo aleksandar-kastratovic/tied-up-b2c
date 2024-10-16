@@ -159,7 +159,7 @@ const ProductGallery = ({
 
       return (
         <p
-          className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -176,7 +176,9 @@ const ProductGallery = ({
   const renderStickers = ({ stickers }) => {
     let stickers_tmp = stickers?.map(({ name }, i) => {
       return (
-        <p className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}>
+        <p
+          className={`bg-[#E7DCD1] text-black px-[0.85rem] py-1 rounded-lg font-bold`}
+        >
           {name}
         </p>
       );
@@ -279,40 +281,6 @@ const ProductGallery = ({
       >
         {" "}
         {thumbImage}
-        <div
-          className={`absolute ${
-            productGallery?.length > swiper?.params?.slidesPerView
-              ? `block`
-              : `hidden`
-          } bottom-0 left-0 w-full py-1 right-0 flex items-center justify-center z-50 cursor-pointer bg-white/80`}
-          onClick={() => {
-            swiper?.slideNext();
-          }}
-        >
-          <i
-            className={`fas fa-chevron-down`}
-            onClick={() => {
-              swiper?.slideNext();
-            }}
-          ></i>
-        </div>
-        <div
-          className={`absolute ${
-            productGallery?.length > swiper?.params?.slidesPerView
-              ? `block`
-              : `hidden`
-          } top-0 left-0 w-full py-1 right-0 flex items-center justify-center z-50 cursor-pointer bg-white/80`}
-          onClick={() => {
-            swiper?.slidePrev();
-          }}
-        >
-          <i
-            className={`fas fa-chevron-up`}
-            onClick={() => {
-              swiper?.slidePrev();
-            }}
-          ></i>
-        </div>
       </Swiper>
       {modalImage && (
         <div
@@ -365,7 +333,7 @@ const ProductGallery = ({
             </Swiper>
           </div>
           <i
-            className={`fas fa-times absolute top-2 left-2 z-50 text-[#de6a26] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
+            className={`fas fa-times absolute top-2 left-2 z-50 text-[#052922] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
             onClick={() => {
               setModalImage(null);
             }}

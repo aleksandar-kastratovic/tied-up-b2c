@@ -74,7 +74,7 @@ const Contact = () => {
     if (errors?.length > 0) {
       setLoading(false);
     } else {
-      await POST(`/contact/contact_page`, {
+      await POST(`/contact/contact_page?page_section=contact_page`, {
         ...formData,
         gcaptcha: token,
       }).then((res) => {
@@ -134,44 +134,75 @@ const Contact = () => {
           <div className={`flex flex-col gap-2 mt-5`}>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-map-marker text-[16px] w-5 text-[#de6a26]`}
+                className={`fa fa-map-marker text-[16px] w-5 text-[#052922]`}
               ></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Proizvodnja i prodajno mesto:</span> {process.env.ADDRESS}
+                <span className={`font-bold`}>
+                  Proizvodnja i prodajno mesto:
+                </span>{" "}
+                <a
+                  target={`_blank`}
+                  href={`https://www.google.com/maps/search/${process.env.ADDRESS}`}
+                  className={`hover:text-[#B89980]`}
+                >
+                  {process.env.ADDRESS}
+                </a>
+              </span>
+            </div>
+            <div className={`flex items-center gap-2`}>
+              <i className={`fa fa-phone text-[16px] w-5 text-[#052922]`}></i>
+              <span className={`text-[0.95rem]`}>
+                <span className={`font-bold`}>Kontakt telefon:</span>{" "}
+                <a
+                  href={`tel:${process.env.TELEPHONE}`}
+                  className={`hover:text-[#B89980]`}
+                >
+                  {process.env.TELEPHONE}
+                </a>
+                ,{" "}
+                <a
+                  href={`tel:${process.env.TELEPHONE2}`}
+                  className={`hover:text-[#B89980]`}
+                >
+                  {process.env.TELEPHONE2}
+                </a>
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-phone text-[16px] w-5 text-[#de6a26]`}
+                className={`fa fa-envelope text-[16px] w-5 text-[#052922]`}
               ></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Kontakt telefon:</span> {process.env.TELEPHONE}, {process.env.TELEPHONE2}
+                <span className={`font-bold`}>Email:</span>{" "}
+                <a
+                  href={`mailto:${process.env.EMAIL}`}
+                  className={`hover:text-[#B89980]`}
+                >
+                  {process.env.EMAIL}
+                </a>
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
               <i
-                className={`fa fa-envelope text-[16px] w-5 text-[#de6a26]`}
+                className={`fa fa-circle-dot text-[14px] w-5 text-[#052922]`}
               ></i>
-              <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Email:</span> {process.env.EMAIL}
-              </span>
-            </div>
-            <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#de6a26]`}></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>MB:</span> {process.env.MB}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-circle-dot text-[14px] w-5 text-[#de6a26]`}></i>
+              <i
+                className={`fa fa-circle-dot text-[14px] w-5 text-[#052922]`}
+              ></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>PIB:</span> {process.env.PIB}
               </span>
             </div>
             <div className={`flex items-center gap-2`}>
-              <i className={`fa fa-clock text-[16px] w-5 text-[#de6a26]`}></i>
+              <i className={`fa fa-clock text-[16px] w-5 text-[#052922]`}></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Radno vreme:</span> {process.env.WORKTIME}
+                <span className={`font-bold`}>Radno vreme:</span>{" "}
+                {process.env.WORKTIME}
               </span>
             </div>
           </div>
@@ -196,7 +227,7 @@ const Contact = () => {
                   errors.includes("customer_name")
                     ? "border-red-500"
                     : " border-slate-300"
-                } border rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
+                } border rounded-lg focus:border-[#052922] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2 lg:col-span-1`}>
@@ -212,7 +243,7 @@ const Contact = () => {
                   errors.includes("phone")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#052922] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2 lg:col-span-1`}>
@@ -228,7 +259,7 @@ const Contact = () => {
                   errors.includes("email")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#052922] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2 lg:col-span-1`}>
@@ -244,7 +275,7 @@ const Contact = () => {
                   errors.includes("subject")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#052922] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div className={`flex flex-col gap-2 col-span-2`}>
@@ -259,7 +290,7 @@ const Contact = () => {
                   errors.includes("message")
                     ? "border-red-500"
                     : " border-slate-300"
-                } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2`}
+                } rounded-lg focus:border-[#052922] focus:ring-0 focus:outline-0 p-2`}
               />
             </div>
             <div
@@ -277,14 +308,14 @@ const Contact = () => {
                     errors.includes("accept_rules")
                       ? "border-red-500"
                       : " border-slate-300"
-                  } rounded-lg focus:border-[#de6a26] focus:ring-0 focus:outline-0 p-2 text-[#de6a26]`}
+                  } rounded-lg focus:border-[#052922] focus:ring-0 focus:outline-0 p-2 text-[#052922]`}
                 />
                 <label htmlFor={`accept_rules`}>
                   <span className={`text-[0.85rem]`}>
                     Slažem se sa{" "}
                     <Link
                       href={`/zastita-privatnosti`}
-                      className={`underline text-[#de6a26]`}
+                      className={`underline text-[#052922]`}
                     >
                       politikom privatnosti
                     </Link>
@@ -298,8 +329,8 @@ const Contact = () => {
                     handleSubmit(e);
                   }}
                   className={`${
-                    loading ? `bg-[#de6a26]` : `bg-black`
-                  } lg:hover:bg-[#de6a26] transition-all duration-500 text-white px-5 py-2 rounded-lg w-full`}
+                    loading ? `bg-[#052922]` : `bg-black`
+                  } lg:hover:bg-[#052922] transition-all duration-500 text-white px-5 py-2 rounded-lg w-full`}
                 >
                   {loading ? (
                     <i

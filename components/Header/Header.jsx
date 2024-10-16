@@ -6,13 +6,17 @@ import Image from "next/image";
 import { list } from "@/app/api/api";
 import HeaderIcons from "./HeaderIcons";
 import { usePathname } from "next/navigation";
+import { useCategoryTree } from "@/hooks/croonus.hooks";
 
-const Header = ({ categories }) => {
+const Header = () => {
+  const { data: categories } = useCategoryTree();
+
   const categoriesMain = [
     { name: "Početna", slug: "/", isCategory: false, id: 0 },
     ...categories.filter((category) => category.name !== "Personalizovano"),
   ];
   const categoriesMainRight = [
+    { name: "Veleprodaja", slug: "/veleprodaja", isCategory: false },
     { name: "Personalizovano", slug: "/personalizovano", isCategory: false },
     { name: "Blog", slug: "/blog", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },
@@ -96,7 +100,7 @@ const Header = ({ categories }) => {
   return (
     <>
       <header
-        className={`max-xl:hidden ${visible} w-full z-[100] relative bg-white border-b-2 border-[#de6a26] `}
+        className={`max-xl:hidden ${visible} w-full z-[100] relative bg-white border-b-2 border-[#052922] `}
         id="header"
       >
         <HeaderTop />
@@ -171,8 +175,8 @@ const Header = ({ categories }) => {
             })}
             <Link href="/" className="mx-[3rem]">
               <Image
-                src="/logo.png"
-                width={90}
+                src="/logo1.png"
+                width={200}
                 height={30}
                 className="object-cover"
                 alt="logo"
@@ -268,18 +272,20 @@ const Header = ({ categories }) => {
             <div className="pl-[5rem] pr-0 py-6 relative h-full pb-2">
               <div className="flex justify-between h-full">
                 <div className="flex gap-x-[13rem] pb-2">
-                  <div className={`flex flex-col items-center justify-start`}>
-                    {landingPagesList?.items?.map((item, index) => {
-                      return (
-                        <Link
-                          onClick={resetActiveCategory}
-                          href={`/promo/${item?.slug}`}
-                          className="text-red-500 hover:translate-x-5 hover:text-slate-500 transition-all duration-300 text-lg  font-medium mb-1 block"
-                        >
-                          {item?.name}
-                        </Link>
-                      );
-                    })}
+                  <div className={`flex flex-col items-start justify-start`}>
+                    <div className={`mb-5`}>
+                      {landingPagesList?.items?.map((item, index) => {
+                        return (
+                          <Link
+                            onClick={resetActiveCategory}
+                            href={`/promo/${item?.slug}`}
+                            className="text-red-500 hover:translate-x-5 hover:text-slate-500 transition-all duration-300 text-lg  font-medium mb-1 block"
+                          >
+                            {item?.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
                     <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 text-left">
                       {activeCategory?.data?.map((category, index) => {
                         return category?.children?.length > 0 ? (
@@ -350,7 +356,7 @@ const Header = ({ categories }) => {
 
                     {activeSubCategory?.name && (
                       <Link
-                        className={`text-[15px] font-normal text-[#39ae00] hover:underline pb-7`}
+                        className={`text-[15px] font-normal text-[#052922] hover:underline pb-7`}
                         href={`/${activeSubCategory?.slug_path}`}
                         onClick={() => {
                           resetActiveCategory();

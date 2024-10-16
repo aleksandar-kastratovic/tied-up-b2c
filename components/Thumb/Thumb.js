@@ -123,7 +123,7 @@ const Thumb = ({
 
       return (
         <p
-          className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -140,7 +140,9 @@ const Thumb = ({
   const renderStickers = ({ stickers }) => {
     let stickers_tmp = stickers?.map(({ name }, i) => {
       return (
-        <p className={`bg-[#04b400] px-[0.85rem] py-1 rounded-lg font-bold`}>
+        <p
+          className={`bg-[#E7DCD1] text-black px-[0.85rem] py-1 rounded-lg font-bold`}
+        >
           {name}
         </p>
       );
@@ -561,7 +563,7 @@ const Thumb = ({
                 className={`absolute left-2 top-2 z-[1] text-white text-[13px]`}
               >
                 <div
-                  className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+                  className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
                 >
                   -
                   {(

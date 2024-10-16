@@ -234,7 +234,7 @@ const WishlistItems = ({ items, product, border }) => {
               className={`absolute right-2 top-2 z-[1] text-white text-[13px]`}
             >
               <div
-                className={`bg-[#c23d27] px-[0.85rem] py-1 rounded-lg font-bold`}
+                className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
               >
                 -
                 {(
@@ -247,7 +247,6 @@ const WishlistItems = ({ items, product, border }) => {
               </div>
             </div>
           )}
-    
         </div>
 
         <div className="mt-[0.813rem] flex items-center justify-between relative z-[50]">

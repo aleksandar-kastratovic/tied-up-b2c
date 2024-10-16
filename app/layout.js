@@ -4,21 +4,14 @@ import Script from "next/script";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/Footer/Footer";
 import NavigationMobile from "@/components/Navigation/NavigationMobile";
-import TrackingScripts from "@/components/GTAG/GTAG";
 import { UserProvider } from "@/context/userContext";
 import CookieAlert from "@/components/CookieAlert/CookieAlert";
 import Header from "@/components/Header/Header";
-import HeaderModal from "@/components/Header/HeaderModal";
-import { get } from "@/app/api/api";
+
 import { QueryProvider } from "@/components/QueryProvider";
 import { ToastContainer } from "react-toastify";
-const getCategories = async () => {
-  return await get("/categories/product/tree").then(
-    (response) => response?.payload
-  );
-};
-export default async function RootLayout({ children }) {
-  const categories = await getCategories();
+
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
@@ -42,8 +35,8 @@ export default async function RootLayout({ children }) {
         <UserProvider>
           <CartContextProvider>
             <QueryProvider>
-              <Header categories={categories} />
-              <NavigationMobile categories={categories} />
+              <Header />
+              <NavigationMobile />
               {children}
               <Footer />
               <CookieAlert />

@@ -1,30 +1,27 @@
 import CategoryData from "@/components/sections/categories/CategoryPage";
+import { CategoryProducts } from "@/_components/category";
+import { headers } from "next/headers";
 
 const Section = async ({
   params: { path },
   searchParams: { sort: sortURL, strana, filteri },
 }) => {
-  let slug;
+  let data = {};
   switch (true) {
-    case path[path?.length - 1] === "preporuceno":
-      slug = "recommendation";
+    case path?.[path?.length - 1] === "preporuceno":
+      data.slug = "recommendation";
+      data.name = "Preporučeno";
       break;
     default:
       break;
   }
 
-  //vadimo sort iz URL
   const sort = (sortURL ?? "_")?.split("_");
-  const sortField = sort[0];
-  const sortDirection = sort[1];
+  const sortField = sort?.[0];
+  const sortDirection = sort?.[1];
 
-  //vadimo stranu iz URL i konvertujemo u type Number
   const page = Number(strana) > 0 ? Number(strana) : 1;
 
-  //uzimamo sve filtere sa api-ja
-  // const allFilters = await getAllFilters(slug);
-
-  //vadimo filtere iz URL
   const filters = filteri?.split("::")?.map((filter) => {
     const [column, selected] = filter?.split("=");
     const selectedValues = selected?.split("_");
@@ -35,14 +32,23 @@ const Section = async ({
       },
     };
   });
+
+  let headersList = headers();
+  let base_url = headersList?.get("x-base_url");
   return (
     <>
-      <CategoryData
-        slug={slug}
-        sortDirection={sortDirection}
+      <h1
+        className={`text-[#052922] font-bold text-[30px] mt-[1.875rem] px-2 md:px-[3rem]`}
+      >
+        {data?.name}
+      </h1>
+      <CategoryProducts
+        slug={data?.slug}
+        filters={filters}
+        strana={page}
         sortField={sortField}
-        isSection
-        strana={strana}
+        sortDirection={sortDirection}
+        isSection={true}
         allFilters={[]}
       />
     </>

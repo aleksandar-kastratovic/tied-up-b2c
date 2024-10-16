@@ -150,9 +150,9 @@ const FilterWithinTree = ({ filter }) => {
         <div key={item.id}>
           <div className="mt-2 flex flex-row items-center gap-2 pl-4 text-[0.775rem]">
             <Link
-              className="pl-2 text-black text-[1rem] font-light hover:text-[#39ae00]"
+              className="pl-2 text-black text-[1rem] font-light hover:text-[#052922]"
               htmlFor={"chbx-" + item.id}
-              href={`/${item?.slug_path}`}
+              href={`/${item?.link?.link_path}`}
             >
               {item?.label}
             </Link>
