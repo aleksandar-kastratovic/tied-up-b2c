@@ -161,17 +161,20 @@ export const CheckoutData = ({
   }, [isSuccess, refreshCart, refreshSummary]);
 
   useEffect(() => {
-    if (isCheckoutSuccess && data) {
-      const {
-        payment_provider_data: { form },
-      } = data;
+    if (isCheckoutSuccess && !data?.fields) {
       switch (true) {
-        case Boolean(form) === false:
+        case Boolean(data?.payment_provider_data?.form) === false:
           return router.push(`/kupovina/${data?.order?.order_token}`);
-        case Boolean(form) === true:
+        case Boolean(data?.payment_provider_data?.form) === true:
           return handleCreditCard(data);
         default:
           break;
+      }
+    } else {
+      if (data?.fields) {
+        setPostErrors({
+          fields: data?.fields,
+        });
       }
     }
   }, [isCheckoutSuccess, data, router]);

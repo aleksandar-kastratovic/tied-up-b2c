@@ -21,7 +21,7 @@ const SinglePost = ({ post }) => {
         className={`rounded-md blogSlider`}
         watchSlidesProgress
       >
-        {blogGallery?.map((image, index) => {
+        {(blogGallery ?? [])?.map((image, index) => {
           return (
             <Slide key={index} className={`rounded-md`}>
               <div
@@ -48,7 +48,7 @@ const SinglePost = ({ post }) => {
           </p>
         </div>
         <div
-          className={`text-base font-normal mt-5 prose !max-w-full prose-a:text-[#052922] font`}
+          className={`text-base font-normal mt-5 prose !max-w-full prose-a:text-[#052922] prose:!text-black`}
           dangerouslySetInnerHTML={{ __html: post?.basic_data?.description }}
         />
       </section>

@@ -19,10 +19,10 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
       <div
         className={`
   
-      bg-white rounded-lg max-md:overflow-y-scroll  p-[40px] flex flex-col md:w-[890px] md:h-[490px]`}
+      bg-white rounded-lg max-md:overflow-y-scroll p-[40px] flex flex-col md:w-[890px] md:h-[490px]`}
       >
         <div className="flex items-center justify-between">
-          <h1 className="text-[20px] font-bold">Informacije</h1>
+          <h1 className="text-[20px] font-bold uppercase">ISPORUKA</h1>
           <Image
             src={Cancel}
             alt="cancel"
@@ -32,31 +32,13 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
             className="cursor-pointer"
           />
         </div>
-        <div className="mt-[4.375rem]">
-          <p className="font-light text-[15px]">
-            Mesto isporuke poruče ne robe mora se nalaziti na teritoriji
-            Republike Srbije. Isporuku proizvoda poručenih na sajtu croonus.com
-            vrši kurirska služba „YU – PD Express“ d.o.o . Beograd – D Express,
-            na teritoriji Republike Srbije, radnim danima u periodu od 8 do 16h,
-            na adresu primaoca pošiljke.
-          </p>
-          <p className="font-light mt-[30px] text-[15px]">
-            U slučaju da je na porudžbenici više artikala, velika je verovatnoće
-            da nemamo sve artikle na jednom mestu, zbog čega ćete porudžbinu
-            dobiti u više pošiljki. Nakon obrade porudžbine, na vašu e-mail
-            adresu stići će obaveštenje o statusu porudžbine.
-          </p>
-          <p className="font-light mt-[30px] text-[15px]">
-            Po Zakonu o zaštiti potrošača, član 32 – Trgovac je dužan da u roku
-            od 30 dana od dana zaključenja ugovora na daljinu i ugovora koji se
-            zaključuje izvan poslovnih prostorija izvrši isporuku robe. Okvirni
-            rok isporuke je do 3 radna dana. Rok isporuke može biti i duži od
-            navedenog (3 radna dana), u vanrednim slučajevima poput velikih
-            gužvi, pandemija, neprohodnosti puteva u slučaju vremenskih nepogoda
-            i sl. Kurirska služba je u obavezi da isporuku vrši što efikasnije u
-            skladu sa svojim mogućnostima i poslovnim kapacitetima.
-          </p>
-        </div>
+        <p className="font-light text-base mt-5">
+          Trudimo se da sve porudžbine primljene do 12h isporučimo istog dana. U
+          slučaju većeg obima posla ili potrebe za dodatnim vremenom za izradu,
+          pošiljka će biti poslata narednog dana. Naš cilj je da uvek pružimo
+          brzu i efikasnu uslugu, uz maksimalnu posvećenost kvalitetu proizvoda.
+          Pošiljke šaljemp post express-om sa opcijom danas za sutra.
+        </p>
       </div>
     </div>
   );

@@ -37,8 +37,6 @@ const CheckoutItems = ({
     setProductQuantity(Number(quantity));
   }, [quantity]);
 
-  const debounceQuantity = useDebounce(productQuantity, 500);
-
   useEffect(() => {
     if (isUpdated || isRemoved) {
       refreshCart();
@@ -62,7 +60,7 @@ const CheckoutItems = ({
         <Link href={`/${slug_path}`} className={`col-span-1`}>
           <Image
             src={image?.[0] ?? "/comr.png"}
-            alt={`Comr`}
+            alt={`tiedUp`}
             width={0}
             height={0}
             sizes={`90vw`}
@@ -82,12 +80,13 @@ const CheckoutItems = ({
             <span className={`${className} text-[0.9rem]`}>Količina:</span>{" "}
             &nbsp;
             <PlusMinusInput
-              amount={productQuantity}
-              className={className}
-              maxAmount={+inventory?.amount}
-              setCount={setProductQuantity}
-              updateCart={updateCart}
               id={cart_item_id}
+              maxAmount={+inventory?.amount}
+              quantity={productQuantity}
+              updateCart={updateCart}
+              setCount={setProductQuantity}
+              count={productQuantity}
+              setQuantity={setProductQuantity}
             />
           </div>
           <p className={`text-center ${className} text-[0.9rem] font-normal`}>

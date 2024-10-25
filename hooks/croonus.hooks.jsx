@@ -113,14 +113,17 @@ export const useAddToCart = () => {
             });
             break;
           default:
-            toast.error("Greška prilikom dodavanja u korpu", {
-              position: "top-center",
-              autoClose: 2000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-            });
+            toast.error(
+              res?.payload?.message ?? "Greška prilikom dodavanja u korpu",
+              {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              }
+            );
             break;
         }
       });
@@ -137,7 +140,7 @@ export const useCartBadge = () => {
     queryKey: ["cartBadge", cart],
     queryFn: async () => {
       return await GET("/cart/badge-count").then(
-        (res) => res?.payload?.summary?.items_count ?? 0
+        (res) => Number(res?.payload?.summary?.total_quantity)?.toFixed(0) ?? 0
       );
     },
   });
@@ -151,7 +154,7 @@ export const useWishlistBadge = () => {
     queryKey: ["wishlistBadge", wishList],
     queryFn: async () => {
       return await GET("/wishlist/badge-count").then(
-        (res) => res?.payload?.summary?.items_count ?? 0
+        (res) => Number(res?.payload?.summary?.total_quantity)?.toFixed(0) ?? 0
       );
     },
     refetchOnWindowFocus: false,
@@ -163,7 +166,7 @@ export const useRemoveFromCart = () => {
   const [, mutateCart] = useCartContext();
 
   return useMutation({
-    mutationKey: ["addToCart"],
+    mutationKey: ["removeFromCart"],
     mutationFn: async ({ id }) => {
       return await POST(`/cart`, {
         id_product: +id,
@@ -186,14 +189,17 @@ export const useRemoveFromCart = () => {
             });
             break;
           default:
-            toast.error("Greška prilikom brisanja iz korpe.", {
-              position: "top-center",
-              autoClose: 2000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-            });
+            toast.error(
+              res?.payload?.message ?? "Greška prilikom brisanja iz korpe.",
+              {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              }
+            );
             break;
         }
       });
@@ -725,10 +731,13 @@ export const useCheckout = ({ formData, setPostErrors, setLoading }) => {
       return await POST(`/checkout/one-page`, formData)
         .then((res) => {
           setLoading(true);
-          mutateCart();
-          setPostErrors({
-            fields: res?.response?.data?.payload?.fields ?? [],
-          });
+          if (res?.code === 200) {
+            mutateCart();
+          } else {
+            setPostErrors({
+              fields: res?.response?.data?.payload?.fields ?? [],
+            });
+          }
           return res?.payload;
         })
         .catch((err) => {
@@ -1098,7 +1107,7 @@ export const useUpdateCartQuantity = () => {
 
   return useMutation({
     mutationKey: ["updateCartQuantity"],
-    mutationFn: async ({ id, quantity }) => {
+    mutationFn: async ({ id, quantity, message = true }) => {
       return await PUT(`/checkout`, {
         countable: true,
         cart_items_id: id,
@@ -1107,17 +1116,19 @@ export const useUpdateCartQuantity = () => {
         switch (res?.code) {
           case 200:
             mutateCart();
-            toast.success("Količina ažurirana", {
-              position: "top-center",
-              autoClose: 2000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-            });
+            if (message) {
+              toast.success("Količina ažurirana", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+            }
             break;
           default:
-            toast.error("Došlo je do greške!", {
+            toast.error(res?.payload?.message ?? "Došlo je do greške!", {
               position: "top-center",
               autoClose: 2000,
               hideProgressBar: true,

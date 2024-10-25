@@ -30,7 +30,7 @@ const DeliveryModal = ({ deliveryModal, setDeliveryModal, description }) => {
             className="cursor-pointer"
           />
         </div>
-        <div className="mt-[4.375rem] overflow-y-auto">
+        <div className="mt-5 overflow-y-auto prose">
           <p
             className={`text-sm`}
             dangerouslySetInnerHTML={{ __html: description }}

@@ -284,7 +284,7 @@ export const CategoryProducts = ({
           productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
         } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
       >
-        {data?.items?.map(({ id }) => {
+        {(data?.items || [])?.map(({ id }) => {
           return (
             <Suspense
               key={id}

@@ -7,6 +7,7 @@ import { Thumb } from "@/_components/shared";
 import { usePathname } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
+import { useIsMobile } from "@/hooks/croonus.hooks";
 
 const RecommendedProducts = ({ recommendedProducts, action4 }) => {
   const [products, setProducts] = useState(recommendedProducts);
@@ -18,10 +19,77 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
     Aos.init();
   });
 
-  const getCategories = () => {
-    categories?.map((category) => {
-      return;
-    });
+  const is_mobile = useIsMobile();
+
+  const handleCategoryChange = (id) => {
+    setSelectedCategory(id);
+    if (id === "all_categories") {
+      return setProducts(recommendedProducts);
+    } else {
+      let arr = [...recommendedProducts];
+      let filtered = (arr || [])?.filter(
+        (product) => product.categories?.[0]?.id === Number(id)
+      );
+
+      return setProducts(filtered);
+    }
+  };
+
+  const renderCategories = () => {
+    switch (is_mobile) {
+      case true:
+        return (
+          <select
+            className={`w-full rounded-md border border-gray-200 mb-3 focus:ring-2 focus:border-gray-200 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980]`}
+            onChange={(e) => handleCategoryChange(e.target.value)}
+          >
+            <option value={"all_categories"}>Sve kategorije</option>
+            {(recommendedProducts ?? [])?.map((item) => {
+              if (item?.id) {
+                const { categories } = item;
+                let category = {
+                  name: categories?.[0]?.name,
+                  id: categories?.[0]?.id,
+                };
+                return (
+                  <option key={`category-${item.id}`} value={category?.id}>
+                    {category?.name}
+                  </option>
+                );
+              }
+            })}
+          </select>
+        );
+      case false:
+        return (
+          <div className={`flex items-center gap-3`}>
+            {(recommendedProducts ?? [])?.map((item) => {
+              if (item?.id) {
+                const { categories } = item;
+                let category = {
+                  name: categories?.[0]?.name,
+                  id: categories?.[0]?.id,
+                };
+                return (
+                  <button
+                    onClick={() => {
+                      handleCategoryChange(category?.id);
+                    }}
+                    key={`category-${item.id}`}
+                    className={
+                      selectedCategory === category?.id
+                        ? `font-light activeCategoryHover w-fit relative active-button  text-2xl activeCategory text-black`
+                        : `font-light activeCategoryHover w-fit relative  text-2xl text-black`
+                    }
+                  >
+                    {category?.name}
+                  </button>
+                );
+              }
+            })}
+          </div>
+        );
+    }
   };
 
   return (
@@ -31,12 +99,17 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
     >
       <div className="max-lg:col-span-1 lg:col-span-4 2xl:col-span-4 4xl:col-span-5">
         <div className="relative flex flex-col justify-between max-lg:gap-3 lg:flex-row lg:items-center">
-          <div>
-            <p
-              className={`max-md:text-[30px] text-[44px] font-bold text-[#052922] leading-normal`}
+          <div className={`flex-1`}>
+            <div
+              className={`flex flex-col md:flex-row md:items-center justify-between w-full`}
             >
-              {action4}
-            </p>
+              <p
+                className={`max-md:text-[30px] text-[44px] font-bold text-[#052922] leading-normal`}
+              >
+                {action4}
+              </p>
+              {renderCategories()}
+            </div>
             {!pathname.includes("korpa") ? (
               <div className="flex items-center gap-3">
                 <Link
@@ -113,13 +186,13 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
                       refreshWishlist={() => {}}
                       categoryId={"*"}
                       key={`thumb-${id}`}
-                      section_data={{
-                        categories: categories,
-                        setCategories: setCategories,
-                        selectedCategory: selectedCategory,
-                        products: recommendedProducts,
-                        setProducts: setProducts,
-                      }}
+                      // section_data={{
+                      //   categories: categories,
+                      //   setCategories: setCategories,
+                      //   selectedCategory: selectedCategory,
+                      //   products: recommendedProducts,
+                      //   setProducts: setProducts,
+                      // }}
                     />
                   </SwiperSlide>
                 </Suspense>

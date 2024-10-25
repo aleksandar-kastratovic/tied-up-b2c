@@ -27,6 +27,7 @@ export const Thumb = ({
   categoryId = "*",
   refreshWishlist = () => {},
   productsPerViewMobile = 1,
+  is_details = false,
   section_data = {
     categories: [],
     setCategories: () => {},
@@ -153,7 +154,7 @@ export const Thumb = ({
       {product?.stickers?.length > 0 &&
         renderStickers({ stickers: product?.stickers })}
 
-      <div className={`!relative`}>
+      <div className={`!relative !overflow-hidden`}>
         {navigationEnabled?.enabled &&
           navigationEnabled?.id === product?.basic_data?.id_product &&
           product?.image_data?.length > 1 && (
@@ -179,7 +180,7 @@ export const Thumb = ({
               direction: "horizontal",
             },
           }}
-          className={`categoryImageSwiper !relative`}
+          className={`categoryImageSwiper !relative !overflow-hidden`}
           onSwiper={(swiper) => setSwiper(swiper)}
         >
           {(product?.image_data ?? [])?.map(
@@ -198,13 +199,13 @@ export const Thumb = ({
                   >
                     <Image
                       loading={`eager`}
-                      src={convertHttpToHttps(url)}
+                      src={convertHttpToHttps(url ?? "")}
                       alt={alt ?? product?.basic_data?.name}
                       sizes={"100vw"}
                       width={width ?? 0}
                       height={height ?? 0}
                       priority={true}
-                      className={`!w-full !h-auto group-hover:scale-110 transition-all duration-500`}
+                      className={`!w-full !h-auto group-hover:scale-110 transition-all duration-500 aspect-square`}
                     />
                   </Link>
                 </SwiperSlide>
@@ -225,43 +226,49 @@ export const Thumb = ({
             </div>
           )}
       </div>
-      <div className="mt-auto pt-[0.813rem] flex items-center justify-between relative">
-        <Link
-          href={`/${product?.link?.link_path}`}
-          className="max-md:text-[0.85] uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-1 group-hover:text-[#052922]"
-        >
-          {product?.basic_data?.name}
-        </Link>
-        <div
-          onClick={() => {
-            if (wishlist_data?.is_in_wishlist) {
-              removeFromWishlist({ id: wishlist_data?.id });
-            } else {
-              addToWishlist({ id: product?.basic_data?.id_product });
-            }
-          }}
-          className={`rounded-full p-1 favorites cursor-pointer `}
-        >
-          {wishlist_data?.is_in_wishlist ? (
-            <Image
-              alt="wishlist"
-              src={WishlistActive}
-              height={15}
-              width={15}
-              className="cursor-pointer hover:scale-110 transition-all duration-200"
-            />
-          ) : (
-            <Image
-              src={Wishlist}
-              alt="wishlist"
-              height={15}
-              width={15}
-              className={`cursor-pointer transition-all duration-500 hover:scale-110`}
-            />
-          )}
+      <div className={`flex flex-wrap flex-col items-start`}>
+        <div className="mt-auto pt-[0.813rem] flex items-center justify-between relative w-full">
+          <Link
+            href={`/${product?.link?.link_path}`}
+            className="max-md:text-[0.85] uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-1 group-hover:text-[#B89980]"
+          >
+            {product?.basic_data?.name}
+          </Link>
+          <div
+            onClick={() => {
+              if (wishlist_data?.is_in_wishlist) {
+                removeFromWishlist({ id: wishlist_data?.id });
+              } else {
+                addToWishlist({ id: product?.basic_data?.id_product });
+              }
+            }}
+            className={`rounded-full p-1 favorites cursor-pointer `}
+          >
+            {wishlist_data?.is_in_wishlist ? (
+              <Image
+                alt="wishlist"
+                src={WishlistActive}
+                height={15}
+                width={15}
+                className="cursor-pointer hover:scale-110 transition-all duration-200"
+              />
+            ) : (
+              <Image
+                src={Wishlist}
+                alt="wishlist"
+                height={15}
+                width={15}
+                className={`cursor-pointer transition-all duration-500 hover:scale-110`}
+              />
+            )}
+          </div>
         </div>
+        <Prices
+          price={product?.price}
+          inventory={product?.inventory}
+          is_details={is_details}
+        />
       </div>
-      <Prices price={product?.price} inventory={product?.inventory} />
     </div>
   );
 };

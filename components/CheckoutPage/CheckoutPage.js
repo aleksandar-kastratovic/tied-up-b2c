@@ -75,7 +75,11 @@ export const CheckoutPage = ({
   });
 
   //fetchujemo sve artikle iz korpe
-  const { data: items, refetch: refreshCart, isFetching } = useCart();
+  const {
+    data: items,
+    refetch: refreshCart,
+    isLoading: isFetching,
+  } = useCart();
   //fetchujemo summary korpe (iznos,popuste,dostavu itd)
   const { data, refetch: refreshSummary } = useSummary({
     items: items?.items?.map((item) => {
@@ -86,11 +90,25 @@ export const CheckoutPage = ({
 
   const cartCost = items?.items?.summary?.total ?? 0;
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!isFetching) {
+      const timeout = setTimeout(() => {
+        setIsLoading(false);
+      }, 200);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [isFetching]);
+
   const renderCart = () => {
     switch (true) {
-      case isFetching:
+      case isLoading:
         return <CartLoader />;
-      case items?.items?.length > 0 && !isFetching:
+      case items?.items?.length > 0 && !isLoading:
         return (
           <CartWrapper
             data={data}
@@ -116,7 +134,7 @@ export const CheckoutPage = ({
             </Suspense>
           </CartWrapper>
         );
-      case items?.items?.length === 0 && !isFetching:
+      case items?.items?.length === 0 && !isLoading:
         return <CartNoItems />;
       default:
         return <CartLoader />;
