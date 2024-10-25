@@ -108,10 +108,6 @@ const Veleprodaja = () => {
           </h2>
           <ul className={`list-disc pl-5`}>
             <li>
-              10% popusta za porudžbine od 5 do 10 istih proizvoda (dezeni mogu
-              biti različiti)
-            </li>
-            <li>
               15% popusta za porudžbine preko 10 istih proizvoda (dezeni mogu
               biti različiti)
             </li>

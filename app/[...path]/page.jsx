@@ -1,6 +1,6 @@
 import { get } from "@/app/api/api";
 import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect as redirect } from "next/navigation";
 import { CategoryPage } from "@/_components/category";
 import ProductDetailPage from "./product";
 import { headers } from "next/headers";

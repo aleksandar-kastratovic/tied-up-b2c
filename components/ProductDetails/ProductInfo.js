@@ -386,7 +386,7 @@ const ProductInfo = ({
                 )}
 
               <p
-                className={`text-[16px] mt-[1.6rem] font-light`}
+                className={`text-[16px] mt-[1.6rem] font-light prose `}
                 dangerouslySetInnerHTML={{
                   __html: product?.data?.item?.basic_data?.short_description,
                 }}

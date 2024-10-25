@@ -3,64 +3,52 @@ import { useEffect } from "react";
 
 const PlusMinusInputOne = ({
   className,
-  amount,
+  quantity,
   setCount,
   maxAmount,
+  setQuantity,
   count,
   updateCart,
   id,
 }) => {
-  // If minus is clicked
-  const onMinusHandler = (e) => {
-    e.preventDefault();
-    if (amount !== 1) setCount((prev) => prev - 1);
-    if (amount === "") setCount(1);
-    updateCart({
-      id: id,
-      quantity: amount - 1,
-    });
+  const onPlus = () => {
+    if (quantity < maxAmount) {
+      setQuantity(quantity + 1);
+      updateCart({
+        id: id,
+        quantity: quantity + 1,
+        type: true,
+      });
+    }
   };
-
-  // If plus is clicked
-  const onPlusHandler = (e) => {
-    e.preventDefault();
-    if (amount === "") setCount(1);
-    else setCount((prev) => prev + 1);
-    updateCart({
-      id: id,
-      quantity: amount + 1,
-    });
-  };
-
-  // If value is typed in
-  const onInputChange = (e) => {
-    if (!isNaN(e.target.value)) {
-      if (+e.target.value < 1) setCount("");
-      else {
-        setCount(+e.target.value);
-        updateCart({
-          id: id,
-          quantity: +e.target.value,
-        });
-      }
+  const onMinus = () => {
+    if (quantity > 1 && quantity <= maxAmount) {
+      setQuantity(quantity - 1);
+      updateCart({
+        id: id,
+        quantity: quantity - 1,
+        type: true,
+      });
     }
   };
 
   useEffect(() => {
-    if (amount > maxAmount) {
-      setCount(+maxAmount);
-      toast.error("Na lageru trenutno nema željena količina artikala.", {
-        position: "top-center",
+    if (quantity > maxAmount && maxAmount > 0) {
+      setQuantity(maxAmount);
+      updateCart({
+        id: id,
+        quantity: maxAmount,
+        message: false,
       });
     }
-  }, [amount]);
+  }, [quantity]);
 
   return (
     <div className="bg-[#fbfbfb] px-3 border max-md:h-full py-[2px] border-[#eaeaea] max-md:border-[#919191]">
       <div className="flex items-center w-full">
         <span
           className="cursor-pointer flex-1 text-lg select-none"
-          onClick={onMinusHandler}
+          onClick={onMinus}
         >
           -
         </span>
@@ -68,13 +56,20 @@ const PlusMinusInputOne = ({
           maxLength="2"
           max={maxAmount}
           type="number"
-          value={amount}
-          onChange={onInputChange}
+          value={quantity}
+          onChange={(e) => {
+            setQuantity(+e.target.value);
+            updateCart({
+              id: id,
+              quantity: +e.target.value,
+              type: true,
+            });
+          }}
           className="w-12 text-center  no-spinners mx-auto flex-1 bg-[#fbfbfb] focus:border-none focus:outline-none p-0 focus:ring-0 select-none text-sm border-none text-sm"
         ></input>
         <span
           className="cursor-pointer flex-1 text-lg select-none"
-          onClick={onPlusHandler}
+          onClick={onPlus}
         >
           +{" "}
         </span>

@@ -6,10 +6,11 @@ import Image from "next/image";
 import { list } from "@/app/api/api";
 import HeaderIcons from "./HeaderIcons";
 import { usePathname } from "next/navigation";
-import { useCategoryTree } from "@/hooks/croonus.hooks";
+import { useCategoryTree, useLandingPages } from "@/hooks/croonus.hooks";
 
 const Header = () => {
   const { data: categories } = useCategoryTree();
+  const { data: landing_pages_list } = useLandingPages();
 
   const categoriesMain = [
     { name: "Početna", slug: "/", isCategory: false, id: 0 },
@@ -40,17 +41,6 @@ const Header = () => {
     image: null,
   });
 
-  const [landingPagesList, setLandingPagesList] = useState([]);
-
-  useEffect(() => {
-    const getLandingPages = async () => {
-      const data = await list(`/landing-pages/list`).then((response) =>
-        setLandingPagesList(response?.payload)
-      );
-    };
-    getLandingPages();
-  }, []);
-
   const resetActiveCategory = () => {
     setActiveCategory({
       open: false,
@@ -70,8 +60,8 @@ const Header = () => {
     });
   };
 
-  let scrollPos = 0;
   const [visible, setVisible] = useState("");
+
   useEffect(() => {
     let lastScroll = window.scrollY;
     const handleScroll = () => {
@@ -105,7 +95,9 @@ const Header = () => {
       >
         <HeaderTop />
         <div className="py-3 px-[3rem] flex items-center justify-center">
-          <div className={` flex items-center gap-[2.2rem]`}>
+          <div
+            className={`flex items-center gap-[2.2rem] ml-auto pl-[4rem] xl:max-2xl:!text-[11px] 2xl:text-[13px]`}
+          >
             {categoriesMain?.map((category, index) => {
               const isCategory = category?.isCategory ?? true;
               return isCategory ? (
@@ -117,7 +109,7 @@ const Header = () => {
                       pathname.includes(category?.slug)
                         ? "activeCategory"
                         : "font-normal"
-                    } text-[13px] uppercase block relative w-fit text-black activeCategoryHover`}
+                    }  uppercase block relative w-fit text-black activeCategoryHover xl:max-2xl:!text-[11px] 2xl:text-[13px]`}
                     onClick={() => {
                       setActiveCategory({
                         id:
@@ -143,7 +135,7 @@ const Header = () => {
                 ) : (
                   <Link href={`/${category?.link?.link_path}`} key={index}>
                     <span
-                      className={`text-[13px] uppercase block text-black w-fit relative activeCategoryHover ${
+                      className={`xl:max-2xl:!text-[11px] 2xl:text-[13px]] uppercase block text-black w-fit relative activeCategoryHover ${
                         pathname?.includes(category?.slug) && category?.id !== 0
                           ? "activeCategory"
                           : ""
@@ -160,7 +152,7 @@ const Header = () => {
                   onClick={resetActiveCategory}
                 >
                   <span
-                    className={`text-[13px] uppercase block text-black w-fit relative activeCategoryHover ${
+                    className={`xl:max-2xl:!text-[11px] 2xl:text-[13px] uppercase block text-black w-fit relative activeCategoryHover ${
                       pathname?.includes(category?.slug) && category?.id !== 0
                         ? "activeCategory"
                         : pathname === category?.slug && category?.id === 0
@@ -173,7 +165,7 @@ const Header = () => {
                 </Link>
               );
             })}
-            <Link href="/" className="mx-[3rem]">
+            <Link href="/" className="mx-[2rem] min-w-[110px]">
               <Image
                 src="/logo1.png"
                 width={200}
@@ -193,7 +185,7 @@ const Header = () => {
                       pathname.includes(category?.slug)
                         ? "activeCategory uppercase"
                         : "font-light uppercase"
-                    } text-[13px] block relative w-fit text-black activeCategoryHover uppercase`}
+                    } xl:max-2xl:!text-[11px] 2xl:text-[13px] block relative w-fit text-black activeCategoryHover uppercase`}
                     onMouseEnter={() => {
                       setActiveCategory({
                         id:
@@ -236,7 +228,7 @@ const Header = () => {
                   onClick={resetActiveCategory}
                 >
                   <span
-                    className={`text-[13px] block text-black uppercase w-fit relative activeCategoryHover ${
+                    className={`xl:max-2xl:!text-[11px] 2xl:text-[13px] block text-black uppercase w-fit relative activeCategoryHover ${
                       pathname?.includes(category?.slug) && category?.id !== 0
                         ? "activeCategory"
                         : pathname === category?.slug && category?.id === 0
@@ -250,7 +242,8 @@ const Header = () => {
               );
             })}
           </div>
-          <div className="absolute right-[5.2rem]">
+
+          <div className={`ml-auto w-fit pl-5`}>
             <HeaderIcons />
           </div>
         </div>
@@ -274,7 +267,7 @@ const Header = () => {
                 <div className="flex gap-x-[13rem] pb-2">
                   <div className={`flex flex-col items-start justify-start`}>
                     <div className={`mb-5`}>
-                      {landingPagesList?.items?.map((item, index) => {
+                      {landing_pages_list?.items?.map((item, index) => {
                         return (
                           <Link
                             onClick={resetActiveCategory}

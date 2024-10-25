@@ -99,7 +99,6 @@ const IndexSlider = ({ banners, mobileBanners }) => {
     };
   }, [banners, mobileBanners]);
 
-  console.log(banners);
   return (
     <div data-aos="zoom-out" className="w-screen block" ref={sliderRef}>
       <div className="relative h-full overflow-hidden">

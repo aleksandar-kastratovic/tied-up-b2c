@@ -314,7 +314,7 @@ const Contact = () => {
                   <span className={`text-[0.85rem]`}>
                     Slažem se sa{" "}
                     <Link
-                      href={`/zastita-privatnosti`}
+                      href={`/strana/zastita-privatnosti`}
                       className={`underline text-[#052922]`}
                     >
                       politikom privatnosti

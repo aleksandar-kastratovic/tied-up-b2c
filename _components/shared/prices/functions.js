@@ -168,13 +168,13 @@ export const renderDefaultPrices = (data = {}) => {
     let are_range_prices_equal = getArePricesEqual(price);
     if (are_range_prices_equal) {
       return (
-        <p className={`md:mt-3 font-bold`}>
+        <p className={`md:!mt-3 !font-bold !text-base`}>
           {currencyFormat(price?.min?.price?.original)}
         </p>
       );
     } else {
       return (
-        <p className={`md:mt-3 font-bold`}>
+        <p className={`md:!mt-3 !font-bold !text-base`}>
           {currencyFormat(price?.min?.price?.original)} -{" "}
           {currencyFormat(price?.max?.price?.original)}
         </p>
@@ -182,7 +182,7 @@ export const renderDefaultPrices = (data = {}) => {
     }
   } else {
     return (
-      <p className={`md:mt-3 font-bold`}>
+      <p className={`md:!mt-3 !font-bold !text-base`}>
         {currencyFormat(price?.price?.original)}
       </p>
     );

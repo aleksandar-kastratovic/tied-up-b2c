@@ -21,9 +21,9 @@ const getBannersCategories = async () => {
 };
 
 const getRecommendedProducts = async () => {
-  return await list("/products/section/list/recommendation", {
-    render: false,
-  }).then((res) => res?.payload?.items);
+  return await list("/products/section/list/recommendation").then(
+    (res) => res?.payload?.items
+  );
 };
 const getIndexBanner = async () => {
   return await get("/banners/index_banner").then((res) => res?.payload);
