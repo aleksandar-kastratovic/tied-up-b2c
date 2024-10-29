@@ -155,13 +155,16 @@ const Footer = () => {
                 className="hover:scale-110 transition-all duration-300 invert"
               />
             </a>
-            <a href="https://www.youtube.com/@tiedup4968" target={"_blank"}>
+            <a
+              href="https://www.linkedin.com/company/83116653/admin/feed/posts/"
+              target={"_blank"}
+            >
               {" "}
               <Image
-                src={Youtube}
-                width={24}
-                height={24}
-                alt="Youtube"
+                src="/linkedin1.png"
+                width={25}
+                height={30}
+                alt="youtube"
                 className="hover:scale-110 transition-all duration-300 invert"
               />
             </a>
@@ -314,7 +317,7 @@ const Footer = () => {
                 <Link
                   href={`/zamena-za-isti-artikal`}
                   className={`cursor-pointer hover:text-[#B89980] mr-1 ${
-                    pathname === "/zamena-za-isti-artikal" && "text-[#B89980]"
+                    pathname === "/zamena-artikala" && "text-[#B89980]"
                   }`}
                 >
                   Zamena za isti artikal,
@@ -378,7 +381,7 @@ const Footer = () => {
                 </Link>
                 <Link
                   className={`cursor-pointer hover:text-[#B89980] ${
-                    pathname === "/zamena-za-isti-artikal" && "text-[#B89980]"
+                    pathname === "/zamena-artikala" && "text-[#B89980]"
                   }`}
                   href="/zamena-za-isti-artikal"
                 >

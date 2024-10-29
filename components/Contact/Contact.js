@@ -153,18 +153,8 @@ const Contact = () => {
               <i className={`fa fa-phone text-[16px] w-5 text-[#052922]`}></i>
               <span className={`text-[0.95rem]`}>
                 <span className={`font-bold`}>Kontakt telefon:</span>{" "}
-                <a
-                  href={`tel:${process.env.TELEPHONE}`}
-                  className={`hover:text-[#B89980]`}
-                >
-                  {process.env.TELEPHONE}
-                </a>
-                ,{" "}
-                <a
-                  href={`tel:${process.env.TELEPHONE2}`}
-                  className={`hover:text-[#B89980]`}
-                >
-                  {process.env.TELEPHONE2}
+                <a href={`tel:0621208985`} className={`hover:text-[#B89980]`}>
+                  062 12 08 985
                 </a>
               </span>
             </div>
@@ -201,8 +191,7 @@ const Contact = () => {
             <div className={`flex items-center gap-2`}>
               <i className={`fa fa-clock text-[16px] w-5 text-[#052922]`}></i>
               <span className={`text-[0.95rem]`}>
-                <span className={`font-bold`}>Radno vreme:</span>{" "}
-                {process.env.WORKTIME}
+                <span className={`font-bold`}>Radno vreme:</span> 08h - 16h
               </span>
             </div>
           </div>

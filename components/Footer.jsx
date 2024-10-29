@@ -44,17 +44,20 @@ const Footer = () => {
               className="hover:scale-110 transition-all duration-300"
             />
           </a>
-          <a href="https://www.youtube.com/@tiedup4968" target={"_blank"}>
+          <a
+            href="https://www.linkedin.com/company/83116653/admin/feed/posts/"
+            target={"_blank"}
+          >
             {" "}
             <Image
-              src="/youtube.png"
+              src="/linkedin1.png"
               width={30}
               height={30}
               alt="youtube"
-              className="hover:scale-110 transition-all duration-300"
+              className="hover:scale-110 transition-all duration-300 invert"
             />
           </a>
-          <a href="https://www.facebook.com/masnetiedup/" target={"_blank"}>
+          <a href="https://www.facebook.com/masnetiedup" target={"_blank"}>
             <Image
               src="/facebook.png"
               width={30}
@@ -90,16 +93,11 @@ const Footer = () => {
               </Link>
               <Link
                 className="cursor-pointer hover:text-[#052922]"
-                href="/zamena-za-isti-artikal"
+                href="/zamena-artikala"
               >
                 Zamena za isti artikal
               </Link>
-              <Link
-                className="cursor-pointer hover:text-[#052922]"
-                href="/zamena-za-drugi-artikal"
-              >
-                Zamena za drugi artikal
-              </Link>
+
               <Link
                 className="cursor-pointer hover:text-[#052922]"
                 href="/strana/pravo-na-odustajanje"
