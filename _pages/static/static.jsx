@@ -64,7 +64,7 @@ export const Static = ({ slug }) => {
             return (
               <div
                 key={keyGenerator("html")}
-                className={`my-5 md:w-[50%] mx-auto prose !max-w-full`}
+                className={`my-5 max-w-[95%] !w-full md:max-w-[60%] mx-auto prose`}
                 dangerouslySetInnerHTML={{ __html: item?.content }}
               ></div>
             );
