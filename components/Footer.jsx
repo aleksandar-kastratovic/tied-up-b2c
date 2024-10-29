@@ -95,7 +95,7 @@ const Footer = () => {
                 className="cursor-pointer hover:text-[#052922]"
                 href="/zamena-artikala"
               >
-                Zamena za isti artikal
+                Zamena artikala
               </Link>
 
               <Link

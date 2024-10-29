@@ -315,20 +315,12 @@ const Footer = () => {
               </p>
               <p>
                 <Link
-                  href={`/zamena-za-isti-artikal`}
+                  href={`/zamena-artikala`}
                   className={`cursor-pointer hover:text-[#B89980] mr-1 ${
                     pathname === "/zamena-artikala" && "text-[#B89980]"
                   }`}
                 >
-                  Zamena za isti artikal,
-                </Link>
-                <Link
-                  href={`/zamena-za-drugi-artikal`}
-                  className={`cursor-pointer hover:text-[#B89980] ml-1 ${
-                    pathname === "/zamena-za-drugi-artikal" && "text-[#B89980]"
-                  }`}
-                >
-                  Zamena za drugi artikal
+                  Zamena artikala
                 </Link>
               </p>
               <Link
@@ -383,17 +375,9 @@ const Footer = () => {
                   className={`cursor-pointer hover:text-[#B89980] ${
                     pathname === "/zamena-artikala" && "text-[#B89980]"
                   }`}
-                  href="/zamena-za-isti-artikal"
+                  href="/zamena-artikala"
                 >
-                  Zamena za isti artikal
-                </Link>
-                <Link
-                  className={`cursor-pointer hover:text-[#B89980] ${
-                    pathname === "/zamena-za-drugi-artikal" && "text-[#B89980]"
-                  }`}
-                  href="/zamena-za-drugi-artikal"
-                >
-                  Zamena za drugi artikal
+                  Zamena artikala
                 </Link>
                 <Link
                   className={`cursor-pointer hover:text-[#B89980] ${

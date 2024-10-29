@@ -75,7 +75,7 @@ const ZamenaZaIstiArtikal = () => {
         email: formData?.email,
         phone: formData?.phone,
         mail_to: "",
-        subject: "Zamena za isti artikal",
+        subject: "Zamena artikla",
         company_sector: "",
         message: `Razlog za menjanje: ${formData?.message} \n Ime: ${formData?.first_name} \n Prezime: ${formData?.last_name} \n Adresa: ${formData?.address} \n Email: ${formData?.email} \n Telefon: ${formData?.phone} \n Broj porudzbenice: ${formData?.order_number} \n Broj loyalty kartice: ${formData?.loyalty_card_number} \n Šifra artikla koji se vraća: ${formData?.sku} \n Veličina koja se vraća: ${formData?.returning_size} \n Nova veličina: {formData?.new_size} \n Količina koja se vraća: ${formData?.returning_amount} \n Nova količina: ${formData?.new_amount} \n Razlog za zamenu: ${formData?.reasons_of_return}`,
         accept_rules: true,
