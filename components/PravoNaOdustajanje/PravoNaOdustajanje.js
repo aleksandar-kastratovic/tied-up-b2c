@@ -84,8 +84,8 @@ const PravoNaOdustajanje = () => {
       <p>
         <u>Predlažemo Vam</u> da kada nam &scaron;aljete robu o Va&scaron;em
         tro&scaron;ku, bilo u cilju zamene ili odustajanja od kupovine, robu
-        &scaron;aljete preko <u>D-Express</u>
-        <u>&nbsp;kurirske službe</u>, jer je D-Express na&scaron; poslovni
+        &scaron;aljete preko <u>Post Express</u>
+        <u>&nbsp;kurirske službe</u>, jer je Post Express na&scaron; poslovni
         partner.
         <br />U slučaju bilo kakvih sporova ili problema, mnogo nam je
         lak&scaron;e da iste re&scaron;avamo sa svojim poslovnim partnerom, nego

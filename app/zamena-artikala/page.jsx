@@ -75,7 +75,7 @@ const ZamenaZaIstiArtikal = () => {
         email: formData?.email,
         phone: formData?.phone,
         mail_to: "",
-        subject: "Zamena za isti artikal",
+        subject: "Zamena artikla",
         company_sector: "",
         message: `Razlog za menjanje: ${formData?.message} \n Ime: ${formData?.first_name} \n Prezime: ${formData?.last_name} \n Adresa: ${formData?.address} \n Email: ${formData?.email} \n Telefon: ${formData?.phone} \n Broj porudzbenice: ${formData?.order_number} \n Broj loyalty kartice: ${formData?.loyalty_card_number} \n Šifra artikla koji se vraća: ${formData?.sku} \n Veličina koja se vraća: ${formData?.returning_size} \n Nova veličina: {formData?.new_size} \n Količina koja se vraća: ${formData?.returning_amount} \n Nova količina: ${formData?.new_amount} \n Razlog za zamenu: ${formData?.reasons_of_return}`,
         accept_rules: true,
@@ -125,87 +125,19 @@ const ZamenaZaIstiArtikal = () => {
       <Captcha onVerify={verifyCaptcha} refreshReCaptcha={true} />
       <div className="mt-[1.2rem] md:mt-[9rem] w-[95%] mx-auto md:w-[60%]">
         <h1 className="text-center pb-7 text-[#262626] text-[1.313rem] font-bold">
-          Zamena za isti artikal
+          Zamena artikala
         </h1>
-        <h5>
-          <strong>Rok za zamenu</strong>
-        </h5>
         <p>
-          Zamenu artikla možete obaviti u roku od 14 dana od trenutka prelaska
-          artikla u Va&scaron;e vlasni&scaron;tvo.
-        </p>
-        <p></p>
-        <h5>
-          <strong>Zamena</strong>
-        </h5>
-        <p>
-          U slučaju da ste nakon prijema artikla utvrdili da smo Vam poslali
-          pogre&scaron;an ili eventualno o&scaron;tećen artikal, zamenu ovog
-          artikla možete izvr&scaron;iti o&nbsp;
-          <u>na&scaron;em tro&scaron;ku</u>.<br />
-          <strong>Uslov</strong>&nbsp;da ostvarite zamenu artikla o na&scaron;em
-          tro&scaron;ku, je da nam artikal vratite&nbsp;
-          <strong>
-            isključivo<span>&nbsp;</span>
-          </strong>
-          <strong>D-Express</strong>
-          <strong>
-            <span>&nbsp;</span>kurirskom službom
-          </strong>
-          , i da D-Espress-u obavezno napomenete, da se &scaron;alje O
-          TRO&Scaron;KU TiedUp-a PREKO UGOVORA.
-          <br />U slučaju da nam artikal po&scaron;aljete nekom drugom kurirskom
-          službom, po&scaron;iljka neće biti primljena, već će Vam biti vraćena,
-          i u tom slučaju sve tro&scaron;kove slanja i povrata ide na Va&scaron;
-          tro&scaron;ak.
-          <br />
-          Artikal nam &scaron;aljete na adresu sa računa (Prvoslava Stojanovića
-          4, 34000 Kragujevac), sa naznakom problema koji je nastao, uz račun,
-          odnosno dokaz o kupovini.
-        </p>
-        <p>
-          Potro&scaron;ač nema pravo na zamenu artikla u slučaju isporuke
-          zapečaćene robe koja se ne može vratiti zbog&nbsp;
-          <u>za&scaron;tite zdravlja ili higijenskih razloga</u>&nbsp;i koja je
-          otpečaćena nakon isporuke. Dakle, u slučaju da je proizvod otpakovan
-          pretpostavlja se da je isti kori&scaron;ćen, zbog čega potro&scaron;ač
-          nema pravo da odustane od ugovora, ili izvr&scaron;i zamenu, ako je
-          reč o donjem ve&scaron;u, kupaćim gaćama, kupaćim kostimima, čarapama.
-        </p>
-        <p>
-          Artikal ne možete samoinicijativno menjati u nekom od maloprodajnih
-          objekata TiedUp-a.
-        </p>
-        <p>
-          Artikal nije moguće menjati ukoliko je no&scaron;en &ndash; &scaron;to
-          se može utvrditi ekspertizom.
-        </p>
-        <p></p>
-        <h5>Zamena za isti artikal</h5>
-        <p>
-          Ukoliko ste nakon prijema artikla utvrdili da Vam ne odgovara
-          veličina, molimo Vas da nas kontaktirate putem forme ispod.
-          <br />I u ovom slučaju, artikal nam možete poslati bilo kojom
-          kurirskom službom o&nbsp;<u>Va&scaron;em tro&scaron;ku</u>.<br />
-          Artikal nam &scaron;aljete na adresu sa računa (Prvoslava Stojanovića
-          4, 34000 Kragujevac), uz račun, odnosno dokaz o kupovini.
-          <br />
-          Dostava zamenskog artikla takođe ide o Va&scaron;em tro&scaron;ku.
-        </p>
-        <p>
-          <u>Predlažemo Vam</u>&nbsp;da kada nam &scaron;aljete robu o
-          Va&scaron;em tro&scaron;ku, bilo u cilju zamene ili odustajanja od
-          kupovine, robu &scaron;aljete preko&nbsp;<u>D-Express</u>
-          <u>
-            <span>&nbsp;</span>kurirske službe
-          </u>
-          , jer je D-Express na&scaron; poslovni partner.
-          <br />U slučaju bilo kakvih sporova ili problema, mnogo nam je
-          lak&scaron;e da iste re&scaron;avamo sa svojim poslovnim partnerom,
-          nego sa firmama koje to nisu.
-          <br />
-          Naravno, na Vama ostaje izbor kurirske službe preko koje ćete nam
-          poslati robu kada &scaron;aljete o svom tro&scaron;ku.
+          Kupac može da zatraži zamenu u roku od 14 dana od dana prijema robe.
+          Zamena robe se odnosi na zamenu veličine ili zamenu modela. U slučaju
+          zamene roba se, zajedno sa popunjenim Obrascem za zamenu, dostavlja
+          Prodavcu, i u tom slučaju troškove zamene snosi Kupac. Obrazac za
+          zamenu dostupan je na sajtu Prodavca www.tiedup.rs i može se slobodno
+          preuzeti kao trajni nosač zapisa. U slučaju zamene Kupac je u obavezi
+          da robu vrati u originalnoj ambalaži, bez oštećenja i tragova
+          korišćenja. U suprotnom, Prodavac nije u obavezi da obavi zamenu.
+          Artikal za koji se vrši zamena, mora imati istu ili veću vrednost od
+          artikla koji se menja, uz doplatu.
         </p>
         <div className={`mt-10`}>
           <form

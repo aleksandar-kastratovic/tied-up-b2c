@@ -26,12 +26,12 @@ function HeaderTop() {
         </Link>
         <span className="mx-2">-</span>
         <Link
-          href="https://www.youtube.com/@tiedup4968"
+          href="https://www.linkedin.com/company/83116653/admin/feed/posts/"
           className="hover:text-white text-sm font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
-          Youtube
+          LinkedIn
         </Link>
       </div>
       <SliderHeader />

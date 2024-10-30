@@ -112,12 +112,6 @@ const nextConfig = {
         statusCode: 301,
       },
       {
-        source: "/kontakt",
-        destination: "/kontakt",
-        permanent: true,
-        statusCode: 301,
-      },
-      {
         source: "/product-tag/scarfs/",
         destination: "/muskarci/salovi",
         permanent: true,
