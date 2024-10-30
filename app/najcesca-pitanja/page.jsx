@@ -25,7 +25,7 @@ const FAQ = () => {
         Najčešća pitanja{" "}
       </h1>
       <div className="flex flex-col gap-2">
-        <h1 className="text-[#052922] text-lg font-semibold">
+        <h1 className="text-[#215352] text-lg font-semibold">
           Da li mogu da poručim robu preko telefona?
         </h1>
         <p>
@@ -37,7 +37,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-[#052922] text-lg font-semibold">
+        <h1 className="text-[#215352] text-lg font-semibold">
           Kako da znam da sam uspešno poručio/la artikal putem sajta?{" "}
         </h1>
         <p>
@@ -47,7 +47,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-[#052922] text-lg font-semibold">
+        <h1 className="text-[#215352] text-lg font-semibold">
           Kako da platim poručeni proizvod?
         </h1>
         <div>
@@ -68,7 +68,7 @@ const FAQ = () => {
         <div></div>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-[#052922] text-lg font-semibold">
+        <h1 className="text-[#215352] text-lg font-semibold">
           Da li je moguće plaćanje na rate?
         </h1>
         <p>
@@ -78,7 +78,7 @@ const FAQ = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-[#052922] text-lg font-semibold">
+        <h1 className="text-[#215352] text-lg font-semibold">
           Da li plaćam troškove isporuke i koliko iznose?{" "}
         </h1>
         <div>
@@ -94,7 +94,7 @@ const FAQ = () => {
         <div></div>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-[#052922] text-lg font-semibold">
+        <h1 className="text-[#215352] text-lg font-semibold">
           Da li postoji mogućnost zamene?
         </h1>
         <div>

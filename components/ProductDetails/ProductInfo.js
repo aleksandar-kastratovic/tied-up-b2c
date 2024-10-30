@@ -27,6 +27,7 @@ import {
   Prices,
 } from "@/_components/shared/prices";
 import { generateProductSchema } from "@/_functions";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 const ProductInfo = ({
   product,
@@ -195,6 +196,7 @@ const ProductInfo = ({
             id: product?.data?.item?.basic_data?.id_product,
             quantity: count,
           });
+          pushToDataLayer("add_to_cart", product?.data?.item);
         } else {
           router.push(`/kontakt?slug=${product?.data?.item?.slug}`);
         }
@@ -211,6 +213,7 @@ const ProductInfo = ({
               id: productVariant?.id,
               quantity: count,
             });
+            pushToDataLayer("add_to_cart", productVariant);
           } else {
             router.push(`/kontakt?slug=${productVariant?.slug}`);
           }
@@ -321,7 +324,7 @@ const ProductInfo = ({
                   {!productVariant?.inventory?.inventory_defined && (
                     <>
                       <p
-                        className={`text-[#052922] w-fit text-sm font-bold mt-5`}
+                        className={`text-[#215352] w-fit text-sm font-bold mt-5`}
                       >
                         Proizvod nije dostupan.
                       </p>
@@ -333,7 +336,7 @@ const ProductInfo = ({
                   {!product?.data?.item?.inventory?.inventory_defined && (
                     <>
                       <p
-                        className={`text-[#052922] w-fit text-sm font-bold mt-5`}
+                        className={`text-[#215352] w-fit text-sm font-bold mt-5`}
                       >
                         Proizvod nije dostupan.
                       </p>
@@ -369,7 +372,7 @@ const ProductInfo = ({
                   : product?.data?.item?.inventory?.inventory_defined) && (
                   <>
                     <div className=" mb-[1.2rem]">
-                      <span className="text-[#052922] text-[16px] font-semibold">
+                      <span className="text-[#215352] text-[16px] font-semibold">
                         {handleSavings()}
                       </span>
                     </div>
@@ -396,7 +399,7 @@ const ProductInfo = ({
                 product?.data?.item?.inventory?.amount <= 4 && (
                   <>
                     <p
-                      className={`text-[#052922] w-fit text-sm font-bold mt-5`}
+                      className={`text-[#215352] w-fit text-sm font-bold mt-5`}
                     >
                       Male količine
                     </p>
@@ -438,7 +441,7 @@ const ProductInfo = ({
               <PlusMinusInputTwo setCount={setCount} amount={count} />
               <button
                 disabled={isPending}
-                className={`max-sm:w-[8.5rem] bg-[#052922] sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative disabled:opacity-50 ${
+                className={`max-sm:hidden bg-[#215352] sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative disabled:opacity-50 ${
                   tempError ? "!bg-red-500" : ""
                 }`}
                 onClick={handleAddToCart}
@@ -456,7 +459,6 @@ const ProductInfo = ({
                         : product?.data?.item?.inventory
                     )?.text}
               </button>
-
               <div
                 className="w-[39px] h-[35px] cursor-pointer"
                 onClick={() => {
@@ -464,8 +466,13 @@ const ProductInfo = ({
                     addToWishlist({
                       id: product?.data?.item?.basic_data?.id_product,
                     });
+                    pushToDataLayer("add_to_wishlist", product?.data?.item);
                   } else {
                     removeFromWishlist({ id: wishlist_item_id });
+                    pushToDataLayer(
+                      "remove_from_wishlist",
+                      product?.data?.item
+                    );
                   }
                 }}
               >
@@ -478,6 +485,26 @@ const ProductInfo = ({
                 />
               </div>
             </div>
+            <button
+              disabled={isPending}
+              className={`max-sm:w-full mt-5 sm:hidden bg-[#215352] sm:w-[15.313rem] hover:bg-opacity-80 h-[54px]  flex justify-center items-center uppercase text-white text-lg font-semibold pt-1 relative disabled:opacity-50 ${
+                tempError ? "!bg-red-500" : ""
+              }`}
+              onClick={handleAddToCart}
+            >
+              {isPending
+                ? "DODAJEM..."
+                : tempError
+                ? tempError
+                : checkIsAddable(
+                    productVariant?.id
+                      ? productVariant?.price
+                      : product?.data?.item?.price,
+                    productVariant?.id
+                      ? productVariant?.inventory
+                      : product?.data?.item?.inventory
+                  )?.text}
+            </button>
             <div className="mt-[3.2rem] max-md:mt-[2rem] max-md:flex max-md:items-center max-md:justify-start max-md:w-full">
               <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
                 <div
@@ -690,7 +717,6 @@ const ProductInfo = ({
               }}
             ></div>
           )}
-          <ToastContainer />
         </>
       ) : (
         notFound()

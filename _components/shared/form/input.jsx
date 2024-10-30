@@ -123,7 +123,7 @@ export const TextInput = ({
             type === "password" ? (showPassword ? "text" : "password") : type
           }
           id={id}
-          className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980] sm:text-sm focus:border-transparent text-base ${
+          className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980] sm:text-sm focus:border-transparent text-base ${
             (errors ?? [])?.includes(name)
               ? "!ring-1 !ring-red-500 !ring-offset-2 !ring-offset-white"
               : ""
@@ -184,7 +184,7 @@ export const SelectInput = ({
         name={name}
         onChange={(e) => onChange(e)}
         id={id}
-        className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980] sm:text-sm focus:border-transparent text-base ${
+        className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980] sm:text-sm focus:border-transparent text-base ${
           (errors ?? [])?.includes(name)
             ? "!ring-1 !ring-red-500 !ring-offset-2 !ring-offset-white"
             : ""
@@ -231,7 +231,7 @@ export const DateInput = ({
         onChange={(e) => onChange(e)}
         type={"date"}
         id={id}
-        className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980] sm:text-sm focus:border-transparent text-base ${
+        className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980] sm:text-sm focus:border-transparent text-base ${
           (errors ?? [])?.includes(name)
             ? "!ring-1 !ring-red-500 !ring-offset-2 !ring-offset-white"
             : ""
@@ -274,7 +274,7 @@ export const CheckboxInput = ({
           onChange={(e) => onChange(e)}
           type={"checkbox"}
           id={id}
-          className={`h-5 w-5 block border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980] sm:text-sm focus:border-transparent text-base text-green-500 ${
+          className={`h-5 w-5 block border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980] sm:text-sm focus:border-transparent text-base text-green-500 ${
             (errors ?? [])?.includes(name)
               ? "!ring-1 !ring-red-500 !ring-offset-2 !ring-offset-white"
               : ""
@@ -314,7 +314,7 @@ export const TextareaInput = ({
         name={name}
         onChange={(e) => onChange(e)}
         id={id}
-        className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980] sm:text-sm focus:border-transparent text-base ${
+        className={`mt-1 block w-full px-3 py-2 border border-gray-200 bg-white rounded-md shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980] sm:text-sm focus:border-transparent text-base ${
           (errors ?? [])?.includes(name)
             ? "!ring-1 !ring-red-500 !ring-offset-2 !ring-offset-white"
             : ""

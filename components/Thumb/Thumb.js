@@ -123,7 +123,7 @@ const Thumb = ({
 
       return (
         <p
-          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#215352] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -419,7 +419,6 @@ const Thumb = ({
   if (slider) {
     return (
       <>
-        <ToastContainer />
         <Swiper
           slidesPerView={2}
           spaceBetween={10}
@@ -563,7 +562,7 @@ const Thumb = ({
                 className={`absolute left-2 top-2 z-[1] text-white text-[13px]`}
               >
                 <div
-                  className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
+                  className={`bg-[#215352] px-[0.85rem] py-1 rounded-lg font-bold`}
                 >
                   -
                   {(
@@ -800,12 +799,7 @@ const Thumb = ({
         </div>
       );
     });
-    return (
-      <>
-        {products}
-        <ToastContainer />
-      </>
-    );
+    return <>{products}</>;
   }
 };
 

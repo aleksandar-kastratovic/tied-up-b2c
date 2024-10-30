@@ -449,7 +449,7 @@ const NavigationDesktop = () => {
                       background === "white" ? "wiggle" : "invert wiggle"
                     }
                   />
-                  <span className="absolute -top-2.5 text-white -right-1 bg-[#052922] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                  <span className="absolute -top-2.5 text-white -right-1 bg-[#215352] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                     {wishListCount}
                   </span>
                 </div>
@@ -465,7 +465,7 @@ const NavigationDesktop = () => {
                       background === "white" ? "wiggle" : "invert wiggle"
                     }
                   />
-                  <span className="absolute -top-1 text-white -right-1 bg-[#052922] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+                  <span className="absolute -top-1 text-white -right-1 bg-[#215352] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
                     {cartCount}
                   </span>
                 </div>
@@ -653,7 +653,7 @@ const NavigationDesktop = () => {
                   <div
                     className={`${
                       pathname?.includes(category?.slug)
-                        ? `text-[#052922]`
+                        ? `text-[#215352]`
                         : `text-black`
                     } text-xs hover:text-slate-500 hover:translate-x-2 transition-all duration-300 font-medium`}
                   >

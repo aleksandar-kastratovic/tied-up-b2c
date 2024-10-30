@@ -1,33 +1,76 @@
-"use client"
-import { useState } from "react";
-import { useGlobalAddToWishList } from "@/app/api/globals";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import classes from "../RelatedProducts/RelatedProducts.module.css";
-import Thumb from "../Thumb/Thumb";
+"use client";
+import { Suspense, useState } from "react";
+import { Thumb } from "@/_components/shared";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { list } from "@/app/api/api";
 
-const UpsellProducts = ({ upsellProducts = [], loading }) => {
-  const globalAddToWishlist = useGlobalAddToWishList();
-  const [currentSlide, setCurrentSlide] = useState(0);
+const UpsellProducts = ({ id }) => {
+  const { data: up_sell_products } = useSuspenseQuery({
+    queryKey: ["up_sell_products"],
+    queryFn: async () => {
+      return await list(`/product-details/up-sell/${id}`)?.then(
+        (response) => response?.payload?.items
+      );
+    },
+  });
+
   const [loaded, setLoaded] = useState(false);
-  const router = useRouter();
 
+  if (up_sell_products?.length > 0) {
     return (
       <>
-      <div
-      className="max-sm:w-[95%] max-sm:mx-auto md:mx-[3rem] max-sm:mt-[3rem]  overflow-visible"
-    >
-      <div className="flex justify-between w-full items-center">
-        <h5 className="text-[1.5rem] font-bold max-md:text-[1.1rem] ">
-        Preporučujemo
-        </h5>
-      </div>
-      <div className="max-sm:mt-[1rem] mt-[2.5rem]">
-        <Thumb slider={true} data={upsellProducts} />
-      </div>
-    </div>
-       </>
-      )}
-
+        <div className="flex justify-between w-full items-center mt-10">
+          <h5 className="text-[1.5rem] mb-3 font-bold max-md:text-[1.1rem] ">
+            Preporučujemo
+          </h5>
+        </div>
+        <Swiper
+          onInit={() => setLoaded(true)}
+          slidesPerView={1.2}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 4,
+            },
+          }}
+          spaceBetween={20}
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 2000,
+            pauseOnMouseEnter: true,
+            reverseDirection: true,
+          }}
+        >
+          {loaded &&
+            (up_sell_products ?? [])?.map(({ id }) => {
+              return (
+                <SwiperSlide key={`slide-${id}`}>
+                  <Suspense
+                    fallback={
+                      <div
+                        className={`aspect-square bg-slate-200 animate-pulse col-span-1`}
+                      />
+                    }
+                  >
+                    <Thumb
+                      refreshWishlist={() => {}}
+                      id={id}
+                      categoryId={"*"}
+                    />
+                  </Suspense>
+                </SwiperSlide>
+              );
+            })}
+        </Swiper>
+      </>
+    );
+  }
+};
 export default UpsellProducts;

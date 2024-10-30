@@ -41,23 +41,6 @@ const getDeclaration = (slug) => {
     (res) => res?.payload
   );
 };
-const upsellProductsList = (id) => {
-  return list(`/product-details/up-sell/${id}`).then(
-    (response) => response?.payload?.items
-  );
-};
-const relatedProductsList = (id) => {
-  return list(`/product-details/recommended/${id}`).then(
-    (response) => response?.payload?.items
-  );
-};
-
-const crosssellProductsList = async (id) => {
-  return await list(`/product-details/cross-sell/${id}`).then(
-    (response) => response?.payload?.items
-  );
-};
-
 const ProductPage = async ({ path, categoryId }) => {
   const [
     product,
@@ -66,9 +49,6 @@ const ProductPage = async ({ path, categoryId }) => {
     breadcrumbs,
     specification,
     declaration,
-    relatedProducts,
-    upsellProducts,
-    crosssellProducts,
     stickers,
   ] = await Promise.all([
     getProduct(path),
@@ -77,9 +57,6 @@ const ProductPage = async ({ path, categoryId }) => {
     getBreadcrumbs(path, categoryId),
     getSpecification(path),
     getDeclaration(path),
-    relatedProductsList(path),
-    upsellProductsList(path),
-    crosssellProductsList(path),
     getProductStickers(path),
   ]);
 
@@ -95,9 +72,6 @@ const ProductPage = async ({ path, categoryId }) => {
         breadcrumbs={breadcrumbs}
         specification={specification}
         declaration={declaration}
-        relatedProducts={relatedProducts}
-        upsellProducts={upsellProducts}
-        crosssellProducts={crosssellProducts}
         stickers={stickers}
         canonical={canonical}
       />

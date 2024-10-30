@@ -409,7 +409,7 @@ const CategoryPage = ({
               {index === 0 && num !== 1 && (
                 <>
                   <span
-                    className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#052922] hover:text-[#052922] rounded-lg`}
+                    className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg`}
                     onClick={() => {
                       setPage(1);
                       window.scrollTo(0, 0);
@@ -431,8 +431,8 @@ const CategoryPage = ({
               <span
                 className={`${
                   num === productData.pagination.selected_page
-                    ? "cursor-pointer select-none bg-[#052922] py-1 px-3 rounded-lg text-white"
-                    : "cursor-pointer select-none py-1 px-3 border border-white hover:border-[#052922] hover:text-[#052922] rounded-lg"
+                    ? "cursor-pointer select-none bg-[#215352] py-1 px-3 rounded-lg text-white"
+                    : "cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg"
                 }`}
                 onClick={() => {
                   setPage(num);
@@ -451,7 +451,7 @@ const CategoryPage = ({
                       </span>
                     )}
                     <span
-                      className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#052922] hover:text-[#052922] rounded-lg`}
+                      className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg`}
                       onClick={() => {
                         setPage(productData.pagination.total_pages);
                         window.scrollTo(0, 0);

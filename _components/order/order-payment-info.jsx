@@ -96,7 +96,7 @@ export const OrderPaymentInfo = ({ order }) => {
 
       {button && (
         <a href="/">
-          <button className="bg-[#B89980] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
+          <button className="bg-[#b89980] mt-10 px-10 font-medium text-white hover:bg-opacity-80 py-4">
             {button}
           </button>
         </a>

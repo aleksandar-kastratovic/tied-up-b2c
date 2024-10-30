@@ -11,7 +11,7 @@ const Onama = () => {
             <h3 className="italic text-[#c0c0c0] font-light text-[22px]">
               O nama
             </h3>
-            <h1 className={`text-[#052922] font-bold text-[30px] mt-[1rem]`}>
+            <h1 className={`text-[#215352] font-bold text-[30px] mt-[1rem]`}>
               Dobrodošli u svet Tied Up elegancije i autentičnosti
             </h1>
             <p className="mt-3 font-light text-[22px]">

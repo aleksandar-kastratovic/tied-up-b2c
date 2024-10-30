@@ -55,8 +55,8 @@ const MaloprodajePage = () => {
                 return (
                   <div
                     key={index}
-                    className={` w-full gap-2 rounded-lg col-span-1 lg:col-span-1 p-5 hover:border-[#052922] cursor-pointer border ${
-                      active?.id === object?.id && `border-[#052922] border-2`
+                    className={` w-full gap-2 rounded-lg col-span-1 lg:col-span-1 p-5 hover:border-[#215352] cursor-pointer border ${
+                      active?.id === object?.id && `border-[#215352] border-2`
                     }`}
                     onClick={() => {
                       setActive({
@@ -76,7 +76,7 @@ const MaloprodajePage = () => {
                         <p className={`text-base`}>{object?.phone}</p>
                       </div>
                       <button
-                        className={`bg-black hover:bg-[#052922] transition-all duration-500 w-full text-white px-5 py-2 rounded-lg`}
+                        className={`bg-black hover:bg-[#215352] transition-all duration-500 w-full text-white px-5 py-2 rounded-lg`}
                         onClick={() => {
                           setActive((prev) => ({
                             id: object?.id,

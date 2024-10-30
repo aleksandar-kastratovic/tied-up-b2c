@@ -90,7 +90,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`max-xl:hidden ${visible} w-full z-[100] relative bg-white border-b-2 border-[#052922] `}
+        className={`max-xl:hidden ${visible} w-full z-[100] relative bg-white border-b-[1px] border-[#215352] `}
         id="header"
       >
         <HeaderTop />
@@ -349,7 +349,7 @@ const Header = () => {
 
                     {activeSubCategory?.name && (
                       <Link
-                        className={`text-[15px] font-normal text-[#052922] hover:underline pb-7`}
+                        className={`text-[15px] font-normal text-[#215352] hover:underline pb-7`}
                         href={`/${activeSubCategory?.slug_path}`}
                         onClick={() => {
                           resetActiveCategory();

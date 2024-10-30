@@ -49,7 +49,7 @@ export const Form = ({
             <button
               disabled={isPending}
               type={`submit`}
-              className={`w-full bg-croonus-1 hover:bg-croonus-1/80 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980] sm:text-base shadow disabled:opacity-50 ${buttonClassName}`}
+              className={`w-full bg-croonus-1 hover:bg-croonus-1/80 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980] sm:text-base shadow disabled:opacity-50 ${buttonClassName}`}
             >
               {isPending ? (
                 <div

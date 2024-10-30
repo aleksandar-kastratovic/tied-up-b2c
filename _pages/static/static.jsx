@@ -28,7 +28,7 @@ export const Static = ({ slug }) => {
   };
 
   return (
-    <div className={`py-5 md:py-12`}>
+    <div>
       {staticData?.map((item) => {
         switch (item?.type) {
           case "multiple_images":
@@ -64,7 +64,7 @@ export const Static = ({ slug }) => {
             return (
               <div
                 key={keyGenerator("html")}
-                className={`my-5 max-w-[95%] !w-full md:max-w-[60%] mx-auto prose`}
+                className={`mt-[1.2rem] md:mt-[9rem] max-md:!max-w-[95%] mx-auto md:!max-w-[60%] prose !w-full`}
                 dangerouslySetInnerHTML={{ __html: item?.content }}
               ></div>
             );
@@ -75,7 +75,7 @@ export const Static = ({ slug }) => {
             return (
               <div
                 key={keyGenerator("textarea")}
-                className={`my-5 md:w-[50%] mx-auto prose !max-w-full`}
+                className={`mt-[1.2rem] md:mt-[9rem] max-md:!max-w-[95%] mx-auto md:!max-w-[60%] prose !w-full`}
                 dangerouslySetInnerHTML={{ __html: item?.content }}
               ></div>
             );

@@ -168,7 +168,7 @@ const ProductMobileGallery = ({
 
       return (
         <p
-          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#215352] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -314,7 +314,7 @@ const ProductMobileGallery = ({
             </Swiper>
           </div>
           <i
-            className={`fas fa-times absolute top-2 left-2 z-50 text-[#052922] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
+            className={`fas fa-times absolute top-2 left-2 z-50 text-[#215352] bg-white rounded-xl px-2 py-1 text-xl cursor-pointer`}
             onClick={() => {
               setModalImage(null);
             }}

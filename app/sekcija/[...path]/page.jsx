@@ -38,7 +38,7 @@ const Section = async ({
   return (
     <>
       <h1
-        className={`text-[#052922] font-bold text-[30px] mt-[1.875rem] px-2 md:px-[3rem]`}
+        className={`text-[#215352] font-bold text-[30px] mt-[1.875rem] px-2 md:px-[3rem]`}
       >
         {data?.name}
       </h1>
