@@ -46,7 +46,7 @@ export const Pagination = ({
             <>
               <span
                 // href={`${handleQueryString(0)}`}
-                className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#052922] hover:text-[#052922] rounded-lg`}
+                className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg`}
                 onClick={() => {
                   setPage(1);
                   window.scrollTo(0, 0);
@@ -66,8 +66,8 @@ export const Pagination = ({
             // href={`${handleQueryString(num - 1)}`}
             className={`${
               num === data.pagination.selected_page
-                ? "cursor-pointer select-none bg-[#052922] py-1 px-3 rounded-lg text-white"
-                : "cursor-pointer select-none py-1 px-3 border border-white hover:border-[#052922] hover:text-[#052922] rounded-lg"
+                ? "cursor-pointer select-none bg-[#215352] py-1 px-3 rounded-lg text-white"
+                : "cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg"
             }`}
             onClick={() => {
               setPage(num);
@@ -86,7 +86,7 @@ export const Pagination = ({
                 )}
                 <span
                   // href={`${handleQueryString(data.pagination.total_pages - 1)}`}
-                  className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#052922] hover:text-[#052922] rounded-lg`}
+                  className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg`}
                   onClick={() => {
                     setPage(data.pagination.total_pages);
                     window.scrollTo(0, 0);

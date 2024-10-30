@@ -127,7 +127,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                   <Link
                     href={`${banner?.url ?? `/stranica-u-izradi`}`}
                     target={`${banner?.target}` ?? "_self"}
-                    className="absolute z-[49] top-0 left-0 w-full h-full bg-black transition-all duration-500 bg-opacity-40"
+                    className="absolute z-[49] top-0 left-0 w-full h-full bg-black transition-all duration-500 bg-opacity-20"
                   >
                     <div className="absolute flex flex-col items-center md:items-start justify-center md:justify-start max-sm:gap-[20px] gap-[10px] max-sm:top-[50%] top-[48%] text-center left-[8%] transform -translate-y-1/2">
                       {banner?.title && (
@@ -136,7 +136,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                         </h1>
                       )}
                       {banner?.subtitle && (
-                        <h2 className="text-white max-sm:text-xl text-[42px] font-semibold capitalize tracking-wider">
+                        <h2 className="text-white max-sm:text-xl text-[42px] font-semibold tracking-wider">
                           {banner?.subtitle}
                         </h2>
                       )}
@@ -184,9 +184,9 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                 }
               ></i>
               <div>
-                <h1 className="text-white">{`${currentSlide?.index + 1} / ${
+                <p className="text-white">{`${currentSlide?.index + 1} / ${
                   banners?.length
-                }`}</h1>
+                }`}</p>
               </div>
               <i
                 className="fas cursor-pointer fa-chevron-right text-white text-sm"

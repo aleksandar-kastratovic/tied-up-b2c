@@ -21,6 +21,7 @@ import { toast } from "react-toastify";
 import WishlistActive from "@/assets/Icons/heart-active.png";
 import Wishlist from "@/assets/Icons/heart.png";
 import { icons } from "@/_lib/icons";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 export const Thumb = ({
   id,
@@ -28,35 +29,11 @@ export const Thumb = ({
   refreshWishlist = () => {},
   productsPerViewMobile = 1,
   is_details = false,
-  section_data = {
-    categories: [],
-    setCategories: () => {},
-    setProducts: () => {},
-    products: [],
-    selectedCategory: null,
-  },
 }) => {
   const { data: product } = useProductThumb({
     id: id,
     categoryId: categoryId ?? "*",
   });
-
-  // useEffect(() => {
-  //   if (product) {
-  //     const categories = product?.categories || [];
-  //     section_data?.setCategories((prev) => {
-  //       return [
-  //         ...new Set([
-  //           ...prev,
-  //           {
-  //             categories,
-  //             product,
-  //           },
-  //         ]),
-  //       ];
-  //     });
-  //   }
-  // }, [product]);
 
   const { mutate: addToWishlist, isSuccess: isAdded } = useAddToWishlist();
   const { mutate: removeFromWishlist, isSuccess: isRemoved } =
@@ -104,7 +81,7 @@ export const Thumb = ({
 
       return (
         <p
-          className={`bg-[#052922] px-[0.85rem] py-1 rounded-lg font-bold`}
+          className={`bg-[#215352] px-[0.85rem] py-1 rounded-lg font-bold`}
         >{`- ${discount}%`}</p>
       );
     });
@@ -123,7 +100,7 @@ export const Thumb = ({
       return (
         <p
           key={`sticker-${i}`}
-          className={`bg-[#E7DCD1] px-[0.85rem] py-1 text-black rounded-lg font-bold`}
+          className={`bg-[#E7DCD1] px-[0.85rem] py-1 text-black rounded-lg font-bold group-hover:bg-[#215352] group-hover:text-white transition-colors duration-500`}
         >
           {name}
         </p>
@@ -230,16 +207,18 @@ export const Thumb = ({
         <div className="mt-auto pt-[0.813rem] flex items-center justify-between relative w-full">
           <Link
             href={`/${product?.link?.link_path}`}
-            className="max-md:text-[0.85] uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-1 group-hover:text-[#B89980]"
+            className="max-md:text-[0.85] uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-2 group-hover:text-[#215352]"
           >
             {product?.basic_data?.name}
           </Link>
           <div
             onClick={() => {
               if (wishlist_data?.is_in_wishlist) {
+                pushToDataLayer("remove_from_wishlist", product);
                 removeFromWishlist({ id: wishlist_data?.id });
               } else {
                 addToWishlist({ id: product?.basic_data?.id_product });
+                pushToDataLayer("add_to_wishlist", product);
               }
             }}
             className={`rounded-full p-1 favorites cursor-pointer `}
@@ -263,11 +242,13 @@ export const Thumb = ({
             )}
           </div>
         </div>
-        <Prices
-          price={product?.price}
-          inventory={product?.inventory}
-          is_details={is_details}
-        />
+        <div className={`mt-auto pt-3`}>
+          <Prices
+            price={product?.price}
+            inventory={product?.inventory}
+            is_details={is_details}
+          />
+        </div>
       </div>
     </div>
   );

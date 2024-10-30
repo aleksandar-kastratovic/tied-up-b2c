@@ -48,7 +48,7 @@ const SinglePost = ({ post }) => {
           </p>
         </div>
         <div
-          className={`text-base font-normal mt-5 prose !max-w-full prose-a:text-[#052922] prose:!text-black`}
+          className={`text-base font-normal mt-5 prose !max-w-full prose-a:text-[#215352] prose:!text-black`}
           dangerouslySetInnerHTML={{ __html: post?.basic_data?.description }}
         />
       </section>

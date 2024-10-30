@@ -43,9 +43,9 @@
 }
 input[type="radio"]:checked {
  
-  background-color: #052922;
-  border-color: #052922;
-  color: #052922;
+  background-color: #215352;
+  border-color: #215352;
+  color: #215352;
 }
 input[type="radio"] {
 
@@ -62,7 +62,7 @@ input[type="radio"]:checked::before {
   display: block;
   width: 10px;
   height: 10px;
-  background-color: #052922;
+  background-color: #215352;
   border-radius: 50%; 
   margin: 3px; 
 }
@@ -126,7 +126,7 @@ input[type="radio"]:checked::before {
   left: 0;
   height: 100%;
   width: 0%;
-  background-color: #052922;
+  background-color: #215352;
   animation: progress-bar 5s linear forwards;
 }
 
@@ -137,7 +137,7 @@ input[type="radio"]:checked::before {
   left: 0;
   height: 1px;
   width: 0;
-  background-color: #052922;
+  background-color: #215352;
   animation: progress-bar1 0.5s linear forwards;
 }
 
@@ -557,7 +557,7 @@ input[type="radio"]:checked::before {
   position: absolute;
   top: -93px;
   left: 0;
-  background-color: #B89980;
+  background-color: #b89980;
   color: white;
   padding: 8px;
   border-radius: 5px;
@@ -579,10 +579,12 @@ input[type="radio"]:checked::before {
 .swiper-pagination-bullets.swiper-pagination-horizontal,
 .swiper-pagination-custom,
 .swiper-pagination-fraction {
-  bottom: var(--swiper-pagination-bottom, 8px);
+  bottom: -3px!important;
   top: var(--swiper-pagination-top, auto);
   left: 0;
   width: 100% !important;
+  max-height: 24px !important;
+  overflow-y: hidden!important;
 }
 
 .productDetailsSwiper .swiper-pagination-vertical.swiper-pagination-bullets,
@@ -832,7 +834,7 @@ input[type="radio"]:checked::before {
   margin: auto;
   width: 104%;
   height: 4px;
-  background-color: #052922;
+  background-color: #215352;
 }
 
 /* .color {
@@ -908,12 +910,12 @@ input[type="radio"]:checked::before {
   margin: auto;
   width: 104%;
   height: 4px;
-  background-color: #052922;
+  background-color: #215352;
 }
 
 .customScroll::-webkit-scrollbar {
   width: 0.3rem;
-  background-color: #052922
+  background-color: #215352
 }
 
 .customScroll::-webkit-scrollbar-track {
@@ -921,11 +923,11 @@ input[type="radio"]:checked::before {
 }
 
 .customScroll::-webkit-scrollbar-thumb {
-  background: #052922;
+  background: #215352;
 }
 
 .customScroll::-webkit-scrollbar-thumb:hover {
-  background: #052922;
+  background: #215352;
 }
 
 .textArea textarea {

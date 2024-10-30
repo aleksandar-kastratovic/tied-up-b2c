@@ -125,10 +125,10 @@ const NavigationMobile = () => {
   });
 
   const categoriesMain = [
+    { name: "Personalizovano", slug: "/personalizovano" },
     { name: "Gde kupiti", slug: "/gdekupiti" },
     { name: "Veleprodaja", slug: "/veleprodaja" },
     { name: "O nama", slug: "/onama" },
-    { name: "Personalizovano", slug: "/personalizovano" },
     { name: "Blog", slug: "/blog" },
     { name: "Kontakt", slug: "/kontakt" },
   ];
@@ -177,7 +177,7 @@ const NavigationMobile = () => {
               <div className="relative">
                 <Image src="/heart.png" width={25} height={33} />
                 {wishlistCount > 0 && (
-                  <span className="absolute text-white text-xs -top-[0.6rem] right-0 bg-[#052922] px-1 py-0 rounded-full">
+                  <span className="absolute text-white text-xs -top-[0.6rem] right-0 bg-[#215352] px-1 py-0 rounded-full">
                     {wishlistCount}
                   </span>
                 )}
@@ -187,7 +187,7 @@ const NavigationMobile = () => {
               <div className="relative">
                 <Image src={Cart} width={33} height={33} />
                 {cartCount > 0 && (
-                  <span className="absolute text-white text-xs -top-1 right-0 bg-[#052922] px-1 py-0 rounded-full">
+                  <span className="absolute text-white text-xs -top-1 right-0 bg-[#215352] px-1 py-0 rounded-full">
                     {cartCount}
                   </span>
                 )}
@@ -237,62 +237,64 @@ const NavigationMobile = () => {
           ></i>
         </div>
         <div className="w-[95%] flex flex-wrap flex-row gap-7 mx-auto mt-5 border-b border-b-[#e5e7eb]">
-          {(categories ?? [])?.map((category) => {
-            const isActive = activeCategory?.parentCategory === category?.id;
-            let has_children =
-              category?.children && category?.children?.length > 0;
-            return (
-              <div
-                className="flex flex-row items-center justify-between gap-5"
-                key={category?.id}
-              >
-                {!has_children ? (
-                  <Link
-                    href={`/${category?.link?.link_path}`}
-                    onClick={() => {
-                      setMenuOpen(false);
-                      setActiveCategory({
-                        id: null,
-                        data: null,
-                        parentCategory: null,
-                        firstCategory: true,
-                      });
-                    }}
-                  >
+          {(categories ?? [])
+            ?.filter((cat) => cat?.slug !== "personalizovano")
+            ?.map((category) => {
+              const isActive = activeCategory?.parentCategory === category?.id;
+              let has_children =
+                category?.children && category?.children?.length > 0;
+              return (
+                <div
+                  className="flex flex-row items-center justify-between gap-5"
+                  key={category?.id}
+                >
+                  {!has_children ? (
+                    <Link
+                      href={`/${category?.link?.link_path}`}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        setActiveCategory({
+                          id: null,
+                          data: null,
+                          parentCategory: null,
+                          firstCategory: true,
+                        });
+                      }}
+                    >
+                      <p
+                        className={
+                          isActive
+                            ? `font-bold uppercase text-[0.9rem]`
+                            : `uppercase text-[0.9rem]`
+                        }
+                      >
+                        {category?.name}
+                      </p>
+                    </Link>
+                  ) : (
                     <p
                       className={
                         isActive
                           ? `font-bold uppercase text-[0.9rem]`
                           : `uppercase text-[0.9rem]`
                       }
+                      onClick={() => {
+                        setActiveCategory({
+                          id: category?.id,
+                          data: category?.children,
+                          parentCategory: category?.id,
+                          firstCategory: true,
+                        });
+                        setActiveImage(category?.image);
+                        setGenerateBreadcrumbs(category?.name);
+                      }}
                     >
                       {category?.name}
                     </p>
-                  </Link>
-                ) : (
-                  <p
-                    className={
-                      isActive
-                        ? `font-bold uppercase text-[0.9rem]`
-                        : `uppercase text-[0.9rem]`
-                    }
-                    onClick={() => {
-                      setActiveCategory({
-                        id: category?.id,
-                        data: category?.children,
-                        parentCategory: category?.id,
-                        firstCategory: true,
-                      });
-                      setActiveImage(category?.image);
-                      setGenerateBreadcrumbs(category?.name);
-                    }}
-                  >
-                    {category?.name}
-                  </p>
-                )}
-              </div>
-            );
-          })}
+                  )}
+                </div>
+              );
+            })}
         </div>
 
         <div className="w-[95%] mx-auto mt-5">
@@ -343,7 +345,7 @@ const NavigationMobile = () => {
                       data: categories[0]?.children,
                     });
                   }}
-                  className={`text-[0.9rem] font-normal text-[#052922]`}
+                  className={`text-[0.9rem] font-normal text-[#215352]`}
                 >
                   Pogledaj sve
                 </Link>
@@ -403,7 +405,7 @@ const NavigationMobile = () => {
                           : `w-full`
                       } ${
                         pathname?.includes(category?.slug)
-                          ? `text-[#052922]`
+                          ? `text-[#215352]`
                           : `text-black`
                       } text-[0.9rem]`}
                       onClick={() => {

@@ -9,12 +9,12 @@ const Aboutus = () => {
         <div className="max-md:col-span-2 col-span-1 pr-3">
           <h2 className="text-[50px] font-extralight">Upoznaj naš</h2>
           <div className="flex gap-4 items-center">
-            <h2 className="font-bold uppercase text-[#052922] text-[50px] sm:text-[60px] leading-[50px]">
+            <h2 className="font-bold uppercase text-[#215352] text-[50px] sm:text-[60px] leading-[50px]">
               Brend
             </h2>
             <Image src="/logo1.png" width={150} height={30} alt="Logo" />
           </div>
-          <h3 className={`text-[#052922] font-bold text-[30px] mt-[1rem]`}>
+          <h3 className={`text-[#215352] font-bold text-[30px] mt-[1rem]`}>
             Dobrodošli u svet Tied Up elegancije i autentičnosti
           </h3>
           <p className="mt-3 font-light text-[22px]">

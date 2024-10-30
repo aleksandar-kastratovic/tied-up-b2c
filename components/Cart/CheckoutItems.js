@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { currencyFormat } from "@/helpers/functions";
 import PlusMinusInput from "@/components/PlusMinusInputOne";
 import Link from "next/link";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 const CheckoutItems = ({
   id,
@@ -119,9 +120,16 @@ const CheckoutItems = ({
                 Ne
               </button>
               <button
-                className="rounded-lg bg-[#E5E5E5] px-5 py-2 hover:bg-[#B89980] hover:text-white max-md:text-[15px]"
+                className="rounded-lg bg-[#E5E5E5] px-5 py-2 hover:bg-[#b89980] hover:text-white max-md:text-[15px]"
                 onClick={() => {
                   removeFromCart({ id: id });
+                  pushToDataLayer("remove_from_cart", {
+                    price: price,
+                    id: id,
+                    name: name,
+                    brand_name: "BOA",
+                    productQuantity: productQuantity,
+                  });
                 }}
               >
                 Da

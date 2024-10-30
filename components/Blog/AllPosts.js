@@ -36,7 +36,7 @@ const AllPosts = ({ posts }) => {
                     <div
                       className={`absolute top-2 right-2 rounded-lg shadow-md`}
                     >
-                      <div className={`bg-[#052922] px-2.5 py-1 rounded-lg`}>
+                      <div className={`bg-[#215352] px-2.5 py-1 rounded-lg`}>
                         <p className={`text-white text-sm font-medium`}>Novo</p>
                       </div>
                     </div>
@@ -97,7 +97,7 @@ const AllPosts = ({ posts }) => {
                   >
                     {" "}
                     <button
-                      className={`px-4 py-2 w-full max-md:mt-2 max-md:text-center max-md:justify-center bg-black text-white flex items-center gap-3 rounded-md hover:bg-[#B89980] transition-all duration-500`}
+                      className={`px-4 py-2 w-full max-md:mt-2 max-md:text-center max-md:justify-center bg-black text-white flex items-center gap-3 rounded-md hover:bg-[#b89980] transition-all duration-500`}
                     >
                       <span className={`text-sm`}>Saznajte više</span>
                       <i className={`fa fa-solid text-sm fa-arrow-right`}></i>

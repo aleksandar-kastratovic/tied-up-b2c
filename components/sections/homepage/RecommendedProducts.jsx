@@ -40,7 +40,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
       case true:
         return (
           <select
-            className={`w-full rounded-md border border-gray-200 mb-3 focus:ring-2 focus:border-gray-200 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#B89980]`}
+            className={`w-full rounded-md border border-gray-200 mb-3 focus:ring-2 focus:border-gray-200 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980]`}
             onChange={(e) => handleCategoryChange(e.target.value)}
           >
             <option value={"all_categories"}>Sve kategorije</option>
@@ -104,7 +104,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
               className={`flex flex-col md:flex-row md:items-center justify-between w-full`}
             >
               <p
-                className={`max-md:text-[30px] text-[44px] font-bold text-[#052922] leading-normal`}
+                className={`max-md:text-[30px] text-[44px] font-bold text-[#215352] leading-normal`}
               >
                 {action4}
               </p>
@@ -186,13 +186,6 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
                       refreshWishlist={() => {}}
                       categoryId={"*"}
                       key={`thumb-${id}`}
-                      // section_data={{
-                      //   categories: categories,
-                      //   setCategories: setCategories,
-                      //   selectedCategory: selectedCategory,
-                      //   products: recommendedProducts,
-                      //   setProducts: setProducts,
-                      // }}
                     />
                   </SwiperSlide>
                 </Suspense>

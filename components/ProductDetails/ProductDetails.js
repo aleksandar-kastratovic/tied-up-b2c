@@ -1,12 +1,13 @@
 "use client";
 import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import Tabs from "@/components/ProductDetails/Tabs";
 import CrosssellProducts from "../CrosssellProducts/CrosssellProducts";
 import UpsellProducts from "../UpsellProducts/UpsellProducts";
 import RelatedProducts from "../RelatedProducts/RelatedProducts";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 const ProductDetails = ({
   product,
@@ -16,11 +17,9 @@ const ProductDetails = ({
   breadcrumbs,
   specification,
   declaration,
-  relatedProducts,
-  upsellProducts,
-  crosssellProducts,
   stickers,
   canonical,
+  id,
 }) => {
   const [rawGallery, setRawGallery] = useState(productGallery);
   const [loading, setLoading] = useState(false);
@@ -44,6 +43,12 @@ const ProductDetails = ({
     }
   }, [color]);
 
+  useEffect(() => {
+    if (product) {
+      pushToDataLayer("view_item", product?.data?.item);
+    }
+  }, []);
+
   return (
     <div
       className={`max-md:mt-[1rem]  max-md:w-[95%]  max-md:mx-auto md:mx-[3rem] mt-6`}
@@ -51,7 +56,7 @@ const ProductDetails = ({
       <div className="flex items-center gap-2 flex-wrap">
         <Link
           href={`/`}
-          className="text-[#191919] text-[0.95rem] font-thin hover:text-[#B89980]"
+          className="text-[#191919] text-[0.95rem] font-thin hover:text-[#b89980]"
         >
           Početna
         </Link>{" "}
@@ -65,7 +70,7 @@ const ProductDetails = ({
                     ? `/${breadcrumb?.link?.link_path}`
                     : `/${breadcrumb?.link?.link_path}`
                 }
-                className="text-[#000] text-[0.95rem] font-thin hover:text-[#B89980]"
+                className="text-[#000] text-[0.95rem] font-thin hover:text-[#b89980]"
               >
                 {breadcrumb?.name}
               </Link>
@@ -74,7 +79,7 @@ const ProductDetails = ({
           );
         })}
         {breadcrumbs?.steps?.length > 0 && <>/</>}
-        <p className="text-[#052922] text-[0.95rem] font-normal">
+        <p className="text-[#215352] text-[0.95rem] font-normal">
           {breadcrumbs?.end?.name}
         </p>
       </div>
@@ -98,26 +103,29 @@ const ProductDetails = ({
           specification={specification}
           declaration={declaration}
         />
-        {/*<div className={`mt-10 col-span-4`}>*/}
-        {/*  <Tabs specification={specification} productsDesc={desc} />*/}
-        {/*</div>*/}
       </div>
       <div className={`mt-10`}>
-        {relatedProducts?.length > 0 && (
-          <RelatedProducts
-            relatedProducts={relatedProducts}
-            loading={loading}
-          />
-        )}
-        {upsellProducts?.length > 0 && (
-          <UpsellProducts upsellProducts={upsellProducts} loading={loading} />
-        )}
-        {crosssellProducts?.length > 0 && (
-          <CrosssellProducts
-            crosssellProducts={crosssellProducts}
-            loading={loading}
-          />
-        )}
+        <Suspense
+          fallback={
+            <div className={`w-full h-20 bg-slate-200 animate-pulse`} />
+          }
+        >
+          <RelatedProducts id={product?.data?.item?.basic_data?.id_product} />
+        </Suspense>
+        <Suspense
+          fallback={
+            <div className={`w-full h-20 bg-slate-200 animate-pulse`} />
+          }
+        >
+          <UpsellProducts id={product?.data?.item?.basic_data?.id_product} />
+        </Suspense>
+        <Suspense
+          fallback={
+            <div className={`w-full h-20 bg-slate-200 animate-pulse`} />
+          }
+        >
+          <CrosssellProducts id={product?.data?.item?.basic_data?.id_product} />
+        </Suspense>
       </div>
     </div>
   );

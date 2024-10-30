@@ -89,7 +89,7 @@ const HeaderIcons = () => {
             alt="heart"
           />
           {wishListCount ? (
-            <span className="absolute -top-2.5 text-white right-1 bg-[#052922] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+            <span className="absolute -top-2.5 text-white right-1 bg-[#215352] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
               {wishListCount}
             </span>
           ) : null}
@@ -105,7 +105,7 @@ const HeaderIcons = () => {
             alt="shopping-bag"
           />
           {cartCount ? (
-            <span className="absolute -top-2 text-white -right-3 bg-[#052922] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
+            <span className="absolute -top-2 text-white -right-3 bg-[#215352] rounded-full w-5 h-5 flex items-center justify-center  text-xs">
               {cartCount}
             </span>
           ) : null}

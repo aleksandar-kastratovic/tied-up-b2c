@@ -5,7 +5,7 @@ import Translate from "@/components/Translate/Translate";
 
 function HeaderTop() {
   return (
-    <div className="bg-[#B89980] h-8 w-full flex items-center justify-between px-[5rem] text-black">
+    <div className="bg-[#b89980] h-8 w-full flex items-center justify-between px-[5rem] text-black">
       <div>
         <Link
           href="https://www.facebook.com/masnetiedup/"

@@ -43,7 +43,7 @@ const CartProductItem = ({ item }) => {
             </Link>
             {item?.product?.price?.per_item?.discount?.active && (
               <div
-                className={`absolute top-2 right-2 bg-[#052922] px-[0.85rem] py-0.5 rounded-lg font-thin text-xs text-white`}
+                className={`absolute top-2 right-2 bg-[#215352] px-[0.85rem] py-0.5 rounded-lg font-thin text-xs text-white`}
               >
                 -
                 {(
@@ -88,7 +88,7 @@ const CartProductItem = ({ item }) => {
             </div>
             <span>Ukupan iznos: {currencyFormat(total?.total, currency)}</span>
             {item?.product?.price?.per_item?.discount?.active && (
-              <span className="font-semibold text-[#052922]">
+              <span className="font-semibold text-[#215352]">
                 Uštedeli ste:{" "}
                 {currencyFormat(
                   item?.product?.price?.cost?.discount_amount,

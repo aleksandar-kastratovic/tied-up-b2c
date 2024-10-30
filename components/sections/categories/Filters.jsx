@@ -88,7 +88,7 @@ const Filters = ({
 
   return (
     <>
-      <div className=" mx-[50px] flex items-center justify-between bg-[#B89980] text-black px-[2rem] font-thin text-[0.85rem]">
+      <div className=" mx-[50px] flex items-center justify-between bg-[#b89980] text-black px-[2rem] font-thin text-[0.85rem]">
         <div className={`flex items-center gap-[4.5rem]`}>
           {(availableFilters ?? []).map((filter, index) => {
             const isOpen = openIndex === index;
@@ -223,7 +223,7 @@ const Filters = ({
                     >
                       <p
                         className={` sortref ${
-                          isActive ? ` text-[#052922]` : ` hover:text-[#052922]`
+                          isActive ? ` text-[#215352]` : ` hover:text-[#215352]`
                         } text-[1rem] text-center font-light`}
                         onClick={() =>
                           setOpenSort({
