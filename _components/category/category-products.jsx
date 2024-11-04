@@ -24,7 +24,8 @@ export const CategoryProducts = ({
   const params = useSearchParams();
   const is_mobile = useIsMobile();
 
-  const [productsPerView, setProductsPerView] = useState(is_mobile ? 2 : 4);
+  const [productsPerView, setProductsPerView] = useState(4);
+  const [productsPerViewMobile, setProductsPerViewMobile] = useState(2);
 
   useEffect(() => {
     setProductsPerView(is_mobile ? 2 : 4);
@@ -112,8 +113,8 @@ export const CategoryProducts = ({
     setSort: setSort,
     render: false,
     setIsLoadingMore: () => {},
-    section: null,
     setPage: setPage,
+    isSection: isSection,
   });
 
   const mutateFilters = useCategoryFilters({
@@ -187,8 +188,8 @@ export const CategoryProducts = ({
           setSort={setSort}
           changeFilters={changeFilters}
           pagination={data?.pagination}
-          setProductsPerView={setProductsPerView}
-          productsPerView={productsPerView}
+          setProductsPerView={setProductsPerViewMobile}
+          productsPerView={productsPerViewMobile}
           setFilterOpen={setFilterOpen}
           setTempSelectedFilters={setTempSelectedFilters}
           setChangeFilters={setChangeFilters}
@@ -208,7 +209,7 @@ export const CategoryProducts = ({
           const filterName = splitFilter?.[1];
           return (
             <div
-              className={`font-normal bg-croonus-2  text-white text-[0.65rem] relative max-md:text-[0.7rem]  rounded-lg flex items-center gap-2`}
+              className={`font-normal bg-croonus-2 text-white text-[0.65rem] relative max-md:text-[0.7rem]  rounded-lg flex items-center gap-2`}
             >
               <div className={`flex items-center gap-2  px-1`}>
                 <p>
@@ -298,23 +299,23 @@ export const CategoryProducts = ({
           {/*a div 40px high and 40px wide*/}
           <div
             className={`w-[30px] h-[30px] border-2 ${
-              productsPerView === 1 && "border-black"
+              productsPerViewMobile === 1 && "border-black"
             }`}
-            onClick={() => setProductsPerView(1)}
+            onClick={() => setProductsPerViewMobile(1)}
           ></div>
           {/*a div 40px high and 40px wide that has 9 smaller squares inside*/}
           <div
             className={`w-[30px] h-[30px] border grid grid-cols-2 ${
-              productsPerView === 2 && "border-black"
+              productsPerViewMobile === 2 && "border-black"
             }`}
-            onClick={() => setProductsPerView(2)}
+            onClick={() => setProductsPerViewMobile(2)}
           >
             {Array.from({ length: 4 }, (_, i) => {
               return (
                 <div
                   key={i}
                   className={`col-span-1 border ${
-                    productsPerView === 2 && "border-black"
+                    productsPerViewMobile === 2 && "border-black"
                   }`}
                 ></div>
               );
@@ -323,12 +324,22 @@ export const CategoryProducts = ({
         </div>
       </div>
 
-      <div
-        className={`mt-[1.875rem] px-2 md:px-[3rem] ${
-          productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
-        } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
-      >
-        {rendered_items}
+      <div className={`max-md:hidden`}>
+        <div
+          className={`mt-[1.875rem] px-2 md:px-[3rem] ${
+            productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
+          } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
+        >
+          {rendered_items}
+        </div>
+      </div>
+
+      <div className={`md:hidden`}>
+        <div
+          className={`mt-[1.875rem] px-2 md:px-[3rem] grid grid-cols-${productsPerViewMobile} gap-x-5 gap-y-10`}
+        >
+          {rendered_items}
+        </div>
       </div>
 
       <Pagination

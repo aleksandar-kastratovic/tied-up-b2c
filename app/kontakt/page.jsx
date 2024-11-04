@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Contact from "@/components/Contact/Contact";
 
-const Kontakt = () => {
+const Kontakt = ({ searchParams: { slug } }) => {
   return (
     <>
       <div className={`text-left w-[95%] mx-auto lg:w-full lg:px-[3rem] mt-5`}>
@@ -18,7 +18,7 @@ const Kontakt = () => {
           Kontakt
         </h1>
       </div>
-      <Contact />
+      <Contact slug={slug} />
     </>
   );
 };
