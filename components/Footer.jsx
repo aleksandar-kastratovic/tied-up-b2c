@@ -50,7 +50,7 @@ const Footer = () => {
           >
             {" "}
             <Image
-              src="/linkedin1.png"
+              src="/linkedin2.png"
               width={30}
               height={30}
               alt="youtube"
@@ -71,7 +71,7 @@ const Footer = () => {
       <div className="mx-[5rem] max-md:w-[95%] max-md:mx-auto py-[2.75rem] mt-[1.75rem] max-xl:flex-col flex items-center justify-between border-l-0 border-t-0 border-r-0 border-b-2 border-b-white text-[#191919]">
         <div className="flex items-center max-md:justify-between max-md:flex-wrap max-md:w-full md:gap-[100px] 2xl:gap-[150px] 3xl:gap-[220px]">
           <div className="flex flex-col self-start gap-[40px]">
-            <h1 className="text-[1.063rem] font-bold">Korisnička podrška</h1>
+            <p className="text-[1.063rem] font-bold">Korisnička podrška</p>
             <div className="flex flex-col items-start gap-[0.4rem] text-[0.813rem] font-normal">
               <Link
                 className="cursor-pointer hover:text-[#215352]"
@@ -264,24 +264,6 @@ const Footer = () => {
             className="text-[0.813rem] font-normal text-[#191919] hover:text-[#215352] cursor-pointer"
           >
             Zaštita privatnosti •
-          </Link>
-          <Link
-            href="/strana/isporuka"
-            className="text-[0.813rem] font-normal text-[#191919] hover:text-[#215352] cursor-pointer"
-          >
-            Isporuka •
-          </Link>
-          <Link
-            href="/strana/najcesca-pitanja"
-            className="text-[0.813rem] font-normal text-[#191919] hover:text-[#215352] cursor-pointer"
-          >
-            Najčešća pitanja •
-          </Link>
-          <Link
-            href="/strana/kolacici"
-            className="text-[0.813rem] font-normal text-[#191919] hover:text-[#215352] cursor-pointer"
-          >
-            Politika o 'Kolačićima'
           </Link>
         </div>
         <p className="text-[0.813rem] font-normal text-[#191919] ">

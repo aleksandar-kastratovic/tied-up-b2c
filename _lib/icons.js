@@ -6,7 +6,7 @@ export const icons = {
       viewBox="0 0 24 24"
       strokeWidth={1}
       stroke="currentColor"
-      className="size-6"
+      className="w-6 h-6"
     >
       <path
         strokeLinecap="round"

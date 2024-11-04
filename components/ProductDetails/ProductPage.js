@@ -41,7 +41,7 @@ const getDeclaration = (slug) => {
     (res) => res?.payload
   );
 };
-const ProductPage = async ({ path, categoryId }) => {
+const ProductPage = async ({ path, categoryId, id }) => {
   const [
     product,
     productGallery,
@@ -51,13 +51,13 @@ const ProductPage = async ({ path, categoryId }) => {
     declaration,
     stickers,
   ] = await Promise.all([
-    getProduct(path),
-    getProductGallery(path),
-    getProductLongDescription(path),
-    getBreadcrumbs(path, categoryId),
-    getSpecification(path),
-    getDeclaration(path),
-    getProductStickers(path),
+    getProduct(id),
+    getProductGallery(id),
+    getProductLongDescription(id),
+    getBreadcrumbs(id, categoryId),
+    getSpecification(id),
+    getDeclaration(id),
+    getProductStickers(id),
   ]);
 
   const canonical = headers()?.get("x-pathname");
@@ -74,6 +74,7 @@ const ProductPage = async ({ path, categoryId }) => {
         declaration={declaration}
         stickers={stickers}
         canonical={canonical}
+        id={id}
       />
     </div>
   );

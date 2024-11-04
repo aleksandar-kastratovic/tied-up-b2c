@@ -85,6 +85,7 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const pathname = usePathname();
 
   return (
@@ -94,9 +95,9 @@ const Header = () => {
         id="header"
       >
         <HeaderTop />
-        <div className="py-3 px-[3rem] flex items-center justify-center">
+        <div className="py-3 px-[3rem] flex items-center justify-center relative">
           <div
-            className={`flex items-center gap-[2.2rem] ml-auto pl-[4rem] xl:max-2xl:!text-[11px] 2xl:text-[13px]`}
+            className={`flex pl-[4rem] items-center gap-[2.2rem] ml-auto xl:max-2xl:!text-[11px] 2xl:text-[13px] relative`}
           >
             {categoriesMain?.map((category, index) => {
               const isCategory = category?.isCategory ?? true;
@@ -241,164 +242,173 @@ const Header = () => {
                 </Link>
               );
             })}
+
+            {activeCategory?.open && (
+              <div
+                onMouseLeave={() => {
+                  setActiveCategory({
+                    id: null,
+                    name: null,
+                    slug: null,
+                    data: [],
+                    image: null,
+                    open: false,
+                  });
+                  resetActiveCategory();
+                }}
+                className={`absolute top-[150%] left-0 mx-auto ml-[4rem] right-0 bg-white z-[100] max-lg:hidden w-full`}
+              >
+                <div className="p-5 relative h-full">
+                  <div className="flex justify-between h-full">
+                    <div className="flex gap-x-[13rem] pb-2">
+                      <div
+                        className={`flex flex-col items-start justify-start`}
+                      >
+                        <div className={`mb-5`}>
+                          {landing_pages_list?.items?.map((item, index) => {
+                            return (
+                              <Link
+                                onClick={resetActiveCategory}
+                                href={`/promo/${item?.slug}`}
+                                className="text-red-500 hover:translate-x-5 hover:text-slate-500 transition-all duration-300 text-lg  font-medium mb-1 block"
+                              >
+                                {item?.name}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 text-left">
+                          {activeCategory?.data?.map((category, index) => {
+                            return category?.children?.length > 0 ? (
+                              <button
+                                key={index}
+                                className={`${
+                                  category?.id === activeSubCategory?.id ||
+                                  pathname.includes(category?.slug)
+                                    ? "font-bold"
+                                    : "font-normal"
+                                }  hover:underline block text-black text-left !text-base`}
+                                onClick={() => {
+                                  setActiveSubCategory({
+                                    id:
+                                      category?.id === activeSubCategory?.id
+                                        ? null
+                                        : category?.id,
+                                    name:
+                                      category?.name === activeSubCategory?.name
+                                        ? null
+                                        : category?.name,
+                                    slug_path:
+                                      category?.link?.link_path ===
+                                      activeSubCategory?.slug_path
+                                        ? null
+                                        : category?.link?.link_path,
+                                    data:
+                                      category?.children ===
+                                      activeSubCategory?.data
+                                        ? []
+                                        : category?.children,
+                                    open: !activeSubCategory?.open,
+                                    image: category?.image ?? null,
+                                  });
+                                }}
+                              >
+                                {category?.name}
+                              </button>
+                            ) : (
+                              <Link
+                                href={`/${category?.link?.link_path}`}
+                                key={index}
+                                className={`${
+                                  category?.id === activeCategory?.id
+                                    ? "activeCategory"
+                                    : "font-normal"
+                                } hover:underline block text-black !text-base`}
+                                onClick={() => {
+                                  setActiveCategory({
+                                    id: null,
+                                    name: null,
+                                    slug: null,
+                                    data: [],
+                                    image: null,
+                                    open: false,
+                                  });
+                                }}
+                              >
+                                {category?.name}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="h-full">
+                        <h3 className="text-[15px] text-black font-bold mb-4">
+                          {activeSubCategory?.name}
+                        </h3>
+
+                        {activeSubCategory?.name && (
+                          <Link
+                            className={`text-[15px] font-normal text-[#215352] hover:underline pb-7`}
+                            href={`/${activeSubCategory?.slug_path}`}
+                            onClick={() => {
+                              resetActiveCategory();
+                            }}
+                          >
+                            Pogledaj sve
+                          </Link>
+                        )}
+
+                        <div className="h-full flex mt-3 flex-col flex-wrap gap-x-[3.3rem] gap-y-[0.1rem] max-h-[180px]">
+                          {activeSubCategory &&
+                            activeSubCategory?.data?.map((childCategory) => (
+                              <Link
+                                href={`/${childCategory?.link?.link_path}`}
+                                onClick={resetActiveCategory}
+                                key={childCategory?.id}
+                                className={`text-[15px] lowercase text-black first-letter:uppercase block hover:underline ${
+                                  pathname?.includes(childCategory?.slug_path)
+                                    ? "font-bold"
+                                    : "font-normal"
+                                }`}
+                              >
+                                {childCategory.name}
+                              </Link>
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className={`ml-auto ${
+                        !activeCategory?.image && "!hidden"
+                      }`}
+                    >
+                      <div className="relative aspect-video h-[200px] w-full">
+                        {(activeCategory?.image ||
+                          activeSubCategory?.image) && (
+                          <Image
+                            src={
+                              activeSubCategory?.image
+                                ? activeSubCategory?.image
+                                : activeCategory?.image
+                            }
+                            alt="img-modal"
+                            fill
+                            priority
+                            className="object-cover"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className={`ml-auto w-fit pl-5`}>
             <HeaderIcons />
           </div>
         </div>
-        {activeCategory?.open && (
-          <div
-            onMouseLeave={() => {
-              setActiveCategory({
-                id: null,
-                name: null,
-                slug: null,
-                data: [],
-                image: null,
-                open: false,
-              });
-              resetActiveCategory();
-            }}
-            className={`absolute top-[110px] left-[25%] bg-white z-[100] max-lg:hidden w-fit`}
-          >
-            <div className="pl-[5rem] pr-0 py-6 relative h-full pb-2">
-              <div className="flex justify-between h-full">
-                <div className="flex gap-x-[13rem] pb-2">
-                  <div className={`flex flex-col items-start justify-start`}>
-                    <div className={`mb-5`}>
-                      {landing_pages_list?.items?.map((item, index) => {
-                        return (
-                          <Link
-                            onClick={resetActiveCategory}
-                            href={`/promo/${item?.slug}`}
-                            className="text-red-500 hover:translate-x-5 hover:text-slate-500 transition-all duration-300 text-lg  font-medium mb-1 block"
-                          >
-                            {item?.name}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-[60px] gap-y-1 text-left">
-                      {activeCategory?.data?.map((category, index) => {
-                        return category?.children?.length > 0 ? (
-                          <button
-                            key={index}
-                            className={`${
-                              category?.id === activeSubCategory?.id ||
-                              pathname.includes(category?.slug)
-                                ? "font-bold"
-                                : "font-normal"
-                            }  hover:underline block text-black text-left`}
-                            onClick={() => {
-                              setActiveSubCategory({
-                                id:
-                                  category?.id === activeSubCategory?.id
-                                    ? null
-                                    : category?.id,
-                                name:
-                                  category?.name === activeSubCategory?.name
-                                    ? null
-                                    : category?.name,
-                                slug_path:
-                                  category?.link?.link_path ===
-                                  activeSubCategory?.slug_path
-                                    ? null
-                                    : category?.link?.link_path,
-                                data:
-                                  category?.children === activeSubCategory?.data
-                                    ? []
-                                    : category?.children,
-                                open: !activeSubCategory?.open,
-                                image: category?.image ?? null,
-                              });
-                            }}
-                          >
-                            {category?.name}
-                          </button>
-                        ) : (
-                          <Link
-                            href={`/${category?.link?.link_path}`}
-                            key={index}
-                            className={`${
-                              category?.id === activeCategory?.id
-                                ? "activeCategory"
-                                : "font-normal"
-                            } hover:underline block text-black`}
-                            onClick={() => {
-                              setActiveCategory({
-                                id: null,
-                                name: null,
-                                slug: null,
-                                data: [],
-                                image: null,
-                                open: false,
-                              });
-                            }}
-                          >
-                            {category?.name}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  <div className="h-full">
-                    <h3 className="text-[15px] text-black font-bold mb-4">
-                      {activeSubCategory?.name}
-                    </h3>
-
-                    {activeSubCategory?.name && (
-                      <Link
-                        className={`text-[15px] font-normal text-[#215352] hover:underline pb-7`}
-                        href={`/${activeSubCategory?.slug_path}`}
-                        onClick={() => {
-                          resetActiveCategory();
-                        }}
-                      >
-                        Pogledaj sve
-                      </Link>
-                    )}
-
-                    <div className="h-full flex mt-3 flex-col flex-wrap gap-x-[3.3rem] gap-y-[0.1rem] max-h-[180px]">
-                      {activeSubCategory &&
-                        activeSubCategory?.data?.map((childCategory) => (
-                          <Link
-                            href={`/${childCategory?.link?.link_path}`}
-                            onClick={resetActiveCategory}
-                            key={childCategory?.id}
-                            className={`text-[15px] lowercase text-black first-letter:uppercase block hover:underline ${
-                              pathname?.includes(childCategory?.slug_path)
-                                ? "font-bold"
-                                : "font-normal"
-                            }`}
-                          >
-                            {childCategory.name}
-                          </Link>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-                <div className={`ml-auto`}>
-                  <div className="relative aspect-video h-[200px] w-full">
-                    {(activeCategory?.image || activeSubCategory?.image) && (
-                      <Image
-                        src={
-                          activeSubCategory?.image
-                            ? activeSubCategory?.image
-                            : activeCategory?.image
-                        }
-                        alt="img-modal"
-                        fill
-                        priority
-                        className="object-cover"
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </header>
       <div
         onClick={() => {

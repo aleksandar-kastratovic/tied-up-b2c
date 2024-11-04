@@ -100,7 +100,7 @@ export const Thumb = ({
       return (
         <p
           key={`sticker-${i}`}
-          className={`bg-[#E7DCD1] px-[0.85rem] py-1 text-black rounded-lg font-bold group-hover:bg-[#215352] group-hover:text-white transition-colors duration-500`}
+          className={`bg-[#E7DCD1] w-fit px-[0.85rem] py-1 text-black rounded-lg font-bold group-hover:bg-[#215352] group-hover:text-white transition-colors duration-500`}
         >
           {name}
         </p>
@@ -117,7 +117,7 @@ export const Thumb = ({
   };
   return (
     <div
-      className={`col-span-1 flex flex-col relative group`}
+      className={`col-span-1 flex flex-col relative group !h-full`}
       onMouseEnter={() => {
         handleSwiperNavigation({ id: product?.basic_data?.id_product });
       }}
@@ -204,10 +204,10 @@ export const Thumb = ({
           )}
       </div>
       <div className={`flex flex-wrap flex-col items-start`}>
-        <div className="mt-auto pt-[0.813rem] flex items-center justify-between relative w-full">
+        <div className="mt-auto pt-[0.813rem] flex items-start justify-between relative w-full">
           <Link
             href={`/${product?.link?.link_path}`}
-            className="max-md:text-[0.85] uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-2 group-hover:text-[#215352]"
+            className="max-md:text-[0.85] text-left uppercase text-[0.813rem] relative max-md:leading-4 max-sm:line-clamp-2 group-hover:text-[#215352]"
           >
             {product?.basic_data?.name}
           </Link>
@@ -221,7 +221,7 @@ export const Thumb = ({
                 pushToDataLayer("add_to_wishlist", product);
               }
             }}
-            className={`rounded-full p-1 favorites cursor-pointer `}
+            className={`rounded-full favorites cursor-pointer `}
           >
             {wishlist_data?.is_in_wishlist ? (
               <Image
@@ -242,13 +242,13 @@ export const Thumb = ({
             )}
           </div>
         </div>
-        <div className={`mt-auto pt-3`}>
-          <Prices
-            price={product?.price}
-            inventory={product?.inventory}
-            is_details={is_details}
-          />
-        </div>
+      </div>
+      <div className={`mt-auto pt-3 !text-left`}>
+        <Prices
+          price={product?.price}
+          inventory={product?.inventory}
+          is_details={is_details}
+        />
       </div>
     </div>
   );

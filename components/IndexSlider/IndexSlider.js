@@ -131,7 +131,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                   >
                     <div className="absolute flex flex-col items-center md:items-start justify-center md:justify-start max-sm:gap-[20px] gap-[10px] max-sm:top-[50%] top-[48%] text-center left-[8%] transform -translate-y-1/2">
                       {banner?.title && (
-                        <h1 className="text-white max-sm:text-base text-xl font-thin">
+                        <h1 className="text-white max-sm:text-base text-xl font-normal">
                           {banner?.title}
                         </h1>
                       )}

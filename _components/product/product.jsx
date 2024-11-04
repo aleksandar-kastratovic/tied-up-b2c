@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import ProductPage from "@/components/ProductDetails/ProductPage";
 import Loader from "@/components/Loader";
 
-const ProductDetailPage = async ({ params: { path }, id }) => {
+export const ProductDetailPage = async ({ params: { path }, id }) => {
   return (
     <Suspense fallback={<Loader />}>
       <ProductPage
@@ -13,5 +13,3 @@ const ProductDetailPage = async ({ params: { path }, id }) => {
     </Suspense>
   );
 };
-
-export default ProductDetailPage;

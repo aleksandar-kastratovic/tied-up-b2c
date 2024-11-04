@@ -1,5 +1,5 @@
+"use client";
 export const sortKeys = [
- 
   {
     label: "Cena od niže prema višoj",
     field: "price",

@@ -1,16 +1,15 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
-
+import { useState, useEffect, Suspense, useMemo } from "react";
 import { Thumb } from "@/_components/shared/thumb";
-import Filters from "@/components/sections/categories/Filters";
-import FiltersMobile from "@/components/sections/categories/FilterMobile";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Pagination } from "@/_components/pagination";
 import {
   useCategoryProducts,
   useCategoryFilters,
   useIsMobile,
 } from "@/hooks/croonus.hooks";
-import { Pagination } from "@/_components/pagination";
+import FiltersMobile from "@/components/sections/categories/FilterMobile";
+import Filters from "@/components/sections/categories/Filters";
 
 export const CategoryProducts = ({
   filters,
@@ -22,14 +21,15 @@ export const CategoryProducts = ({
   isSection,
 }) => {
   const router = useRouter();
+  const params = useSearchParams();
   const is_mobile = useIsMobile();
+
   const [productsPerView, setProductsPerView] = useState(is_mobile ? 2 : 4);
 
   useEffect(() => {
     setProductsPerView(is_mobile ? 2 : 4);
   }, [is_mobile]);
 
-  const params = useSearchParams();
   const [filterOpen, setFilterOpen] = useState(false);
   const [isBeingFiltered, setIsBeingFiltered] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -39,7 +39,7 @@ export const CategoryProducts = ({
   const pageKey = Number(params?.get("strana"));
   const sortKey = params?.get("sort");
 
-  const [page, setPage] = useState(pageKey ?? 1);
+  const [page, setPage] = useState(strana ?? 1);
 
   const [sort, setSort] = useState({
     field: sortField ?? "",
@@ -74,6 +74,8 @@ export const CategoryProducts = ({
 
     if (page > 1) {
       page_tmp = page;
+    } else {
+      page_tmp = 1;
     }
 
     return { sort_tmp, filters_tmp, page_tmp };
@@ -102,21 +104,22 @@ export const CategoryProducts = ({
 
   const { data, error, isError, isFetching, isFetched } = useCategoryProducts({
     slug,
-    page: pageKey ?? 1,
+    page: strana ?? 1,
     limit: 8,
     sort: sortKey ?? "_",
     setSelectedFilters: setSelectedFilters,
     filterKey: filterKey,
     setSort: setSort,
     render: false,
-    setIsLoadingMore: setIsLoadingMore,
-    isSection: isSection,
+    setIsLoadingMore: () => {},
+    section: null,
+    setPage: setPage,
   });
 
   const mutateFilters = useCategoryFilters({
     slug,
     page,
-    limit: 10,
+    limit: 8,
     sort,
     selectedFilters: tempSelectedFilters,
     isSection: isSection,
@@ -144,14 +147,55 @@ export const CategoryProducts = ({
     });
   }, [tempSelectedFilters?.length]);
 
-  const getPaginationArray = (selectedPage, totalPages) => {
-    const start = Math.max(1, selectedPage - 2);
-    const end = Math.min(totalPages, start + 4);
-    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
-  };
+  const rendered_items = useMemo(() => {
+    return (data?.items || [])?.map(({ id }) => {
+      return (
+        <Suspense
+          key={id}
+          fallback={
+            <div
+              className={`aspect-2/3 w-full h-full bg-slate-200 animate-pulse`}
+            />
+          }
+        >
+          <Thumb
+            key={id}
+            id={id}
+            categoryId={slug}
+            refreshWishlist={() => {}}
+          />
+        </Suspense>
+      );
+    });
+  }, [data?.items]);
 
   return (
     <>
+      <div
+        className={
+          filterOpen
+            ? `fixed top-0 left-0 w-full h-[100dvh] z-[3000] bg-white translate-x-0 duration-500`
+            : `fixed top-0 left-0 w-full h-[100dvh] z-[3000] bg-white -translate-x-full duration-500`
+        }
+      >
+        <FiltersMobile
+          selectedFilters={selectedFilters}
+          availableFilters={availableFilters}
+          setSelectedFilters={setSelectedFilters}
+          sort={sort}
+          setPage={setPage}
+          setSort={setSort}
+          changeFilters={changeFilters}
+          pagination={data?.pagination}
+          setProductsPerView={setProductsPerView}
+          productsPerView={productsPerView}
+          setFilterOpen={setFilterOpen}
+          setTempSelectedFilters={setTempSelectedFilters}
+          setChangeFilters={setChangeFilters}
+          tempSelectedFilters={tempSelectedFilters}
+          setLastSelectedFilterKey={setLastSelectedFilterKey}
+        />
+      </div>
       <div
         className={`${
           selectedFilters?.length > 0
@@ -167,9 +211,9 @@ export const CategoryProducts = ({
               className={`font-normal bg-croonus-2  text-white text-[0.65rem] relative max-md:text-[0.7rem]  rounded-lg flex items-center gap-2`}
             >
               <div className={`flex items-center gap-2  px-1`}>
-                <h1>
+                <p>
                   {filterName?.charAt(0).toUpperCase() + filterName?.slice(1)}:
-                </h1>
+                </p>
                 <span>
                   {filter?.value?.selected?.map((item, index, arr) => {
                     const isLastItem = index === arr.length - 1;
@@ -284,63 +328,23 @@ export const CategoryProducts = ({
           productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
         } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
       >
-        {(data?.items || [])?.map(({ id }) => {
-          return (
-            <Suspense
-              key={id}
-              fallback={
-                <div
-                  className={`aspect-2/3 w-full h-full bg-slate-200 animate-pulse`}
-                />
-              }
-            >
-              <Thumb
-                key={id}
-                id={id}
-                categoryId={slug}
-                refreshWishlist={() => {}}
-              />
-            </Suspense>
-          );
-        })}
+        {rendered_items}
       </div>
-      {Number(data?.pagination?.total_pages) > 1 && (
-        <Suspense>
-          <Pagination
-            data={data}
-            page={page}
-            slug={slug}
-            setPage={setPage}
-            getPaginationArray={getPaginationArray}
-          />
-        </Suspense>
-      )}
 
-      <div
-        className={
-          filterOpen
-            ? `fixed top-0 left-0 w-full h-[100dvh] z-[3000] bg-white translate-x-0 duration-500`
-            : `fixed top-0 left-0 w-full h-[100dvh] z-[3000] bg-white -translate-x-full duration-500`
-        }
-      >
-        <FiltersMobile
-          selectedFilters={selectedFilters}
-          availableFilters={availableFilters}
-          setSelectedFilters={setSelectedFilters}
-          sort={sort}
-          setPage={setPage}
-          setSort={setSort}
-          changeFilters={changeFilters}
-          pagination={data?.pagination}
-          setProductsPerView={setProductsPerView}
-          productsPerView={productsPerView}
-          setFilterOpen={setFilterOpen}
-          setTempSelectedFilters={setTempSelectedFilters}
-          setChangeFilters={setChangeFilters}
-          tempSelectedFilters={tempSelectedFilters}
-          setLastSelectedFilterKey={setLastSelectedFilterKey}
-        />
-      </div>
+      <Pagination
+        generateQueryString={() => {
+          const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
+            sort,
+            selectedFilters,
+            page
+          );
+          return generateQueryString(sort_tmp, filters_tmp, page_tmp);
+        }}
+        data={data}
+        page={page}
+        slug={slug}
+        setPage={setPage}
+      />
     </>
   );
 };

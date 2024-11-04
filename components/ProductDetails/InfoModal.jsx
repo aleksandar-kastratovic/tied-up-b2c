@@ -37,7 +37,7 @@ const InfoModal = ({ infoModal, setInfoModal }) => {
           slučaju većeg obima posla ili potrebe za dodatnim vremenom za izradu,
           pošiljka će biti poslata narednog dana. Naš cilj je da uvek pružimo
           brzu i efikasnu uslugu, uz maksimalnu posvećenost kvalitetu proizvoda.
-          Pošiljke šaljemp post express-om sa opcijom danas za sutra.
+          Pošiljke šaljemo post express-om sa opcijom danas za sutra.
         </p>
       </div>
     </div>

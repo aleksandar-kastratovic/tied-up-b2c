@@ -544,7 +544,7 @@ export const useCategoryProducts = ({
           }
           setSort(sortObj);
           setIsLoadingMore(false);
-
+          setPage(page);
           return res?.payload;
         });
       } catch (error) {

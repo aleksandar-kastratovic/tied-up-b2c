@@ -15,32 +15,25 @@ const FiltersMobile = ({
   changeFilters,
   setChangeFilters,
   setFilterOpen,
-  setLastSelectedFilterKey,setPage
+  setLastSelectedFilterKey,
+  setPage,
 }) => {
   const [openIndex, setOpenIndex] = useState({
     key: null,
   });
 
-  const [activeFilter, setActiveFilter] = useState(null);
-  const handleClick = (filter) => {
-    setActiveFilter(filter);
-  };
-  const [activeFilters, setActiveFilters] = useState([]);
-  useEffect(() => {
-    setActiveFilters(selectedFilters);
-  }, [selectedFilters]);
-
   const [activeSort, setActiveSort] = useState({ label: "" });
   const [sortingActive, setSortingActive] = useState(false);
+
   return (
     <>
       <div className="h-full flex flex-col px-[0.7rem]">
         <div
           className={`sticky w-full top-0 border-b py-3 text-center flex items-center justify-center`}
         >
-          <h1 className="text-[#171717] self-center mx-auto font-light text-center text-[1rem]">
+          <p className="text-[#171717] self-center mx-auto font-light text-center text-[1rem]">
             Filteri
-          </h1>
+          </p>
           <i
             className={`fas fa-times  mr-3 text-[#171717] text-[1.44rem] cursor-pointer`}
             onClick={() => setFilterOpen(false)}
@@ -51,7 +44,7 @@ const FiltersMobile = ({
             className="flex flex-row justify-between cursor-pointer items-center"
             onClick={() => setSortingActive(!sortingActive)}
           >
-            <h1 className="text-[1rem] font-light">Sortiranje</h1>
+            <p className="text-[1rem] font-light">Sortiranje</p>
             <div className="flex items-center cursor-pointer">
               <p className="text-[1.2rem] font-light">
                 {sortingActive ? "-" : "+"}
@@ -110,13 +103,13 @@ const FiltersMobile = ({
                 }
                 key={filter?.key}
               >
-                <h1 className="text-[1rem] font-light">
+                <p className="text-[1rem] font-light">
                   {filter?.attribute?.name}
-                </h1>
+                </p>
                 <div>
-                  <h1 className={`text-[#171717] text-[1.2rem] font-light `}>
+                  <p className={`text-[#171717] text-[1.2rem] font-light `}>
                     {isOpen ? `-` : `+`}
-                  </h1>
+                  </p>
                 </div>
               </div>
               <div className="overflow-hidden">
@@ -154,9 +147,9 @@ const FiltersMobile = ({
               setFilterOpen(false);
             }}
           >
-            <h1 className={`text-[1.2rem] font-light text-center py-3`}>
+            <p className={`text-[1.2rem] font-light text-center py-3`}>
               Resetuj
-            </h1>
+            </p>
           </button>
           <button
             className={`flex-1`}
@@ -165,9 +158,9 @@ const FiltersMobile = ({
               setFilterOpen(false);
             }}
           >
-            <h1 className={`text-[1.2rem] font-light text-center py-3`}>
+            <p className={`text-[1.2rem] font-light text-center py-3`}>
               Primeni
-            </h1>
+            </p>
           </button>
         </div>
       </div>

@@ -25,7 +25,7 @@ export const SingleCategory = ({ slug, text, path, base_url }) => {
           <div className="flex items-center gap-2 flex-wrap mt-5">
             <Link
               href={`/`}
-              className={`text-[#191919] text-[0.95rem] font-thin hover:text-[#b89980]`}
+              className={`text-[#191919] text-[0.95rem] font-normal hover:text-[#b89980]`}
             >
               Početna
             </Link>
@@ -35,7 +35,7 @@ export const SingleCategory = ({ slug, text, path, base_url }) => {
                 <div key={index} className="flex items-center gap-2">
                   <Link
                     href={`/${breadcrumb?.link?.link_path}`}
-                    className="text-[#191919] text-[0.95rem] font-thin hover:text-[#b89980]"
+                    className="text-[#191919] text-[0.95rem] font-normal hover:text-[#b89980]"
                   >
                     {breadcrumb?.name}
                   </Link>
@@ -44,9 +44,9 @@ export const SingleCategory = ({ slug, text, path, base_url }) => {
               );
             })}
             <>/</>
-            <h1 className="text-[#215352] text-[0.95rem] font-semibold">
+            <p className="text-[#215352] text-[0.95rem] font-semibold">
               {data?.basic_data?.name}
-            </h1>
+            </p>
           </div>
         )}
       </div>

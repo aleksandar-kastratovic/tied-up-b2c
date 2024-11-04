@@ -208,18 +208,6 @@ const ProductGallery = ({
         loop={true}
         onSwiper={(swiper) => setSwiper(swiper)}
         breakpoints={{
-          768: {
-            direction: "horizontal",
-            slidesPerView: 1,
-            pagination: {
-              el: ".swiper-pagination",
-              enabled: false,
-            },
-            navigation: {
-              enabled: true,
-            },
-            modules: [FreeMode, Thumbs, Navigation],
-          },
           0: {
             direction: "vertical",
             slidesPerView: 1,
@@ -232,12 +220,25 @@ const ProductGallery = ({
             },
             navigation: {
               el: ".swiper-nav-button",
-              clickable: true,
+              clickable: false,
               enabled: false,
               bulletClass: "swiper-pagination-bullet",
+              disabledClass: "swiper-mobile-disabled",
               bulletActiveClass: "swiper-pagination-bullet-active",
             },
             modules: [FreeMode, Thumbs, Pagination],
+          },
+          768: {
+            direction: "horizontal",
+            slidesPerView: 1,
+            pagination: {
+              el: ".swiper-pagination",
+              enabled: false,
+            },
+            navigation: {
+              enabled: true,
+            },
+            modules: [FreeMode, Thumbs, Navigation],
           },
         }}
       >

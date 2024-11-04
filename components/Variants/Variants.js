@@ -319,7 +319,7 @@ export default function Variants({
           <div className="flex  max-sm:rounded  flex-col gap-0.5">
             <label
               htmlFor={item.id}
-              className="max-lg:text-left max-sm:text-sm max-sm:w-[10rem] max-sm:uppercase  max-sm:pl-2 max-sm:rounded mb-2 "
+              className="max-lg:text-left max-sm:text-sm max-sm:w-[10rem] max-sm:uppercase max-sm:rounded mb-2 "
             >
               Izaberi opciju :
             </label>

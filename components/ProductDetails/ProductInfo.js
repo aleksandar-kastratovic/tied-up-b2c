@@ -37,6 +37,7 @@ const ProductInfo = ({
   breadcrumbs,
   color,
   canonical,
+  id,
 }) => {
   const [productVariant, setProductVariant] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState(null);
@@ -45,6 +46,30 @@ const ProductInfo = ({
   useEffect(() => {
     if (window.scrollY > 0) {
       window.scrollTo(0, 0);
+    }
+  }, []);
+
+  useEffect(() => {
+    let viewed_products = localStorage?.getItem("tied_up_viewed_products");
+
+    if (viewed_products) {
+      let viewed_products_array = JSON?.parse(viewed_products);
+      let viewed_products_ids = (viewed_products_array ?? [])?.map(
+        (product) => product?.id
+      );
+
+      if (!viewed_products_ids?.includes(id)) {
+        viewed_products_array?.push({ id: id });
+        localStorage?.setItem(
+          "tied_up_viewed_products",
+          JSON?.stringify(viewed_products_array)
+        );
+      }
+    } else {
+      localStorage?.setItem(
+        "tied_up_viewed_products",
+        JSON?.stringify([{ id: id }])
+      );
     }
   }, []);
 
@@ -379,7 +404,7 @@ const ProductInfo = ({
 
                     <div className="border-b-2 border-[#c0c0c0] w-[90%] 2xl:w-full flex justify-between text-sm">
                       <div>
-                        <p className="font-thin text-[16px]">
+                        <p className="font-normal text-[16px]">
                           Akcijska cena važi od {formattedStartDate} do{" "}
                           {formattedEndDate}
                         </p>
@@ -460,7 +485,7 @@ const ProductInfo = ({
                     )?.text}
               </button>
               <div
-                className="w-[39px] h-[35px] cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => {
                   if (!isInWishlist) {
                     addToWishlist({
@@ -946,7 +971,7 @@ const ProductInfo = ({
             height={50}
             src={"/package1.png"}
           />
-          <p className="text-sm regular">Besplatna dostava</p>
+          <p className="text-sm regular">Besplatna dostava preko 5.000RSD</p>
         </div>
         <div className="flex flex-col items-center text-center justify-center">
           <Image

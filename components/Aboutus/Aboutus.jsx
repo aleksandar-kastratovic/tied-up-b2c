@@ -1,5 +1,4 @@
 import Image from "next/image";
-import aboutusimage from "@/assets/Images/aboutusimage.png";
 import playbutton from "@/assets/Images/playbutton.png";
 
 const Aboutus = () => {
@@ -14,37 +13,32 @@ const Aboutus = () => {
             </h2>
             <Image src="/logo1.png" width={150} height={30} alt="Logo" />
           </div>
-          <h3 className={`text-[#215352] font-bold text-[30px] mt-[1rem]`}>
-            Dobrodošli u svet Tied Up elegancije i autentičnosti
-          </h3>
           <p className="mt-3 font-light text-[22px]">
-            <strong>Tied Up</strong> nije samo brend – mi stvaramo modne detalje
+            <strong>Tied Up</strong> nije samo brend – stvaramo modne detalje
             koji definišu vaš stil. Sa strašću za estetikom i kvalitetom, svaki
-            naš proizvod, bilo da je to kravata, leptir mašna, šal ili manžetne,
-            ručno je izrađen kako bi istakao vašu ličnost i eleganciju.
+            naš proizvod je ručno izrađen kako bi istakao vašu ličnost i
+            eleganciju.
           </p>
           <p className="mt-[0.2rem] font-light text-[22px]">
-            Nudimo <strong>personalizaciju</strong> koja vam omogućava da budete
-            jedinstveni u svakoj prilici. Od svakodnevnih trenutaka do posebnih
-            događaja, naši detalji govore o vašem ukusu i stilu.
+            Nudimo <strong>personalizaciju</strong> za jedinstvenost u svakoj
+            prilici, od svakodnevnih trenutaka do posebnih događaja. Naši
+            detalji odražavaju vaš ukus i stil.
           </p>
           <p className="mt-[0.2rem] font-light text-[22px]">
-            Verujemo da moda nije samo ono što nosite – to je način na koji se
+            Za nas moda nije samo ono što nosite – to je način na koji se
             predstavljate svetu. <strong>Tied Up</strong> je tu da vam pomogne
             da uvek budete najbolja verzija sebe.
           </p>
         </div>
         <div className="max-md:col-span-2 col-span-1 ml-auto relative h-fit w-full">
           <Image
-            src={aboutusimage}
-            width={800}
-            height={700}
+            src={`/o-nama.png`}
+            width={0}
+            height={0}
+            sizes={`100vw`}
             alt="about us"
-            className="w-full"
+            className="w-full h-auto rounded-2xl"
           />
-          <div className="w-full h-full absolute top-0 left-0 flex items-center justify-center">
-            <Image src={playbutton} width={160} height={160} alt="Tied up" />
-          </div>
         </div>
       </div>
     </div>

@@ -75,14 +75,14 @@ const Translate = () => {
           onChange={(e) => langChange(e.target.value)}
           value={selected}
         >
-          {/* <option className='bg-transparent text-white azosansserif font-thin'>{selected?.split('/')[selected?.split('/').length - 1] || 'SRB'}</option> */}
+          {/* <option className='bg-transparent text-white azosansserif font-normal'>{selected?.split('/')[selected?.split('/').length - 1] || 'SRB'}</option> */}
 
           {languages.map((language) => (
             <option
               key={language.value}
               onChange={() => langChange(language.value)}
               value={language.value}
-              className="text-black bg-white font-thin"
+              className="text-black bg-white font-normal"
             >
               {language.label}
             </option>

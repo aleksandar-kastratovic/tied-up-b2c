@@ -15,6 +15,10 @@
   }
 }
 
+.swiper-mobile-disabled {
+    display: none !important;
+}
+
 .notranslate .rs-picker-default .rs-btn,
 .rs-picker-default .rs-picker-toggle,
 .rs-picker-input .rs-btn,

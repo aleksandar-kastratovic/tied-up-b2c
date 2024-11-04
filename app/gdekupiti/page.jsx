@@ -4,8 +4,22 @@ import Image from "next/image";
 const Gdekupiti = () => {
   return (
     <>
+      <div className={`text-left w-[95%] mx-auto lg:w-full lg:px-[3rem] mt-5`}>
+        <div className={`flex items-center gap-2`}>
+          <Link className={`text-[0.95rem]`} href={`/`}>
+            Početna
+          </Link>
+          <span className={`text-[0.95rem]`}>/</span>
+          <span className={`text-[0.95rem]`}>Gde kupiti</span>
+        </div>
+        <h1
+          className={`text-[23px] md:text-[29px] font-normal mt-5 w-full border-b pb-2`}
+        >
+          Gde kupiti
+        </h1>
+      </div>
       <div className="flex flex-col mt-5 md:mt-16 items-center relative">
-        <div className="md:w-[80%] mx-auto p-2">
+        <div className="w-[95%] mx-auto lg:w-full lg:px-[3rem]">
           <h3 className="font-semibold text-[22px]">
             {" "}
             Gde kupiti Tied up proizvode?

@@ -136,7 +136,7 @@ const BillingAddresses = () => {
                           height={22}
                         />
                       </Link>
-                      <span className="font-thin">/</span>
+                      <span className="font-normal">/</span>
                       <button
                         className="hover:translate-y-0.5 transition-all ease cursor-pointer ml-[0.8rem]"
                         onClick={() => {

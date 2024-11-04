@@ -445,7 +445,7 @@ export const CheckoutData = ({
               {currencyFormat(5000 - summary?.totals?.items_discount)}
             </p>
           </div>
-          {summary?.totals?.total >= 5000 && (
+          {summary?.totals?.items_discount >= 5000 && (
             <h1 className="text-base text-[#2bc48a] mt-3 font-bold">
               Besplatna dostava
             </h1>

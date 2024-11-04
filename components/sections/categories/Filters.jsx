@@ -88,7 +88,7 @@ const Filters = ({
 
   return (
     <>
-      <div className=" mx-[50px] flex items-center justify-between bg-[#b89980] text-black px-[2rem] font-thin text-[0.85rem]">
+      <div className=" mx-[50px] flex items-center justify-between bg-[#b89980] text-black px-[2rem] font-normal text-[0.85rem]">
         <div className={`flex items-center gap-[4.5rem]`}>
           {(availableFilters ?? []).map((filter, index) => {
             const isOpen = openIndex === index;
@@ -130,7 +130,7 @@ const Filters = ({
                     ref={filterRef}
                     className={` z-[20] ${
                       filter?.name === "Cena" && "w-[230px]"
-                    } w-[150px] top-[43px] bg-white border-l border-r border-b border-[#f2f2f2] border-t left-0 absolute font-thin`}
+                    } w-[150px] top-[43px] bg-white border-l border-r border-b border-[#f2f2f2] border-t left-0 absolute font-normal`}
                   >
                     <div className="pb-3.5 filter">
                       <Filter

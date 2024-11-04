@@ -56,7 +56,7 @@ const ProductDetails = ({
       <div className="flex items-center gap-2 flex-wrap">
         <Link
           href={`/`}
-          className="text-[#191919] text-[0.95rem] font-thin hover:text-[#b89980]"
+          className="text-[#191919] text-[0.95rem] font-normal hover:text-[#b89980]"
         >
           Početna
         </Link>{" "}
@@ -70,7 +70,7 @@ const ProductDetails = ({
                     ? `/${breadcrumb?.link?.link_path}`
                     : `/${breadcrumb?.link?.link_path}`
                 }
-                className="text-[#000] text-[0.95rem] font-thin hover:text-[#b89980]"
+                className="text-[#000] text-[0.95rem] font-normal hover:text-[#b89980]"
               >
                 {breadcrumb?.name}
               </Link>
@@ -102,6 +102,7 @@ const ProductDetails = ({
           breadcrumbs={breadcrumbs}
           specification={specification}
           declaration={declaration}
+          id={id}
         />
       </div>
       <div className={`mt-10`}>

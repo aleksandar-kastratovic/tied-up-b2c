@@ -23,7 +23,7 @@ const UpsellProducts = ({ id }) => {
       <>
         <div className="flex justify-between w-full items-center mt-10">
           <h5 className="text-[1.5rem] mb-3 font-bold max-md:text-[1.1rem] ">
-            Preporučujemo
+            Pogledaj i slične proizvode
           </h5>
         </div>
         <Swiper

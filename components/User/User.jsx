@@ -170,7 +170,7 @@ const UserPage = () => {
                 <h3 className="font-semibold text-xl underline">
                   IMATE NALOG?
                 </h3>
-                <p className="mb-[2rem] mt-[0.4rem] font-thin text-[#4b4b4b]">
+                <p className="mb-[2rem] mt-[0.4rem] font-normal text-[#4b4b4b]">
                   Molimo Vas unesite Vaše podatke.
                 </p>
                 <form className="flex flex-col" onSubmit={formSubmitHandler}>
@@ -222,7 +222,7 @@ const UserPage = () => {
                 <div className="flex justify-between mt-[2rem] align-center">
                   <button
                     onClick={handleOpenModal}
-                    className="underline lg:ml-[0.6rem] font-thin block text-sm"
+                    className="underline lg:ml-[0.6rem] font-normal block text-sm"
                   >
                     Zaboravili ste lozinku?
                   </button>
@@ -237,7 +237,7 @@ const UserPage = () => {
                         <h3 className="font-semibold text-xl underline">
                           ZABORAVILI STE LOZINKU?
                         </h3>
-                        <p className="mb-[2rem] mt-[0.4rem] font-thin text-[#4b4b4b]">
+                        <p className="mb-[2rem] mt-[0.4rem] font-normal text-[#4b4b4b]">
                           Unesite e-mail adresu da biste poništili lozinku.
                         </p>
                         <form>
