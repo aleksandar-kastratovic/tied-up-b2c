@@ -43,7 +43,7 @@ const CartProductItem = ({ item }) => {
             </Link>
             {item?.product?.price?.per_item?.discount?.active && (
               <div
-                className={`absolute top-2 right-2 bg-[#215352] px-[0.85rem] py-0.5 rounded-lg font-thin text-xs text-white`}
+                className={`absolute top-2 right-2 bg-[#215352] px-[0.85rem] py-0.5 rounded-lg font-normal text-xs text-white`}
               >
                 -
                 {(

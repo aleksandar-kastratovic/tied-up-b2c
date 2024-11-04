@@ -203,7 +203,7 @@ const Registration = ({ setIsReg }) => {
               <h3 className="font-semibold text-xl underline text-black">
                 NAPRAVITE NOVI NALOG
               </h3>
-              <p className="mb-[1.4rem] mt-[0.4rem] font-thin text-[#4b4b4b]">
+              <p className="mb-[1.4rem] mt-[0.4rem] font-normal text-[#4b4b4b]">
                 Vaši podaci
               </p>
 

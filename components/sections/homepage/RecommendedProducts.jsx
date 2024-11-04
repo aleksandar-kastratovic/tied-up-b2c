@@ -8,12 +8,14 @@ import { usePathname } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { useIsMobile } from "@/hooks/croonus.hooks";
+import { icons } from "@/_lib/icons";
 
 const RecommendedProducts = ({ recommendedProducts, action4 }) => {
   const [products, setProducts] = useState(recommendedProducts);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const pathname = usePathname();
+  const [swiper, setSwiper] = useState(null);
 
   useEffect(() => {
     Aos.init();
@@ -146,8 +148,21 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
           </div>
         </div>
       </div>
-      <div className="max-sm:mt-[1rem] mt-[4rem]">
+      <div className="max-sm:mt-[1rem] mt-[4rem] relative">
+        {products?.length > swiper?.params?.slidesPerView && (
+          <div
+            onClick={() => {
+              if (swiper) {
+                swiper?.slidePrev();
+              }
+            }}
+            className={`absolute z-[5] bg-white shadow p-3 rounded-full top-1/2 border border-gray-300 left-3 transform -translate-y-1/2 cursor-pointer`}
+          >
+            {icons.chevron_left}
+          </div>
+        )}
         <Swiper
+          rewind
           slidesPerView={1.2}
           breakpoints={{
             640: {
@@ -161,12 +176,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
             },
           }}
           spaceBetween={20}
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 2000,
-            pauseOnMouseEnter: true,
-            reverseDirection: true,
-          }}
+          onSwiper={(swiper) => setSwiper(swiper)}
         >
           {(products ?? [])?.map((item) => {
             if (item) {
@@ -180,7 +190,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
                     />
                   }
                 >
-                  <SwiperSlide key={`slide-${id}`}>
+                  <SwiperSlide key={`slide-${id}`} className={`!h-auto`}>
                     <Thumb
                       id={id}
                       refreshWishlist={() => {}}
@@ -193,6 +203,18 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
             }
           })}
         </Swiper>
+        {products?.length > swiper?.params?.slidesPerView && (
+          <div
+            onClick={() => {
+              if (swiper) {
+                swiper?.slideNext();
+              }
+            }}
+            className={`absolute z-[5] bg-white shadow p-3 rounded-full top-1/2 border border-gray-300 right-3 transform -translate-y-1/2 cursor-pointer`}
+          >
+            {icons.chevron_right}
+          </div>
+        )}
       </div>
     </div>
   );

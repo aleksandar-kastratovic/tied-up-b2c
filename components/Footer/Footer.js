@@ -17,6 +17,7 @@ import Youtube from "../../assets/Icons/youtube.png";
 import Facebook from "../../assets/Icons/facebook.png";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { icons } from "@/_lib/icons";
 
 const Footer = () => {
   const [open, setOpen] = useState({
@@ -39,7 +40,7 @@ const Footer = () => {
                 className="invert"
               />
             </div>
-            <div className="flex flex-col font-thin">
+            <div className="flex flex-col font-normal">
               <p className="text-white max-md:text-[14px] text-[18px]">
                 Besplatna dostava za
               </p>
@@ -61,10 +62,10 @@ const Footer = () => {
                 className="invert"
               />
             </div>
-            <div className="flex flex-col font-thin">
-              <h1 className="text-white  max-md:text-[14px]  text-[18px]">
+            <div className="flex flex-col font-normal">
+              <p className="text-white  max-md:text-[14px]  text-[18px]">
                 Povrat robe
-              </h1>
+              </p>
               <p className="text-white  max-md:text-[14px]  text-[18px] -mt-2">
                 U roku od <span className="text-[#b89980]">14</span> dana
               </p>
@@ -80,7 +81,7 @@ const Footer = () => {
                 className="invert"
               />
             </div>
-            <div className="flex flex-col font-thin">
+            <div className="flex flex-col font-normal">
               <p className="text-white  max-md:text-[14px]  text-[18px]">
                 Rok isporuke do
               </p>
@@ -92,8 +93,8 @@ const Footer = () => {
         </div>
         {/* <div className="flex max-xl:mt-10 items-center gap-[1.938rem] text-white text-end max-md:text-center">
           <div className="ml-auto">
-            <p className="font-thin max-md:text-[16px] text-[18px]">Podelite svoje jedinstveno online iskustvo sa našim timom</p>
-            <p className="font-thin max-md:text-[16px] text-[18px] -mt-1">i pomozite nam da postanemo bolji. <Link href="/anketa" className="underline max-md:text-[16px] text-[18px] font-semibold max-md:block">Ostavite Vaše mišljenje</Link>.</p>
+            <p className="font-normal max-md:text-[16px] text-[18px]">Podelite svoje jedinstveno online iskustvo sa našim timom</p>
+            <p className="font-normal max-md:text-[16px] text-[18px] -mt-1">i pomozite nam da postanemo bolji. <Link href="/anketa" className="underline max-md:text-[16px] text-[18px] font-semibold max-md:block">Ostavite Vaše mišljenje</Link>.</p>
           </div>
         </div> */}
       </div>
@@ -161,7 +162,7 @@ const Footer = () => {
             >
               {" "}
               <Image
-                src="/linkedin1.png"
+                src="/linkedin2.png"
                 width={25}
                 height={30}
                 alt="youtube"
@@ -271,7 +272,7 @@ const Footer = () => {
                 />
               </div>
             </div>
-            <p className="text-[12px] px-1 font-thin text-center text-white ">
+            <p className="text-[12px] px-1 font-normal text-center text-white ">
               Cene na sajtu su iskazane u dinarima sa uračunatim porezom, a
               plaćanje se vrši isključivo u dinarima. Isporuka se vrši SAMO na
               teritoriji Republike Srbije. Nastojimo da budemo što precizniji u
@@ -342,11 +343,20 @@ const Footer = () => {
             onClick={() => setOpen({ id: open?.id === 1 ? null : 1 })}
             className="flex flex-col self-start gap-[40px] max-md:self-center"
           >
-            <p className="text-[1.063rem] font-bold text-white">
-              Korisnička podrška
-            </p>
+            <div className={`flex items-center gap-3`}>
+              <p className="text-[1.063rem] font-bold text-white">
+                Korisnička podrška
+              </p>
+              <span
+                className={`${
+                  open?.id === 1 ? "-rotate-90" : "rotate-90"
+                } text-white transition-all duration-500`}
+              >
+                {icons.chevron_right}
+              </span>
+            </div>
             {open?.id === 1 && (
-              <div className="flex flex-col items-center justify-center gap-[0.4rem] font-thin text-[#c9c9c9]">
+              <div className="flex flex-col items-center justify-center gap-[0.4rem] font-normal text-[#c9c9c9]">
                 <Link
                   className={`cursor-pointer hover:text-[#b89980] ${
                     pathname === "/strana/kako-kupiti" && "text-[#b89980]"
@@ -405,30 +415,6 @@ const Footer = () => {
                 >
                   Zaštita privatnosti
                 </Link>
-                <Link
-                  className={`cursor-pointer hover:text-[#b89980] ${
-                    pathname === "/strana/isporuka" && "text-[#b89980]"
-                  }`}
-                  href="/strana/isporuka"
-                >
-                  Isporuka
-                </Link>
-                <Link
-                  className={`cursor-pointer hover:text-[#b89980] ${
-                    pathname === "/strana/najcesca-pitanja" && "text-[#b89980]"
-                  }`}
-                  href="/strana/najcesca-pitanja"
-                >
-                  Najčešća pitanja
-                </Link>
-                <Link
-                  className={`cursor-pointer hover:text-[#b89980] ${
-                    pathname === "/strana/kolacici" && "text-[#b89980]"
-                  }`}
-                  href="/strana/kolacici"
-                >
-                  Politika o Kolačićima
-                </Link>
               </div>
             )}
           </div>
@@ -436,9 +422,18 @@ const Footer = () => {
             onClick={() => setOpen({ id: open?.id === 2 ? null : 2 })}
             className="flex flex-col self-start gap-[40px] max-md:self-center text-center"
           >
-            <p className="text-[1.063rem] font-bold text-white">O nama</p>
+            <div className={`flex items-center gap-3`}>
+              <p className="text-[1.063rem] font-bold text-white">O nama</p>
+              <span
+                className={`${
+                  open?.id === 2 ? "-rotate-90" : "rotate-90"
+                } text-white transition-all duration-500`}
+              >
+                {icons.chevron_right}
+              </span>
+            </div>
             {open?.id === 2 && (
-              <div className="flex flex-col items-center justify-center gap-[0.4rem]  font-thin text-[#c9c9c9]">
+              <div className="flex flex-col items-center justify-center gap-[0.4rem]  font-normal text-[#c9c9c9]">
                 <Link
                   href={`/onama`}
                   className={`cursor-pointer hover:text-[#b89980] ${
@@ -471,8 +466,8 @@ const Footer = () => {
       <div className="mx-[5rem] max-md:flex-col max-md:gap-10 max-md:w-[95%] max-md:mx-auto py-[1rem] flex items-center justify-between text-white">
         <div className=" max-md:hidden flex max-md:flex-wrap items-center gap-3 4xl:gap-6">
           <Link
-            href="/strana/uslovi-koriscenja"
-            className={`text-[17px]  font-extralight hover:text-[#b89980] cursor-pointer ${
+            href={`/strana/uslovi-koriscenja`}
+            className={`text-[17px] font-extralight hover:text-[#b89980] cursor-pointer ${
               pathname === "/strana/uslovi-koriscenja" && "text-[#b89980]"
             }`}
           >
@@ -486,33 +481,6 @@ const Footer = () => {
             }`}
           >
             Zaštita privatnosti
-          </Link>
-          <span>•</span>
-          <Link
-            href="/strana/isporuka"
-            className={`text-[17px]  font-extralight hover:text-[#b89980] cursor-pointer ${
-              pathname === "/strana/isporuka" && "text-[#b89980]"
-            }`}
-          >
-            Isporuka
-          </Link>
-          <span>•</span>
-          <Link
-            href="/strana/najcesca-pitanja"
-            className={`text-[17px]  font-extralight hover:text-[#b89980] cursor-pointer ${
-              pathname === "/strana/najcesca-pitanja" && "text-[#b89980]"
-            }`}
-          >
-            Najčešća pitanja
-          </Link>
-          <span>•</span>
-          <Link
-            href="/strana/kolacici"
-            className={`text-[17px]  font-extralight hover:text-[#b89980] cursor-pointer ${
-              pathname === "/strana/kolacici" && "text-[#b89980]"
-            }`}
-          >
-            Politika o 'Kolačićima'
           </Link>
         </div>
         <p className="text-[17px]  font-extralight max-md:text-center">

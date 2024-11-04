@@ -5,7 +5,6 @@ import { CategoryPage } from "@/_components/category";
 import ProductDetailPage from "./product";
 import { headers } from "next/headers";
 import { getRobots, handleCategoryRobots } from "@/_functions";
-import { Suspense } from "react";
 
 const handleData = async (slug) => {
   return await get(`/slugs/product-categories?slug=${slug}`).then(
@@ -45,7 +44,7 @@ const DynamicPage = async ({ params: { path }, params, searchParams }) => {
     case data?.type === "product" &&
       data?.status === true &&
       data?.redirect_url === false:
-      return <ProductDetailPage params={params} />;
+      return <ProductDetailPage params={params} id={data?.id} />;
     case data?.status === false:
       return notFound();
     default:

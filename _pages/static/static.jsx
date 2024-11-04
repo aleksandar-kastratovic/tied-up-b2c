@@ -28,14 +28,14 @@ export const Static = ({ slug }) => {
   };
 
   return (
-    <div>
+    <div className={`mt-[1.2rem] md:mt-[9rem]`}>
       {staticData?.map((item) => {
         switch (item?.type) {
           case "multiple_images":
             return (
               <div
                 key={keyGenerator("multiple_images")}
-                className={`my-5 md:w-[50%] mx-auto !max-w-full`}
+                className={`my-5 md:!max-w-[60%] w-full mx-auto !max-w-full`}
               >
                 {item?.content?.map((image) => {
                   return (
@@ -57,30 +57,22 @@ export const Static = ({ slug }) => {
                 })}
               </div>
             );
-
-            break;
-
           case "html_editor":
             return (
               <div
                 key={keyGenerator("html")}
-                className={`mt-[1.2rem] md:mt-[9rem] max-md:!max-w-[95%] mx-auto md:!max-w-[60%] prose !w-full`}
+                className={`max-md:!max-w-[95%] mx-auto md:!max-w-[60%] prose !w-full mt-5`}
                 dangerouslySetInnerHTML={{ __html: item?.content }}
               ></div>
             );
-
-            break;
-
           case "textarea":
             return (
               <div
                 key={keyGenerator("textarea")}
-                className={`mt-[1.2rem] md:mt-[9rem] max-md:!max-w-[95%] mx-auto md:!max-w-[60%] prose !w-full`}
+                className={`mt-5 max-md:!max-w-[95%] mx-auto md:!max-w-[60%] prose !w-full`}
                 dangerouslySetInnerHTML={{ __html: item?.content }}
               ></div>
             );
-
-            break;
         }
       })}
     </div>

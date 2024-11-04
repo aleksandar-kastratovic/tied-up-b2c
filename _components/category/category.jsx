@@ -1,4 +1,3 @@
-"use client";
 import { CategoryProducts, SingleCategory } from "@/_components/category/index";
 import { Suspense } from "react";
 

@@ -7,9 +7,7 @@ import NavigationMobile from "@/components/Navigation/NavigationMobile";
 import { UserProvider } from "@/context/userContext";
 import CookieAlert from "@/components/CookieAlert/CookieAlert";
 import Header from "@/components/Header/Header";
-
 import { QueryProvider } from "@/components/QueryProvider";
-import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({ children }) {
   return (

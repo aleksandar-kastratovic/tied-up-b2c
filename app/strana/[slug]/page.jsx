@@ -1,11 +1,6 @@
 import { Static } from "@/_pages/static";
 import { get } from "@/app/api/api";
-
-const getPage = (slug) => {
-  return get(`/static-pages/content/${slug}`).then(
-    (res) => res?.payload?.basic_data
-  );
-};
+import { headers } from "next/headers";
 
 const StaticPage = ({ params: { slug } }) => {
   return <Static slug={slug} />;
@@ -13,17 +8,39 @@ const StaticPage = ({ params: { slug } }) => {
 
 export default StaticPage;
 
-export const generateMetadata = async ({ params: { slug } }) => {
-  const data = await getPage(slug);
+const getSEO = (slug) => {
+  return get(`/static-pages/seo/${slug}`).then((response) => response?.payload);
+};
 
-  if (data) {
-    const { name } = data;
-    return {
-      title: `${name ?? "404"} | TiedUp`,
-    };
-  } else {
-    return {
-      title: `404 | TiedUp`,
-    };
-  }
+export const generateMetadata = async ({ params: { slug } }) => {
+  const data = await getSEO(slug);
+
+  const header_list = headers();
+  let canonical = header_list.get("x-pathname");
+  return {
+    title: data?.meta_title ?? "Početna | TiedUp",
+    description: data?.meta_description ?? "Dobrodošli na TiedUp Online Shop",
+    alternates: {
+      canonical: data?.meta_canonical_link ?? canonical,
+    },
+    robots: {
+      index: data?.meta_robots?.index ?? true,
+      follow: data?.meta_robots?.follow ?? true,
+    },
+    openGraph: {
+      title: data?.social?.share_title ?? "Početna | TiedUp",
+      description:
+        data?.social?.share_description ?? "Dobrodošli na TiedUp Online Shop",
+      type: "website",
+      images: [
+        {
+          url: data?.social?.share_image ?? "",
+          width: 800,
+          height: 600,
+          alt: "TiedUp",
+        },
+      ],
+      locale: "sr_RS",
+    },
+  };
 };
