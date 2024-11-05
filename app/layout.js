@@ -11,7 +11,7 @@ import { QueryProvider } from "@/components/QueryProvider";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="sr-RS">
       <head>
         <Script
           dangerouslySetInnerHTML={{

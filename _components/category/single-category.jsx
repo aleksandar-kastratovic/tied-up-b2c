@@ -62,6 +62,12 @@ export const SingleCategory = ({ slug, text, path, base_url }) => {
             __html: data?.basic_data?.short_description,
           }}
         ></p>
+        <p
+          className="text-center prose text-[0.9rem] max-md:mt-[20px] max-w-[36.075rem] font-light md:mt-[22px]"
+          dangerouslySetInnerHTML={{
+            __html: data?.basic_data?.description,
+          }}
+        ></p>
       </div>
     </>
   );

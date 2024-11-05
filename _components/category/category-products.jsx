@@ -10,6 +10,7 @@ import {
 } from "@/hooks/croonus.hooks";
 import FiltersMobile from "@/components/sections/categories/FilterMobile";
 import Filters from "@/components/sections/categories/Filters";
+import { CategoryLongDescription } from "@/_components/category/category-long-description";
 
 export const CategoryProducts = ({
   filters,
@@ -362,6 +363,7 @@ export const CategoryProducts = ({
           setPage={setPage}
         />
       </Suspense>
+      <CategoryLongDescription slug={slug} />
     </>
   );
 };
