@@ -29,7 +29,9 @@ const Footer = () => {
   return (
     <div className="max-md:mt-[3rem] mt-[7.75rem] bg-[#215352]">
       <div className="md:mx-[5rem] max-xl:flex-col py-[1.4rem] flex items-center justify-between border-l-0 border-t-0 border-r-0 border-b-[1px] border-b-white">
-        <div className="flex max-md:flex-row max-xl:flex-col max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center mx-auto px-2 gap-[3rem] max-md:w-full max-md:justify-between">
+        <div
+          className={`flex max-md:flex-col sm:flex-row max-md:!text-center max-xl:flex-col max-md:gap-5 max-xl:gap-[8px] max-md:mt-5 max-xl:mt-10 md:items-center mx-auto px-2 gap-[3rem] max-md:w-full max-md:justify-between `}
+        >
           <div className="flex items-center justify-center gap-5 max-md:flex-col">
             <div>
               <Image

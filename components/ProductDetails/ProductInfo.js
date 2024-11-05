@@ -534,17 +534,12 @@ const ProductInfo = ({
               <ul className="flex flex-row gap-[47px] text-[16px] font-semibold relative separate">
                 <div
                   className="relative cursor-pointer"
-                  onClick={() => setDeliveryModal(true)}
-                >
-                  Opis
-                </div>
-                <div
-                  className="relative cursor-pointer"
                   onClick={() => setInfoModal(true)}
                 >
                   Informacije
                 </div>
               </ul>
+
               {/* <div className={`flex flex-col divide-y md:max-w-[80%] h-[310px] overflow-y-auto`}>
                 {specification?.length > 0 &&
                   specification?.map((item) => {
@@ -719,11 +714,9 @@ const ProductInfo = ({
               </div>
             </div> */}
           </div>
-
-          <DeliveryModal
-            deliveryModal={deliveryModal}
-            setDeliveryModal={setDeliveryModal}
-            description={desc?.description}
+          <div
+            dangerouslySetInnerHTML={{ __html: desc?.description }}
+            className={`prose !max-w-full !w-full col-span-4 mt-10`}
           />
           <InfoModal infoModal={infoModal} setInfoModal={setInfoModal} />
           <ReturnModal

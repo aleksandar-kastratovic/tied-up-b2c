@@ -1,5 +1,4 @@
 import { get } from "@/app/api/api";
-import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 import { notFound, permanentRedirect as redirect } from "next/navigation";
 import { CategoryPage } from "@/_components/category";
 import ProductDetailPage from "./product";
@@ -134,7 +133,7 @@ export async function generateMetadata({
 
       let robots = getRobots(productSEO?.meta_robots);
 
-      const image = convertHttpToHttps(productSEO?.meta_image) ?? "";
+      const image = productSEO?.meta_image ?? "";
       if (productSEO) {
         return {
           alternates: {

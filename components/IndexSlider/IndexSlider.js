@@ -129,7 +129,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                     target={`${banner?.target}` ?? "_self"}
                     className="absolute z-[49] top-0 left-0 w-full h-full bg-black transition-all duration-500 bg-opacity-20"
                   >
-                    <div className="absolute flex flex-col items-center md:items-start justify-center md:justify-start max-sm:gap-[20px] gap-[10px] max-sm:top-[50%] top-[48%] text-center left-[8%] transform -translate-y-1/2">
+                    <div className="absolute flex flex-col items-center md:items-start justify-center md:justify-start max-sm:gap-[20px] gap-[10px] max-sm:top-[50%] top-[48%] text-center max-md:mx-2 md:left-[8%] transform -translate-y-1/2">
                       {banner?.title && (
                         <h1 className="text-white max-sm:text-base text-xl font-normal">
                           {banner?.title}
@@ -141,7 +141,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
                         </h2>
                       )}
                       {banner?.text && (
-                        <p className="text-white text-left sm:max-w-[60%] max-sm:text-[0.925rem] text-base font-normal">
+                        <p className="text-white md:text-left sm:max-w-[60%] max-sm:text-[0.925rem] text-base font-normal">
                           {banner?.text}
                         </p>
                       )}

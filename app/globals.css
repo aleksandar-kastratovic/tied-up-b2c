@@ -18,6 +18,9 @@
 .swiper-mobile-disabled {
     display: none !important;
 }
+.swiper-mobile-hidden {
+    display: none !important;
+}
 
 .notranslate .rs-picker-default .rs-btn,
 .rs-picker-default .rs-picker-toggle,

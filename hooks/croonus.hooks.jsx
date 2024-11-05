@@ -521,7 +521,6 @@ export const useCategoryProducts = ({
           field: sort_tmp[0],
           direction: sort_tmp[1],
         };
-
         return await LIST(
           isSection
             ? `/products/section/list/${slug}`

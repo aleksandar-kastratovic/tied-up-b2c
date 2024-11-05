@@ -204,7 +204,10 @@ const ProductGallery = ({
         pagination={true}
         modules={[FreeMode, Thumbs, Pagination, Navigation]}
         initialSlide={color ? newImage : 0}
-        navigation={true}
+        navigation={{
+          enabled: true,
+          hiddenClass: "swiper-mobile-hidden",
+        }}
         loop={true}
         onSwiper={(swiper) => setSwiper(swiper)}
         breakpoints={{
@@ -224,6 +227,7 @@ const ProductGallery = ({
               enabled: false,
               bulletClass: "swiper-pagination-bullet",
               disabledClass: "swiper-mobile-disabled",
+              hiddenClass: "swiper-mobile-hidden",
               bulletActiveClass: "swiper-pagination-bullet-active",
             },
             modules: [FreeMode, Thumbs, Pagination],

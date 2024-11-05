@@ -10,6 +10,7 @@ import {
 } from "@/hooks/croonus.hooks";
 import FiltersMobile from "@/components/sections/categories/FilterMobile";
 import Filters from "@/components/sections/categories/Filters";
+import { CategoryLongDescription } from "@/_components/category/category-long-description";
 
 export const CategoryProducts = ({
   filters,
@@ -24,7 +25,8 @@ export const CategoryProducts = ({
   const params = useSearchParams();
   const is_mobile = useIsMobile();
 
-  const [productsPerView, setProductsPerView] = useState(is_mobile ? 2 : 4);
+  const [productsPerView, setProductsPerView] = useState(4);
+  const [productsPerViewMobile, setProductsPerViewMobile] = useState(2);
 
   useEffect(() => {
     setProductsPerView(is_mobile ? 2 : 4);
@@ -112,8 +114,8 @@ export const CategoryProducts = ({
     setSort: setSort,
     render: false,
     setIsLoadingMore: () => {},
-    section: null,
     setPage: setPage,
+    isSection: isSection,
   });
 
   const mutateFilters = useCategoryFilters({
@@ -178,23 +180,25 @@ export const CategoryProducts = ({
             : `fixed top-0 left-0 w-full h-[100dvh] z-[3000] bg-white -translate-x-full duration-500`
         }
       >
-        <FiltersMobile
-          selectedFilters={selectedFilters}
-          availableFilters={availableFilters}
-          setSelectedFilters={setSelectedFilters}
-          sort={sort}
-          setPage={setPage}
-          setSort={setSort}
-          changeFilters={changeFilters}
-          pagination={data?.pagination}
-          setProductsPerView={setProductsPerView}
-          productsPerView={productsPerView}
-          setFilterOpen={setFilterOpen}
-          setTempSelectedFilters={setTempSelectedFilters}
-          setChangeFilters={setChangeFilters}
-          tempSelectedFilters={tempSelectedFilters}
-          setLastSelectedFilterKey={setLastSelectedFilterKey}
-        />
+        <Suspense>
+          <FiltersMobile
+            selectedFilters={selectedFilters}
+            availableFilters={availableFilters}
+            setSelectedFilters={setSelectedFilters}
+            sort={sort}
+            setPage={setPage}
+            setSort={setSort}
+            changeFilters={changeFilters}
+            pagination={data?.pagination}
+            setProductsPerView={setProductsPerViewMobile}
+            productsPerView={productsPerViewMobile}
+            setFilterOpen={setFilterOpen}
+            setTempSelectedFilters={setTempSelectedFilters}
+            setChangeFilters={setChangeFilters}
+            tempSelectedFilters={tempSelectedFilters}
+            setLastSelectedFilterKey={setLastSelectedFilterKey}
+          />
+        </Suspense>
       </div>
       <div
         className={`${
@@ -208,7 +212,7 @@ export const CategoryProducts = ({
           const filterName = splitFilter?.[1];
           return (
             <div
-              className={`font-normal bg-croonus-2  text-white text-[0.65rem] relative max-md:text-[0.7rem]  rounded-lg flex items-center gap-2`}
+              className={`font-normal bg-croonus-2 text-white text-[0.65rem] relative max-md:text-[0.7rem]  rounded-lg flex items-center gap-2`}
             >
               <div className={`flex items-center gap-2  px-1`}>
                 <p>
@@ -269,21 +273,23 @@ export const CategoryProducts = ({
         })}
       </div>
       <div className="max-md:hidden mt-[67px]">
-        <Filters
-          selectedFilters={selectedFilters}
-          availableFilters={availableFilters}
-          setSelectedFilters={setSelectedFilters}
-          sort={sort}
-          setPage={setPage}
-          setSort={setSort}
-          changeFilters={changeFilters}
-          pagination={data?.pagination}
-          setProductsPerView={setProductsPerView}
-          productsPerView={productsPerView}
-          setTempSelectedFilters={setTempSelectedFilters}
-          setLastSelectedFilterKey={setLastSelectedFilterKey}
-          setChangeFilters={setChangeFilters}
-        />
+        <Suspense>
+          <Filters
+            selectedFilters={selectedFilters}
+            availableFilters={availableFilters}
+            setSelectedFilters={setSelectedFilters}
+            sort={sort}
+            setPage={setPage}
+            setSort={setSort}
+            changeFilters={changeFilters}
+            pagination={data?.pagination}
+            setProductsPerView={setProductsPerView}
+            productsPerView={productsPerView}
+            setTempSelectedFilters={setTempSelectedFilters}
+            setLastSelectedFilterKey={setLastSelectedFilterKey}
+            setChangeFilters={setChangeFilters}
+          />
+        </Suspense>
       </div>
       <div
         className={`flex items-center gap-5 w-full px-2 mx-auto mt-[60px] md:hidden bg-white sticky top-[3.4rem] py-2 z-[51]`}
@@ -298,23 +304,23 @@ export const CategoryProducts = ({
           {/*a div 40px high and 40px wide*/}
           <div
             className={`w-[30px] h-[30px] border-2 ${
-              productsPerView === 1 && "border-black"
+              productsPerViewMobile === 1 && "border-black"
             }`}
-            onClick={() => setProductsPerView(1)}
+            onClick={() => setProductsPerViewMobile(1)}
           ></div>
           {/*a div 40px high and 40px wide that has 9 smaller squares inside*/}
           <div
             className={`w-[30px] h-[30px] border grid grid-cols-2 ${
-              productsPerView === 2 && "border-black"
+              productsPerViewMobile === 2 && "border-black"
             }`}
-            onClick={() => setProductsPerView(2)}
+            onClick={() => setProductsPerViewMobile(2)}
           >
             {Array.from({ length: 4 }, (_, i) => {
               return (
                 <div
                   key={i}
                   className={`col-span-1 border ${
-                    productsPerView === 2 && "border-black"
+                    productsPerViewMobile === 2 && "border-black"
                   }`}
                 ></div>
               );
@@ -323,28 +329,41 @@ export const CategoryProducts = ({
         </div>
       </div>
 
-      <div
-        className={`mt-[1.875rem] px-2 md:px-[3rem] ${
-          productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
-        } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
-      >
-        {rendered_items}
+      <div className={`max-md:hidden`}>
+        <div
+          className={`mt-[1.875rem] px-2 md:px-[3rem] ${
+            productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
+          } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
+        >
+          {rendered_items}
+        </div>
       </div>
 
-      <Pagination
-        generateQueryString={() => {
-          const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
-            sort,
-            selectedFilters,
-            page
-          );
-          return generateQueryString(sort_tmp, filters_tmp, page_tmp);
-        }}
-        data={data}
-        page={page}
-        slug={slug}
-        setPage={setPage}
-      />
+      <div className={`md:hidden`}>
+        <div
+          className={`mt-[1.875rem] px-2 md:px-[3rem] grid grid-cols-${productsPerViewMobile} gap-x-5 gap-y-10`}
+        >
+          {rendered_items}
+        </div>
+      </div>
+
+      <Suspense>
+        <Pagination
+          // generateQueryString={() => {
+          //   const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
+          //     sort,
+          //     selectedFilters,
+          //     page
+          //   );
+          //   return generateQueryString(sort_tmp, filters_tmp, page_tmp);
+          // }}
+          data={data}
+          page={page}
+          slug={slug}
+          setPage={setPage}
+        />
+      </Suspense>
+      <CategoryLongDescription slug={slug} />
     </>
   );
 };

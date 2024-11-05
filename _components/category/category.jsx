@@ -1,4 +1,4 @@
-import { CategoryProducts, SingleCategory } from "@/_components/category/index";
+import { CategoryProducts, SingleCategory } from "@/_components/category";
 import { Suspense } from "react";
 
 export const CategoryPage = ({
@@ -6,7 +6,7 @@ export const CategoryPage = ({
   searchParams: { sort: sortURL, strana, filteri },
   base_url,
 }) => {
-  const slug = path[path?.length - 1];
+  const slug = path?.[path?.length - 1];
   const sort = (sortURL ?? "_")?.split("_");
   const sortField = sort?.[0];
   const sortDirection = sort?.[1];

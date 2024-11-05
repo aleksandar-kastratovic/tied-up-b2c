@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   GoogleReCaptchaProvider as Provider,
   GoogleReCaptcha as ReCaptcha,
@@ -8,7 +8,8 @@ import { post as POST } from "@/app/api/api";
 import Link from "next/link";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Contact = () => {
+import { useProductThumb } from "@/hooks/croonus.hooks";
+const Contact = ({ slug }) => {
   const [token, setToken] = useState();
   //
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
@@ -118,6 +119,18 @@ const Contact = () => {
       });
     }
   };
+
+  const { data: product } = useProductThumb({ id: slug, categoryId: "*" });
+
+  useEffect(() => {
+    if (product?.id) {
+      setFormData((prev) => ({
+        ...prev,
+        message: `Poštovani, zanima me proizvod ${product?.basic_data?.name} (${product?.basic_data?.sku}) koji ste postavili na sajtu. Molim Vas da mi pošaljete više informacija o proizvodu. Hvala.`,
+      }));
+    }
+  }, []);
+
   return (
     <Provider reCaptchaKey={process.env.CAPTCHAKEY}>
       <ReCaptcha onVerify={verifyCaptcha} refreshReCaptcha={refreshReCaptcha} />
