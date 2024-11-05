@@ -179,23 +179,25 @@ export const CategoryProducts = ({
             : `fixed top-0 left-0 w-full h-[100dvh] z-[3000] bg-white -translate-x-full duration-500`
         }
       >
-        <FiltersMobile
-          selectedFilters={selectedFilters}
-          availableFilters={availableFilters}
-          setSelectedFilters={setSelectedFilters}
-          sort={sort}
-          setPage={setPage}
-          setSort={setSort}
-          changeFilters={changeFilters}
-          pagination={data?.pagination}
-          setProductsPerView={setProductsPerViewMobile}
-          productsPerView={productsPerViewMobile}
-          setFilterOpen={setFilterOpen}
-          setTempSelectedFilters={setTempSelectedFilters}
-          setChangeFilters={setChangeFilters}
-          tempSelectedFilters={tempSelectedFilters}
-          setLastSelectedFilterKey={setLastSelectedFilterKey}
-        />
+        <Suspense>
+          <FiltersMobile
+            selectedFilters={selectedFilters}
+            availableFilters={availableFilters}
+            setSelectedFilters={setSelectedFilters}
+            sort={sort}
+            setPage={setPage}
+            setSort={setSort}
+            changeFilters={changeFilters}
+            pagination={data?.pagination}
+            setProductsPerView={setProductsPerViewMobile}
+            productsPerView={productsPerViewMobile}
+            setFilterOpen={setFilterOpen}
+            setTempSelectedFilters={setTempSelectedFilters}
+            setChangeFilters={setChangeFilters}
+            tempSelectedFilters={tempSelectedFilters}
+            setLastSelectedFilterKey={setLastSelectedFilterKey}
+          />
+        </Suspense>
       </div>
       <div
         className={`${
@@ -270,21 +272,23 @@ export const CategoryProducts = ({
         })}
       </div>
       <div className="max-md:hidden mt-[67px]">
-        <Filters
-          selectedFilters={selectedFilters}
-          availableFilters={availableFilters}
-          setSelectedFilters={setSelectedFilters}
-          sort={sort}
-          setPage={setPage}
-          setSort={setSort}
-          changeFilters={changeFilters}
-          pagination={data?.pagination}
-          setProductsPerView={setProductsPerView}
-          productsPerView={productsPerView}
-          setTempSelectedFilters={setTempSelectedFilters}
-          setLastSelectedFilterKey={setLastSelectedFilterKey}
-          setChangeFilters={setChangeFilters}
-        />
+        <Suspense>
+          <Filters
+            selectedFilters={selectedFilters}
+            availableFilters={availableFilters}
+            setSelectedFilters={setSelectedFilters}
+            sort={sort}
+            setPage={setPage}
+            setSort={setSort}
+            changeFilters={changeFilters}
+            pagination={data?.pagination}
+            setProductsPerView={setProductsPerView}
+            productsPerView={productsPerView}
+            setTempSelectedFilters={setTempSelectedFilters}
+            setLastSelectedFilterKey={setLastSelectedFilterKey}
+            setChangeFilters={setChangeFilters}
+          />
+        </Suspense>
       </div>
       <div
         className={`flex items-center gap-5 w-full px-2 mx-auto mt-[60px] md:hidden bg-white sticky top-[3.4rem] py-2 z-[51]`}
@@ -342,20 +346,22 @@ export const CategoryProducts = ({
         </div>
       </div>
 
-      <Pagination
-        generateQueryString={() => {
-          const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
-            sort,
-            selectedFilters,
-            page
-          );
-          return generateQueryString(sort_tmp, filters_tmp, page_tmp);
-        }}
-        data={data}
-        page={page}
-        slug={slug}
-        setPage={setPage}
-      />
+      <Suspense>
+        <Pagination
+          // generateQueryString={() => {
+          //   const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
+          //     sort,
+          //     selectedFilters,
+          //     page
+          //   );
+          //   return generateQueryString(sort_tmp, filters_tmp, page_tmp);
+          // }}
+          data={data}
+          page={page}
+          slug={slug}
+          setPage={setPage}
+        />
+      </Suspense>
     </>
   );
 };

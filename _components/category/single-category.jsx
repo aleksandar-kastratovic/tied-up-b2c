@@ -10,7 +10,7 @@ export const SingleCategory = ({ slug, text, path, base_url }) => {
     data?.parents,
     data?.basic_data?.name,
     path,
-    "category"
+    base_url
   );
 
   return (

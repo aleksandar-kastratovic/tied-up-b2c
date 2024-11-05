@@ -4,6 +4,7 @@ import { sortKeys } from "@/helpers/const";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+
 const Filters = ({
   availableFilters,
   selectedFilters,
