@@ -34,14 +34,25 @@ const CheckoutTotals = ({ className, options, totals, summary, formData }) => {
           </p>
         </div>
       )}
-      <div
-        className={`flex items-center justify-between border-t border-t-white py-2`}
-      >
-        <p className={`${className} text-[0.965rem] font-normal`}>Dostava:</p>
-        <p className={`${className} text-[1rem] font-light`}>
-          {currencyFormat(totals?.delivery_amount)}
-        </p>
-      </div>
+      {totals?.delivery_amount > 0 ? (
+        <div
+          className={`flex items-center justify-between border-t border-t-white py-2`}
+        >
+          <p className={`${className} text-[0.965rem] font-normal`}>Dostava:</p>
+          <p className={`${className} text-[1rem] font-light`}>
+            {currencyFormat(totals?.delivery_amount)}
+          </p>
+        </div>
+      ) : (
+        <div
+          className={`flex items-center justify-between border-t border-t-white py-2`}
+        >
+          <p className={`${className} text-[0.965rem] font-normal`}>Dostava:</p>
+          <p className={`${className} text-[1rem] font-light`}>
+            besplatna dostava
+          </p>
+        </div>
+      )}
       <div
         className={`flex items-center justify-between border-t border-t-white py-2`}
       >
