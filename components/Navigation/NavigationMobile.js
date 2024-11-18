@@ -135,7 +135,7 @@ const NavigationMobile = () => {
 
   return (
     <>
-      <div className="xl:hidden w-full z-[2000] sticky top-0 bg-white bg-opacity-90 backdrop-blur-md">
+      <div className="xl:hidden w-full z-[2000] sticky top-0 bg-white shadow bg-opacity-90 backdrop-blur-md">
         <div className="w-[95%] py-3 mx-auto flex justify-between items-center">
           <div onClick={() => setMenuOpen(true)}>
             <Image alt={``} src={Burger} width={30} height={30} />
