@@ -17,7 +17,7 @@ const Header = () => {
     ...categories.filter((category) => category.name !== "Personalizovano"),
   ];
   const categoriesMainRight = [
-    { name: "Veleprodaja", slug: "/veleprodaja", isCategory: false },
+    { name: "Outlet", slug: "/kategorija-proizvoda/outlet", isCategory: false },
     { name: "Personalizovano", slug: "/personalizovano", isCategory: false },
     { name: "Blog", slug: "/blog", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },

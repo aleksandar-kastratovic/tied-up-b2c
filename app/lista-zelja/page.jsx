@@ -1,5 +1,6 @@
 import WishlistPage from "@/components/Wishlist/Wishlist";
 import Link from "next/link";
+import { Suspense } from "react";
 export const metadata = {
   title: "Lista želja | Tied Up",
   description: "Dobrodošli Tied Up Online Shop",
@@ -22,6 +23,7 @@ const Wishlist = async () => {
           Lista želja
         </h1>
       </div>
+
       <WishlistPage />
     </>
   );

@@ -411,15 +411,16 @@ const NavigationMobile = () => {
                       onClick={() => {
                         setMenuOpen(false);
                         setActiveCategory({
-                          id: categories[0]?.id,
-                          data: categories[0]?.children,
-                          parentCategory: categories[0]?.id,
+                          id: null,
+                          data: null,
+                          parentCategory: null,
+                          firstCategory: true,
                         });
-                        setActiveImage(categories[0]?.image);
+                        setActiveImage(null);
                         setGenerateBreadcrumbs();
                         setLastActiveCategory({
-                          id: categories[0]?.id,
-                          data: categories[0]?.children,
+                          id: null,
+                          data: null,
                         });
                       }}
                     >

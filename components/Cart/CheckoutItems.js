@@ -127,7 +127,7 @@ const CheckoutItems = ({
                     price: price,
                     id: id,
                     name: name,
-                    brand_name: "BOA",
+                    brand_name: "Tied Up",
                     productQuantity: productQuantity,
                   });
                 }}

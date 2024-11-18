@@ -4,7 +4,7 @@ import { CategoryPage } from "@/_components/category";
 import ProductDetailPage from "./product";
 import { headers } from "next/headers";
 import { getRobots, handleCategoryRobots } from "@/_functions";
-
+import { cache } from "react";
 const handleData = async (slug) => {
   return await get(`/slugs/product-categories?slug=${slug}`).then(
     (res) => res?.payload

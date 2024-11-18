@@ -38,6 +38,7 @@ const HeaderIcons = () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
+
   const myRef = useRef(null);
   const handleSearch = (e) => {
     e.preventDefault();
@@ -64,6 +65,14 @@ const HeaderIcons = () => {
       refetch();
     }
   }, [pathname]);
+
+  const input_ref = useRef(null);
+
+  useEffect(() => {
+    if (searchIsOpen) {
+      input_ref?.current?.focus();
+    }
+  }, [searchIsOpen]);
 
   return (
     <div className="flex items-center">
@@ -114,7 +123,7 @@ const HeaderIcons = () => {
       <div
         className={
           searchIsOpen
-            ? `bg-white py-[8rem] shadow-xl fixed top-[8rem] left-0 w-full translate-y-0 duration-[700ms] transition-all min-h-[30%] z-[21] flex justify-center items-center`
+            ? `bg-white py-[8rem] shadow-xl fixed top-0 left-0 w-full translate-y-0 duration-[700ms] transition-all min-h-[30%] z-[21] flex justify-center items-center`
             : `bg-white  py-[8rem] fixed shadow-xl top-0 left-0 w-full -translate-y-full duration-[700ms] transition-all min-h-[30%] z-[21] flex justify-center items-center`
         }
       >
@@ -122,6 +131,7 @@ const HeaderIcons = () => {
           <form onSubmit={(e) => handleSearch(e)} className="relative">
             <div className="flex items-center gap-5 relative">
               <input
+                ref={input_ref}
                 type="text"
                 placeholder="Pretraži proizvode"
                 className="w-[700px] h-[3rem] border-l-0 placeholder:text-sm border-t-0 border-r-0 border-b-gray-300 focus:outline-none focus:border-croonus-2 focus:ring-0 "
@@ -139,7 +149,7 @@ const HeaderIcons = () => {
                 <span
                   className={`absolute text-sm top-[0.8rem] right-[2rem] text-red-500`}
                 >
-                  Unesite bar 3 karaktera
+                  Unesite najmanje 3 karaktera.
                 </span>
               )}
             </div>

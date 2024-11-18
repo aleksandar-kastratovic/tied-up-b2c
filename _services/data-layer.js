@@ -1,11 +1,11 @@
 "use client";
 
-export const pushToDataLayer = (event, data) => {
+export const pushToDataLayer = (event, data, amount) => {
   const is_client = isClient();
   if (is_client) {
     switch (event) {
       case "add_to_cart":
-        return handleAddToCart(data);
+        return handleAddToCart(data, amount);
       case "remove_from_cart":
         return handleRemoveFromCart(data);
       case "add_to_wishlist":
@@ -35,7 +35,7 @@ const handleClearObject = () => {
 };
 
 /////////////
-const handleAddToCart = (product) => {
+const handleAddToCart = (product, amount) => {
   handleClearObject();
   window.dataLayer.push({
     event: "add_to_cart",
@@ -54,7 +54,7 @@ const handleAddToCart = (product) => {
           item_brand: product?.basic_data?.brand_name,
           item_category1: product?.categories?.[0]?.name,
           item_variant: product?.basic_data?.name,
-          quantity: 1,
+          quantity: amount,
         },
       ],
     },
@@ -156,7 +156,7 @@ const handleBeginCheckout = (data) => {
   handleClearObject();
   const totalValue = (data ?? [])
     ?.map(
-      (item) => item?.product?.price?.per_item?.total * item?.cart?.quantity,
+      (item) => item?.product?.price?.per_item?.total * item?.cart?.quantity
     )
     ?.reduce((acc, curr) => acc + curr, 0);
 

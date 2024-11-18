@@ -35,7 +35,7 @@ const SliderHeader = () => {
       >
         {banners?.map((banner, index) => (
           <SwiperSlide key={index} className={`!bg-transparent`}>
-            <p className="text-xs font-light text-black !bg-transparent">
+            <p className="text-base font-light text-black !bg-transparent">
               {banner}
             </p>
           </SwiperSlide>
