@@ -238,7 +238,7 @@ const ProductInfo = ({
               id: productVariant?.id,
               quantity: count,
             });
-            pushToDataLayer("add_to_cart", productVariant);
+            pushToDataLayer("add_to_cart", productVariant, count);
           } else {
             router.push(`/kontakt?slug=${productVariant?.slug}`);
           }
