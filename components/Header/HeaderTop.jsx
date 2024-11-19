@@ -9,7 +9,7 @@ function HeaderTop() {
       <div>
         <Link
           href="https://www.facebook.com/masnetiedup/"
-          className="hover:text-white text-sm font-light"
+          className="hover:text-white text-base font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
@@ -18,7 +18,7 @@ function HeaderTop() {
         <span className={`mx-2`}>-</span>
         <Link
           href="https://www.instagram.com/masnetiedup/"
-          className="hover:text-white text-sm font-light"
+          className="hover:text-white text-base font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
@@ -27,7 +27,7 @@ function HeaderTop() {
         <span className="mx-2">-</span>
         <Link
           href="https://www.linkedin.com/company/83116653/admin/feed/posts/"
-          className="hover:text-white text-sm font-light"
+          className="hover:text-white text-base font-light"
           target="_blank"
           rel={`noreferrer noopener nofollow`}
         >
@@ -37,10 +37,10 @@ function HeaderTop() {
       <SliderHeader />
       <div className="flex items-center">
         <Translate />
-        <span className="text-sm font-light">Call Centar: </span>
+        <span className="text-base font-light">Call Centar: </span>
         <Link
           href={`tel:${process.env.TELEPHONE2}`}
-          className="text-sm font-light hover:text-white"
+          className="text-base font-light hover:text-white"
         >
           {process.env.TELEPHONE2}
         </Link>

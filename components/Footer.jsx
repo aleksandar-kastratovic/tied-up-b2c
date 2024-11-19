@@ -79,12 +79,12 @@ const Footer = () => {
               >
                 Kako kupiti
               </Link>
-              <Link
-                className="cursor-pointer hover:text-[#215352]"
-                href="/strana/reklamacije"
-              >
-                Reklamacije
-              </Link>
+              {/*<Link*/}
+              {/*  className="cursor-pointer hover:text-[#215352]"*/}
+              {/*  href="/strana/reklamacije"*/}
+              {/*>*/}
+              {/*  Reklamacije*/}
+              {/*</Link>*/}
               <Link
                 className="cursor-pointer hover:text-[#215352]"
                 href="/povracaj-sredstava"

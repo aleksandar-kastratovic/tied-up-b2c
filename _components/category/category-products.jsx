@@ -149,7 +149,7 @@ export const CategoryProducts = ({
     });
   }, [tempSelectedFilters?.length]);
 
-  const rendered_items = useMemo(() => {
+  const RenderItems = () => {
     return (data?.items || [])?.map(({ id }) => {
       return (
         <Suspense
@@ -169,7 +169,7 @@ export const CategoryProducts = ({
         </Suspense>
       );
     });
-  }, [data?.items]);
+  };
 
   return (
     <>
@@ -335,7 +335,7 @@ export const CategoryProducts = ({
             productsPerView === 2 && "md:!w-[calc(50%+8rem)] mx-auto"
           } grid grid-cols-${productsPerView} gap-x-5 gap-y-10`}
         >
-          {rendered_items}
+          {RenderItems()}
         </div>
       </div>
 
@@ -343,7 +343,7 @@ export const CategoryProducts = ({
         <div
           className={`mt-[1.875rem] px-2 md:px-[3rem] grid grid-cols-${productsPerViewMobile} gap-x-5 gap-y-10`}
         >
-          {rendered_items}
+          {RenderItems()}
         </div>
       </div>
 

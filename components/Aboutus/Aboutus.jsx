@@ -4,8 +4,8 @@ import playbutton from "@/assets/Images/playbutton.png";
 const Aboutus = () => {
   return (
     <div className="max-sm:w-[95%] max-sm:mx-auto md:mx-5 lg:mx-[5rem] max-sm:mt-[5rem] md:mt-[9rem] overflow-visible">
-      <div className="grid grid-cols-2 items-center max-md:gap-6">
-        <div className="max-md:col-span-2 col-span-1 pr-3">
+      <div className="grid grid-cols-2 items-center max-md:gap-6 md:gap-10">
+        <div className="max-md:col-span-2 col-span-1 pr-3 xl:pr-[5.5rem]">
           <h2 className="text-[50px] font-extralight">Upoznaj naš</h2>
           <div className="flex gap-4 items-center">
             <h2 className="font-bold uppercase text-[#215352] text-[50px] sm:text-[60px] leading-[50px]">
@@ -37,7 +37,7 @@ const Aboutus = () => {
             height={0}
             sizes={`100vw`}
             alt="about us"
-            className="w-full h-auto rounded-2xl"
+            className="w-full h-auto "
           />
         </div>
       </div>

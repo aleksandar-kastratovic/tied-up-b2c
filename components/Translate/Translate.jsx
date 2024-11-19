@@ -45,12 +45,12 @@ const Translate = () => {
   }, []);
 
   const langChange = (value) => {
-    if (value == baseLanguage) {
-      setCookie("googtrans", "", { path: "/", domain: ".croonus.com" });
+    if (value === baseLanguage) {
+      setCookie("googtrans", "", { path: "/", domain: ".tiedup.rs" });
       setCookie("googtrans", "", { path: "/" });
       setSelected(value);
     } else {
-      setCookie("googtrans", `${value}`, { path: "/", domain: ".croonus.com" });
+      setCookie("googtrans", `${value}`, { path: "/", domain: ".tiedup.rs" });
       setCookie("googtrans", `${value}`, { path: "/" });
       setSelected(value);
     }
@@ -71,7 +71,7 @@ const Translate = () => {
       ></div>{" "}
       <div className="notranslate flex items-center gap-3 custom-select-container">
         <select
-          className="custom-select rounded-lg border-none text-xs font-light text-black focus:ring-0 cursor-pointer bg-transparent"
+          className="custom-select rounded-lg border-none text-base font-light text-black focus:ring-0 cursor-pointer bg-transparent"
           onChange={(e) => langChange(e.target.value)}
           value={selected}
         >

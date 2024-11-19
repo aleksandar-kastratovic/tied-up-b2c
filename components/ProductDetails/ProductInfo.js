@@ -221,7 +221,7 @@ const ProductInfo = ({
             id: product?.data?.item?.basic_data?.id_product,
             quantity: count,
           });
-          pushToDataLayer("add_to_cart", product?.data?.item);
+          pushToDataLayer("add_to_cart", product?.data?.item, count);
         } else {
           router.push(`/kontakt?slug=${product?.data?.item?.slug}`);
         }
@@ -238,7 +238,7 @@ const ProductInfo = ({
               id: productVariant?.id,
               quantity: count,
             });
-            pushToDataLayer("add_to_cart", productVariant);
+            pushToDataLayer("add_to_cart", productVariant, count);
           } else {
             router.push(`/kontakt?slug=${productVariant?.slug}`);
           }

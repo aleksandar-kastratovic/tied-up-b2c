@@ -69,7 +69,7 @@ const ZamenaZaIstiArtikal = () => {
       return;
     } else {
       setErrors([]);
-      await POST("contact/contact_page", {
+      await POST("contact/contact_page?form_section=contact_page", {
         page_section: "contact_page",
         customer_name: formData?.first_name + " " + formData?.last_name,
         email: formData?.email,

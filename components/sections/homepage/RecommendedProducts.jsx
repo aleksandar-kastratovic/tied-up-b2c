@@ -11,9 +11,18 @@ import { useIsMobile } from "@/hooks/croonus.hooks";
 import { icons } from "@/_lib/icons";
 
 const RecommendedProducts = ({ recommendedProducts, action4 }) => {
-  const [products, setProducts] = useState(recommendedProducts);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [products, setProducts] = useState(
+    recommendedProducts?.filter(
+      (item) =>
+        item?.categories?.[0]?.id ===
+        recommendedProducts?.[0]?.categories?.[0]?.id
+    )
+  );
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    products?.[0]?.categories?.[0]?.id
+  );
+
   const pathname = usePathname();
   const [swiper, setSwiper] = useState(null);
 
@@ -42,11 +51,12 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
       case true:
         return (
           <select
+            value={selectedCategory}
             className={`w-full rounded-md border border-gray-200 mb-3 focus:ring-2 focus:border-gray-200 focus:ring-offset-2 focus:ring-offset-white focus:ring-[#b89980]`}
             onChange={(e) => handleCategoryChange(e.target.value)}
           >
             <option value={"all_categories"}>Sve kategorije</option>
-            {(recommendedProducts ?? [])?.map((item) => {
+            {(recommendedProducts ?? [])?.slice(0, 8)?.map((item) => {
               if (item?.id) {
                 const { categories } = item;
                 let category = {
@@ -65,7 +75,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
       case false:
         return (
           <div className={`flex items-center gap-3`}>
-            {(recommendedProducts ?? [])?.map((item) => {
+            {(recommendedProducts ?? [])?.slice(0, 8)?.map((item) => {
               if (item?.id) {
                 const { categories } = item;
                 let category = {
@@ -118,33 +128,10 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
                   className="max-md:text-[0.9rem] text-2xl underline text-[#171717] block font-light"
                   href={`/sekcija/preporuceno`}
                 >
-                  Pogledajte sve proizvode
+                  Pogledajte sve preporučene proizvode
                 </Link>
               </div>
             ) : null}
-          </div>
-          <div className="flex flex-row max-md:hidden items-center gap-[30px]">
-            {(categories ?? []).map((category) => {
-              const { id, name } = category;
-              return (
-                <div
-                  key={`category-${id}`}
-                  onClick={() => {
-                    setSelectedCategory(id);
-                  }}
-                >
-                  <button
-                    className={`font-light w-fit relative  text-2xl text-black ${
-                      selectedCategory === id
-                        ? "activeCategory"
-                        : "activeCategoryHover"
-                    }`}
-                  >
-                    {name}
-                  </button>
-                </div>
-              );
-            })}
           </div>
         </div>
       </div>
@@ -156,7 +143,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
                 swiper?.slidePrev();
               }
             }}
-            className={`absolute z-[5] bg-white shadow p-3 rounded-full top-1/2 border border-gray-300 left-3 transform -translate-y-1/2 cursor-pointer`}
+            className={`absolute z-[5] bg-white shadow p-3 rounded-full top-[42%] border border-gray-300 left-3 transform -translate-y-1/2 cursor-pointer`}
           >
             {icons.chevron_left}
           </div>
@@ -210,7 +197,7 @@ const RecommendedProducts = ({ recommendedProducts, action4 }) => {
                 swiper?.slideNext();
               }
             }}
-            className={`absolute z-[5] bg-white shadow p-3 rounded-full top-1/2 border border-gray-300 right-3 transform -translate-y-1/2 cursor-pointer`}
+            className={`absolute z-[5] bg-white shadow p-3 rounded-full top-[42%] border border-gray-300 right-3 transform -translate-y-1/2 cursor-pointer`}
           >
             {icons.chevron_right}
           </div>

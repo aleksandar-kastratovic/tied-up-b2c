@@ -18,8 +18,6 @@ import "swiper/css/pagination";
 import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 import { deleteMethod, post } from "@/app/api/api";
 import { toast } from "react-toastify";
-import WishlistActive from "@/assets/Icons/heart-active.png";
-import Wishlist from "@/assets/Icons/heart.png";
 import { icons } from "@/_lib/icons";
 import { pushToDataLayer } from "@/_services/data-layer";
 
@@ -38,6 +36,7 @@ export const Thumb = ({
   const { mutate: addToWishlist, isSuccess: isAdded } = useAddToWishlist();
   const { mutate: removeFromWishlist, isSuccess: isRemoved } =
     useRemoveFromWishlist();
+
   const { data: wishlist, refetch } = useIsInWishlist({ id: id });
 
   const wishlist_data = {
@@ -51,20 +50,7 @@ export const Thumb = ({
   }, [isAdded, isRemoved]);
 
   const { mutate: addToCart, isSuccess: is_added_to_cart } = useAddToCart();
-
-  const [navigationEnabled, setNavigationEnabled] = useState({
-    enabled: false,
-    id: null,
-  });
-
   const [swiper, setSwiper] = useState(null);
-
-  const handleSwiperNavigation = ({ id }) => {
-    setNavigationEnabled({
-      enabled: true,
-      id: id,
-    });
-  };
 
   const renderDiscountPercentage = ({
     price: {
@@ -116,15 +102,7 @@ export const Thumb = ({
     );
   };
   return (
-    <div
-      className={`col-span-1 flex flex-col relative group !h-full`}
-      onMouseEnter={() => {
-        handleSwiperNavigation({ id: product?.basic_data?.id_product });
-      }}
-      onMouseLeave={() => {
-        handleSwiperNavigation({ id: null });
-      }}
-    >
+    <div className={`col-span-1 flex flex-col relative group !h-full`}>
       {product?.price?.discount?.active &&
         renderDiscountPercentage({ price: product?.price })}
 
@@ -132,18 +110,6 @@ export const Thumb = ({
         renderStickers({ stickers: product?.stickers })}
 
       <div className={`!relative !overflow-hidden`}>
-        {navigationEnabled?.enabled &&
-          navigationEnabled?.id === product?.basic_data?.id_product &&
-          product?.image_data?.length > 1 && (
-            <div
-              onClick={() => {
-                swiper.slidePrev();
-              }}
-              className={`absolute top-1/2 transform -translate-y-1/2 left-2 z-[5] flex items-center gap-2`}
-            >
-              <button className={`text-black`}>{icons.chevron_left}</button>
-            </div>
-          )}
         <Swiper
           modules={[Pagination]}
           pagination={true}
@@ -190,18 +156,6 @@ export const Thumb = ({
             }
           )}
         </Swiper>
-        {navigationEnabled?.enabled &&
-          navigationEnabled?.id === product?.basic_data?.id_product &&
-          product?.image_data?.length > 1 && (
-            <div
-              onClick={() => {
-                swiper.slideNext();
-              }}
-              className={`absolute top-1/2 transform -translate-y-1/2 right-2 z-[5] flex items-center gap-2`}
-            >
-              <button className={`text-black`}>{icons.chevron_right}</button>
-            </div>
-          )}
       </div>
       <div className={`flex flex-wrap flex-col items-start`}>
         <div className="mt-auto pt-[0.813rem] flex items-start justify-between relative w-full">
@@ -221,19 +175,19 @@ export const Thumb = ({
                 pushToDataLayer("add_to_wishlist", product);
               }
             }}
-            className={`rounded-full favorites cursor-pointer `}
+            className={`rounded-full  cursor-pointer `}
           >
             {wishlist_data?.is_in_wishlist ? (
               <Image
                 alt="wishlist"
-                src={WishlistActive}
+                src={`/heart-active1.png`}
                 height={15}
                 width={15}
                 className="cursor-pointer hover:scale-110 transition-all duration-200"
               />
             ) : (
               <Image
-                src={Wishlist}
+                src={`/heart1.png`}
                 alt="wishlist"
                 height={15}
                 width={15}

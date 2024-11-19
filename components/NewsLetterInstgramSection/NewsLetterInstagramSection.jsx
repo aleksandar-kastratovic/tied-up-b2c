@@ -86,7 +86,7 @@ const NewsLetterInstagramSection = () => {
               Prijavite se na naš newsletter i budite u toku sa svim novostima i
               akcijama.
             </p>
-            <form className="relative md:w-[78%] mx-auto" onSubmit={onSubmit}>
+            <form className="relative" onSubmit={onSubmit}>
               <input
                 placeholder="Unesite svoj email"
                 title="Unesite validan email"
@@ -97,7 +97,7 @@ const NewsLetterInstagramSection = () => {
                 value={email}
                 className={`${
                   error ? "border-red-500" : "border-[#b2b2b2]"
-                } w-full max-md:w-full py-4 border rounded  px-4  placeholder:text-base placeholder:text-[#cecece] placeholder:font-normal  focus:border-[#cecece] focus:outline-none focus:ring-0`}
+                } w-full max-md:w-full py-4 border rounded px-4 placeholder:text-base placeholder:text-[#cecece] placeholder:font-normal  focus:border-[#cecece] focus:outline-none focus:ring-0`}
               />
               <button
                 className="absolute right-3 top-1/2 -translate-y-1/2 z-10"

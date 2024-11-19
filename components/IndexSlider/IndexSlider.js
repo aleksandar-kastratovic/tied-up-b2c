@@ -100,7 +100,7 @@ const IndexSlider = ({ banners, mobileBanners }) => {
   }, [banners, mobileBanners]);
 
   return (
-    <div data-aos="zoom-out" className="w-screen block" ref={sliderRef}>
+    <div className="w-screen block" ref={sliderRef}>
       <div className="relative h-full overflow-hidden">
         <div className="items-center justify-between h-full w-full">
           {(is_mobile ? mobileBanners : banners ?? [])?.map((banner, index) => {
