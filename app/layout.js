@@ -13,6 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="sr-RS">
       <head>
+        <meta
+          name="facebook-domain-verification"
+          content="ce0m4xtykqdl1voiy3lbt7f7eca1og"
+        />
         <Script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
