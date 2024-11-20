@@ -14,10 +14,13 @@ const Header = () => {
 
   const categoriesMain = [
     { name: "Početna", slug: "/", isCategory: false, id: 0 },
-    ...categories.filter((category) => category.name !== "Personalizovano"),
+    ...categories.filter(
+      (category) =>
+        category?.name !== "Personalizovano" && category?.slug !== "outlet"
+    ),
   ];
   const categoriesMainRight = [
-    { name: "Outlet", slug: "/kategorija-proizvoda/outlet", isCategory: false },
+    ...categories.filter((cat) => cat?.slug === "outlet"),
     { name: "Personalizovano", slug: "/personalizovano", isCategory: false },
     { name: "Blog", slug: "/blog", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },
