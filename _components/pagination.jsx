@@ -2,31 +2,20 @@
 
 import Link from "next/link";
 
-export const Pagination = ({ data, page, setPage, generateQueryString }) => {
-  // let query_string = generateQueryString();
-  //
-  // const handleQueryString = (page) => {
-  //   let new_string = query_string;
-  //   let page_string = query_string?.split("strana=")?.[1];
-  //
-  //   if (page_string) {
-  //     new_string = query_string?.replace(
-  //       `strana=${page_string}`,
-  //       `strana=${page + 1}`
-  //     );
-  //   }
-  //
-  //   if (!page_string) {
-  //     new_string = `${query_string}&strana=${page + 1}`;
-  //   }
-  //   return new_string;
-  // };
-
+export const Pagination = ({
+  data,
+  page,
+  selectedFilters,
+  setPage,
+  generateQueryString,
+}) => {
   const getPaginationArray = (selectedPage, totalPages) => {
     const start = Math.max(1, selectedPage - 2);
     const end = Math.min(totalPages, start + 4);
     return Array.from({ length: end - start + 1 }, (_, i) => start + i);
   };
+
+  const generatePageURL = (page) => {};
 
   return (
     <div
@@ -39,8 +28,8 @@ export const Pagination = ({ data, page, setPage, generateQueryString }) => {
         <>
           {index === 0 && num !== 1 && (
             <>
-              <span
-                // href={`${handleQueryString(0)}`}
+              <Link
+                href={`?strana=1`}
                 className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg`}
                 onClick={() => {
                   setPage(1);
@@ -48,7 +37,7 @@ export const Pagination = ({ data, page, setPage, generateQueryString }) => {
                 }}
               >
                 1
-              </span>
+              </Link>
               {num - 1 !== 1 && (
                 <span className={`select-none py-1 px-3 rounded-lg`}>...</span>
               )}
@@ -57,8 +46,8 @@ export const Pagination = ({ data, page, setPage, generateQueryString }) => {
           {index > 0 && num - array[index - 1] > 1 && (
             <span className={`select-none py-1 px-3 rounded-lg`}>...</span>
           )}
-          <span
-            // href={`${handleQueryString(num - 1)}`}
+          <Link
+            href={`?strana=${num}`}
             className={`${
               num === data?.pagination?.selected_page
                 ? "cursor-pointer select-none bg-[#215352] py-1 px-3 rounded-lg text-white"
@@ -70,7 +59,7 @@ export const Pagination = ({ data, page, setPage, generateQueryString }) => {
             }}
           >
             {num}
-          </span>
+          </Link>
           {index === array.length - 1 &&
             num !== data?.pagination?.total_pages && (
               <>
@@ -79,10 +68,8 @@ export const Pagination = ({ data, page, setPage, generateQueryString }) => {
                     ...
                   </span>
                 )}
-                <span
-                  // href={`${handleQueryString(
-                  //   data?.pagination?.total_pages - 1
-                  // )}`}
+                <Link
+                  href={`?strana=${data?.pagination?.total_pages}`}
                   className={`cursor-pointer select-none py-1 px-3 border border-white hover:border-[#215352] hover:text-[#215352] rounded-lg`}
                   onClick={() => {
                     setPage(data?.pagination?.total_pages);
@@ -90,7 +77,7 @@ export const Pagination = ({ data, page, setPage, generateQueryString }) => {
                   }}
                 >
                   {data?.pagination?.total_pages}
-                </span>
+                </Link>
               </>
             )}
         </>

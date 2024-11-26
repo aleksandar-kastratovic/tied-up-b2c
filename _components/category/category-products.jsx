@@ -156,7 +156,7 @@ export const CategoryProducts = ({
           key={id}
           fallback={
             <div
-              className={`aspect-2/3 w-full h-full bg-slate-200 animate-pulse`}
+              className={`aspect-square w-full h-full bg-slate-200 animate-pulse`}
             />
           }
         >
@@ -349,18 +349,11 @@ export const CategoryProducts = ({
 
       <Suspense>
         <Pagination
-          // generateQueryString={() => {
-          //   const { sort_tmp, filters_tmp, page_tmp } = updateURLQuery(
-          //     sort,
-          //     selectedFilters,
-          //     page
-          //   );
-          //   return generateQueryString(sort_tmp, filters_tmp, page_tmp);
-          // }}
           data={data}
           page={page}
           slug={slug}
           setPage={setPage}
+          selectedFilters={selectedFilters}
         />
       </Suspense>
       <CategoryLongDescription slug={slug} />
