@@ -283,13 +283,13 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-[12px] px-1 font-normal text-center text-white ">
-              Cene na sajtu su iskazane u dinarima sa uračunatim porezom, a
-              plaćanje se vrši isključivo u dinarima. Isporuka se vrši SAMO na
-              teritoriji Republike Srbije. Nastojimo da budemo što precizniji u
-              opisu proizvoda, prikazu slika i samih cena, ali ne možemo
-              garantovati da su sve informacije kompletne i bez grešaka. Svi
-              artikli prikazani na sajtu su deo naše ponude i ne podrazumeva da
-              su dostupni u svakom trenutku.
+              Cene na sajtu su iskazane u dinarima, a plaćanje se vrši
+              isključivo u dinarima. Isporuka se vrši SAMO na teritoriji
+              Republike Srbije. Nastojimo da budemo što precizniji u opisu
+              proizvoda, prikazu slika i samih cena, ali ne možemo garantovati
+              da su sve informacije kompletne i bez grešaka. Svi artikli
+              prikazani na sajtu su deo naše ponude i ne podrazumeva da su
+              dostupni u svakom trenutku.
             </p>
           </div>
         </div>
