@@ -21,7 +21,7 @@ const Header = () => {
   ];
   const categoriesMainRight = [
     ...categories.filter((cat) => cat?.slug === "outlet"),
-    { name: "Personalizovano", slug: "/personalizovano", isCategory: false },
+    ...categories.filter((cat) => cat?.slug === "personalizovano"),
     { name: "Blog", slug: "/blog", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },
   ];
