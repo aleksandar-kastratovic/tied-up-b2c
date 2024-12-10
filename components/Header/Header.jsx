@@ -25,8 +25,6 @@ const Header = () => {
     { name: "Blog", slug: "/blog", isCategory: false },
     { name: "Kontakt", slug: "/kontakt", isCategory: false },
   ];
-  
-  
 
   const [activeCategory, setActiveCategory] = useState({
     open: false,
