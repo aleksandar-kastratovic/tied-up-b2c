@@ -1,13 +1,17 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
 
 const generateDeviceToken = () => {
-  return "device_" + Math.random().toString(12) + Date.now();
+  return `device_${uuidv4()}`;
+};
+const generateCustomerToken = () => {
+  return `customer_${uuidv4()}`;
 };
 
 const getDeviceToken = () => {
   let device_token = Cookies.get("device_token");
-  if (!device_token) {
+  if (!device_token || !device_token.startsWith("device_")) {
     device_token = generateDeviceToken();
     Cookies.set("device_token", device_token, { expires: 365 });
   }
@@ -16,8 +20,8 @@ const getDeviceToken = () => {
 
 const getCustomerToken = () => {
   let customer_token = Cookies.get("customer_token");
-  if (!customer_token) {
-    customer_token = getDeviceToken();
+  if (!customer_token || !customer_token.startsWith("customer_")) {
+    customer_token = generateCustomerToken();
     Cookies.set("customer_token", customer_token, { expires: 365 });
   }
 
@@ -27,7 +31,6 @@ const getCustomerToken = () => {
 const makeRequest = async (method, path, payload, token) => {
   let device_token = getDeviceToken();
   let customer_token = getCustomerToken();
-
   try {
     const response = await axios({
       method: method,
@@ -41,6 +44,12 @@ const makeRequest = async (method, path, payload, token) => {
     });
     return response.data;
   } catch (error) {
+    if (error?.response?.status === 403) {
+      console.warn("Tokeni su nevažeći. Resetujem...");
+      Cookies.remove("device_token");
+      Cookies.remove("customer_token");
+      location.reload();
+    }
     return error?.response?.data;
   }
 };
